@@ -20,16 +20,11 @@
             </div>
             <div class="col-xl-6 col-sm-12">
                 <img src="assets/images/logo.png" class="w-50 ml-5 mb-5" alt="logo">   
-            <form id="formSignUp">
-                <fieldset>
-                    <div class="form-group">               
-                        <input type="email" id="emailCo" class="form-control w-75" id="email" aria-describedby="emailHelp" placeholder="Email" required>               
-                        <small>Error message</small>
-                    </div>
-                    <div class="form-group">             
-                        <input type="password" id="passwordCo" class="form-control w-75" id="password" placeholder="Password" required>                    
-                        <small>Error message</small>
-                    </div>
+            <form id="formSignUp" class="form">
+                <fieldset>         
+                        <input type="email" class="form-control w-75" placeholder="Email"  name="email" required>                  
+                        <input type="password" class="form-control w-75" placeholder="Password" name="password" required>                    
+                   <div id="resultat"></div>
                     <button type="submit" class="btn btn-primary w-75">Connexion</button>
                 </fieldset>
             </form>

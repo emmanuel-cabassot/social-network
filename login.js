@@ -1,39 +1,32 @@
-var form = document.getElementById("formSignUp");
-var passwordCo = document.getElementById('passwordCo');
-var emailCo= document.getElementById('emailCo');
+var formL = document.getElementById("formSignUp"); 
 
-
-
-function setErrorFor(input, message) {
-	const formControl = input.parentElement;
-	const small = formControl.querySelector('small');
-	formControl.className = 'form-group error';
-	small.innerText = message;
-}
-
+document.addEventListener("DOMContentLoaded", function() {
+    formL.addEventListener('submit', e => {
+        e.preventDefault();
+        login();
+        });
+    });
 
 var serializeForm = function (form) {
-	var obj = {};
-	var formData = new FormData(form);
-	for (var key of formData.keys()) {
-		obj[key] = formData.get(key);
-	}
-	return obj;
+    var obj = {};
+    var formData = new FormData(form);
+    for (var key of formData.keys()) {
+        obj[key] = formData.get(key);
+    }
+    return obj;
 };
 
 function login(){
-    var login_form = form;
+    var login_form = formL;
     var form_data=JSON.stringify(serializeForm(login_form));
     var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
     
-
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status == 200) {
         window.location="network.php";
-        }else if(this.readyState === 4 && this.status == 404){
-            setErrorFor(passwordCo, "Erreur de password");
-        }else if(this.readyState === 4 && this.status == 401){
-            setErrorFor(emailCo, "Cet email n'existe pas");
+        }else{
+           $("#resultat").html("<p>Erreur d'email ou de password.</p>"); 
         }
     });
 

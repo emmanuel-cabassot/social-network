@@ -3,7 +3,7 @@
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: GET, POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
   
@@ -24,14 +24,14 @@ $login = new Login($db);
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
  
-// set product property values
+// set email property values
 $login->email = $data->email;
 $email_exists = $login->emailExists();
 
 // check if email exists and if password is correct
 if($email_exists){
  
-    if(password_verify($data->password, $admin->password)){
+    if(password_verify($data->password, $login->password)){
            // set response code
            http_response_code(200);
     }else{
@@ -39,7 +39,7 @@ if($email_exists){
     }
 }else{
      // set response code user not authentified
-     http_response_code(401); 
+     http_response_code(404); 
 }
 
 ?>

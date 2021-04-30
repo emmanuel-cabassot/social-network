@@ -53,7 +53,7 @@ a .quiet{
     text-decoration: none;
 }
 
-.form-group small {
+.small {
     color: #e74c3c;
     position: absolute;
     bottom: 0;
@@ -61,6 +61,6 @@ a .quiet{
     visibility: hidden;
 }
 
-.form-group.error small {
+.small.error {
     visibility: visible;
 }
