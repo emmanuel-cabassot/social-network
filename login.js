@@ -7,7 +7,7 @@ var emailCo= document.getElementById('emailCo');
 function setErrorFor(input, message) {
 	const formControl = input.parentElement;
 	const small = formControl.querySelector('small');
-	formControl.className = 'form-control error';
+	formControl.className = 'form-group error';
 	small.innerText = message;
 }
 
