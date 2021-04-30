@@ -19,13 +19,15 @@
             </div>
             <div class="col-xl-6 col-sm-12">
                 <img src="assets/images/logo.png" class="w-50 ml-5 mb-5" alt="logo">   
-            <form>
+            <form id="formSignUp">
                 <fieldset>
                     <div class="form-group">               
-                        <input type="email" class="form-control w-75" id="email" aria-describedby="emailHelp" placeholder="Email" required>               
+                        <input type="email" id="emailCo" class="form-control w-75" id="email" aria-describedby="emailHelp" placeholder="Email" required>               
+                        <small>Error message</small>
                     </div>
                     <div class="form-group">             
-                        <input type="password" class="form-control w-75" id="password" placeholder="Password" required>                    
+                        <input type="password" id="passwordCo" class="form-control w-75" id="password" placeholder="Password" required>                    
+                        <small>Error message</small>
                     </div>
                     <button type="submit" class="btn btn-primary w-75">Connexion</button>
                 </fieldset>
@@ -35,7 +37,12 @@
             </fieldset> 
         </div>   
     </main>
-    
+    <footer id="footer">
+          <div class="col-lg-12"> 
+          </div>
+      </footer>
+    <script src="login.js"></script>   
+    <script src="assets/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>
 
