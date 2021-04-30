@@ -53,14 +53,8 @@ a .quiet{
     text-decoration: none;
 }
 
-.small {
+#resultat {
     color: #e74c3c;
-    position: absolute;
-    bottom: 0;
-    left: 40px;
-    visibility: hidden;
+ 
 }
 
-.small.error {
-    visibility: visible;
-}

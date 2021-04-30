@@ -20,17 +20,22 @@
             </div>
             <div class="col-xl-6 col-sm-12">
                 <img src="assets/images/logo.png" class="w-50 ml-5 mb-5" alt="logo">   
-            <form id="formSignUp" class="form">
-                <fieldset>         
-                        <input type="email" class="form-control w-75" placeholder="Email"  name="email" required>                  
-                        <input type="password" class="form-control w-75" placeholder="Password" name="password" required>                    
-                   <div id="resultat"></div>
-                    <button type="submit" class="btn btn-primary w-75">Connexion</button>
-                </fieldset>
-            </form>
-            <fieldset>
-                <p class="mt-3">Vous n'avez pas de compte? <a href="signUp.php">Inscrivez-vous</a></p>
-            </fieldset> 
+                <form id="formSignUp">
+                    <fieldset>
+                        <div class="form-group">               
+                            <input type="email" class="form-control w-75" placeholder="Email" name="email" required>                
+                        </div>
+                        <div class="form-group">             
+                            <input type="password" class="form-control w-75" placeholder="Password" name="password" required>                    
+                        </div>
+                    <div id="resultat"></div>
+                        <button type="submit" class="btn btn-primary w-75">Connexion</button>
+                    </fieldset>
+                </form>
+                <fieldset>
+                    <p class="mt-3">Vous n'avez pas de compte? <a href="signUp.php">Inscrivez-vous</a></p>
+                </fieldset> 
+            </div>
         </div>   
     </main>
     <footer id="footer">
