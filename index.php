@@ -20,7 +20,7 @@
             </div>
             <div class="col-xl-6 col-sm-12">
                 <img src="assets/images/logo.png" class="w-50 ml-5 mb-5" alt="logo">   
-                <form id="formSignUp">
+                <form id="formSignIn">
                     <fieldset>
                         <div class="form-group">               
                             <input type="email" class="form-control w-75" placeholder="Email" name="email" required>                
@@ -33,7 +33,7 @@
                     </fieldset>
                 </form>
                 <fieldset>
-                    <p class="mt-3">Vous n'avez pas de compte? <a href="signUp.php">Inscrivez-vous</a></p>
+                    <p class="mt-3">Vous n'avez pas de compte? <a href="sign_up.php">Inscrivez-vous</a></p>
                 </fieldset> 
             </div>
         </div>   

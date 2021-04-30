@@ -1,9 +1,9 @@
-var formL = document.getElementById("formSignIn"); 
+var formI = document.getElementById("formSignUp"); 
 
 document.addEventListener("DOMContentLoaded", function() {
-    formL.addEventListener('submit', e => {
+    formI.addEventListener('submit', e => {
         e.preventDefault();
-        login();
+        signUp();
         });
     });
 
@@ -16,21 +16,21 @@ var serializeForm = function (form) {
     return obj;
 };
 
-function login(){
-    var login_form = formL;
-    var form_data=JSON.stringify(serializeForm(login_form));
+function signUp(){
+    var signUp_form = formI;
+    var form_data=JSON.stringify(serializeForm(signUp_form));
     var xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
     
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status == 200) {
-        window.location="network.php";
+        window.location="index.php";
         }else{
-           $("#resultat").html("<p>Erreur d'email ou de password.</p>"); 
+           $("#resultat").html("<p>Erreur système, veuillez recommencer.</p>"); 
         }
     });
 
-    xhr.open("POST", "http://localhost/social-network/api/controllers/login");
+    xhr.open("POST", "http://localhost/social-network/api/controllers/signUp");
     xhr.setRequestHeader("Content-Type", "text/plain");
 
     xhr.send(form_data);
