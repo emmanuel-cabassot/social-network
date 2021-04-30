@@ -9,6 +9,7 @@
 	<meta name="author" content="Denis Farkas Emmanuel Cabassot Thuc-nhi Wiedenhofer" />
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <script src="assets/js/jquery.min.js"></script>
 </head>
 <body>
     <main class="container mt-5">
