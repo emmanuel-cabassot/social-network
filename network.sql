@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 30 avr. 2021 à 08:08
+-- Généré le : ven. 30 avr. 2021 à 08:40
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -317,6 +317,34 @@ CREATE TABLE IF NOT EXISTS `users` (
   `period_bock` date NOT NULL,
   `banner` varchar(200) NOT NULL,
   PRIMARY KEY (`id_user`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `video_post`
+--
+
+DROP TABLE IF EXISTS `video_post`;
+CREATE TABLE IF NOT EXISTS `video_post` (
+  `id_video_post` int(11) NOT NULL AUTO_INCREMENT,
+  `name_video_post` varchar(200) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  PRIMARY KEY (`id_video_post`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `video_story`
+--
+
+DROP TABLE IF EXISTS `video_story`;
+CREATE TABLE IF NOT EXISTS `video_story` (
+  `id_video_story` int(11) NOT NULL AUTO_INCREMENT,
+  `name_video_story` varchar(200) NOT NULL,
+  `id_story` int(11) NOT NULL,
+  PRIMARY KEY (`id_video_story`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 COMMIT;
 
