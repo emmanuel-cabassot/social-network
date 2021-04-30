@@ -5,7 +5,7 @@ class Database{
 
 
     private $host = "localhost";
-    private $db_name = "autocompletion";
+    private $db_name = "network";
     private $username = "root";
     private $pass = "";
     public $conn;
