@@ -26,7 +26,7 @@ function login(){
         if(this.readyState === 4 && this.status == 200) {
         window.location="network.php";
         }else{
-           $("#resultat").html("<p>Erreur d'email ou de password.</p>"); 
+            setTimeout(function(){$("#resultat").html("<p>Erreur d'email ou de password.</p>")}, 1000); 
         }
     });
 
