@@ -17,10 +17,9 @@
             <div class="col-xl-2"></div>
             <div class="col-xl-6 col-sm-12">
                 <img src="assets/images/logo.png" class="w-50 ml-5 mb-5" alt="logo">   
-                <p>* (Tous les champs sont requis)</p>
+                <p>*(Tous les champs sont requis)</p>
                 <form id="formSignUp">
                     <fieldset>
-                       
                         <div class="form-group">               
                             <input type="email" class="form-control w-75" placeholder="Email" name="email" required>                
                         </div>
@@ -50,9 +49,7 @@
                             <input type="text" class="form-control w-75" placeholder="Banner name" name="banner" required>                
                         </div>
                         <input type="hidden" name="creation" value="<?php echo date('Y-m-d'); ?>">
-                        
-                        
-                        
+    
                     <div id="resultat"></div>
                         <button type="submit" class="btn btn-primary w-75">Inscription</button>
                     </fieldset>
