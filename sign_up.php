@@ -9,7 +9,9 @@
 	<meta name="author" content="Denis Farkas Emmanuel Cabassot Thuc-nhi Wiedenhofer" />
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link href="assets/css/dropzone.min.css" rel="stylesheet" type="text/css">
     <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/dropzone.min.js" ></script>
 </head>
 <body>
     <main class="container mt-5">
@@ -57,7 +59,32 @@
                 
             </div>
             <div class="col-xl-4 col-sm-12">
-                <img src="assets/images/phone.png"  alt="mobile">
+            <div class='content'>
+                <form action="upload.php" class="dropzone" id="dropzonewidget">
+            
+                </form> 
+            </div> 
+               <script type="text/javascript">
+                    Dropzone.autoDiscover = false;
+                   
+                    $(".dropzone").dropzone({
+                    addRemoveLinks: true,
+                    removedfile: function(file) {
+                    var name = file.name; 
+   
+                    $.ajax({
+                        type: 'POST',
+                        url: 'upload.php',
+                        data: {name: name,request: 2},
+                        sucess: function(data){
+                            console.log('success: ' + data);
+                        }
+                    });
+                    var _ref;
+                        return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+                    }
+                    });
+               </script>
             </div>
             
         </div>   
