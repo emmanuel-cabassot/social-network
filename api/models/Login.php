@@ -19,7 +19,7 @@ class Login{
     function emailExists(){
  
         // query to check if email exists
-        $query = "SELECT id, email, password 
+        $query = "SELECT id_user, email, password 
                 FROM users
                 WHERE email = ?
                 LIMIT 0,1";
