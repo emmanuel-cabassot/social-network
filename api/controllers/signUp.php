@@ -34,16 +34,16 @@ $signup->city = $data->city;
 $signup->country = $data->country;
 $signup->birth = $data->birth;
 $signup->creation = $data->creation; 
-$signup->role = $data->role; 
-$signup->blocked = $data->blocked; 
-$signup->period_block = $data->period_block;
-$signup->banner->$data->banner;
+$signup->role = "user"; 
+$signup->blocked = "non"; 
+$signup->period_block = "";
+$signup->banner = $data->banner;
 
 
 $email_exists = $signup->emailExists();
 
-// check if email exists and if password is correct
-if($email_exists == false){
+//check if email exists 
+if($email_exists != false){
  
     $create_user = $signup->create_user();
     
@@ -62,6 +62,6 @@ if($email_exists == false){
     http_response_code(503);
 
     } 
-}
+}else{http_response_code(406);}
 
 ?>

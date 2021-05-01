@@ -20,17 +20,18 @@
                 <p>* (Tous les champs sont requis)</p>
                 <form id="formSignUp">
                     <fieldset>
-                        <div class="form-group">               
-                            <input type="text" class="form-control w-75" placeholder="Name" name="name" required>                
-                        </div>
-                        <div class="form-group">               
-                            <input type="text" class="form-control w-75" placeholder="LastName" name="lastname" required>                
-                        </div>
+                       
                         <div class="form-group">               
                             <input type="email" class="form-control w-75" placeholder="Email" name="email" required>                
                         </div>
                         <div class="form-group">             
                             <input type="password" class="form-control w-75" placeholder="Password" name="password" required>                    
+                        </div>
+                        <div class="form-group">               
+                            <input type="text" class="form-control w-75" placeholder="Name" name="name" required>                
+                        </div>
+                        <div class="form-group">               
+                            <input type="text" class="form-control w-75" placeholder="LastName" name="lastname" required>                
                         </div>
                         <div class="form-group">               
                             <input type="text" class="form-control w-75" placeholder="City" name="city" required>                
@@ -51,7 +52,7 @@
                         <input type="hidden" name="creation" value="<?php echo date('Y-m-d'); ?>">
                         <input type="hidden" name="role" value="user">
                         <input type="hidden" name="blocked" value="no">
-                        <input type="hidden" name="period_block" value="2000-12-12">
+                        <input type="hidden" name="period_block" value="0">
                         
                         
                     <div id="resultat"></div>

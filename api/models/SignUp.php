@@ -31,19 +31,15 @@ class SignUp{
     function emailExists(){
  
         // query to check if email exists
-        $query = "SELECT id, email 
-                FROM users
-                WHERE email = ?
-                LIMIT 0,1";
+        $query = "SELECT id, email FROM users WHERE email=:email";
      
         // prepare the query
         $stmt = $this->conn->prepare( $query );
-     
-        // sanitize
-        $this->email=htmlspecialchars(strip_tags($this->email));
+
+        $email=$this->email;
      
         // bind given email value
-        $stmt->bindParam(1, $this->email);
+        $stmt->bindParam(":email", $email);
      
         // execute the query
         $stmt->execute();
@@ -51,22 +47,19 @@ class SignUp{
         // get number of rows
         $num = $stmt->rowCount();
      
-        // if email exists, return true
-        if($num>0){
-            return true;
+        // if email exists, return false
+        if($num > 0){
+            return false;
         }else{
-             return false;}
-        // return false if email does not exist in the database
+             return true;}
+        // return true if email does not exist in the database
    
     }
 
     function create_user(){
 
         // query to insert record
-        $query = "INSERT INTO
-                    users
-                SET
-                 email=:email, password=:password, name=:name, lastname=:lastname, avatar=:avatar, city=:city, country=:country, birth=:birth, creation=:creation, role=:role, blocked=:blocked, period_block=:period_block, banner=:banner";
+        $query = "INSERT INTO users SET email=:email, password=:password, name=:name, lastname=:lastname, avatar=:avatar, city=:city, country=:country, birth=:birth, creation=:creation, role=:role, blocked=:blocked, period_block=:period_block, banner=:banner";
     
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -74,7 +67,7 @@ class SignUp{
         // sanitize
        
         $this->email=htmlspecialchars($this->email);
-        $this->password=htmlspecialchars(strip_tags($this->password));
+        $this->password=htmlspecialchars($this->password);
         $this->name=htmlspecialchars(strip_tags($this->name));
         $this->lastname=htmlspecialchars(strip_tags($this->lastname));
         $this->avatar=htmlspecialchars(strip_tags($this->avatar));
