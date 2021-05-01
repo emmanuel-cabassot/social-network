@@ -43,7 +43,7 @@ $signup->banner = $data->banner;
 $email_exists = $signup->emailExists();
 
 //check if email exists 
-if($email_exists != false){
+if($email_exists){
  
     $create_user = $signup->create_user();
     

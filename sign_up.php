@@ -50,9 +50,7 @@
                             <input type="text" class="form-control w-75" placeholder="Banner name" name="banner" required>                
                         </div>
                         <input type="hidden" name="creation" value="<?php echo date('Y-m-d'); ?>">
-                        <input type="hidden" name="role" value="user">
-                        <input type="hidden" name="blocked" value="no">
-                        <input type="hidden" name="period_block" value="0">
+                        
                         
                         
                     <div id="resultat"></div>

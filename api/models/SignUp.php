@@ -31,7 +31,7 @@ class SignUp{
     function emailExists(){
  
         // query to check if email exists
-        $query = "SELECT id, email FROM users WHERE email=:email";
+        $query = "SELECT id_user, email FROM users WHERE email=:email";
      
         // prepare the query
         $stmt = $this->conn->prepare( $query );

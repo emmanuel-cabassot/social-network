@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 30 avr. 2021 à 08:40
--- Version du serveur :  5.7.31
+-- Généré le : sam. 01 mai 2021 à 08:10
+-- Version du serveur :  8.0.21
 -- Version de PHP : 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `network`
 --
-CREATE DATABASE IF NOT EXISTS `network` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `network`;
 
 -- --------------------------------------------------------
 
@@ -31,9 +29,9 @@ USE `network`;
 
 DROP TABLE IF EXISTS `belong`;
 CREATE TABLE IF NOT EXISTS `belong` (
-  `id_belong` int(11) NOT NULL AUTO_INCREMENT,
-  `id_group` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_belong` int NOT NULL AUTO_INCREMENT,
+  `id_group` int NOT NULL,
+  `id_user` int NOT NULL,
   PRIMARY KEY (`id_belong`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -45,9 +43,9 @@ CREATE TABLE IF NOT EXISTS `belong` (
 
 DROP TABLE IF EXISTS `comment_post`;
 CREATE TABLE IF NOT EXISTS `comment_post` (
-  `id_comment_post` int(11) NOT NULL AUTO_INCREMENT,
-  `id_post` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_comment_post` int NOT NULL AUTO_INCREMENT,
+  `id_post` int NOT NULL,
+  `id_user` int NOT NULL,
   `title_comment_post` varchar(100) NOT NULL,
   `text_comment_post` longtext NOT NULL,
   `date_comment_post` datetime NOT NULL,
@@ -64,9 +62,9 @@ CREATE TABLE IF NOT EXISTS `comment_post` (
 
 DROP TABLE IF EXISTS `comment_story`;
 CREATE TABLE IF NOT EXISTS `comment_story` (
-  `id_comment_story` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
-  `id_story` int(11) NOT NULL,
+  `id_comment_story` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
+  `id_story` int NOT NULL,
   `tittle_comment_story` varchar(250) NOT NULL,
   `text_comment_story` longtext NOT NULL,
   `date_comment_story` datetime NOT NULL,
@@ -83,9 +81,9 @@ CREATE TABLE IF NOT EXISTS `comment_story` (
 
 DROP TABLE IF EXISTS `connected`;
 CREATE TABLE IF NOT EXISTS `connected` (
-  `id_connected` int(11) NOT NULL AUTO_INCREMENT,
-  `str_connect` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_connected` int NOT NULL AUTO_INCREMENT,
+  `str_connect` int NOT NULL,
+  `id_user` int NOT NULL,
   PRIMARY KEY (`id_connected`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -97,8 +95,8 @@ CREATE TABLE IF NOT EXISTS `connected` (
 
 DROP TABLE IF EXISTS `event`;
 CREATE TABLE IF NOT EXISTS `event` (
-  `id_event` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
+  `id_event` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
   `title_event` varchar(200) NOT NULL,
   `text_event` mediumtext NOT NULL,
   `date_event` datetime NOT NULL,
@@ -116,9 +114,9 @@ CREATE TABLE IF NOT EXISTS `event` (
 
 DROP TABLE IF EXISTS `friend`;
 CREATE TABLE IF NOT EXISTS `friend` (
-  `id_friend` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
-  `id_user_friend` int(11) NOT NULL,
+  `id_friend` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
+  `id_user_friend` int NOT NULL,
   PRIMARY KEY (`id_friend`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -130,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `friend` (
 
 DROP TABLE IF EXISTS `groupe`;
 CREATE TABLE IF NOT EXISTS `groupe` (
-  `id_group` int(11) NOT NULL AUTO_INCREMENT,
+  `id_group` int NOT NULL AUTO_INCREMENT,
   `name_group` varchar(250) NOT NULL,
   `description` mediumtext NOT NULL,
   `img_group` varchar(250) NOT NULL,
@@ -145,9 +143,9 @@ CREATE TABLE IF NOT EXISTS `groupe` (
 
 DROP TABLE IF EXISTS `images_posts`;
 CREATE TABLE IF NOT EXISTS `images_posts` (
-  `id_images_posts` int(11) NOT NULL AUTO_INCREMENT,
-  `id_img_post` int(11) NOT NULL,
-  `id_post` int(11) NOT NULL,
+  `id_images_posts` int NOT NULL AUTO_INCREMENT,
+  `id_img_post` int NOT NULL,
+  `id_post` int NOT NULL,
   PRIMARY KEY (`id_images_posts`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -159,9 +157,9 @@ CREATE TABLE IF NOT EXISTS `images_posts` (
 
 DROP TABLE IF EXISTS `images_stories`;
 CREATE TABLE IF NOT EXISTS `images_stories` (
-  `id_images_stories` int(11) NOT NULL AUTO_INCREMENT,
-  `id_img_story` int(11) NOT NULL,
-  `id_story` int(11) NOT NULL,
+  `id_images_stories` int NOT NULL AUTO_INCREMENT,
+  `id_img_story` int NOT NULL,
+  `id_story` int NOT NULL,
   PRIMARY KEY (`id_images_stories`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -173,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `images_stories` (
 
 DROP TABLE IF EXISTS `img_post`;
 CREATE TABLE IF NOT EXISTS `img_post` (
-  `id_img_post` int(11) NOT NULL AUTO_INCREMENT,
+  `id_img_post` int NOT NULL AUTO_INCREMENT,
   `image_post` varchar(250) NOT NULL,
   `descript_post` varchar(250) NOT NULL,
   PRIMARY KEY (`id_img_post`)
@@ -187,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `img_post` (
 
 DROP TABLE IF EXISTS `img_story`;
 CREATE TABLE IF NOT EXISTS `img_story` (
-  `id_img_story` int(11) NOT NULL AUTO_INCREMENT,
+  `id_img_story` int NOT NULL AUTO_INCREMENT,
   `image_story` varchar(250) NOT NULL,
   `descript_story` varchar(250) NOT NULL,
   PRIMARY KEY (`id_img_story`)
@@ -201,10 +199,10 @@ CREATE TABLE IF NOT EXISTS `img_story` (
 
 DROP TABLE IF EXISTS `like_event`;
 CREATE TABLE IF NOT EXISTS `like_event` (
-  `id_like_event` int(11) NOT NULL AUTO_INCREMENT,
-  `id_event` int(11) NOT NULL,
-  `like_event` int(11) NOT NULL,
-  `dislike_event` int(11) NOT NULL,
+  `id_like_event` int NOT NULL AUTO_INCREMENT,
+  `id_event` int NOT NULL,
+  `like_event` int NOT NULL,
+  `dislike_event` int NOT NULL,
   PRIMARY KEY (`id_like_event`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -216,11 +214,11 @@ CREATE TABLE IF NOT EXISTS `like_event` (
 
 DROP TABLE IF EXISTS `like_post`;
 CREATE TABLE IF NOT EXISTS `like_post` (
-  `id_like_post` int(11) NOT NULL AUTO_INCREMENT,
-  `id_post` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `liked` int(11) NOT NULL,
-  `disliked` int(11) NOT NULL,
+  `id_like_post` int NOT NULL AUTO_INCREMENT,
+  `id_post` int NOT NULL,
+  `id_user` int NOT NULL,
+  `liked` int NOT NULL,
+  `disliked` int NOT NULL,
   PRIMARY KEY (`id_like_post`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -232,11 +230,11 @@ CREATE TABLE IF NOT EXISTS `like_post` (
 
 DROP TABLE IF EXISTS `like_story`;
 CREATE TABLE IF NOT EXISTS `like_story` (
-  `id_like_story` int(11) NOT NULL AUTO_INCREMENT,
-  `id_story` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `liked` int(11) NOT NULL,
-  `disliked` int(11) NOT NULL,
+  `id_like_story` int NOT NULL AUTO_INCREMENT,
+  `id_story` int NOT NULL,
+  `id_user` int NOT NULL,
+  `liked` int NOT NULL,
+  `disliked` int NOT NULL,
   PRIMARY KEY (`id_like_story`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -248,9 +246,9 @@ CREATE TABLE IF NOT EXISTS `like_story` (
 
 DROP TABLE IF EXISTS `part_event`;
 CREATE TABLE IF NOT EXISTS `part_event` (
-  `id_part_event` int(11) NOT NULL AUTO_INCREMENT,
-  `id_event` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
+  `id_part_event` int NOT NULL AUTO_INCREMENT,
+  `id_event` int NOT NULL,
+  `id_user` int NOT NULL,
   PRIMARY KEY (`id_part_event`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -262,8 +260,8 @@ CREATE TABLE IF NOT EXISTS `part_event` (
 
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE IF NOT EXISTS `post` (
-  `id_post` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
+  `id_post` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
   `title_post` varchar(250) NOT NULL,
   `text_post` longtext NOT NULL,
   `date_post` datetime NOT NULL,
@@ -282,8 +280,8 @@ CREATE TABLE IF NOT EXISTS `post` (
 
 DROP TABLE IF EXISTS `story`;
 CREATE TABLE IF NOT EXISTS `story` (
-  `id_story` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL,
+  `id_story` int NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL,
   `title_story` varchar(250) NOT NULL,
   `text_story` longtext NOT NULL,
   `date_story` datetime NOT NULL,
@@ -302,9 +300,9 @@ CREATE TABLE IF NOT EXISTS `story` (
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
-  `password` int(250) NOT NULL,
+  `password` varchar(250) NOT NULL,
   `name` varchar(200) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `avatar` varchar(100) NOT NULL,
@@ -313,11 +311,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `birth` date NOT NULL,
   `creation` date NOT NULL,
   `role` varchar(100) NOT NULL,
-  `blocked` tinyint(1) NOT NULL,
-  `period_bock` date NOT NULL,
+  `blocked` varchar(3) NOT NULL,
+  `period_block` date DEFAULT NULL,
   `banner` varchar(200) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -327,9 +325,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 DROP TABLE IF EXISTS `video_post`;
 CREATE TABLE IF NOT EXISTS `video_post` (
-  `id_video_post` int(11) NOT NULL AUTO_INCREMENT,
+  `id_video_post` int NOT NULL AUTO_INCREMENT,
   `name_video_post` varchar(200) NOT NULL,
-  `id_post` int(11) NOT NULL,
+  `id_post` int NOT NULL,
   PRIMARY KEY (`id_video_post`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -341,9 +339,9 @@ CREATE TABLE IF NOT EXISTS `video_post` (
 
 DROP TABLE IF EXISTS `video_story`;
 CREATE TABLE IF NOT EXISTS `video_story` (
-  `id_video_story` int(11) NOT NULL AUTO_INCREMENT,
+  `id_video_story` int NOT NULL AUTO_INCREMENT,
   `name_video_story` varchar(200) NOT NULL,
-  `id_story` int(11) NOT NULL,
+  `id_story` int NOT NULL,
   PRIMARY KEY (`id_video_story`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 COMMIT;
