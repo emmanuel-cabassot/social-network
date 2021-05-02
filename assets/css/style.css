@@ -54,7 +54,9 @@ a .quiet{
 }
 
 #resultat {
-    color: #e74c3c;
- 
+    color: #e74c3c; 
 }
 
+.figure{
+    margin-top: 10em;
+}
