@@ -1,0 +1,17 @@
+.module-sendPost {
+    border: 1px solid grey;
+    border-radius: 8px;
+}
+
+.module-sendPost h2 .fa-pen {
+    color: #033c73;
+    background-color: rgb(238, 238, 238);
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 7px; 
+}
+
+.module-sendPost h2 {
+    font-size: 1em;
+    color: rgb(230, 227, 227);
+}
