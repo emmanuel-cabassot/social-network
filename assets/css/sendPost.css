@@ -13,5 +13,21 @@
 
 .module-sendPost h2 {
     font-size: 1em;
-    color: rgb(230, 227, 227);
+    color: rgb(87, 86, 86);
 }
+
+.module-sendPost .tox-toolbar__primary {
+    border: none!important;
+    justify-content: flex-end!important;
+}
+
+.tox-tinymce {
+    min-height: 100px!important;
+}
+
+.media-postSend a{
+    color: black;
+}
+
+
+

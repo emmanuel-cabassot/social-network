@@ -24,7 +24,7 @@ class PostSend{
     function sendPost(){
 
         $default = 'non';
-        $date_now = date('Y-m-d');
+        $date_now = date('Y-m-d H:i:s');
  
         // Inserer le post
 
