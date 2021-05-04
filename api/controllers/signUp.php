@@ -36,7 +36,7 @@ $signup->birth = $data->birth;
 $signup->creation = $data->creation; 
 $signup->role = "user"; 
 $signup->blocked = "non"; 
-$signup->period_block = "";
+$signup->period_block = "0001-01-01";
 $signup->banner = $data->banner;
 
 
