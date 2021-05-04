@@ -19,7 +19,7 @@ $db = $database->getConnection();
 $data = json_decode(file_get_contents("php://input"));
 
 $postSend = new PostSend($db);
-$postSend->user = 1;
+$postSend->user = $data->user;
 $postSend->title = 'titre';
 $postSend->texte = htmlspecialchars(strip_tags($data->texte));
 

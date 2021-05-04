@@ -23,7 +23,7 @@
         </section>
         <section class="boutons-sendPost row d-flex justify-content-between align-items-center mb-3">
             <div class="media-postSend">
-                <a class="ml-3 mr-3"href=""><i class="fas fa-image text-success"></i> Image</a>
+                <a class="ml-3 mr-3" href=""><i class="fas fa-image text-success"></i> Image</a>
                 <a href=""><i class="fas fa-video text-danger "></i> Vidéo</a>
             </div>
             <div class="publier-sendPost d-flex align-items-center mr-3">
@@ -31,6 +31,15 @@
             </div>
         </section>
     </section>
+    <section class="files">
+        <form action="upload.php" method="post" class="dropzone" enctype="multipart/form-data">
+            <input type="file" name="image" />
+            <button type="submit">Envoyer</button>
+        </form>
+    </section>
+
+
+    <input type="hidden" id="idUser" value="1">
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="sendPost.js"></script>
 
@@ -50,7 +59,7 @@
             content_style: "body { line-height: .4; }"
         });
     </script>
-    <input type="hidden" id="inputCache" value="1">
+
 </body>
 
 </html>
