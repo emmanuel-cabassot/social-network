@@ -23,7 +23,7 @@ publier.addEventListener("click", function (e) {
 // Dropzone options
 Dropzone.options.dropzoneFrom = {
     autoProcessQueue: false,
-    dictDefaultMessage: 'Cliquez ici',
+    dictDefaultMessage: 'Cliquez ou déposez ici',
     acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
     init: function () {
         // Le bouton de téléchargement des images
@@ -45,7 +45,7 @@ Dropzone.options.dropzoneFrom = {
 // Fonction qui affiche les photos sous dans la div #preview
 function list_image() {
     $.ajax({
-        url: "uploadPost.php",
+        url: "uploadTempPost.php",
         success: function (data) {
             $('#preview').html(data);
         }
@@ -57,7 +57,7 @@ $(document).on('click', '.remove_image', function () {
     var name = $(this).attr('id');
     $.ajax({
         // Adresse du traitement de l'image
-        url: "uploadPost.php",
+        url: "uploadTempPost.php",
         method: "POST",
         data: { name: name },
         success: function (data) {

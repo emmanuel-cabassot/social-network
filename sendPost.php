@@ -1,5 +1,10 @@
+<?php
+session_start().
+$_SESSION['user']['id'] = 4;
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
@@ -33,7 +38,7 @@
             </div>
         </section>
     </section>
-    <form action="uploadPost.php" class="dropzone" id="dropzoneFrom">
+    <form action="uploadTempPost.php" class="dropzone" id="dropzoneFrom">
 
     </form>
     <div align="center">
