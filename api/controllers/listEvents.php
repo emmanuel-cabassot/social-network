@@ -11,37 +11,41 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../config/database.php';
   
 // instantiate product object
-include_once '../models/Contact.php';
+include_once '../models/Event.php';
   
 $database = new Database();
 $db = $database->getConnection();
 
 // instantiate user object
-$contact = new Contact($db);
+$event = new Event($db);
 
 $id_user= $_SESSION['id_user'];
 
-$stmt = $contact->listContacts($id_user);
+$stmt = $event->listEvents();
 $num = $stmt->rowCount();
 
 if ($num>0){
-    $contact_arr=array();
-    $contact_arr['records']=array();
+    $event_arr=array();
+    $event_arr['records']=array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         // extract row
         // this will make $row['name'] to
         // just $name only
-        $contact_item = array(
-            "id_user_friend" => $id_user_friend,
-            "name" => $name,
-            "lastname" => $lastname,
-            "avatar" => $avatar,
-            "id_connected" => $id_connected
+        $event_item = array(
+           
+            "id_event" =>$id_event,
+            "id_user_creator" =>$id_user_creator,
+            "title_event" =>$title_event,
+            "text_event" =>$text_event,
+            "date_event" =>$date_event,
+            "city_event" =>$city_event,
+            "img_event" =>$img_event
+   
         );
 
-        array_push($contact_arr["records"], $contact_item);
+        array_push($event_arr["records"], $event_item);
 
     }
 
@@ -49,7 +53,7 @@ if ($num>0){
     http_response_code(200);
   
     // show products data
-    echo json_encode($search_arr);
+    echo json_encode($event_arr);
 }
   
 else{
@@ -58,6 +62,3 @@ else{
   
     
 }
-
-
-
