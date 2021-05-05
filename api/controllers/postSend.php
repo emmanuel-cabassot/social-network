@@ -10,7 +10,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../config/database.php';
   
 // instantiate product object
-include_once '../models/post.php';
+include_once '../models/Post.php';
 
 // instantiate database and product object
 $database = new Database();
@@ -18,7 +18,7 @@ $db = $database->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
 
-$postSend = new PostSend($db);
+$postSend = new post($db);
 $postSend->user = $data->user;
 $postSend->title = 'titre';
 $postSend->texte = htmlspecialchars(strip_tags($data->texte));

@@ -1,6 +1,5 @@
 <?php
 
-
 // Chemin pour enregistrer les images
 $folder_name = 'assets/images/upload/post/';
 

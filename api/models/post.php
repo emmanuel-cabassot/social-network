@@ -1,5 +1,5 @@
 <?php
-class PostSend{
+class Post{
 
     // database connection and table name
     private $conn;
