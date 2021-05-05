@@ -27,15 +27,15 @@ $data = json_decode(file_get_contents("php://input"));
 // set user property values
 
     
-    $event -> id_user_creator = $data-> id_user_creator;
-    $event -> title_event = $data-> title_event;
-    $event -> text_event = $data-> text_event;
-    $event -> date_event = $data-> date_event;
-    $event -> city_event = $data-> city_event;
-    $event -> img_event = $data-> img_event;
-    $event -> public_event = $data-> public_event;
-    $event -> signalized = '9';
-    $event -> blocked = '9';
+    $event->id_user_creator = $data-> id_user_creator;
+    $event->title_event = $data-> title_event;
+    $event->text_event = $data-> text_event;
+    $event->date_event = $data-> date_event;
+    $event->city_event = $data-> city_event;
+    $event->img_event = $data-> img_event;
+    $event->public_event = $data-> public_event;
+    $event->signalized = 'non';
+    $event->blocked = 'non';
     
 
 

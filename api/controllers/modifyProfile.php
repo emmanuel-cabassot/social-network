@@ -24,35 +24,35 @@ $modify = new ModifyProfile($db);
 $data = json_decode(file_get_contents("php://input"));
  
 // set user property values
-$signup->email = $data->email;
-$signup->password = $data->password;
-$signup->name = $data->name;
-$signup->lastname = $data->lastname;
-$signup->avatar = $data->avatar;
-$signup->city = $data->city;
-$signup->country = $data->country;
-$signup->birth = $data->birth;
-$signup->creation = $data->creation; 
-$signup->role = "user"; 
-$signup->blocked = "non"; 
-$signup->period_block = "";
-$signup->banner = $data->banner;
+$modify->email = $data->email;
+$modify->password = $data->password;
+$modify->name = $data->name;
+$modify->lastname = $data->lastname;
+$modify->avatar = $data->avatar;
+$modify->city = $data->city;
+$modify->country = $data->country;
+$modify->birth = $data->birth;
+$modify->creation = $data->creation; 
+$modify->role = "user"; 
+$modify->blocked = "non"; 
+$modify->period_block = "";
+$modify->banner = $data->banner;
 
 
-$email_exists = $signup->emailExists();
+$id_user = $data->id_user;
 
-//check if email exists 
-if($email_exists){
+//check if user same session user
+if($data->id_user==$_SESSION['id_user']){
  
-    $create_user = $signup->create_user();
+    $modifProfil = $modify->modifProfil($id_user);
     
-    if($create_user){
+    if($modifProfil){
     // set response code
     http_response_code(200);
 
     echo json_encode(
             array(
-                "message" => "Inscription réalisée.",
+                "message" => "Modification réalisée.",
             )
         );
     }else{

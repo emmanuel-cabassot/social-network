@@ -29,7 +29,7 @@ class Event{
     function listEvents(){
         $now=date('Y-m-d H:mm:ss');
     // select all query
-    $query =  'SELECT id_event, title_event, text_event, date_event, city_event, img_event, users.name, users.lastname, avatar FROM event JOIN users ON id_user_creator= users.id_user WHERE date_event >= :now AND public_event = 1 LIMIT 20 OFFSET 20' ;
+    $query =  'SELECT id_event, title_event, text_event, date_event, city_event, img_event, users.name, users.lastname, avatar FROM events JOIN users ON id_user_creator= users.id_user WHERE date_event >= :now AND public_event = 1 LIMIT 20 OFFSET 20' ;
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -46,7 +46,7 @@ class Event{
 
     function addEvent(){
          // query to insert record
-        $query = "INSERT INTO event SET id_user_creator=:id_user_creator, title_event=:title_event, text_event=:text_event, date_event:date_event, city_event=:city_event, img_event=:img_event, public_event=:public_event, signalized=:signalized, blocked=:blocked";
+        $query = "INSERT INTO events SET id_user_creator=:id_user_creator, title_event=:title_event, text_event=:text_event, date_event=:date_event, city_event=:city_event, img_event=:img_event, public_event=:public_event, signalized=:signalized, blocked=:blocked";
     
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -105,7 +105,7 @@ class Event{
     }
 
     function view_event($id_event){
-        $view = "SELECT * FROM event WHERE id_event=:id_event";
+        $view = "SELECT * FROM events WHERE id_event=:id_event";
         // prepare the query
         $stmt = $this->conn->prepare( $view );
      
@@ -118,7 +118,7 @@ class Event{
     }
     
     function delete_event($id_event){
-        $del="DELETE FROM event WHERE id_event = :id_event";
+        $del="DELETE FROM events WHERE id_event = :id_event";
         $stmt = $this->conn->prepare( $del );
      
         // bind user, title, texte
