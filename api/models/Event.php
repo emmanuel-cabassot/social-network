@@ -112,12 +112,27 @@ class Event{
         // bind user, title, texte
         $stmt->bindParam(':id_event', $id_event);
 
-        $stmt->execute();
+       $stmt->execute();
 
-        return $stmt;
-    }
+            // get retrieved row
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // set values to object properties
+            $this->id_event =  $row['id_event'];
+            $this->id_user_creator = $row['id_user_creator'];
+            $this->title_event = $row['title_event'];
+            $this->text_event = $row['text_event'];
+            $this->date_event = $row['date_event'];
+            $this->city_event = $row['city_event'];
+            $this->img_event = $row['img_event'];
+            $this->public_event = $row['public_event'];
+            $this->signalized = $row['signalized'];
+            $this->blocked = $row['blocked'];
+
+            }
     
     function delete_event($id_event){
+        
         $del="DELETE FROM events WHERE id_event = :id_event";
         $stmt = $this->conn->prepare( $del );
      
