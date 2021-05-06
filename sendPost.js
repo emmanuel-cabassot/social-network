@@ -2,23 +2,6 @@ let user = document.querySelector('#idUser')
 console.log(user)
 user = 1
 
-const publier = document.querySelector('button')
-
-publier.addEventListener("click", function (e) {
-    // Valeur du textarea
-    var myContent = tinymce.get("TextareaPostSend").getContent();
-    data = {
-        user: user,
-        texte: myContent
-    }
-    data = JSON.stringify(data);
-    console.log(data)
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "api/controllers/postSend.php");
-    xhr.setRequestHeader("Content-Type", "text/plain");
-    xhr.send(data);
-})
-
 // Dropzone options
 Dropzone.options.dropzoneFrom = {
     autoProcessQueue: false,
@@ -47,6 +30,7 @@ function list_image() {
         url: "uploadTempPost.php",
         success: function (data) {
             $('#preview').html(data);
+
         }
     });
 }
@@ -64,4 +48,32 @@ $(document).on('click', '.remove_image', function () {
         }
     })
 });
+
+const publier = document.querySelector('button')
+
+publier.addEventListener("click", function (e) {
+    // Valeur du textarea
+    let myContent = tinymce.get("TextareaPostSend").getContent();
+
+    // Il y a t'il une photo d'enregistréé
+    let photo = document.querySelector('#preview').value
+    if (photo == '') {
+        photo = 'non'
+    }
+    else {
+        photo = 'oui'
+    }
+    data = {
+        user: user,
+        texte: myContent,
+        photo: photo
+    }
+    data = JSON.stringify(data);
+    console.log(data)
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "api/controllers/postSend.php");
+    xhr.setRequestHeader("Content-Type", "text/plain");
+    xhr.send(data);
+})
+
 
