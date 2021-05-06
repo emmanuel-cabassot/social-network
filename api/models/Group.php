@@ -90,14 +90,21 @@ class Group{
 
         $stmt->bindParam(':id_group', $id_group);
             
-        // execute query
+       // execute query
         $stmt->execute();
 
-        return $stmt;
+        // get retrieved row
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // set values to object properties
+        $this->id_group = $row['id_group'];
+        $this->name_group = $row['name_group'];
+        $this->description = $row['description'];
+        $this->img_group = $row['img_group'];
+        
     }
 
-    function delete_group($id_group){
+    function delete_group($id_group){        
         $del= " DELETE FROM groupe WHERE id_group = :id_group";
         $stmt = $this->conn->prepare($del);
 
