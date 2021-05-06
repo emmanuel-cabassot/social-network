@@ -1,5 +1,5 @@
 <?php
-class PostSend{
+class Post{
 
     // database connection and table name
     private $conn;
@@ -21,12 +21,12 @@ class PostSend{
         $this->conn = $db;
     }
 
-    function sendPost(){
+    function createPost(){
 
         $default = 'non';
         $date_now = date('Y-m-d H:i:s');
  
-        // Inserer le post
+        // Créer le post
 
         $insert = "INSERT INTO post (id_user, title_post, text_post, date_post, public, signalized, blocked, video) VALUES (:user, :title, :texte, :date_post, :public, :signalized, :blocked, :video)";
      
@@ -45,6 +45,31 @@ class PostSend{
 
         // execute the query
         $stmt->execute();
+    }
+
+    // Sélectionner un poste par rapport a son texte
+    
+    function selectPostByText()
+    {
+        $select = "SELECT id_post FROM post WHERE text_post = :text_post";
+
+        // prepare the query
+        $stmt = $this->conn->prepare($select);
+
+        // bind id_post
+        $stmt->bindParam(':text_post', $this->texte);
+
+        // execute
+        $stmt->execute();
+
+        $id = $stmt->fetch(PDO::FETCH_OBJ);
+
+        return $id->id_post;
+
+
+
+
+        
     }
 
 }

@@ -1,4 +1,7 @@
 <?php
+if (isset($_POST)) {
+  var_dump($_POST);
+}
 $target_dir = "assets/images/upload/";
 
 

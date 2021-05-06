@@ -11,48 +11,46 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../config/database.php';
   
 // instantiate product object
-include_once '../models/ModifyProfile.php';
+include_once '../models/Event.php';
   
 $database = new Database();
 $db = $database->getConnection();
 
 
 // instantiate user object
-$modify = new ModifyProfile($db);
-
+$event = new Event($db);
+ 
+// check email existence here
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
  
 // set user property values
-$modify->email = $data->email;
-$modify->password = $data->password;
-$modify->name = $data->name;
-$modify->lastname = $data->lastname;
-$modify->avatar = $data->avatar;
-$modify->city = $data->city;
-$modify->country = $data->country;
-$modify->birth = $data->birth;
-$modify->creation = $data->creation; 
-$modify->role = "user"; 
-$modify->blocked = "non"; 
-$modify->period_block = "";
-$modify->banner = $data->banner;
 
-
-$id_user = $data->id_user;
-
-//check if user same session user
-if($data->id_user==$_SESSION['id_user']){
- 
-    $modifProfil = $modify->modifProfil($id_user);
     
-    if($modifProfil){
+    $event->id_user_creator = $data-> id_user_creator;
+    $event->title_event = $data-> title_event;
+    $event->text_event = $data-> text_event;
+    $event->date_event = $data-> date_event;
+    $event->city_event = $data-> city_event;
+    $event->img_event = $data-> img_event;
+    $event->public_event = $data-> public_event;
+    $event->signalized = 'non';
+    $event->blocked = 'non';
+    
+
+
+//check if session open 
+//if(isset($_SESSION['id_user'])){
+    if(1==1){
+    $addEvent = $event->addEvent();
+    
+    if($addEvent){
     // set response code
     http_response_code(200);
 
     echo json_encode(
             array(
-                "message" => "Modification réalisée.",
+                "message" => "Enregistrement event réalisé.",
             )
         );
     }else{

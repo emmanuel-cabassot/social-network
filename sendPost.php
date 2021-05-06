@@ -1,13 +1,20 @@
+<?php
+session_start().
+$_SESSION['user']['id'] = 4;
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="assets/css/dropzone.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="assets/js/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/sendPost.css">
 </head>
 
@@ -31,15 +38,22 @@
             </div>
         </section>
     </section>
-    <section class="files">
-        <form action="upload.php" method="post" class="dropzone" enctype="multipart/form-data">
-            <input type="file" name="image" />
-            <button type="submit">Envoyer</button>
-        </form>
-    </section>
+    <form action="uploadTempPost.php" class="dropzone" id="dropzoneFrom">
+
+    </form>
+    <div align="center">
+        <button type="button" class="btn btn-info" id="submit-all">Télécharger</button>
+    </div>
+    <br />
+    <br />
+    <div id="preview"></div>
+    <br />
+
+
 
 
     <input type="hidden" id="idUser" value="1">
+    <script src="assets/js/dropzone.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="sendPost.js"></script>
 

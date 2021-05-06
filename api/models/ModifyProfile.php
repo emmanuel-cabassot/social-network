@@ -28,7 +28,7 @@ class ModifyProfile{
         $this->conn = $db;
     }
 
-    function readOneProfil(){
+    function readOneProfil($id_user){
  
         // query to check if email exists
         $query = "SELECT * FROM users WHERE id_user=:id_user";
@@ -36,7 +36,7 @@ class ModifyProfile{
         // prepare the query
         $stmt = $this->conn->prepare( $query );
 
-        $id_user = $_SESSION['id_user'];
+       
      
         // bind given email value
         $stmt->bindParam(":email", $id_user);
@@ -45,6 +45,8 @@ class ModifyProfile{
         $stmt->execute();
 
         $row =$stmt->fetch(PDO::FETCH_ASSOC);
+        
+        $this->id_user=$row['id_user'];
         $this->email=$row['email'];
         $this->name = $row['name'];
         $this->lastname =$row['lastname'];
@@ -56,10 +58,10 @@ class ModifyProfile{
        
     }
 
-    function modifProfil(){
+    function modifProfil($id_user){
 
         // query to update record
-        $query = "UPDATE users SET email=:email, password=:password, name=:name, lastname=:lastname, avatar=:avatar, city=:city, country=:country, birth=:birth, banner=:banner";
+        $query = "UPDATE users SET email=:email, password=:password, name=:name, lastname=:lastname, avatar=:avatar, city=:city, country=:country, birth=:birth, banner=:banner WHERE id_user=:id_user";
     
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -91,6 +93,7 @@ class ModifyProfile{
         $stmt->bindParam(":country", $this->country);
         $stmt->bindParam(":birth", $this->birth);
         $stmt->bindParam(":banner", $this->banner);
+        $stmt->bindParam(":id_user", $id_user);
 
         
         
