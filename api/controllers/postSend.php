@@ -33,6 +33,9 @@ if ($data->photo == 'oui') {
     // Retourne l'id du post crée
     $id_post = $postSend->selectPostByText();
 
+    // Création d'un nouveau repertoire upload/post/ + id du post
+    mkdir('../../assets/images/upload/post/'.$id_post);
+
     // On instancie la classe PhotoPost
     $photoPost = new PhotoPost($db);
     $photoPost->id_post = $id_post;
@@ -46,6 +49,9 @@ if ($data->photo == 'oui') {
 
             $photoPost->name_image_post = $photo;
             $photoPost->insertPhotoPost();
+            $dossierSource = '../../assets/images/upload/temporaire/' . $_SESSION['user']['id']. '/'.$photo;
+            $dossierDestination = '../../assets/images/upload/post/' .$id_post. '/' .$photo;
+            rename($dossierSource, $dossierDestination);
         }
     }
 }
