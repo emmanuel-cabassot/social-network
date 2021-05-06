@@ -21,7 +21,7 @@ $data = json_decode(file_get_contents("php://input"));
 $postSend = new post($db);
 $postSend->user = $data->user;
 $postSend->title = 'titre';
-$postSend->texte = htmlspecialchars(strip_tags($data->texte));
+$postSend->texte = $data->texte;
 
 $postSend->sendPost();
 

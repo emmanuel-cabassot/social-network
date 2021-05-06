@@ -5,8 +5,8 @@ user = 1
 const publier = document.querySelector('button')
 
 publier.addEventListener("click", function (e) {
+    // Valeur du textarea
     var myContent = tinymce.get("TextareaPostSend").getContent();
-    console.log(user)
     data = {
         user: user,
         texte: myContent
@@ -18,7 +18,6 @@ publier.addEventListener("click", function (e) {
     xhr.setRequestHeader("Content-Type", "text/plain");
     xhr.send(data);
 })
-
 
 // Dropzone options
 Dropzone.options.dropzoneFrom = {
