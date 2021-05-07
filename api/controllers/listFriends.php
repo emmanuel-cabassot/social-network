@@ -19,6 +19,8 @@ $db = $database->getConnection();
 // instantiate user object
 $friend = new Friend($db);
 
+$id_user = isset($_GET['id_user']) ? $_GET['id_user'] : die();
+
 $stmt = $friend->listFriends($id_user);
 $num = $stmt->rowCount();
 

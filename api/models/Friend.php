@@ -23,11 +23,14 @@ class Friend{
     function listFriends($id_user){
 
     // select all query
-    $query = 'SELECT id_friend, id_user_friend, users.name, users.lastname, email, avatar FROM friend JOIN users ON id_user_friend= users.id_users WHERE confirmed= "oui" LIMIT 20 OFFSET 20';
+    $query = 'SELECT id_friend, id_user_friend, users.name, users.lastname, email, avatar, confirmed FROM friend JOIN users ON id_user_friend= users.id_users WHERE id_user=:id_user LIMIT 20 OFFSET 20';
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
-        
+
+    $id_user=htmlspecialchars($id_user);
+
+    $stmt->bindParam(":id_user", $id_user);    
     // execute query
     $stmt->execute();
 

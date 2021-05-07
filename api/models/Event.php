@@ -83,7 +83,7 @@ class Event{
         return false;
     }
 
-    function part_event($id_user, $id_event){
+    function partEvent($id_user, $id_event){
         // Inserer le post
 
         $insert = "INSERT INTO part_event SET id_event=:id_event, id_user=:id_user ";
