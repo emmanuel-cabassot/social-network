@@ -53,7 +53,7 @@ class Friend{
         // bind values
       
         $stmt->bindParam(":id_user", $id_user);
-        $stmt->bindParam(":id_user_group", $id_user_friend);
+        $stmt->bindParam(":id_user_friend", $id_user_friend);
                 
         // execute query
         if($stmt->execute()){
