@@ -48,7 +48,7 @@ class Login{
             // assign values to object properties
             
     
-            $this->id = $row['id'];
+            $this->id_user = $row['id_user'];
             $this->email = $row['email'];
             $this->password = $row['password'];
      
@@ -57,5 +57,42 @@ class Login{
         }
         // return false if email does not exist in the database
     return false;
+    }
+
+    public function connected($id_user){
+        $strt=strtotime("now");
+        $query= 'INSERT INTO connected (id_user, str_connect) VALUES( :id_user, :str_connect)';
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam('id_user', $id_user);
+        $stmt->bindParam('str_connect', $strt );
+        if($stmt->execute()){
+             return true;
+        } else {
+            return false;
+        }       
+    }
+
+    public function cleanConnected($strt){
+        $query= 'DELETE FROM connected WHERE str_connect < :strt';
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam('strt', $strt);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+   
+
+    public function disconnected($id_user){
+        
+        $query='DELETE FROM connected WHERE id_user = :id_user';
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam('id_user', $id_user);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }  
