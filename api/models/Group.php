@@ -70,14 +70,13 @@ class Group{
     
         // bind values
     
-        $stmt->bindParam(":id_group", $this->id_group);        
-        $stmt->bindParam(":id_user", $this->id_user);
+        $stmt->bindParam(":id_group", $id_group);        
+        $stmt->bindParam(":id_user", $id_user);
         
         // execute query
         if($stmt->execute()){
             return true;
-        }
-    
+        }    
         return false;
         
     }
