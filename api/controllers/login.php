@@ -41,10 +41,7 @@ if($email_exists){
             $connected= $login->connected($login->id_user);
             
               http_response_code(200);  
-            }else{http_response_code(503);  }
-          }
-           
-          
+            }else{http_response_code(503);  }      
     }else{
         http_response_code(404);  
     }
