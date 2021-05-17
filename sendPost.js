@@ -1,3 +1,10 @@
+lienModale = document.querySelectorAll('[data-modale]')
+lienModale.forEach(ouvertureModale => {
+    ouvertureModale.addEventListener("click", function () {
+        
+    })
+})
+
 let user = document.querySelector('#idUser')
 console.log(user)
 user = 1
@@ -75,5 +82,3 @@ publier.addEventListener("click", function (e) {
     xhr.setRequestHeader("Content-Type", "text/plain");
     xhr.send(data);
 })
-
-

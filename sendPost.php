@@ -1,10 +1,10 @@
 <?php
-session_start().
-$_SESSION['user']['id'] = 4;
+session_start() .
+    $_SESSION['user']['id'] = 4;
+$prenom = 'emmanuel';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
     <meta charset="UTF-8">
@@ -19,38 +19,65 @@ $_SESSION['user']['id'] = 4;
 </head>
 
 <body>
+    <header>header</header>
+    <main>
+        <section class="sendPost">
+            <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['user']['id'] ?>>
+                <p class="ml-3"> Quoi de neuf <?= $prenom ?>?</p>
+            </section>
+            <div class="separation-sendPost"></div>
+            <section class="media-sendPost">
+                <section class="story-media-sendPost" data-modale=<?= $_SESSION['user']['id'] ?>>
+                    <section class="bg-story-media-sendPost">
+                    </section>
+                    <section class="text-media-sendPost">
+                        Story
+                    </section>
+                </section>
+                <section class="img-media-sendPost" data-modale=<?= $_SESSION['user']['id'] ?>>
+                    <section class="bg-img-media-sendPost">
+                    </section>
+                    <section class="text-media-sendPost">
+                        Photo/Vidéo
+                    </section>
+                </section>
+                <section class="humeur-media-sendPost" data-modale=<?= $_SESSION['user']['id'] ?>>
+                    <section class="bg-humeur-media-sendPost">
+                    </section>
+                    <section class="text-media-sendPost">
+                        Humeur
+                    </section>
+                </section>
+            </section>
 
-    <section class="module-sendPost col-xl-6">
-
-        <section class="textarea">
-            <h2 class="mb-3 mt-3"><i class="fas fa-pen"></i> Créer un post</h2>
-            <div class="form-group">
-                <textarea class="form-control" name="textarea" id="TextareaPostSend" rows="3" placeholder="Ecrivez votre post..."></textarea>
-            </div>
         </section>
-        <section class="boutons-sendPost row d-flex justify-content-between align-items-center mb-3">
-            <div class="media-postSend">
-                <a class="ml-3 mr-3" href=""><i class="fas fa-image text-success"></i> Image</a>
-                <a href=""><i class="fas fa-video text-danger "></i> Vidéo</a>
+
+        <section class="modale-sendPost">
+            <section class="textarea">
+                <h2 class="mb-3 mt-3"><i class="fas fa-pen"></i> Créer un post</h2>
+                <div class="form-group">
+                    <textarea class="form-control" name="textarea" id="TextareaPostSend" rows="3" placeholder="Ecrivez votre post..."></textarea>
+                </div>
+            </section>
+            <section class="boutons-sendPost row d-flex justify-content-between align-items-center mb-3">
+                <div class="media-postSend">
+                    <a class="ml-3 mr-3" href=""><i class="fas fa-image text-success"></i> Image</a>
+                    <a href=""><i class="fas fa-video text-danger "></i> Vidéo</a>
+                </div>
+                <div class="publier-sendPost d-flex align-items-center mr-3">
+                    <button type="button" class="btn btn-primary">Publier</button>
+                </div>
+            </section>
+            <form action="uploadTempPost.php" class="dropzone" id="dropzoneFrom"></form>
+            <div align="center">
+                <button type="button" class="btn btn-info" id="submit-all">Télécharger</button>
             </div>
-            <div class="publier-sendPost d-flex align-items-center mr-3">
-                <button type="button" class="btn btn-primary">Publier</button>
-            </div>
+            
+            <div id="preview"></div>
+           
         </section>
-    </section>
-    <form action="uploadTempPost.php" class="dropzone" id="dropzoneFrom">
 
-    </form>
-    <div align="center">
-        <button type="button" class="btn btn-info" id="submit-all">Télécharger</button>
-    </div>
-    <br />
-    <br />
-    <div id="preview"></div>
-    <br />
-
-
-
+    </main>
 
     <input type="hidden" id="idUser" value="1">
     <script src="assets/js/dropzone.min.js"></script>
@@ -73,7 +100,6 @@ $_SESSION['user']['id'] = 4;
             content_style: "body { line-height: .4; }"
         });
     </script>
-
 </body>
 
 </html>

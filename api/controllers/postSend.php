@@ -46,15 +46,16 @@ if ($data->photo == 'oui') {
 
     foreach ($photos as $photo) {
         if ('.' !=  $photo && '..' != $photo) {
-
+            
             $photoPost->name_image_post = $photo;
+            $photoPost->chemin = 'assets/images/upload/post/' .$id_post. '/' .$photo; 
             $photoPost->insertPhotoPost();
             $dossierSource = '../../assets/images/upload/temporaire/' . $_SESSION['user']['id']. '/'.$photo;
             $dossierDestination = '../../assets/images/upload/post/' .$id_post. '/' .$photo;
             rename($dossierSource, $dossierDestination);
         }
     }
-}
+}   
 
 if (isset($data->video)) {
 }

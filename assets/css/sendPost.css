@@ -1,9 +1,109 @@
-.module-sendPost {
+                            /* SEND POST VISIBLE */
+.sendPost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 550px;
+    width: 40%;
     border: 1px solid grey;
-    border-radius: 8px;
+    border-radius: 8px;  
 }
 
-.module-sendPost h2 .fa-pen {
+/* Partie bonjour */
+.text-sendPost {
+    background-color: rgb(238, 237, 237);
+    border-radius: 8px;
+    color: grey;
+    width: 80%;
+    height: 38px;
+    line-height: 38px;
+    transition: all 0.3s ease-in-out;
+}
+
+.text-sendPost:hover {
+    background-color: rgb(209, 209, 209);
+    cursor: pointer;
+}
+
+.separation-sendPost {
+    width: 80%;
+    height: 1px;
+    background-color:rgb(204, 204, 204);
+    margin-bottom: 5px;
+}
+
+/* Médias */
+.media-sendPost {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    height: 34px;
+}
+
+/* Texte média */
+.text-media-sendPost {
+    margin-left: 8px;
+    padding-bottom: 2px;
+    
+}
+
+/* média */
+.story-media-sendPost, .img-media-sendPost, .humeur-media-sendPost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 145px; 
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.story-media-sendPost:hover, .img-media-sendPost:hover, .humeur-media-sendPost:hover {
+    background-color: rgb(238, 237, 237);
+    cursor: pointer;
+}
+
+/* Image story en bg */
+.bg-story-media-sendPost {
+    background-image:url('../images/facebook.png');
+    background-position:0 -84px;
+    background-size:50px 448px;
+    width:24px;
+    height:24px;
+    background-repeat:no-repeat;
+    display:inline-block;
+}
+
+/* Image photo/video en bg */
+.bg-img-media-sendPost {
+    background-image:url('../images/facebook.png');
+    background-position:0 -344px;
+    background-size:50px 448px;
+    width:24px;height:24px;
+    background-repeat:no-repeat;
+    display:inline-block;
+}
+
+/* Image humeur en bg */
+.bg-humeur-media-sendPost {
+    background-image:url('../images/facebook.png');
+    background-position:0 -240px;
+    background-size:50px 448px;
+    width:24px;height:24px;
+    background-repeat:no-repeat;
+    display:inline-block;
+}
+
+
+
+
+                                /* MODALE sendPost */
+.modale-sendPost {
+    border: 1px solid grey;
+}
+
+.modale-sendPost h2 .fa-pen {
     color: #033c73;
     background-color: rgb(238, 238, 238);
     border: 1px solid black;
@@ -11,12 +111,12 @@
     padding: 7px; 
 }
 
-.module-sendPost h2 {
+.modale-sendPost h2 {
     font-size: 1em;
     color: rgb(87, 86, 86);
 }
 
-.module-sendPost .tox-toolbar__primary {
+.modale-sendPost .tox-toolbar__primary {
     border: none!important;
     justify-content: flex-end!important;
 }

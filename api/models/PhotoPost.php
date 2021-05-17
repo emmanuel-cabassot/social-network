@@ -10,6 +10,7 @@ class PhotoPost
     public $id_post;
     public $id_user;
     public $name_image_post;
+    public $chemin;
 
     // constructor with $db as database connection
     public function __construct($db)
@@ -19,7 +20,7 @@ class PhotoPost
 
     function insertPhotoPost()
     {
-        $insert = "INSERT INTO image_post (id_post, id_user, name_image_post) VALUES (:id_post, :id_user, :name_image_post)";
+        $insert = "INSERT INTO image_post (id_post, id_user, name_image_post, chemin) VALUES (:id_post, :id_user, :name_image_post, :chemin)";
 
         // prepare the query
         $stmt = $this->conn->prepare( $insert );
@@ -28,6 +29,7 @@ class PhotoPost
         $stmt->bindParam(':id_post', $this->id_post);
         $stmt->bindParam(':id_user', $this->id_user);
         $stmt->bindParam(':name_image_post', $this->name_image_post);
+        $stmt->bindParam(':chemin', $this->chemin);
 
         // Execute the query
         $stmt->execute();
