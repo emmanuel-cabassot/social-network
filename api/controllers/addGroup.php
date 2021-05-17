@@ -30,8 +30,7 @@ $data = json_decode(file_get_contents("php://input"));
     $group ->  img_group= $data-> img_group;
     
 //check if session open 
-//if(isset($_SESSION['id_user'])){
-    if(1==1){
+if(isset($_SESSION['id_user'])){    
     $addGroup = $group->addGroup();
     
     if($addGroup){
