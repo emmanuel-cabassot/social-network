@@ -99,9 +99,25 @@
 
 
                                 /* MODALE sendPost */
-.modale-sendPost {
-    border: 1px solid grey;
+.container-modale-sendPost {
+    display: none;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
 }
+
+.modale-sendPost {
+    width: 400px;
+    height: auto;
+    border: 1px solid grey;  
+    background-color: white;
+}
+
+
 
 .modale-sendPost h2 .fa-pen {
     color: #033c73;
@@ -127,6 +143,10 @@
 
 .media-postSend a{
     color: black;
+}
+
+#preview img {
+    width: 400px!important;
 }
 
 

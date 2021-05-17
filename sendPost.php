@@ -52,29 +52,30 @@ $prenom = 'emmanuel';
 
         </section>
 
-        <section class="modale-sendPost">
-            <section class="textarea">
-                <h2 class="mb-3 mt-3"><i class="fas fa-pen"></i> Créer un post</h2>
-                <div class="form-group">
-                    <textarea class="form-control" name="textarea" id="TextareaPostSend" rows="3" placeholder="Ecrivez votre post..."></textarea>
+        <section class="container-modale-sendPost">
+            <section class="modale-sendPost">
+                <section class="textarea">
+                    <h2 class="mb-3 mt-3"><i class="fas fa-pen"></i> Créer un post</h2>
+                    <div class="form-group">
+                        <textarea class="form-control" name="textarea" id="TextareaPostSend" rows="3" placeholder="Ecrivez votre post..."></textarea>
+                    </div>
+                </section>
+                <section class="boutons-sendPost row d-flex justify-content-between align-items-center mb-3">
+                    <div class="media-postSend">
+                        <a class="ml-3 mr-3" href=""><i class="fas fa-image text-success"></i> Image</a>
+                        <a href=""><i class="fas fa-video text-danger "></i> Vidéo</a>
+                    </div>
+                    <div class="publier-sendPost d-flex align-items-center mr-3">
+                        <button type="button" class="btn btn-primary">Publier</button>
+                    </div>
+                </section>
+                <form action="uploadTempPost.php" class="dropzone" id="dropzoneFrom"></form>
+                <div align="center">
+                    <button type="button" class="btn btn-info" id="submit-all">Télécharger</button>
                 </div>
+
+                <div id="preview"></div>
             </section>
-            <section class="boutons-sendPost row d-flex justify-content-between align-items-center mb-3">
-                <div class="media-postSend">
-                    <a class="ml-3 mr-3" href=""><i class="fas fa-image text-success"></i> Image</a>
-                    <a href=""><i class="fas fa-video text-danger "></i> Vidéo</a>
-                </div>
-                <div class="publier-sendPost d-flex align-items-center mr-3">
-                    <button type="button" class="btn btn-primary">Publier</button>
-                </div>
-            </section>
-            <form action="uploadTempPost.php" class="dropzone" id="dropzoneFrom"></form>
-            <div align="center">
-                <button type="button" class="btn btn-info" id="submit-all">Télécharger</button>
-            </div>
-            
-            <div id="preview"></div>
-           
         </section>
 
     </main>
