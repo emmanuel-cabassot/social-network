@@ -35,7 +35,7 @@ class Group{
 
     function addGroup(){
         // query to insert record
-        $query = "INSERT INTO groupe SET name_group=:name_group, description=:description, img_group=:img_group";
+        $query = "INSERT INTO groupe SET name_group=:name_group, description=:description, img_group=:img_group, id_user_create=:id_user_create";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -51,6 +51,7 @@ class Group{
         $stmt->bindParam(":name_group", $this->name_group);
         $stmt->bindParam(":description", $this->description);
         $stmt->bindParam(":img_group", $this->img_group);
+        $stmt->bindParam(":id_user_create", $this->id_user_create);
 
         // execute query
         if($stmt->execute()){

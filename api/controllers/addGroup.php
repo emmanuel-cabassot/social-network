@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -28,6 +28,7 @@ $data = json_decode(file_get_contents("php://input"));
     $group -> name_group = $data-> name_group;
     $group -> description = $data-> description;
     $group ->  img_group= $data-> img_group;
+    $group -> id_user_create =$_SESSION['id_user'];
     
 //check if session open 
 if(isset($_SESSION['id_user'])){    

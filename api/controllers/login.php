@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -41,7 +43,8 @@ if($email_exists){
             $connected= $login->connected($login->id_user);
             
               http_response_code(200);  
-            }else{http_response_code(503);  }      
+            }else{
+              http_response_code(200);  }      
     }else{
         http_response_code(404);  
     }
