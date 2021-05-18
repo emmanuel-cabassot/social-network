@@ -1,3 +1,41 @@
+function addImgName(){
+    var input = document.createElement("input");
+
+    input.setAttribute("type", "hidden");
+
+    input.setAttribute("name", "img_group");
+
+    input.setAttribute("value", name);
+
+    //append to form element that you want .
+    document.getElementById("addGroup").appendChild(input);
+}
+
+$("#dropzone").dropzone({
+    addRemoveLinks: true,
+    uploadMultiple: false,
+    maxFilesize:1, //MB
+    acceptedFiles: ".png, .jpeg, .jpg, .gif",
+    removedfile: function(file) {
+    var name = file.name; 
+ 
+    $.ajax({
+        type: 'POST',
+        url: 'upload.php',
+        data: {name: name,request: 2},
+        sucess: function(data){
+            console.log('success: ' + data);
+            addImgName();
+        }
+    });
+    var _ref;
+        return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
+    }
+    });
+
+    
+ 
+
 var formG = document.getElementById("addGroup"); 
 
 document.addEventListener("DOMContentLoaded", function() {

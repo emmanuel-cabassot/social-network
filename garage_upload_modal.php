@@ -83,8 +83,7 @@
             </div>
             <div class="modal-body">
                 <div class='content'>
-                    <form action="upload.php" class="dropzone" id="dropzonewidget">
-                
+                    <form action="upload.php" class="dropzone" id="dropzonewidget">               
                     </form> 
                 </div>
             </div> 
