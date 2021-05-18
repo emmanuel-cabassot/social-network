@@ -1,4 +1,12 @@
-<script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
  // close all modal
  $(document).on('click','.modal .close',function () {
         $(".modal, .modal-backdrop").removeClass("open");
@@ -66,7 +74,8 @@
 
 
 </style>
-
+</head>
+<body>
 <div class="modal-backdrop" aria-hidden="true"></div>
 
 <!--Modal Create Folder -->
@@ -90,3 +99,8 @@
         </div>
     </div>    
 </div>        
+    
+</body>
+</html>
+
+
