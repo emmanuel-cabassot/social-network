@@ -1,7 +1,11 @@
-lienModale = document.querySelectorAll('[data-modale]')
+lienModale = document.querySelectorAll('.sendPost [data-modale]')
+
 lienModale.forEach(ouvertureModale => {
-    ouvertureModale.addEventListener("click", function () {
-        
+    ouvertureModale.addEventListener("click", function (e) {
+        // On empêche la navigation
+        e.preventDefault();
+        modale = document.querySelector(".container-modale-sendPost")
+        modale.style.display = "flex"
     })
 })
 
@@ -31,7 +35,7 @@ Dropzone.options.dropzoneFrom = {
     },
 };
 
-// Fonction qui affiche les photos sous dans la div #preview
+// Fonction qui affiche les photos dans la div #preview
 function list_image() {
     $.ajax({
         url: "uploadTempPost.php",
