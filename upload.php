@@ -1,31 +1,26 @@
 <?php
+
 if (isset($_POST)) {
   var_dump($_POST);
 }
 $target_dir = "assets/images/upload/groups/";
-
-
-$request = 1;
-if(isset($_POST['request'])){ 
-  $request = $_POST['request'];
-}
-
-// Upload file
-if($request == 1){ 
-  $target_file = $target_dir . basename($_FILES["file"]["name"]);
-  $msg = ""; 
-  if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir.$_FILES['file']['name'])) {
-    $msg = "Successfully uploaded"; 
+$target_file = $target_dir . basename($_FILES["file"]["name"]);
+$msg = ""; 
+if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir.$_FILES['file']['name'])) {
+$msg = "Successfully uploaded"; 
   }else{    
-    $msg = "Error while uploading"; 
+$msg = "Error while uploading"; 
   } 
   echo $msg;
   exit;
-}
 
-// Remove file
-if($request == 2){ 
-  $filename = $target_dir.$_POST['name'];  
-  unlink($filename); 
-  exit;
-}
+
+
+if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') 
+    {
+        echo "RECEIVED ON SERVER: \n";
+        echo "FILES: \n";
+        print_r($_FILES);
+        echo "\$_POST: \n";
+        print_r($_POST);
+    }

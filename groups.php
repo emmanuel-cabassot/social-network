@@ -33,28 +33,30 @@
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        <div class="modal-body">
-                            <form id="addGroup">
-                                <fieldset>
-                                    <div class="form-group">               
-                                        <input type="text" class="form-control w-75" placeholder="Nom" name="name_group" required>                
-                                    </div>
-                                    <div class="form-group">             
-                                        <textarea class="form-control w-75" placeholder="Description" rows="" name="description" required></textarea>                    
-                                    </div>                                                        
-                                <div id="resultat"></div>
-                                    <button type="submit" class="btn btn-primary w-75">Enregistrer</button>
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <form id="dropzone" action="/" class="dropzone" method="post" enctype="multipart/form-data">  
-                                <div class="fallback">
-                                    <input name="file" type="file" multiple />
-                                </div>
-                            </form>                 
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
+                            <div class="modal-body">
+                                <form id="addGroup"  action="upload.php" enctype="multipart/form-data" method="POST">
+                                    <fieldset>
+                                        <div class="form-group">               
+                                            <input type="text" id="name_group" class="form-control w-75" placeholder="Nom" name="name_group" required>                
+                                        </div>
+                                        <div class="form-group">             
+                                            <textarea class="form-control w-75" id="description" placeholder="Description" rows="" name="description" required></textarea>                    
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="dropzone" id="myDropzone"></div>
+                                               <div class="fallback"> 
+                                                    <input name="file" type="file" id="file">
+                                                </div>
+                                            
+                                        </div>                                                   
+                                
+                                        <button type="submit" id="submit" class="btn btn-primary w-75">Ajouter</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                            <div class="modal-footer"> 
+                                <div id="resultat"></div>    
+                            </div>
                         </div>
                     </div>
                 </div>             
