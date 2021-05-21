@@ -67,7 +67,7 @@
           <div class="col-lg-12"> 
           </div>
       </footer>
-    <script src="grouptest_denis.js"></script>   
+    <script src="groups.js"></script>   
     <script src="assets/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>

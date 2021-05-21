@@ -49,14 +49,7 @@ myDropzone.on("error", function(file, response) {
 
 // on success
 myDropzone.on("success", function(file, response) {
-    // get response from successful ajax request
-    //document.getElementById("dropzone-form").submit();
-    console.log(response);
-    console.log(myDropzone.files[0].name);
-    
-    // submit the form after images upload
-    // (if u want yo submit rest of the inputs in the form)
-   
+    window.location="groups.php"; 
 });
 
  
