@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+    listGroup();
+
     const listeGroupe = document.getElementById('listeGroupe');
 
-function listGroup(){
+    function listGroup(){
 		
 		var xhr = new XMLHttpRequest();
 		
@@ -14,14 +16,26 @@ function listGroup(){
 			var output = '';
 			
 		   
-			for(var i =0; i<records.length; i++){
-				
+			for(var i =0; i<records.length; i++){				
 			  
-				output +=  
-				'<a href="element.php?id='+records[i].id+'"><li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">'+records[i].auteur +" - "+records[i].notions+
-				"</li></a>";  
-			 }          
-			         
+                output +=  
+                '<div class="card mb-3">';
+                    '<div class="row no-gutters">';
+                        '<div class="col-md-4">';
+                            '<img src="assets/images/upload/groups/'+records[i].img_group+'" class="card-img" alt="...">';
+                        '</div>';
+                        '<div class="col-md-8">';
+                            '<div class="card-body">';
+                                '<h5 class="card-title">'+records[i].name_group+'</h5>';
+                                '<p class="card-text">'+records[i].description+'</p>';
+                                '<p class="card-text"><small class="text-muted">participants:</small></p>';
+                                '<button type="button" class="btn btn-primary">Default button</button>';
+                            '</div>';
+                        '</div>';
+                    '</div>';
+                '</div>';
+			}        
+		        
 	
 		}else{
 			output =  
@@ -29,8 +43,7 @@ function listGroup(){
 		}
 		setTimeout(function(){ 
 			document.getElementById('listeGroupe').innerHTML = output;
-        }, 1000);  
-		
+        }, 1000);  	
 		
 
 		});
@@ -97,8 +110,6 @@ myDropzone.on("success", function(file, response) {
 });
 
  
-
-
 // button trigger for processingQueue
 var submitDropzone = document.getElementById("submit-dropzone");
 submitDropzone.addEventListener("click", function(e) {
