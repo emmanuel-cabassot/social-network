@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", function() {
+
+    const listeGroupe = document.getElementById('listeGroupe');
+    
+
+
+ });
+
 // disable autodiscover
 Dropzone.autoDiscover = false;
 
@@ -71,3 +79,4 @@ submitDropzone.addEventListener("click", function(e) {
     }
 
 });
+

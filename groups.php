@@ -52,11 +52,14 @@
                                 </form>
                             </div>
                             <div class="modal-footer"> 
-                                <div id="resultat"></div>    
+                                
                             </div>
                         </div>
                     </div>
-                </div>             
+                </div>
+                <section>
+                    <div id="listeGroupe"></div>    
+                </section>             
             </div>            
           
             <div class="col-xl-3 col-sm-12 mt-5">                
