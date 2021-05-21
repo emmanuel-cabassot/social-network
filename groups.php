@@ -34,23 +34,20 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="addGroup"  action="upload.php" enctype="multipart/form-data" method="POST">
+                                <form id="dropzone-form"  enctype="multipart/form-data" method="POST">
                                     <fieldset>
                                         <div class="form-group">               
-                                            <input type="text" id="name_group" class="form-control w-75" placeholder="Nom" name="name_group" required>                
+                                            <input type="text" id="name_group" class="form-control w-75" placeholder="Nom" name="name_group" required />                
                                         </div>
                                         <div class="form-group">             
                                             <textarea class="form-control w-75" id="description" placeholder="Description" rows="" name="description" required></textarea>                    
                                         </div>
                                         <div class="form-group">
-                                            <div class="dropzone" id="myDropzone"></div>
-                                               <div class="fallback"> 
-                                                    <input name="file" type="file" id="file">
-                                                </div>
-                                            
+                                            <div class="dropzone" id="dropzone"></div>  
                                         </div>                                                   
-                                
-                                        <button type="submit" id="submit" class="btn btn-primary w-75">Ajouter</button>
+                                        <div class="form-group">
+                                            <input type="submit" name="submitDropzone" value="Ajouter" id="submit-dropzone" class="btn btn-primary w-75" />
+                                        </div>
                                     </fieldset>
                                 </form>
                             </div>
@@ -70,8 +67,7 @@
           <div class="col-lg-12"> 
           </div>
       </footer>
-    <script src="group.js"></script>   
+    <script src="grouptest_denis.js"></script>   
     <script src="assets/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>
-

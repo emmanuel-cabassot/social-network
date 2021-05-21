@@ -19,15 +19,27 @@ $db = $database->getConnection();
 
 // instantiate user object
 $group = new Group($db);
+
+
+// define absolute folder path
+$dest_folder = 'assets/images/upload/groups/';
+
+if (!empty($_FILES)) {
+	
+	// if dest folder doesen't exists, create it
+	if(!file_exists($dest_folder) && !is_dir($dest_folder)) mkdir($dest_folder);
+	
+    $tempFile = $_FILES['file']['tmp_name'];        
+    $targetFile =  $dest_folder . $_FILES['file']['name'];
+    move_uploaded_file($tempFile,$targetFile);
+}
  
-// get posted data
-$data = json_decode(file_get_contents("php://input"));
- 
+
 // set user property values
 
-    $group -> name_group = $data-> name_group;
-    $group -> description = $data-> description;
-    $group ->  img_group= $data-> img_group;
+    $group -> name_group = $_POST['name_group'];
+    $group -> description = $_POST['description'];
+    $group ->  img_group= $_POST['img_group'];
     $group -> id_user_create =$_SESSION['id_user'];
     
 //check if session open 

@@ -1,47 +1,80 @@
+// disable autodiscover
+Dropzone.autoDiscover = false;
 
-Dropzone.options.myDropzone = {
-    url: "upload.php",
-    autoProcessQueue: false,
-    uploadMultiple: true,
-    maxFilesize:1, //MB
+var myDropzone = new Dropzone("#dropzone", {
+    url: "api/controllers/addGroup.php",
+    method: "POST",
+    paramName: "file",
+    autoProcessQueue : false,
     acceptedFiles: "image/*",
+    maxFiles: 5,
+    maxFilesize: 0.3, // MB
+    uploadMultiple: false,
+    parallelUploads: 100, // use it with uploadMultiple
+    createImageThumbnails: true,
+    thumbnailWidth: 120,
+    thumbnailHeight: 120,
+    addRemoveLinks: true,
+    timeout: 180000,
+    dictRemoveFileConfirmation: "Are you Sure?", // ask before removing file
+    // Language Strings
+    dictFileTooBig: "File is to big ({{filesize}}mb). Max allowed file size is {{maxFilesize}}mb",
+    dictInvalidFileType: "Invalid File Type",
+    dictCancelUpload: "Cancel",
+    dictRemoveFile: "Remove",
+    dictMaxFilesExceeded: "Only {{maxFiles}} files are allowed",
+    dictDefaultMessage: "Drop files here to upload",
+});
 
-    init: function () {
+myDropzone.on("addedfile", function(file) {
+    //console.log(file);
+});
 
-        var submitButton = document.querySelector("#submit");
-        var wrapperThis = this;
+myDropzone.on("removedfile", function(file) {
+    // console.log(file);
+});
 
-        submitButton.addEventListener("click", function () {
-            wrapperThis.processQueue();
-        });
+// Add mmore data to send along with the file as POST data. (optional)
+myDropzone.on("sending", function(file, xhr, formData) {
+    formData.append("dropzone", "1"); // $_POST["dropzone"]
+    formData.append("img_group",myDropzone.files[0].name ); 
+    $('#dropzone-form input[type="text"],#dropzone-form textarea').each(function(){
+        formData.append($(this).attr('name'),$(this).val());                    
+    });
+});
 
-        this.on("addedfile", function (file) {
+myDropzone.on("error", function(file, response) {
+    console.log(response);
+});
 
-            // Create the remove button
-            var removeButton = Dropzone.createElement("<button class='btn btn-lg dark'>Remove File</button>");
+// on success
+myDropzone.on("success", function(file, response) {
+    // get response from successful ajax request
+    //document.getElementById("dropzone-form").submit();
+    console.log(response);
+    console.log(myDropzone.files[0].name);
+    
+    // submit the form after images upload
+    // (if u want yo submit rest of the inputs in the form)
+   
+});
 
-            // Listen to the click event
-            removeButton.addEventListener("click", function (e) {
-                // Make sure the button click doesn't submit the form:
-                e.preventDefault();
-                e.stopPropagation();
+ 
 
-                // Remove the file preview.
-                wrapperThis.removeFile(file);
-                // If you want to the delete the file on the server as well,
-                // you can do the AJAX request here.
-            });
 
-            // Add the button to the file preview element.
-            file.previewElement.appendChild(removeButton);
-        });
+// button trigger for processingQueue
+var submitDropzone = document.getElementById("submit-dropzone");
+submitDropzone.addEventListener("click", function(e) {
+    // Make sure that the form isn't actually being sent.
+    e.preventDefault();
+    e.stopPropagation();
 
-        this.on('sending', function (data, xhr, formData) {
-            $('#addGroup input[type="text"],#addGroup textarea').each(function(){
-                formData.append($(this).attr('name'),$(this).val());
-            });
-          
-
-        });
+    if (myDropzone.files != "") {
+        // console.log(myDropzone.files);
+        myDropzone.processQueue();
+    } else {
+	// if no file submit the form    
+        document.getElementById("dropzone-form").submit();
     }
-}
+
+});
