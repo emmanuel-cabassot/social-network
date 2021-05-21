@@ -13,14 +13,20 @@ include_once '../config/database.php';
 // instantiate product object
 include_once '../models/Post.php';
 include_once '../models/PhotoPost.php';
+include_once '../models/VideoPost.php';
 
-// instantiate database and product object
+// Instancie database and product object
 $database = new Database();
 $db = $database->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
 
+// Instancie Modele post 
 $postSend = new post($db);
+
+// Hydrate la l'objet
+$postSend->image = $data->photo;
+$postSend->video = $data->video;
 $postSend->user = $data->user;
 $postSend->title = 'titre';
 $postSend->texte = $data->texte;
@@ -28,13 +34,13 @@ $postSend->texte = $data->texte;
 // Créer le post
 $postSend->createPost();
 
-
+// Si des photos sont présentes
 if ($data->photo == 'oui') {
     // Retourne l'id du post crée
     $id_post = $postSend->selectPostByText();
 
     // Création d'un nouveau repertoire upload/post/ + id du post
-    mkdir('../../assets/images/upload/post/'.$id_post);
+    mkdir('../../assets/images/upload/post/' . $id_post);
 
     // On instancie la classe PhotoPost
     $photoPost = new PhotoPost($db);
@@ -46,18 +52,42 @@ if ($data->photo == 'oui') {
 
     foreach ($photos as $photo) {
         if ('.' !=  $photo && '..' != $photo) {
-            
+
             $photoPost->name_image_post = $photo;
-            $photoPost->chemin = 'assets/images/upload/post/' .$id_post. '/' .$photo; 
+            $photoPost->chemin = 'assets/images/upload/post/' . $id_post;
             $photoPost->insertPhotoPost();
-            $dossierSource = '../../assets/images/upload/temporaire/' . $_SESSION['user']['id']. '/'.$photo;
-            $dossierDestination = '../../assets/images/upload/post/' .$id_post. '/' .$photo;
+            $dossierSource = '../../assets/images/upload/temporaire/' . $_SESSION['user']['id'] . '/' . $photo;
+            $dossierDestination = '../../assets/images/upload/post/' . $id_post . '/' . $photo;
             rename($dossierSource, $dossierDestination);
         }
     }
-}   
+}
 
-if (isset($data->video)) {
+if ($data->video == 'oui') {
+    // Retourne l'id du post crée
+    $id_post = $postSend->selectPostByText();
+    
+    // Création d'un nouveau repertoire upload/post/ + id du post
+    mkdir('../../assets/videos/upload/post/' . $id_post);
+
+    // On instancie la classe VideoPost
+    $videoPost = new VideoPost($db);
+    $videoPost->id_post = $id_post;
+    $videoPost->id_user = $_SESSION['user']['id'];
+
+    // Liste des photos dans le fichier temporaire
+    $videos = scandir('../../assets/videos/upload/temporaire/' . $_SESSION['user']['id']);
+    
+    foreach ($videos as $video) {
+        if ('.' !=  $video && '..' != $video) {
+            $videoPost->name_video_post = $video;
+            $videoPost->chemin = 'assets/videos/upload/post/' . $id_post;
+            $videoPost->insertVideoPost();
+            $dossierSource = '../../assets/videos/upload/temporaire/' . $_SESSION['user']['id'] . '/' . $video;
+            $dossierDestination = '../../assets/videos/upload/post/' . $id_post . '/' . $video;
+            rename($dossierSource, $dossierDestination);
+        }
+    }
 }
 
 json_encode("Ca marche");

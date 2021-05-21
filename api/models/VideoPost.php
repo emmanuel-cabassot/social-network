@@ -1,17 +1,16 @@
 <?php
-class PhotoPost
+class VideoPost
 {
 
     // database connection and table name
     private $conn;
 
     // object properties
-    public $id_image_post;
+    public $id_video_post;
+    public $name_video_post;
     public $id_post;
-    public $id_user;
-    public $name_image_post;
+    public $id_user; 
     public $chemin;
-    public $created_at;
 
     // constructor with $db as database connection
     public function __construct($db)
@@ -20,13 +19,13 @@ class PhotoPost
     }
 
     /**
-     * Enregistre en BDD dans la table photo_post l'image 
+     * Enregistre en BDD dans la table video_post la vidéo
      *
      * @return void
      */
-    function insertPhotoPost()
+    function insertVideoPost()
     {
-        $insert = "INSERT INTO image_post (id_post, id_user, name_image_post, chemin) VALUES (:id_post, :id_user, :name_image_post, :chemin)";
+        $insert = "INSERT INTO video_post (id_post, id_user, name_video_post, chemin) VALUES (:id_post, :id_user, :name_video_post, :chemin)";
 
         // prepare the query
         $stmt = $this->conn->prepare( $insert );
@@ -34,7 +33,7 @@ class PhotoPost
         // Bind values
         $stmt->bindParam(':id_post', $this->id_post);
         $stmt->bindParam(':id_user', $this->id_user);
-        $stmt->bindParam(':name_image_post', $this->name_image_post);
+        $stmt->bindParam(':name_video_post', $this->name_video_post);
         $stmt->bindParam(':chemin', $this->chemin);
 
         // Execute the query
@@ -42,13 +41,13 @@ class PhotoPost
     }
 
     /**
-     * Affiche les images d'un post
+     * Affiche la video d'un post
      *
      * @return object
      */
-    function affichePhotoPost()
+    function afficheVideoPost()
     {
-        $select = "SELECT * FROM image_post WHERE id_post = :id_post ORDER BY id_post DESC";
+        $select = "SELECT * FROM video_post WHERE id_post = :id_post";
 
         // prepare the query
         $stmt = $this->conn->prepare($select);
@@ -59,7 +58,6 @@ class PhotoPost
         // Execute the query
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
-
 }

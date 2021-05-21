@@ -49,7 +49,7 @@
 }
 
 /* média */
-.story-media-sendPost, .img-media-sendPost, .humeur-media-sendPost {
+.story-media-sendPost, .img-media-sendPost, .humeur-media-sendPost, .video-media-senPost {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,7 +59,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.story-media-sendPost:hover, .img-media-sendPost:hover, .humeur-media-sendPost:hover {
+.story-media-sendPost:hover, .img-media-sendPost:hover, .humeur-media-sendPost:hover, .video-media-senPost:hover {
     background-color: rgb(238, 237, 237);
     cursor: pointer;
 }
@@ -100,24 +100,93 @@
 
                                 /* MODALE sendPost */
 .container-modale-sendPost {
-    display: none;
-    justify-content: center;
-    position: absolute;
+    background-color: rgba(0, 0, 0, 0.75);
+    position: fixed;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    left: 0;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.container-modale-sendPost.show{
+    visibility: visible;
+    opacity: 1;
 }
 
 .modale-sendPost {
-    width: 400px;
+    position: relative;
+    width: 500px;
     height: auto;
     border: 1px solid grey;  
     background-color: white;
+    border-radius: 8px;
 }
 
+.header-modale-sendPost {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 50px;
+border-bottom: 1px solid grey;
+}
 
+.header-modale-sendPost h1 {
+    font-size: 1.5em;
+    color: black;
+}
+
+.fermeture-modal-close {
+    font-size: 0.8em;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;  
+    background-color: rgb(226, 226, 226);
+    border-radius: 50%;
+    padding: 6px 6px 6px 6px;  
+}
+
+/* Enlève le border du textarea */
+.tox:not([dir=rtl]) {
+    direction: ltr;
+    text-align: left;
+    outline: 0 !important;
+    border: none;
+}
+
+/* Image du bouton video */
+.bg-video-media-sendPost {
+    background-image:url('../images/facebook2.png');
+    background-position:0 -220px;
+    background-size:502px 246px;
+    width:24px;
+    height:24px;
+    background-repeat:no-repeat;
+    display:inline-block;
+}
+
+.upload-images {
+    display: none;
+}
+
+.upload-images.show {
+    display: block;
+}
+
+.upload-video {
+    display: none;
+}
+
+.upload-video.show {
+    display: block;
+}
 
 .modale-sendPost h2 .fa-pen {
     color: #033c73;
@@ -145,8 +214,31 @@
     color: black;
 }
 
+.affichage_preview {
+    position: relative;
+}
+
+.modale-sendPost .remove_image {
+    font-size: 0.6em;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+}
+
+.modale-sendPost .remove_image:hover {
+    background-color: rgb(223, 0, 0);
+}
+
 #preview img {
-    width: 400px!important;
+    width: 500px!important;
+}
+
+#preview-video video {
+    width: 500px!important;
 }
 
 

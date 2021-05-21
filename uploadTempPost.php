@@ -30,7 +30,7 @@ $result = array();
 
 $files = scandir('assets/images/upload/temporaire/'.$_SESSION['user']['id']);
 
-$output = '<div class="row">';
+$output = '<div class="container-preview">';
 
 if(false !== $files)
 {
@@ -39,9 +39,9 @@ if(false !== $files)
   if('.' !=  $file && '..' != $file)
   {
    $output .= '
-   <div class="col-md-2">
-    <img src="'.$folder_name.$file.'" class="img-thumbnail" width="175" height="175" style="height:175px;" />
-    <button type="button" class="btn btn-link remove_image" id="'.$file.'">Supprimer</button>
+   <div class="affichage_preview">
+    <img src="'.$folder_name.$file.'" class="img-thumbnail" />
+    <button type="button" class="btn btn-link remove_image" id="'.$file.'">&#10006</button>
    </div>
    ';
   }

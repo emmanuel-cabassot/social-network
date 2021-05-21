@@ -54,27 +54,59 @@ $prenom = 'emmanuel';
 
         <section class="container-modale-sendPost">
             <section class="modale-sendPost">
-                <section class="textarea">
-                    <h2 class="mb-3 mt-3"><i class="fas fa-pen"></i> Créer un post</h2>
-                    <div class="form-group">
-                        <textarea class="form-control" name="textarea" id="TextareaPostSend" rows="3" placeholder="Ecrivez votre post..."></textarea>
-                    </div>
-                </section>
-                <section class="boutons-sendPost row d-flex justify-content-between align-items-center mb-3">
-                    <div class="media-postSend">
-                        <a class="ml-3 mr-3" href=""><i class="fas fa-image text-success"></i> Image</a>
-                        <a href=""><i class="fas fa-video text-danger "></i> Vidéo</a>
-                    </div>
-                    <div class="publier-sendPost d-flex align-items-center mr-3">
-                        <button type="button" class="btn btn-primary">Publier</button>
-                    </div>
-                </section>
-                <form action="uploadTempPost.php" class="dropzone" id="dropzoneFrom"></form>
-                <div align="center">
-                    <button type="button" class="btn btn-info" id="submit-all">Télécharger</button>
-                </div>
+                <header class="header-modale-sendPost">
+                    <h1> Créer une publication</h2>
+                        <div class="fermeture-modal-close" data-dismiss="dialog">&#10006</div>
+                </header>
+                <main class="main-modale-sendPost">
+                    <section class="textarea">
+                        <div class="form-group">
+                            <textarea name="textarea" id="TextareaPostSend" placeholder="Ecrivez votre post..."></textarea>
+                        </div>
+                        <section class="preview-sendPost">
+                            <div id="preview"></div>
+                            <div id="preview-video"></div>
+                        </section>
+                        <section class="upload-images w-100">
+                            <form action="uploadTempPost.php" class="dropzone" id="dropzoneFromImages"></form>
+                            <button type="button" class="btn btn-primary w-100" id="submit-photo">Importer vos images</button>
+                        </section>
+                        <section class="upload-video w-100">
+                            <form action="uploadTempPostVideo.php" class="dropzone" id="dropzoneFromVideo"></form>
+                            <button type="button" class="btn btn-primary w-100" id="submit-video">Importer votre vidéo</button>
+                        </section>
+                    </section>
+                    <section class="media-module-sendPost row d-flex justify-content-around align-items-center mb-3">
+                        <section class="video-media-senPost" id="ajouterVideo-sendPost">
+                            <section class="bg-video-media-sendPost">
+                            </section>
+                            <section class="text-media-sendPost ml-2">
+                                Vidéo
+                            </section>
+                        </section>
 
-                <div id="preview"></div>
+                        <section class="img-media-sendPost" id="ajouterPhoto-sendPost">
+                            <section class="bg-img-media-sendPost">
+                            </section>
+                            <section class="text-media-sendPost">
+                                Photo
+                            </section>
+                        </section>
+
+                        <section class="story-media-sendPost" id="ajouterStory-sendPost">
+                            <section class="bg-story-media-sendPost">
+                            </section>
+                            <section class="text-media-sendPost">
+                                Story
+                            </section>
+                        </section>
+                    </section>
+                    <section class="publier-sendPost w-100">
+                        <button type="button" class="btn btn-primary w-100">Publier</button>
+                    </section>
+
+                </main>
+
             </section>
         </section>
 
