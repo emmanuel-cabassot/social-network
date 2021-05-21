@@ -1,8 +1,44 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     const listeGroupe = document.getElementById('listeGroupe');
-    
 
+function listGroup(){
+		
+		var xhr = new XMLHttpRequest();
+		
+		xhr.addEventListener("readystatechange", function() {
+		if(this.readyState === 4 && this.status === 200) {
+			
+			var response = JSON.parse(xhr.responseText);
+			var records = response.records;
+			var output = '';
+			
+		   
+			for(var i =0; i<records.length; i++){
+				
+			  
+				output +=  
+				'<a href="element.php?id='+records[i].id+'"><li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">'+records[i].auteur +" - "+records[i].notions+
+				"</li></a>";  
+			 }          
+			         
+	
+		}else{
+			output =  
+				'<li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">Pas de résultat</li>';
+		}
+		setTimeout(function(){ 
+			document.getElementById('listeGroupe').innerHTML = output;
+        }, 1000);  
+		
+		
+
+		});
+	   
+		xhr.open("POST", 'api/controllers/listGroups');
+	
+		xhr.send();
+	}
 
  });
 
