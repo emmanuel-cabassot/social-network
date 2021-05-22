@@ -1,4 +1,6 @@
-var listeEvents = document.getElementById('listeEvent');
+var listeEvents = document.getElementById('listeEvents');
+
+
 
  function listEvent(){
 		
@@ -29,7 +31,7 @@ var listeEvents = document.getElementById('listeEvent');
             '<li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">Pas de résultat</li>';
     }
     setTimeout(function(){ 
-        listeEvent.innerHTML = output;
+        listeEvents.innerHTML = output;
     }, 1000);  	
     
 
@@ -45,6 +47,19 @@ document.addEventListener("DOMContentLoaded", function() {
 listEvent();
 });
 
+function validerFormul(){
+   
+    var a= document.getElementById("title_event").value;
+    var b= document.getElementById("text_event").value;
+    var c= document.getElementById("date_event").value;
+    var d= document.getElementById("city_event").value;
+    var z= document.getElementById("public_event").value;
+    if(a=="" || b=="" || c=="" || d=="" || z==""){
+        return false;
+    }else{
+       return true;
+    }
+};
 
 // disable autodiscover
 Dropzone.autoDiscover = false;
@@ -74,8 +89,8 @@ var myDropzone = new Dropzone("#dropzone", {
     dictDefaultMessage: "Drop files here to upload",
 });
 
-myDropzone.on("addedfile", function(file) {
-    //console.log(file);
+myDropzone.on("addedfile", function() {
+    
 });
 
 myDropzone.on("removedfile", function(file) {
@@ -86,7 +101,7 @@ myDropzone.on("removedfile", function(file) {
 myDropzone.on("sending", function(file, xhr, formData) {
     formData.append("dropzone", "1"); // $_POST["dropzone"]
     formData.append("img_event",myDropzone.files[0].name ); 
-    $('#dropzone-form input[type="text"],#dropzone-form textarea,#dropzone-form input[type="hidden"], #dropzone-form input[type="date"]').each(function(){
+    $('#dropzone-form input[type="text"],#dropzone-form textarea,#dropzone-form input[type="hidden"], #dropzone-form input[type="datetime-local"]').each(function(){
         formData.append($(this).attr('name'),$(this).val());                    
     });
 });
@@ -103,17 +118,21 @@ myDropzone.on("success", function(file, response) {
  
 // button trigger for processingQueue
 var submitDropzone = document.getElementById("submit-dropzone");
+var footer= document.getElementById("footer");
+
 submitDropzone.addEventListener("click", function(e) {
+    validerFormul();
     // Make sure that the form isn't actually being sent.
     e.preventDefault();
     e.stopPropagation();
 
-    if (myDropzone.files != "") {
-        // console.log(myDropzone.files);
+    if (myDropzone.files != "" && validerFormul()==true ) {
+       
         myDropzone.processQueue();
     } else {
 	// if no file submit the form    
-        document.getElementById("dropzone-form").submit();
+    
+    footer.innerHTML= '<h4>Tous les champs doivent être remplis</h4>';
     }
 
 });

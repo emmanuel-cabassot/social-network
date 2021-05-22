@@ -51,7 +51,7 @@
                                     </fieldset>
                                 </form>
                             </div>
-                            <div class="modal-footer"> 
+                            <div class="modal-footer" id="footer"> 
                                 
                             </div>
                         </div>

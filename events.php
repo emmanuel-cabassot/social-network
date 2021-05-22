@@ -51,25 +51,28 @@
                                         <div class="form-group">             
                                             <input type="text" class="form-control w-75" id="public_event" placeholder="public: oui ou non"  name="public_event" required />                
                                         </div>
+                                        <div class="form-group" id="validForm"><div>    
                                         <input type="hidden" name="signalized" id="signalized" value="non"/>
                                         <input type="hidden" name="blocked" id="blocked" value="non"/>
                                         <div class="form-group">
-                                            <div class="dropzone" id="dropzone"></div>  
-                                        </div>                                                   
+                                            <div class="dropzone" id="dropzone"></div>     
+                                        </div> 
+                                                                                     
                                         <div class="form-group">
                                             <input type="submit" name="submitDropzone" value="Ajouter" id="submit-dropzone" class="btn btn-primary w-75" />
                                         </div>
+                                          
                                     </fieldset>
                                 </form>
                             </div>
-                            <div class="modal-footer"> 
+                            <div class="modal-footer" id="footer"> 
                                 
                             </div>
                         </div>
                     </div>
                 </div>
                 <section>
-                    <div id="listeEvent"></div>    
+                    <div id="listeEvents"></div>    
                 </section>             
             </div>            
           

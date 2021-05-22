@@ -44,6 +44,17 @@ document.addEventListener("DOMContentLoaded", function() {
 listGroup();
 });
 
+function validerForm(){
+    
+    var a= document.getElementById("name_group").value;
+    var b= document.getElementById("description").value;
+    
+    if(a=="" || b=="" ){
+        return false;
+    }else{
+       return true;
+    }
+};
 
 // disable autodiscover
 Dropzone.autoDiscover = false;
@@ -102,17 +113,20 @@ myDropzone.on("success", function(file, response) {
  
 // button trigger for processingQueue
 var submitDropzone = document.getElementById("submit-dropzone");
+var footer= document.getElementById("footer");
+
 submitDropzone.addEventListener("click", function(e) {
     // Make sure that the form isn't actually being sent.
+    validerForm();
     e.preventDefault();
     e.stopPropagation();
-
-    if (myDropzone.files != "") {
+    
+    if (myDropzone.files != "" && validerForm()==true) {
         // console.log(myDropzone.files);
         myDropzone.processQueue();
     } else {
 	// if no file submit the form    
-        document.getElementById("dropzone-form").submit();
+    footer.innerHTML= '<h4>Tous les champs doivent être remplis</h4>';
     }
 
 });
