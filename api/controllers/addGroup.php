@@ -2,7 +2,7 @@
 session_start();
 // required headers
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -22,7 +22,7 @@ $group = new Group($db);
 
 
 // define absolute folder path
-$dest_folder = 'assets/images/upload/groups/';
+$dest_folder = '../../assets/images/upload/groups/';
 
 if (!empty($_FILES)) {
 	
@@ -47,6 +47,7 @@ if(isset($_SESSION['id_user'])){
     $addGroup = $group->addGroup();
     
     if($addGroup){
+        $belong =$group->belong($_SESSION['id_user'], $addGroup);
     // set response code
     http_response_code(200);
 

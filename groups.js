@@ -1,59 +1,49 @@
+
+ var listeGroupe = document.getElementById('listeGroupe');
+
+ function listGroup(){
+		
+    var xhr = new XMLHttpRequest();
+    
+    xhr.addEventListener("readystatechange", function() {
+    if(this.readyState === 4 && this.status === 200) {
+        
+        var response = JSON.parse(xhr.responseText);
+        var records = response.records;
+        var output = '';
+        
+       
+        for(var i =0; i<records.length; i++){				
+          
+            output +=  
+            '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/groups/'+records[i].img_group+
+            '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+records[i].name_group+
+            '</h5><p class="card-text">'+records[i].description+
+            '</p><p class="card-text"><small class="text-muted">participants:</small></p><button type="button" class="btn btn-primary">Default button</button></div></div></div></div><br>';
+        }        
+            
+
+    }else{
+        output =  
+            '<li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">Pas de résultat</li>';
+    }
+    setTimeout(function(){ 
+        listeGroupe.innerHTML = output;
+    }, 1000);  	
+    
+
+    });
+   
+    xhr.open("POST", 'api/controllers/listGroups');
+
+    xhr.send();
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
+listGroup();
+});
 
-    listGroup();
-
-    const listeGroupe = document.getElementById('listeGroupe');
-
-    function listGroup(){
-		
-		var xhr = new XMLHttpRequest();
-		
-		xhr.addEventListener("readystatechange", function() {
-		if(this.readyState === 4 && this.status === 200) {
-			
-			var response = JSON.parse(xhr.responseText);
-			var records = response.records;
-			var output = '';
-			
-		   
-			for(var i =0; i<records.length; i++){				
-			  
-                output +=  
-                '<div class="card mb-3">';
-                    '<div class="row no-gutters">';
-                        '<div class="col-md-4">';
-                            '<img src="assets/images/upload/groups/'+records[i].img_group+'" class="card-img" alt="...">';
-                        '</div>';
-                        '<div class="col-md-8">';
-                            '<div class="card-body">';
-                                '<h5 class="card-title">'+records[i].name_group+'</h5>';
-                                '<p class="card-text">'+records[i].description+'</p>';
-                                '<p class="card-text"><small class="text-muted">participants:</small></p>';
-                                '<button type="button" class="btn btn-primary">Default button</button>';
-                            '</div>';
-                        '</div>';
-                    '</div>';
-                '</div>';
-			}        
-		        
-	
-		}else{
-			output =  
-				'<li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">Pas de résultat</li>';
-		}
-		setTimeout(function(){ 
-			document.getElementById('listeGroupe').innerHTML = output;
-        }, 1000);  	
-		
-
-		});
-	   
-		xhr.open("POST", 'api/controllers/listGroups');
-	
-		xhr.send();
-	}
-
- });
 
 // disable autodiscover
 Dropzone.autoDiscover = false;
@@ -65,7 +55,7 @@ var myDropzone = new Dropzone("#dropzone", {
     autoProcessQueue : false,
     acceptedFiles: "image/*",
     maxFiles: 5,
-    maxFilesize: 0.3, // MB
+    maxFilesize: 1, // MB
     uploadMultiple: false,
     parallelUploads: 100, // use it with uploadMultiple
     createImageThumbnails: true,
@@ -126,4 +116,6 @@ submitDropzone.addEventListener("click", function(e) {
     }
 
 });
+
+
 

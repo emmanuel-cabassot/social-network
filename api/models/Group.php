@@ -21,7 +21,7 @@ class Group{
     function listGroups(){
 
     // select all query
-    $query = 'SELECT * FROM groupe LIMIT 20 OFFSET 20';
+    $query = 'SELECT * FROM groupe';
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -55,7 +55,7 @@ class Group{
 
         // execute query
         if($stmt->execute()){
-            return true;
+            return $this->conn->lastInsertId();
         }
 
         return false;

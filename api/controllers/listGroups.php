@@ -35,7 +35,8 @@ if ($num>0){
             "id_group" => $id_group,
             "name_group" => $name_group,
             "description" => $description,
-            "img_group" => $img_group
+            "img_group" => $img_group,
+            "id_user_create" => $id_user_create
         );
 
         array_push($group_arr["records"], $group_item);
