@@ -1,8 +1,8 @@
 <?php
-
+session_start();
 // required headers
 header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
+header("Content-Type: *");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -20,32 +20,42 @@ $db = $database->getConnection();
 // instantiate user object
 $event = new Event($db);
  
-// check email existence here
-// get posted data
-$data = json_decode(file_get_contents("php://input"));
+// define absolute folder path
+$dest_folder = '../../assets/images/upload/events/';
+
+if (!empty($_FILES)) {
+	
+	// if dest folder doesen't exists, create it
+	if(!file_exists($dest_folder) && !is_dir($dest_folder)) mkdir($dest_folder);
+	
+    $tempFile = $_FILES['file']['tmp_name'];        
+    $targetFile =  $dest_folder . $_FILES['file']['name'];
+    move_uploaded_file($tempFile,$targetFile);
+}
+
  
 // set user property values
 
     
-    $event->id_user_creator = $data-> id_user_creator;
-    $event->title_event = $data-> title_event;
-    $event->text_event = $data-> text_event;
-    $event->date_event = $data-> date_event;
-    $event->city_event = $data-> city_event;
-    $event->img_event = $data-> img_event;
-    $event->public_event = $data-> public_event;
+    $event->id_user_creator = $_SESSION['id_user'];
+    $event->title_event = $_POST['title_event'];
+    $event->text_event = $_POST['text_event'];
+    $event->date_event = $_POST['date_event'];
+    $event->city_event = $_POST['city_event'];
+    $event->img_event = $_POST['img_event'];
+    $event->public_event = $_POST['public_event'];
     $event->signalized = 'non';
     $event->blocked = 'non';
     
 
 
 //check if session open 
-//if(isset($_SESSION['id_user'])){
-    if(1==1){
+if(isset($_SESSION['id_user'])){
+    
     $addEvent = $event->addEvent();
     
     if($addEvent){
-    // set response code
+        $partEvent =$event->partEvent($_SESSION['id_user'], $addEvent);
     http_response_code(200);
 
     echo json_encode(

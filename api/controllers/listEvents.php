@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // required headers
 header("Access-Control-Allow-Origin: *");
@@ -36,7 +37,6 @@ if ($num>0){
         $event_item = array(
            
             "id_event" =>$id_event,
-            "id_user_creator" =>$id_user_creator,
             "title_event" =>$title_event,
             "text_event" =>$text_event,
             "date_event" =>$date_event,
