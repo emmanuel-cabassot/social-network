@@ -1,3 +1,5 @@
 penser à afficher au refresh de group le résultat et le nom du fichier en cas de probléme.
 
 voir procédure de rename de dropzone et transmission du nom auto.pour éviter les doublons.
+
+mettre à jour controlleur modéle affichage list group avec id_user_create
