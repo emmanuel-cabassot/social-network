@@ -155,7 +155,7 @@ class Event{
         $count->bindParam(':id_event', $id_event);
         $count->execute();
         $row= $count->fetch(PDO::FETCH_ASSOC);
-        $this->count_group =$row['count_part'];     
+        $this->count_part =$row['count_part'];     
     }
 
     function particip_event($id_user, $id_event){

@@ -35,7 +35,7 @@ if ($num>0){
         // this will make $row['name'] to
         // just $name only
         $count= $event->count_part($id_event);
-        $part= $group->particip_event($_SESSION['id_user'], $id_event);
+        $part= $event->particip_event($_SESSION['id_user'], $id_event);
         $event_item = array(
            
             "id_event" =>$id_event,
@@ -44,7 +44,7 @@ if ($num>0){
             "date_event" =>$date_event,
             "city_event" =>$city_event,
             "img_event" =>$img_event,
-            "count" =>$count,
+            "count" =>$event->count_part,
             "part" =>$part
    
         );
