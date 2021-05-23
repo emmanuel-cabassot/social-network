@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 // required headers
 
 header("Access-Control-Allow-Origin: *");
@@ -20,18 +22,25 @@ $db = $database->getConnection();
 $group = new Group($db);
   
 // set ID property of record to read
-$group->id_group = isset($_GET['id_group']) ? $_GET['id_group'] : die();
+$id_group = isset($_GET['id_group']) ? $_GET['id_group'] : die();
   
 // read the details of product to be edited
-$group->viewGroup($group->id_group);
+$group->viewGroup($id_group);
   
-if($group->id_group!=null){
+if($group->name_group!=null){
     // create array
+    $id_user= $_SESSION['id_user'];
+    $group->count_belong($id_group);
+    $belong= $group->belong_group($id_user, $id_group);
+
     $group_arr = array(
-        "id_group" =>  $group->id_group,
-        "name_group"=> $group->name_group,
-        "description"=> $group->description,
-        "img_group" => $group->img_group         
+        "id_group" => $group->id_group,
+        "name_group" => $group->name_group,
+        "description" => $group->description,
+        "img_group" => $group->img_group,
+        "id_user_create" => $group->id_user_create,
+        "count" => $group->count_belong,
+        "belong" => $belong      
     );
   
     // set response code - 200 OK

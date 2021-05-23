@@ -58,6 +58,9 @@
                     </div>
                 </div>
                 <section>
+                    <div id="viewGroupe"></div>    
+                </section>    
+                <section>
                     <div id="listeGroupe"></div>    
                 </section>             
             </div>            

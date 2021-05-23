@@ -1,5 +1,53 @@
 
  var listeGroupe = document.getElementById('listeGroupe');
+ var viewGroupe = document.getElementById('viewGroupe');
+
+function belong_group(id_group){
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4 && this.status === 200){
+            view_group(id_group);
+        }
+    });
+    xhr.open("POST", "api/controllers/belong?id_group="+id_group);
+
+    xhr.send();
+}
+
+ function view_group(id_group){
+    
+   
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4 && this.status === 200){
+
+            var record = JSON.parse(xhr.responseText);
+            var output = '';
+            var appartenir='';
+
+            if(record.belong==false){
+                appartenir='<button type="button" onclick="belong_group('+record.id_group+
+                ')" class="btn btn-primary">S\'inscrire</button>';   
+            }else{appartenir='<p>Vous êtes membre de ce groupe</p><button type="button" onclick="no_group('+record.id_group+
+            ')" class="btn btn-primary">Se désinscrire</button>'}
+            output += 
+            '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/groups/'+record.img_group+
+            '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+record.name_group+
+            '</h5><p class="card-text">'+record.description+
+            '</p><p class="card-text">participants : <b>'+record.count+'</b></p>'+appartenir+'</div></div></div></div><br>';   
+        }else{
+            output =  
+            '<li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">Erreur système, veuillez essayer de nouveau.</li>';  
+        } 
+        
+        setTimeout(function(){ 
+            viewGroupe.innerHTML = output;
+        }, 1000);  	
+    });
+    xhr.open("POST", "api/controllers/viewGroup?id_group="+id_group);
+
+    xhr.send();
+}
 
  function listGroup(){
 		
@@ -16,13 +64,14 @@
        
         for(var i =0; i<records.length; i++){				
             if(records[i].belong==false){
-                appartenir='<a href="api/controllers/belong.php?id_group='+records[i].id_group+'"><button type="button" class="btn btn-primary">S\'inscrire</button></a>';   
+                appartenir='<p>Vous ne faites pas partie de ce groupe</p>';   
             }else{appartenir='<p>Vous êtes membre de ce groupe</p>'}
             output +=  
             '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/groups/'+records[i].img_group+
             '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+records[i].name_group+
             '</h5><p class="card-text">'+records[i].description+
-            '</p><p class="card-text">participants : <b>'+records[i].count+'</b></p>'+appartenir+'</div></div></div></div><br>';
+            '</p><p class="card-text">participants : <b>'+records[i].count+'</b></p>'+appartenir+'<button type="button" onclick="view_group('+records[i].id_group+
+            ')" class="btn btn-primary">Voir</button></div></div></div></div><br>';
         }        
             
 

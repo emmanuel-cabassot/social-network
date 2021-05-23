@@ -71,14 +71,14 @@ class Group{
         $stmt = $this->conn->prepare($query);
 
         // bind values
-    
-        $stmt->bindParam(":id_group", $id_group);        
+
+        $stmt->bindParam(":id_group", $id_group);
         $stmt->bindParam(":id_user", $id_user);
-        
+
         // execute query
         if($stmt->execute()){
             return true;
-        }    
+        }
         return false;
 
     }
@@ -102,6 +102,7 @@ class Group{
         $this->name_group = $row['name_group'];
         $this->description = $row['description'];
         $this->img_group = $row['img_group'];
+        $this->id_user_create = $row['id_user_create'];
 
     }
 
@@ -126,12 +127,12 @@ class Group{
     }
 
     function count_belong($id_group){
-        $count= "SELECT COUNT(id_user) as count_group FROM belong WHERE id_group=:id_group ";
+        $count= "SELECT COUNT(id_user) as count_group FROM belong WHERE id_group=:id_group GROUP BY id_user";
         $count =$this->conn->prepare($count);
         $count->bindParam(':id_group', $id_group);
         $count->execute();
-        $row= $count->fetch(PDO::FETCH_ASSOC);
-        $this->count_group =$row['count_group'];    
+        $row= $count->fetch();
+        $this->count_belong = $row['count_group'];
     }
 
     function belong_group($id_user, $id_group){
@@ -141,13 +142,13 @@ class Group{
         $belong->bindParam(':id_group', $id_group);
         $belong->execute();
         $num = $belong->rowCount();
-     
+
         // if id_user exists, return true
         if($num > 0){
             return true;
         }else{
              return false;}
-        
+
 
     }
 
