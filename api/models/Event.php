@@ -29,7 +29,7 @@ class Event{
     function listEvents(){
        
     // select all query
-    $query =  'SELECT id_event, title_event, text_event, date_event, city_event, img_event, users.name, users.lastname, avatar FROM events JOIN users ON id_user_creator= users.id_user WHERE date_event >= CURDATE() AND public_event = "oui" ' ;
+    $query =  'SELECT id_event, id_user_creator, title_event, text_event, date_event, city_event, img_event, users.name, users.lastname, avatar FROM events JOIN users ON id_user_creator= users.id_user WHERE date_event >= CURDATE() AND public_event = "oui" ' ;
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -159,7 +159,7 @@ class Event{
     }
 
     function particip_event($id_user, $id_event){
-        $part="SELECT id_belong FROM part_event WHERE id_user=:id_user AND id_event=:id_event";
+        $part="SELECT id_part_event FROM part_event WHERE id_user=:id_user AND id_event=:id_event";
         $part =$this->conn->prepare($part);
         $part->bindParam(':id_user', $id_user);
         $part->bindParam(':id_event', $id_event);

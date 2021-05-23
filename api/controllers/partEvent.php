@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -20,7 +22,7 @@ $db = $database->getConnection();
 // instantiate user object
 $partEvent = new Event($db);
 
-$id_user = isset($_GET['id_user']) ? $_GET['id_user'] : die();
+$id_user = $_SESSION['id_user'];
 $id_event = isset($_GET['id_event']) ? $_GET['id_event'] : die();
 
 $part = $partEvent->partEvent($id_user, $id_event);
