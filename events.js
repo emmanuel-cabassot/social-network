@@ -12,17 +12,20 @@ var listeEvents = document.getElementById('listeEvents');
         var response = JSON.parse(xhr.responseText);
         var records = response.records;
         var output = '';
+        var participer ='';
         
        
         for(var i =0; i<records.length; i++){				
-          
+            if(records[i].part==false){
+                participer='<a href="api/controllers/partEvent.php?id_event='+records[i].id_event+'"><button type="button" class="btn btn-primary">Participer</button></a>';   
+            }else{participer='<p>Vous participez à cet événement.</p>'}
             output +=  
             '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/events/'+records[i].img_event+
             '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+records[i].title_event+
             '</h5><p class="card-text">Description : '+records[i].text_event+
             '<p class="card-text">Date: '+records[i].date_event+
             '<p class="card-text">Ville: '+records[i].city_event+
-            '</p><p class="card-text"><small class="text-muted">participants:</small></p><button type="button" class="btn btn-primary">Default button</button></div></div></div></div><br>';
+            '</p><p class="card-text">participants : <b>'+records[i].count+'</b></p>'+participer+'</div></div></div></div><br>';
         }        
             
 

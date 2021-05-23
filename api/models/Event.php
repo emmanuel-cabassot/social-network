@@ -149,6 +149,30 @@ class Event{
         return false;
     }
 
+    function count_part($id_event){
+        $count= "SELECT COUNT(id_user) as count_part FROM part_event WHERE id_event=:id_event ";
+        $count =$this->conn->prepare($count);
+        $count->bindParam(':id_event', $id_event);
+        $count->execute();
+        $row= $count->fetch(PDO::FETCH_ASSOC);
+        $this->count_group =$row['count_part'];     
+    }
+
+    function particip_event($id_user, $id_event){
+        $part="SELECT id_belong FROM part_event WHERE id_user=:id_user AND id_event=:id_event";
+        $part =$this->conn->prepare($part);
+        $part->bindParam(':id_user', $id_user);
+        $part->bindParam(':id_event', $id_event);
+        $part->execute();
+        $num = $part->rowCount();
+     
+        // if id_user exists, return true
+        if($num > 0){
+            return true;
+        }else{
+             return false;}
+    }
+
 }
 
 
