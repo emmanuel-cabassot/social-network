@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 // required headers
 
 header("Access-Control-Allow-Origin: *");
@@ -26,6 +29,10 @@ $oneEvent->id_event = isset($_GET['id_event']) ? $_GET['id_event'] : die();
 $oneEvent->view_event($oneEvent->id_event);
   
 if($oneEvent->id_event != null){
+
+    $count= $oneEvent->count_part($oneEvent->id_event);
+    $part= $oneEvent->particip_event($_SESSION['id_user'], $oneEvent->id_event);
+
     // create array
     $oneEvent_arr = array(
         "id_event" =>  $oneEvent->id_event,
@@ -37,7 +44,9 @@ if($oneEvent->id_event != null){
         "img_event" =>$oneEvent->img_event,
         "public_event" =>$oneEvent->public_event,
         "signalized" =>$oneEvent->signalized,
-        "blocked"=>$oneEvent->blocked 
+        "blocked"=>$oneEvent->blocked,
+        "count" =>$oneEvent->count_part,
+        "part" =>$part 
     );
   
     // set response code - 200 OK

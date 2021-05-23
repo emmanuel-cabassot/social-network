@@ -65,12 +65,15 @@
                                     </fieldset>
                                 </form>
                             </div>
-                            <div class="modal-footer" id="footer"> 
+                            <div class="modal-footer" id="modal_footer"> 
                                 
                             </div>
                         </div>
                     </div>
                 </div>
+                <section>
+                    <div id="oneEvent"></div>    
+                </section>
                 <section>
                     <div id="listeEvents"></div>    
                 </section>             
