@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // required headers
 header("Access-Control-Allow-Origin: *");
@@ -22,7 +23,7 @@ $group = new Group($db);
  
 // set ID property of record to 
 $id_group = isset($_GET['id_group']) ? $_GET['id_group'] : die();
-$id_user = isset($_GET['id_user']) ? $_GET['id_user'] : die();
+$id_user = $_SESSION['id_user'];
 
 $belong = $group->belong($id_group, $id_user);
 

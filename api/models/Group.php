@@ -12,6 +12,7 @@ class Group{
     public $img_group;
     public $id_user;
     public $id_belong;
+    public $count_group;
 
     // constructor with $db as database connection
     public function __construct($db){
@@ -124,5 +125,30 @@ class Group{
         return false;
     }
 
+    function count_belong($id_group){
+        $count= "SELECT COUNT(id_user) as count_group FROM belong WHERE id_group=:id_group ";
+        $count =$this->conn->prepare($count);
+        $count->bindParam(':id_group', $id_group);
+        $count->execute();
+        $row= $count->fetch(PDO::FETCH_ASSOC);
+        $this->count_group =$row['count_group'];    
+    }
+
+    function belong_group($id_user, $id_group){
+        $belong="SELECT id_belong FROM belong WHERE id_user=:id_user AND id_group=:id_group";
+        $belong =$this->conn->prepare($belong);
+        $belong->bindParam(':id_user', $id_user);
+        $belong->bindParam(':id_group', $id_group);
+        $belong->execute();
+        $num = $belong->rowCount();
+     
+        // if id_user exists, return true
+        if($num > 0){
+            return true;
+        }else{
+             return false;}
+        
+
+    }
 
 }

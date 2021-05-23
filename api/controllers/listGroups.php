@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // required headers
 header("Access-Control-Allow-Origin: *");
@@ -23,6 +24,7 @@ $stmt = $group->listGroups();
 $num = $stmt->rowCount();
 
 if ($num>0){
+  
     $group_arr=array();
     $group_arr['records']=array();
 
@@ -31,12 +33,16 @@ if ($num>0){
         // extract row
         // this will make $row['name'] to
         // just $name only
+        $count= $group->count_belong($id_group);
+        $belong= $group->belong_group($_SESSION['id_user'], $id_group);
         $group_item = array(
             "id_group" => $id_group,
             "name_group" => $name_group,
             "description" => $description,
             "img_group" => $img_group,
-            "id_user_create" => $id_user_create
+            "id_user_create" => $id_user_create,
+            "count" => $group->count_group,
+            "belong" => $belong
         );
 
         array_push($group_arr["records"], $group_item);
