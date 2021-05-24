@@ -101,6 +101,27 @@ class Event{
         return false;
     }
 
+    function noPartEvent($id_user, $id_event){
+        // Inserer le post
+
+        $noPartEvent="DELETE FROM part_event WHERE id_event=:id_event && id_user=:id_user";
+     
+        // prepare the query
+        $stmt = $this->conn->prepare( $noPartEvent );
+     
+        // bind user, title, texte
+        $stmt->bindParam(':id_event', $id_event);
+        $stmt->bindParam(':id_user', $id_user);
+      
+
+        // execute the query
+         // execute query
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
+
     function view_event($id_event){
         $view = "SELECT * FROM events WHERE id_event=:id_event";
         // prepare the query

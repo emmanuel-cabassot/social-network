@@ -5,10 +5,31 @@ function part_event(id_event){
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status === 200){
-            viewEvent(id_event);
+            refresh=' ';
+            setTimeout(function(){ 
+                oneEvent.innerHTML = refresh;
+            }, 500); 
+            listEvent();
+
         }
     });
     xhr.open("POST", "api/controllers/partEvent?id_event="+id_event);
+
+    xhr.send();
+}
+
+function no_particip(id_event){
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4 && this.status === 200){
+            refresh=' ';
+            setTimeout(function(){ 
+                oneEvent.innerHTML = refresh;
+            }, 500); 
+            listEvent(); 
+        }
+    });
+    xhr.open("POST", "api/controllers/noPartEvent?id_event="+id_event);
 
     xhr.send();
 }

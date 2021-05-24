@@ -6,10 +6,30 @@ function belong_group(id_group){
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status === 200){
-            view_group(id_group);
+            refresh=' ';
+            setTimeout(function(){ 
+                viewGroupe.innerHTML = refresh;
+            }, 500); 
+            listGroup();
         }
     });
     xhr.open("POST", "api/controllers/belong?id_group="+id_group);
+
+    xhr.send();
+}
+
+function noBelong(id_group){
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4 && this.status === 200){
+            refresh=' ';
+            setTimeout(function(){ 
+                viewGroupe.innerHTML = refresh;
+            }, 500); 
+            listGroup(); 
+        }
+    });
+    xhr.open("POST", "api/controllers/noBelong?id_group="+id_group);
 
     xhr.send();
 }
@@ -28,7 +48,7 @@ function belong_group(id_group){
             if(record.belong==false){
                 appartenir='<button type="button" onclick="belong_group('+record.id_group+
                 ')" class="btn btn-primary">S\'inscrire</button>';   
-            }else{appartenir='<p>Vous êtes membre de ce groupe</p><button type="button" onclick="no_group('+record.id_group+
+            }else{appartenir='<p>Vous êtes membre de ce groupe</p><button type="button" onclick="noBelong('+record.id_group+
             ')" class="btn btn-primary">Se désinscrire</button>'}
             output += 
             '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/groups/'+record.img_group+

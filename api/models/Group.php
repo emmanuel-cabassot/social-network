@@ -63,7 +63,7 @@ class Group{
 
     }
 
-    function belong($id_user, $id_group){
+    function belong($id_group, $id_user){
         // query to insert record
         $query = "INSERT INTO belong SET id_group=:id_group, id_user=:id_user";
 
@@ -127,7 +127,7 @@ class Group{
     }
 
     function count_belong($id_group){
-        $count= "SELECT COUNT(id_user) as count_group FROM belong WHERE id_group=:id_group GROUP BY id_user";
+        $count= "SELECT COUNT(id_user) as count_group FROM belong WHERE id_group=:id_group ";
         $count =$this->conn->prepare($count);
         $count->bindParam(':id_group', $id_group);
         $count->execute();
@@ -151,5 +151,27 @@ class Group{
 
 
     }
+
+    function noBelong($id_user, $id_group){
+        // Inserer le post
+
+        $noBelong="DELETE FROM belong WHERE id_group=:id_group && id_user=:id_user";
+     
+        // prepare the query
+        $stmt = $this->conn->prepare( $noBelong );
+     
+        // bind user, group
+        $stmt->bindParam(':id_group', $id_group);
+        $stmt->bindParam(':id_user', $id_user);
+      
+
+        // execute the query
+         // execute query
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
+    }
+
 
 }

@@ -47,7 +47,7 @@ if(isset($_SESSION['id_user'])){
     $addGroup = $group->addGroup();
     
     if($addGroup){
-        $belong =$group->belong($_SESSION['id_user'], $addGroup);
+        $belong =$group->belong($addGroup, $_SESSION['id_user']);
     // set response code
     http_response_code(200);
 
