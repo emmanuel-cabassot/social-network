@@ -31,28 +31,23 @@ if ($num>0){
         // extract row
         // this will make $row['name'] to
         // just $name only
-        $friend_item = array(
-            "id_friend" => $id_friend,
-            "id_user" => $id_user,
-            "id_user_friend" => $id_user_friend            
-        );
     
-            $list = $friend->listFriends($friend_item['id_user_friend']);
+            $list = $friend->listFriends($id_user_friend);
             $num=$list->rowCount();
             if ($num>0){
-                $otherFriend_arr=array();
-                $other_friend_arr['records']=array();
+                $suggested_arr=array();
+                $suggested_arr['records']=array();
                 while ($row= $list->fetch(PDO::FETCH_ASSOC)){
                     extract($row);
                     // extract row
                     // this will make $row['name'] to
                     // just $name only
-                    $otherFriend_item = array(
+                    $friend_item = array(
                         "id_friend" => $id_friend,
                         "id_user" => $id_user,
                         "id_user_friend" => $id_user_friend            
                     );
-                    array_push($other_friend_arr['records'], $otherFriend_item);  
+                    array_push($suggested_arr['records'], $friend_item);  
                 }
             }
         }

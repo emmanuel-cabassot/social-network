@@ -81,6 +81,8 @@ class Friend{
             return false; 
 
     }
+
+  
         
     function delete_friend($id_friend){        
         $del= " DELETE FROM friend WHERE id_friend = :id_friend";
