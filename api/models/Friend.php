@@ -14,6 +14,8 @@ class Friend{
     public $lastname;
     public $email;
     public $avatar;
+    public $city;
+    public $country;
 
     // constructor with $db as database connection
     public function __construct($db){

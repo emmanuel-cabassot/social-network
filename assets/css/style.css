@@ -60,3 +60,10 @@ a .quiet{
 .figure{
     margin-top: 10em;
 }
+
+.card-img-thumb{
+    height: 75px;
+    width:auto;
+    border-radius: 50%;
+    vertical-align: middle;
+}
