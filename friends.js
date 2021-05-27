@@ -56,7 +56,7 @@ function invitFriend(id_user_friend){
         }
     });
    
-    xhr.open("POST", 'api/controllers/invitFriend?id_friend='+id_user_friend);
+    xhr.open("GET", 'api/controllers/invitFriend?id_user_friend='+id_user_friend);
 
     xhr.send();
 }

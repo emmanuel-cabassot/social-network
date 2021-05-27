@@ -87,20 +87,16 @@ class Friend{
 
     function invitFriend($id_user, $id_user_friend){
         // query to insert record
-        $query = "INSERT INTO friend SET id_user=:id_user, id_user_friend=:id_user_friend, confirmed= 'non'";
+        $query = "INSERT INTO friend SET id_user=:id_user, id_user_friend=:id_user_friend, confirmed= non";
     
         // prepare query
         $stmt = $this->conn->prepare($query);
-    
-        // sanitize
-       
-        $id_user=htmlspecialchars($id_user);
-        $id_user_friend=htmlspecialchars($id_user_friend);
                         
         // bind values
       
         $stmt->bindParam(":id_user", $id_user);
         $stmt->bindParam(":id_user_friend", $id_user_friend);
+        
                 
         // execute query
         if($stmt->execute()){
