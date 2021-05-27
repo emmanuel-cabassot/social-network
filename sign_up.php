@@ -45,7 +45,7 @@
                             <input type="date" class="form-control w-75"  id="birth" name="birth" required>                
                         </div>
                                        
-                        <input type="hidden"   name="avatar" value="defaultavatar.png">                        
+                        <input type="hidden"   name="avatar" value="default.png">                        
                         <input type="hidden"   name="banner" value="defaultbanner.png">                
                         <input type="hidden" name="creation" value="<?php echo date('Y-m-d'); ?>">
     

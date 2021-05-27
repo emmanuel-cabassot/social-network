@@ -9,6 +9,9 @@ class Login{
     public $id;
     public $email;
     public $password;
+    public $name;
+    public $lastname;
+    public $avatar;
    
 
     // constructor with $db as database connection
@@ -51,6 +54,9 @@ class Login{
             $this->id_user = $row['id_user'];
             $this->email = $row['email'];
             $this->password = $row['password'];
+            $this->name = $row['name'];
+            $this->lastname = $row['lastname'];
+            $this->avatar = $row['avatar'];
      
             // return true because email exists in the database
             return true;

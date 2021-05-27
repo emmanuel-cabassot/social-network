@@ -21,7 +21,7 @@ $db = $database->getConnection();
 $friend = new Friend($db);
 
 // set ID property of record to 
-$id_user = isset($_GET['id_user']) ? $_GET['id_user'] : die();
+$id_user = $_SESSION['id_user']; 
 $id_user_friend = isset($_GET['id_user_friend']) ? $_GET['id_user_friend'] : die();
 
 $invit = $friend->invitFriend($id_user, $id_user_friend);

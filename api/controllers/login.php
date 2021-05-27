@@ -40,6 +40,9 @@ if($email_exists){
             $strt=strtotime("now")-7200;
             $destroyConnected= $login->cleanConnected($strt);
             $_SESSION['id_user']= $login->id_user;
+            $_SESSION['name']= $login->name;
+            $_SESSION['lastname']= $login->lastname;
+            $_SESSION['avatar']= $login->avatar;
             $connected= $login->connected($login->id_user);
             
               http_response_code(200);  

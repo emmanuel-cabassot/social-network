@@ -39,6 +39,32 @@ class Friend{
 
     }
 
+    function viewFriend($id_user){
+        $view= "SELECT * FROM users WHERE id_user=:id_user";
+
+        // prepare query statement
+        $stmt = $this->conn->prepare($view);
+
+        $stmt->bindParam(':id_user', $id_user);
+
+       // execute query
+        $stmt->execute();
+
+        // get retrieved row
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // set values to object properties
+        $this->id_user = $row['id_user'];
+        $this->name = $row['name'];
+        $this->lastname = $row['lastname'];
+        $this->avatar = $row['avatar'];
+        $this->city = $row['city'];
+        $this->country = $row['country'];
+
+    }
+
+
+
     function suggestFriends($id_user){
 
     // select all query

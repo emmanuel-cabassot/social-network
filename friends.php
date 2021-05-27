@@ -18,7 +18,7 @@
         <div class="row d-flex align-items-center">
             <div class="col-xl-2"></div>
             <div class="col-xl-7 col-sm-12">
-                <!-- Button trigger modal -->
+                
                 <button type="button" id="suggest" class="btn btn-primary">
                 suggest Friend
                 </button>
