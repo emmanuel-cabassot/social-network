@@ -62,7 +62,7 @@ if ($num>0){
 }
   
 else{
-    // set response code - 404 Not found
+    // set response code - 204 
     http_response_code(404);  
     
 }

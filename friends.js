@@ -31,10 +31,13 @@ function suggestFriend(){
 
             setTimeout(function(){ 
             suggestedFriends.innerHTML = output;
-        }, 1000);  	
+            }, 500);  	
         
 
-        }
+        }else  if(this.readyState === 4 && this.status === 404){
+            suggestedFriends.innerHTML = '<p>Pas de suggestion d\'ami</p>';
+            }
+        
     });
    
     xhr.open("POST", 'api/controllers/suggestFriend');
