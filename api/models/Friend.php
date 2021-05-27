@@ -39,6 +39,24 @@ class Friend{
 
     }
 
+    function suggestFriends($id_user){
+
+    // select all query
+    $query = 'SELECT * FROM friend LEFT JOIN  users ON friend.id_user_friend= users.id_user WHERE  friend.id_user IN (SELECT id_user_friend  FROM friend WHERE friend.id_user= :id_user) ORDER BY RAND() LIMIT 5';
+
+    // prepare query statement
+    $stmt = $this->conn->prepare($query);
+
+    $id_user=htmlspecialchars($id_user);
+
+    $stmt->bindParam(":id_user", $id_user);    
+    // execute query
+    $stmt->execute();
+
+    return $stmt;
+
+    }
+
     function invitFriend($id_user, $id_user_friend){
         // query to insert record
         $query = "INSERT INTO friend SET id_user=:id_user, id_user_friend=:id_user_friend, confirmed= 'non'";
