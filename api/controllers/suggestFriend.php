@@ -1,56 +1,69 @@
 <?php
+session_start();
 
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: GET, POST");
+header("Access-Control-Allow-Methods: POST, GET");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-  
+
 // get database connection
 include_once '../config/database.php';
-  
-// instantiate product object
+
+// instantiate suggest object
 include_once '../models/Friend.php';
-  
+
+
+// instantiate database and suggest object
 $database = new Database();
 $db = $database->getConnection();
 
-// instantiate user object
-$friend = new Friend($db);
+// instantiate suggest object
+$Friend = new Friend($db);
 
-$id_user = isset($_GET['id_user']) ? $_GET['id_user'] : die();
+//$id_user = $_SESSION['id_user'];
 
-$stmt = $friend->listFriends($id_user);
-$num = $stmt->rowCount();
+$id_user=1;
+
+$suggest = $Friend->suggestFriends($id_user);
+
+$num = $suggest->rowCount();
 
 if ($num>0){
-   
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    $suggest_arr=array();
+    $suggest_arr['records']=array();
+
+    while ($row = $suggest->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         // extract row
         // this will make $row['name'] to
         // just $name only
+        $suggest_item = array(
+            "id_friend" => $id_friend,
+            "id_user" => $id_user,
+            "id_user_friend" => $id_user_friend,
+            "name" =>$name,
+            "lastname" =>$lastname,
+            "avatar" =>$avatar            
+        );
+
+        array_push($suggest_arr["records"], $suggest_item);
+
+    }
+
+      // set response code - 200 OK
+    http_response_code(200);
+  
+    // show products data
+    echo json_encode($suggest_arr);
+}
+  
+else{
+    // set response code - 404 Not found
+    http_response_code(404);  
     
-            $list = $friend->listFriends($id_user_friend);
-            $num=$list->rowCount();
-            if ($num>0){
-                $suggested_arr=array();
-                $suggested_arr['records']=array();
-                while ($row= $list->fetch(PDO::FETCH_ASSOC)){
-                    extract($row);
-                    // extract row
-                    // this will make $row['name'] to
-                    // just $name only
-                    $friend_item = array(
-                        "id_friend" => $id_friend,
-                        "id_user" => $id_user,
-                        "id_user_friend" => $id_user_friend            
-                    );
-                    array_push($suggested_arr['records'], $friend_item);  
-                }
-            }
-        }
+}
 
     
 
