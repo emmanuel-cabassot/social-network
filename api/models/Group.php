@@ -21,18 +21,29 @@ class Group{
 
     function listGroups(){
 
-    // select all query
-    $query = 'SELECT * FROM groupe';
+        // select all query
+        $query = 'SELECT * FROM groupe';
 
-    // prepare query statement
-    $stmt = $this->conn->prepare($query);
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
 
-    // execute query
-    $stmt->execute();
+        // execute query
+        $stmt->execute();
 
-    return $stmt;
+        return $stmt;
 
-    }
+        }
+
+    function suggestGroup(){
+        $query = 'SELECT * FROM belong LEFT JOIN groupe ON belong.id_group = groupe.id_group WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user = 1 UNION SELECT id_user FROM friend WHERE id_user_friend = 1)';
+        $stmt = $this->conn->prepare($query);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+        }
+
 
     function addGroup(){
         // query to insert record

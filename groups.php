@@ -61,7 +61,7 @@
                     <div id="viewGroupe"></div>    
                 </section>    
                 <section>
-                    <div id="listeGroupe"></div>    
+                    <div id="suggestGroupe"></div>    
                 </section>             
             </div>            
           
