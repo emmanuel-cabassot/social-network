@@ -11,9 +11,10 @@ $prenom = 'emmanuel';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/dropzone.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+   
     <script src="assets/js/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/css/sendPost.css">
 </head>
@@ -76,7 +77,7 @@ $prenom = 'emmanuel';
                             <button type="button" class="btn btn-primary w-100" id="submit-video">Importer votre vidéo</button>
                         </section>
                     </section>
-                    <section class="media-module-sendPost row d-flex justify-content-around align-items-center mb-3">
+                    <section class="media-module-sendPost row d-flex justify-content-around align-items-center mb-2 mt-2">
                         <section class="video-media-senPost" id="ajouterVideo-sendPost">
                             <section class="bg-video-media-sendPost">
                             </section>
@@ -85,26 +86,26 @@ $prenom = 'emmanuel';
                             </section>
                         </section>
 
-                        <section class="img-media-sendPost" id="ajouterPhoto-sendPost">
-                            <section class="bg-img-media-sendPost">
+                        <section class="image-media-sendPost" id="ajouterPhoto-sendPost">
+                            <section class="bg-image-media-sendPost">
                             </section>
                             <section class="text-media-sendPost">
                                 Photo
                             </section>
                         </section>
 
-                        <section class="story-media-sendPost" id="ajouterStory-sendPost">
-                            <section class="bg-story-media-sendPost">
+                        <section class="button-story-media-sendPost" id="ajouterStory-sendPost">
+                            <section class="bg-button-story-media-sendPost">
                             </section>
-                            <section class="text-media-sendPost">
-                                Story
+                            <section class="button-text-media-sendPost">
+                                Story 
                             </section>
                         </section>
                     </section>
                     <section class="publier-sendPost w-100">
                         <button type="button" class="btn btn-primary w-100">Publier</button>
                     </section>
-
+                    
                 </main>
 
             </section>
@@ -113,26 +114,17 @@ $prenom = 'emmanuel';
     </main>
 
     <input type="hidden" id="idUser" value="1">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+    $('#TextareaPostSend').emojioneArea({
+        pickerPosition: 'right',
+    })
+    </script>
     <script src="assets/js/dropzone.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="sendPost.js"></script>
-
-    <!-- Cdn tiny(emoticons) -->
-    <script src="https://cdn.tiny.cloud/1/ay5vy2ra44vfm2dcmlr503ovh79cv2773fro6qqs982e5o5t/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '#TextareaPostSend',
-            plugins: "emoticons",
-            toolbar: "emoticons",
-            toolbar_location: "bottom",
-            menubar: false,
-            branding: false,
-            statusbar: false,
-            height: 120,
-            language: 'fr_FR',
-            content_style: "body { line-height: .4; }"
-        });
-    </script>
+  
 </body>
 
 </html>

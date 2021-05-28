@@ -11,11 +11,11 @@ class Post{
     public $title;
     public $texte;
     public $date;
-    public $public = 'non';
-    public $signalized = 'non';
-    public $blocked = 'non';
-    public $image = 'non';
-    public $video = 'non';
+    public $public;
+    public $signalized;
+    public $blocked;
+    public $image;
+    public $video;
     public $story;
     
     // constructor with $db as database connection
@@ -30,9 +30,10 @@ class Post{
      */
     function createPost(){
         $date_now = date('Y-m-d H:i:s');
+        $non = 'non';
 
         // Requête
-        $insert = "INSERT INTO post (id_user, title_post, text_post, date_post, public, signalized, blocked, video_post, image_post) VALUES (:user, :title, :texte, :date_post, :public, :signalized, :blocked, :video_post, :image_post)";
+        $insert = "INSERT INTO post (id_user, title_post, text_post, date_post, public, signalized, blocked, video_post, image_post, story_post) VALUES (:user, :title, :texte, :date_post, :public, :signalized, :blocked, :video_post, :image_post, :story_post)";
      
         // prepare the query
         $stmt = $this->conn->prepare( $insert );
@@ -42,11 +43,12 @@ class Post{
         $stmt->bindParam(':title', $this->title);
         $stmt->bindParam(':texte', $this->texte);
         $stmt->bindParam(':date_post', $date_now);
-        $stmt->bindParam(':public', $this->public);
-        $stmt->bindParam(':signalized', $this->signalized);
-        $stmt->bindParam(':blocked', $this->blocked);
+        $stmt->bindParam(':public', $non);
+        $stmt->bindParam(':signalized', $non);
+        $stmt->bindParam(':blocked', $non);
         $stmt->bindParam(':video_post', $this->video);
         $stmt->bindParam(':image_post', $this->image);
+        $stmt->bindParam(':story_post', $this->story);
 
         // execute the query
         $stmt->execute();

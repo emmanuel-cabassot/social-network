@@ -1,6 +1,6 @@
 let user = document.querySelector('#idUser')
 user = 1
-                    /* APPARATION ET DISPARITION DE LA MODALE */
+/* APPARATION ET DISPARITION DE LA MODALE */
 lienModale = document.querySelectorAll('.sendPost [data-modale]')
 
 lienModale.forEach(ouvertureModale => {
@@ -15,8 +15,67 @@ lienModale.forEach(ouvertureModale => {
         modalClose.addEventListener("click", function (e) {
             e.preventDefault();
             // attention ici il faudra supprimer les images ou videos dans le dossier temporaire
-            modale.classList.remove("show");          
-        });       
+            let photo = document.querySelector('#preview').hasChildNodes()
+            let video = document.querySelector('#preview-video').hasChildNodes()
+            let myContent = $("#TextareaPostSend").data("emojioneArea").getText();
+
+            if (photo === true || video === true || myContent != "") {
+                if (confirm('Vous n’avez pas encore partagé votre publication. Voulez-vous vraiment quitter sans publier ?'))
+                    if (myContent != "") {
+                        $("#TextareaPostSend").data("emojioneArea").setText("")
+                    }
+
+                if (photo === true) {
+                    data = 'oui'
+                    $.ajax({
+                        // Adresse du traitement pour supprimer l'image du dossier temporaire
+                        url: "uploadTempPost.php",
+                        method: "POST",
+                        data: { supprime: data },
+                        success: function (data) {
+
+                        }
+                    })
+                    // Suppression des images visibles dans preview
+                    document.querySelector('#preview').innerHTML = "";
+                }
+
+                if (video === true) {
+                    data = 'oui'
+                    $.ajax({
+                        // Adresse du traitement pour supprimer la video du dossier temporaire
+                        url: "uploadTempPostVideo.php",
+                        method: "POST",
+                        data: { supprime: data },
+                        success: function (data) {
+
+                        }
+                    })
+                    // Suppression de la video visible dans preview
+                    document.querySelector('#preview-video').innerHTML = "";
+                }
+
+                iconeImage = document.querySelector('#ajouterPhoto-sendPost')
+                if (iconeImage.classList.contains("hidden") == true) {
+                    iconeImage.classList.remove("hidden")
+                }
+                iconeVideo = document.querySelector('#ajouterVideo-sendPost')
+                if (iconeVideo.classList.contains("hidden") == true) {
+                    iconeVideo.classList.remove('hidden')
+                }
+                modale.classList.remove("show");
+            }
+            else {
+                modale.classList.remove("show");
+            }
+
+        });
+        let exists = !!document.querySelector(".button-story-media-sendPost .validation-story");
+        if (exists) {
+            let deleteValidation = document.querySelector(".validation-story");
+            deleteValidation.remove();
+            buttonStory.classList.remove("validate")
+        }
     })
 })
 
@@ -24,30 +83,58 @@ lienModale.forEach(ouvertureModale => {
 let ajouterPhoto = document.querySelector('#ajouterPhoto-sendPost')
 var uploadImages = document.querySelector('.upload-images')
 
-ajouterPhoto.addEventListener("click", function(e) {   
+// Au click sur l'icone story 
+
+let buttonStory = document.querySelector(".button-story-media-sendPost")
+buttonStory.addEventListener("click", function (e) {
+    let exists = !!document.querySelector(".button-story-media-sendPost .validation-story");
+    if (exists) {
+        let deleteValidation = document.querySelector(".validation-story");
+        deleteValidation.remove();
+        buttonStory.classList.remove("validate")
+    }
+    else {
+        referenceNode = document.querySelector(".button-text-media-sendPost")
+        validationStory = document.createElement("section")
+        validationStory.classList.add("validation-story")
+        validationStory.innerHTML = "&#x2714"
+        buttonStory.insertBefore(validationStory, referenceNode.nextSibling)
+        buttonStory.classList.add("validate")
+    }
+
+
+})
+
+// Au click sur l'icone photo on ajoute la classe hidden à l'icone de la vidéo
+ajouterPhoto.addEventListener("click", function (e) {
     uploadImages.classList.toggle("show")
+    document.querySelector('.preview-sendPost').classList.add('hidden')
 })
 
 submitPhoto = document.querySelector('#submit-photo')
-submitPhoto.addEventListener("click", function(e) {
+submitPhoto.addEventListener("click", function (e) {
     uploadImages.classList.remove("show")
+    document.querySelector('.preview-sendPost').classList.remove('hidden')
 })
 
 // Fait apparaitre le drag and drop de la vidéo
 ajouterVideo = document.querySelector('#ajouterVideo-sendPost')
 uploadVideo = document.querySelector('.upload-video')
 
-ajouterVideo.addEventListener("click", function(e) {
+// Au click sur l'icone video
+ajouterVideo.addEventListener("click", function (e) {
     uploadVideo.classList.toggle("show")
+    document.querySelector('.preview-sendPost').classList.add('hidden')
 })
 
 submitVideo = document.querySelector('#submit-video')
-submitVideo.addEventListener("click", function(e) {
+submitVideo.addEventListener("click", function (e) {
     uploadVideo.classList.remove("show")
+    document.querySelector('.preview-sendPost').classList.remove('hidden')
 })
 
 
-                    /* CYCLE D'UNE IMAGE */
+/* CYCLE D'UNE IMAGE */
 // Dropzone options pour les images
 Dropzone.options.dropzoneFromImages = {
     autoProcessQueue: false,
@@ -76,13 +163,18 @@ function list_image() {
         url: "uploadTempPost.php",
         success: function (data) {
             $('#preview').html(data);
+            document.querySelector(".video-media-senPost").classList.add("hidden")
+            uploadImages.classList.remove("show")
+            if (document.querySelector('#preview .container-preview').innerHTML == "") {
+                document.querySelector(".video-media-senPost").classList.remove("hidden")
+            }
         }
     });
 }
 
 // Bouton de suppression de l'image déjà téléchargé
 $(document).on('click', '.remove_image', function () {
-    console.log("ca marche")
+
     var name = $(this).attr('id');
     $.ajax({
         // Adresse du traitement de l'image
@@ -95,7 +187,7 @@ $(document).on('click', '.remove_image', function () {
     })
 });
 
-                        /* CYCLE D'UNE VIDEO */
+/* CYCLE D'UNE VIDEO */
 // Dropzone options pour la vidéo
 Dropzone.options.dropzoneFromVideo = {
     autoProcessQueue: false,
@@ -118,12 +210,18 @@ Dropzone.options.dropzoneFromVideo = {
     },
 };
 
-// Fonction qui affiche la video
+// Fonction qui affiche la video dans la div preview
 function list_video() {
     $.ajax({
         url: "uploadTempPostVideo.php",
         success: function (data) {
             $('#preview-video').html(data);
+            document.querySelector(".image-media-sendPost").classList.add("hidden")
+            uploadVideo.classList.remove("show")
+
+            if (document.querySelector('#preview-video .container-preview').innerHTML == "") {
+                document.querySelector(".image-media-sendPost").classList.remove("hidden")
+            }
         }
     });
 }
@@ -143,42 +241,114 @@ $(document).on('click', '.remove_video', function () {
 });
 
 
-                        /* PUBLICATION D'UN POST */
+/* PUBLICATION D'UN POST */
 const publier = document.querySelector('.publier-sendPost button')
 
 publier.addEventListener("click", function (e) {
-    // Valeur du textarea
-    let myContent = tinymce.get("TextareaPostSend").getContent();
+    if (confirm('Voulez-vous publier?')) {
+        // Valeur du textarea
+        let myContent = $("#TextareaPostSend").data("emojioneArea").getText();
 
-    // Il y a t'il une photo d'enregistréé et ou une video
-    let photo = document.querySelector('#preview').hasChildNodes()
-    console.log(photo)
-    let video = document.querySelector('#preview-video').hasChildNodes()
-    console.log(video)
-    if (photo == false) {
-        photo = 'non'
+        // Est ce une story?
+        let exists = !!document.querySelector(".button-story-media-sendPost .validation-story");
+        if (exists) {
+            var story = "oui"
+        }
+        else {
+            var story = "non"
+        }
+
+        // Il y a t'il une photo d'enregistréé et ou une video
+        let photo = document.querySelector('#preview').hasChildNodes()
+        let video = document.querySelector('#preview-video').hasChildNodes()
+
+        console.log(video)
+        if (photo == false) {
+            photo = 'non'
+        }
+        else {
+            photo = 'oui'
+        }
+        if (video == false) {
+            video = 'non'
+        }
+        else {
+            video = 'oui'
+        }
+        data = {
+            user: user,
+            texte: myContent,
+            photo: photo,
+            video: video,
+            story: story
+        }
+        data = JSON.stringify(data);
+        console.log(data)
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "api/controllers/postSend.php");
+        xhr.setRequestHeader("Content-Type", "text/plain");
+        xhr.send(data);
+
+        let photoPreview = document.querySelector('#preview').hasChildNodes()
+        let videoPreview = document.querySelector('#preview-video').hasChildNodes()
+        let myText = $("#TextareaPostSend").data("emojioneArea").getText();
+
+        if (photoPreview === true || videoPreview === true || myText != "") {
+
+            if (myText != "") {
+                $("#TextareaPostSend").data("emojioneArea").setText("")
+            }
+
+            if (photoPreview === true) {
+                data = 'oui'
+                $.ajax({
+                    // Adresse du traitement pour supprimer l'image du dossier temporaire
+                    url: "uploadTempPost.php",
+                    method: "POST",
+                    data: { supprime: data },
+                    success: function (data) {
+
+                    }
+                })
+                // Suppression des images visibles dans preview
+                document.querySelector('#preview').innerHTML = "";
+            }
+
+            if (videoPreview === true) {
+                data = 'oui'
+                $.ajax({
+                    // Adresse du traitement pour supprimer la video du dossier temporaire
+                    url: "uploadTempPostVideo.php",
+                    method: "POST",
+                    data: { supprime: data },
+                    success: function (data) {
+
+                    }
+                })
+                // Suppression de la video visible dans preview
+                document.querySelector('#preview-video').innerHTML = "";
+            }
+
+            iconeImage = document.querySelector('#ajouterPhoto-sendPost')
+            if (iconeImage.classList.contains("hidden") == true) {
+                iconeImage.classList.remove("hidden")
+            }
+            iconeVideo = document.querySelector('#ajouterVideo-sendPost')
+            if (iconeVideo.classList.contains("hidden") == true) {
+                iconeVideo.classList.remove('hidden')
+            }
+            modale.classList.remove("show");
+
+
+        }
+
+        let exist = !!document.querySelector(".button-story-media-sendPost .validation-story");
+        if (exist) {
+            let deleteValidation = document.querySelector(".validation-story");
+            deleteValidation.remove();
+            buttonStory.classList.remove("validate")
+        }
     }
-    else {
-        photo = 'oui'
-    }
-    if (video == false) {
-        video = 'non'
-    }
-    else {
-        video = 'oui'
-    }
-    data = {
-        user: user,
-        texte: myContent,
-        photo: photo,
-        video: video
-    }
-    data = JSON.stringify(data);
-    console.log(data)
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "api/controllers/postSend.php");
-    xhr.setRequestHeader("Content-Type", "text/plain");
-    xhr.send(data);
 })
 
 
