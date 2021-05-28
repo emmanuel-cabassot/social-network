@@ -3,3 +3,8 @@ penser à afficher au refresh de group le résultat et le nom du fichier en cas 
 voir procédure de rename de dropzone et transmission du nom auto.pour éviter les doublons.
 
 mettre à jour controlleur modéle affichage list group avec id_user_create
+
+faire union sur listfriend pour avoir relation user->friend et relation friend->user, l'une js en attente
+de confirmation, l'autre à confirmer.
+
+temporiser le confirm forget car il choque avec le listfriends (voir en asynchrone).
