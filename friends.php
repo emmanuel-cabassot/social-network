@@ -26,6 +26,10 @@
                 <section>
                 <div id="suggestedFriends"></div>
                 </section>
+                <hr>
+                <section>
+                <div id="listFriends"></div>
+                </section>
                 <div class="col-xl-3 col-sm-12 mt-5">                
             </div>            
         </div>   

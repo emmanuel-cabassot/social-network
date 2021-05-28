@@ -3,7 +3,7 @@
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Methods: POST, GET");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
   
@@ -18,13 +18,13 @@ $db = $database->getConnection();
 
 
 // instantiate user object
-$confirm = new Friend($db);
+$forget = new Friend($db);
 
 $id_friend = isset($_GET['id_friend']) ? $_GET['id_friend'] : die();
  
-$confirmed = $confirm->confirmFriend($id_friend);
+$forgeted = $forget->forgetFriend($id_friend);
 
-if($confirmed){
+if($forgeted){
 // set response code - 200 OK
     http_response_code(200);
 }  

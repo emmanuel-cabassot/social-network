@@ -26,7 +26,7 @@ class Friend{
     function listFriends($id_user){
 
     // select all query
-    $query = 'SELECT id_friend, id_user_friend FROM friend  WHERE id_user=:id_user LIMIT 20';
+    $query = 'SELECT id_friend, id_user_friend, name, lastname, avatar, city, country, confirmed FROM friend LEFT JOIN users ON friend.id_user_friend=users.id_user WHERE friend.id_user=:id_user LIMIT 20';
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -126,7 +126,7 @@ class Friend{
 
   
         
-    function delete_friend($id_friend){        
+    function forgetFriend($id_friend){        
         $del= " DELETE FROM friend WHERE id_friend = :id_friend";
         $stmt = $this->conn->prepare($del);
 
