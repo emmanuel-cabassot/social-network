@@ -21,18 +21,22 @@ $db = $database->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
 
+
 // Instancie Modele post 
 $postSend = new post($db);
 
 // Hydrate la l'objet
 $postSend->image = $data->photo;
 $postSend->video = $data->video;
+$postSend->story = $data->story;
 $postSend->user = $data->user;
 $postSend->title = 'titre';
-$postSend->texte = $data->texte;
+$postSend->texte = strip_tags($data->texte);
+
 
 // Créer le post
-$postSend->createPost();
+$test = $postSend->createPost();
+echo json_encode($test);
 
 // Si des photos sont présentes
 if ($data->photo == 'oui') {

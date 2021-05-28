@@ -45,7 +45,9 @@ if ($num>0){
             "id_user_friend" => $id_user_friend,
             "name" =>$name,
             "lastname" =>$lastname,
-            "avatar" =>$avatar            
+            "avatar" =>$avatar,
+            "city"=>$city,
+            "country"=>$country            
         );
 
         array_push($suggest_arr["records"], $suggest_item);
@@ -60,7 +62,7 @@ if ($num>0){
 }
   
 else{
-    // set response code - 404 Not found
+    // set response code - 204 
     http_response_code(404);  
     
 }

@@ -14,6 +14,8 @@ class Friend{
     public $lastname;
     public $email;
     public $avatar;
+    public $city;
+    public $country;
 
     // constructor with $db as database connection
     public function __construct($db){
@@ -24,7 +26,7 @@ class Friend{
     function listFriends($id_user){
 
     // select all query
-    $query = 'SELECT id_friend, id_user_friend FROM friend  WHERE id_user=:id_user LIMIT 20';
+    $query = 'SELECT id_friend, id_user_friend, name, lastname, avatar, city, country, confirmed FROM friend LEFT JOIN users ON friend.id_user_friend=users.id_user WHERE friend.id_user=:id_user LIMIT 20';
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -68,7 +70,7 @@ class Friend{
     function suggestFriends($id_user){
 
     // select all query
-    $query = 'SELECT * FROM friend LEFT JOIN  users ON friend.id_user_friend= users.id_user WHERE  friend.id_user IN (SELECT id_user_friend  FROM friend WHERE friend.id_user= :id_user) ORDER BY RAND() LIMIT 5';
+    $query = 'SELECT * FROM friend LEFT JOIN  users ON friend.id_user_friend= users.id_user WHERE  friend.id_user IN (SELECT id_user_friend  FROM friend WHERE friend.id_user= :id_user) AND friend.id_user_friend not in (select friend.id_user_friend from friend where friend.id_user= :id_user) ORDER BY RAND() LIMIT 5';
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -89,16 +91,12 @@ class Friend{
     
         // prepare query
         $stmt = $this->conn->prepare($query);
-    
-        // sanitize
-       
-        $id_user=htmlspecialchars($id_user);
-        $id_user_friend=htmlspecialchars($id_user_friend);
                         
         // bind values
       
         $stmt->bindParam(":id_user", $id_user);
         $stmt->bindParam(":id_user_friend", $id_user_friend);
+        
                 
         // execute query
         if($stmt->execute()){
@@ -128,7 +126,7 @@ class Friend{
 
   
         
-    function delete_friend($id_friend){        
+    function forgetFriend($id_friend){        
         $del= " DELETE FROM friend WHERE id_friend = :id_friend";
         $stmt = $this->conn->prepare($del);
 

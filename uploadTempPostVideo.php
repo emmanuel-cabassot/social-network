@@ -26,6 +26,19 @@ if(isset($_POST["name"]))
  unlink($filename);
 }
 
+/* Supression de la video */
+if (isset($_POST["supprime"])) {
+    $dir = 'assets/videos/upload/temporaire/' .$_SESSION['user']['id'];
+    $listeVideo = scandir($dir);
+    foreach ($listeVideo as $video) {
+        if ($video != "." OR $video != "..") {
+            $chemin = 'assets/videos/upload/temporaire/' . $_SESSION['user']['id'] . '/' . $video;
+            unlink($chemin);
+        }
+    }
+      
+}
+
 $result = array();
 
 $files = scandir('assets/videos/upload/temporaire/'.$_SESSION['user']['id']);

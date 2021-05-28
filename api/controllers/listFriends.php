@@ -19,24 +19,30 @@ $db = $database->getConnection();
 // instantiate user object
 $friend = new Friend($db);
 
-$id_user = isset($_GET['id_user']) ? $_GET['id_user'] : die();
+$id_user = 1; // $_SESSION['id_user'];
 
-$stmt = $friend->listFriends($id_user);
-$num = $stmt->rowCount();
+
+$list = $friend->listFriends($id_user);
+$num = $list->rowCount();
 
 if ($num>0){
     $friend_arr=array();
     $friend_arr['records']=array();
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    while ($row = $list->fetch(PDO::FETCH_ASSOC)){
         extract($row);
         // extract row
         // this will make $row['name'] to
         // just $name only
         $friend_item = array(
             "id_friend" => $id_friend,
-            "id_user" => $id_user,
-            "id_user_friend" => $id_user_friend            
+            "id_user_friend" => $id_user_friend,
+            "name" => $name,
+            "lastname" => $lastname,
+            "avatar" => $avatar,
+            "city" => $city,
+            "country" => $country,
+            "confirmed" => $confirmed         
         );
 
         array_push($friend_arr["records"], $friend_item);
