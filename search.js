@@ -1,6 +1,7 @@
 $(document).on('keyup', 'input#main-search', function(){
     var searchText =$(this).val();
-    if(searchText ==''){
+    var onlyLetters =/^[a-zA-Z\-_ ’'‘ÆÐƎƏƐƔĲŊŒẞÞǷȜæðǝəɛɣĳŋœĸſßþƿȝĄƁÇĐƊĘĦĮƘŁØƠŞȘŢȚŦŲƯY̨Ƴąɓçđɗęħįƙłøơşșţțŧųưy̨ƴÁÀÂÄǍĂĀÃÅǺĄÆǼǢƁĆĊĈČÇĎḌĐƊÐÉÈĖÊËĚĔĒĘẸƎƏƐĠĜǦĞĢƔáàâäǎăāãåǻąæǽǣɓćċĉčçďḍđɗðéèėêëěĕēęẹǝəɛġĝǧğģɣĤḤĦIÍÌİÎÏǏĬĪĨĮỊĲĴĶƘĹĻŁĽĿʼNŃN̈ŇÑŅŊÓÒÔÖǑŎŌÕŐỌØǾƠŒĥḥħıíìiîïǐĭīĩįịĳĵķƙĸĺļłľŀŉńn̈ňñņŋóòôöǒŏōõőọøǿơœŔŘŖŚŜŠŞȘṢẞŤŢṬŦÞÚÙÛÜǓŬŪŨŰŮŲỤƯẂẀŴẄǷÝỲŶŸȲỸƳŹŻŽẒŕřŗſśŝšşșṣßťţṭŧþúùûüǔŭūũűůųụưẃẁŵẅƿýỳŷÿȳỹƴźżžẓ]$/.test(searchText);
+    if(onlyLetters ==false || searchText==' '){
         $('.search-result').html('');
 
     }else{
@@ -19,11 +20,11 @@ function searchName(searchText){
 
             for(var i=0; i<records.length; i++)
             output +=  
-            '<a href="element.php?id='+records[i].id_user+'"><li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">'+records[i].name +" - "+records[i].lastname+
-            "</li></a>";  
+            '<li class="nav-item bg-light"><a class="nav-link" href="publicProfile.php?id='+records[i].id_user+'">'+records[i].name +" - "+records[i].lastname+
+            '</a></li>';  
          }else{
         output =  
-            '<li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">Pas de résultat</li>';
+            '<li class="nav-item active"><a href="" class="nav-link">Pas de résultat</a></li>';
             }
             setTimeout(function(){ 
                 $('.search-result').html(output);
