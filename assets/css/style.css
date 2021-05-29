@@ -67,3 +67,14 @@ a .quiet{
     border-radius: 50%;
     vertical-align: middle;
 }
+
+.logo-img-thumb{
+    height: 45px;
+    width:auto;
+    border-radius: 25px;
+    vertical-align: middle;
+}
+
+.display-5{
+    font-size: 30px;
+}	

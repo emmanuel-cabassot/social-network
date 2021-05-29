@@ -12,7 +12,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../config/database.php';
 
 // instantiate suggest object
-include_once '../models/Group.php';
+include_once '../models/Event.php';
 
 
 // instantiate database and suggest object
@@ -20,18 +20,18 @@ $database = new Database();
 $db = $database->getConnection();
 
 // instantiate suggest object
-$group = new Group($db);
+$event = new Event($db);
 
-$id_user = $_SESSION['id_user'];
+//$id_user = $_SESSION['id_user'];
 
-//$id_user=1;
-$stmt = $group->suggestGroup($id_user);
+$id_user=1;
+$stmt = $event->suggestEvent($id_user);
 $num = $stmt->rowCount();
 
 if ($num>0){
   
-    $group_arr=array();
-    $group_arr['records']=array();
+    $event_arr=array();
+    $event_arr['records']=array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
@@ -39,22 +39,24 @@ if ($num>0){
         // this will make $row['name'] to
         // just $name only        
                
-                $belong= $group->belong_group($id_user, $id_group);
-                $group_item = array(
-                    "id_group" => $id_group,
-                    "name_group" => $name_group,                   
-                    "img_group" => $img_group,                                     
-                    "belong" => $belong
+                $partEvent= $event->particip_event($id_user, $id_event);
+                $event_item = array(
+                    "id_event" => $id_event,
+                    "title_event" => $title_event,                   
+                    "img_event" => $img_event,
+                    "date_event" =>$date_event,
+                    "city_event" => $city_event,                                     
+                    "partEvent" => $partEvent
                 );
         
-                array_push($group_arr["records"], $group_item);        
+                array_push($event_arr["records"], $event_item);        
             }
         
               // set response code - 200 OK
             http_response_code(200);
         
             // show products data
-            echo json_encode($group_arr);
+            echo json_encode($event_arr);
         }
         
         else{

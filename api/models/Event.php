@@ -41,6 +41,16 @@ class Event{
 
     }
 
+    function suggestEvent($id_user){
+        $query = 'SELECT * FROM part_event LEFT JOIN events ON part_event.id_event = events.id_event WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend = id_user) ORDER BY RAND() LIMIT 5';
+        $stmt = $this->conn->prepare($query);
+         $stmt->bindParam(":id_user", $id_user);
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+        }
+
     function addEvent(){
          // query to insert record
         $query = "INSERT INTO events SET id_user_creator=:id_user_creator, title_event=:title_event, text_event=:text_event, date_event=:date_event, city_event=:city_event, img_event=:img_event, public_event=:public_event, signalized=:signalized, blocked=:blocked";
