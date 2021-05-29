@@ -46,7 +46,7 @@ class PhotoPost
      *
      * @return object
      */
-    function affichePhotoPost()
+    function affichePhotoPost($id_post)
     {
         $select = "SELECT * FROM image_post WHERE id_post = :id_post ORDER BY id_post DESC";
 
@@ -54,12 +54,12 @@ class PhotoPost
         $stmt = $this->conn->prepare($select);
 
         // Bind values
-        $stmt->bindParam(':id_post', $this->id_post);
+        $stmt->bindParam(':id_post', $id_post);
 
         // Execute the query
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

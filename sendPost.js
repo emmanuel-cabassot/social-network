@@ -283,7 +283,6 @@ publier.addEventListener("click", function (e) {
             story: story
         }
         data = JSON.stringify(data);
-        console.log(data)
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "api/controllers/postSend.php");
         xhr.setRequestHeader("Content-Type", "text/plain");

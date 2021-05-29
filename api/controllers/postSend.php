@@ -94,4 +94,3 @@ if ($data->video == 'oui') {
     }
 }
 
-json_encode("Ca marche");

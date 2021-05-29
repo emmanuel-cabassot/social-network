@@ -83,19 +83,35 @@ class Post{
      *
      * @return array
      */
-    function displayPostUser()
+    function listPostUser($user)
     {
-        $select = "SELECT * FROM post WHERE id_user = :id_user";
+        $select = "SELECT id_post FROM post WHERE id_user = :id_user ORDER BY id_post DESC";
 
         // prepare the query
         $stmt = $this->conn->prepare($select);
 
         // bind 
-        $stmt->bindParam(':id_user', $this->user);
+        $stmt->bindParam(':id_user', $user);
 
         // execute
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }  
+
+    function showPostById($id_post)    
+    {
+        $select = "SELECT * FROM post WHERE id_post = :id_post";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($select);
+
+        // Bind
+        $stmt->bindParam(':id_post', $id_post);
+
+        // Execute
+        $stmt->execute();
+
+        return $stmt->fetch(PDO:: FETCH_ASSOC);
+    }
 }

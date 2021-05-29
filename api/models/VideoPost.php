@@ -45,7 +45,7 @@ class VideoPost
      *
      * @return object
      */
-    function afficheVideoPost()
+    function afficheVideoPost($id_post)
     {
         $select = "SELECT * FROM video_post WHERE id_post = :id_post";
 
@@ -53,11 +53,11 @@ class VideoPost
         $stmt = $this->conn->prepare($select);
 
         // Bind values
-        $stmt->bindParam(':id_post', $this->id_post);
+        $stmt->bindParam(':id_post', $id_post);
 
         // Execute the query
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

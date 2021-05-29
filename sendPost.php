@@ -20,7 +20,7 @@ $prenom = 'emmanuel';
 </head>
 
 <body>
-    <header>header</header>
+    
     <main>
         <section class="sendPost">
             <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['user']['id'] ?>>
