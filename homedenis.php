@@ -85,7 +85,7 @@
                 <section class="alert alert-info mb-5">
                 <div class="list-group">
                     <div class="list-group-item list-group-item-action active">Amis</div>
-                    <div id="listFriend"></div>
+                    <div id="listFriends"></div>
                     <div class="list-group-item list-group-item-action">
                         <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
                     </div>

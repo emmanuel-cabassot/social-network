@@ -42,7 +42,8 @@ if ($num>0){
             "avatar" => $avatar,
             "city" => $city,
             "country" => $country,
-            "confirmed" => $confirmed         
+            "confirmed" => $confirmed,
+            "connected" => $id_connected         
         );
 
         array_push($friend_arr["records"], $friend_item);

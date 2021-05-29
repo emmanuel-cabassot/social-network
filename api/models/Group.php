@@ -35,7 +35,7 @@ class Group{
         }
 
     function suggestGroup($id_user){
-        $query = 'SELECT * FROM belong LEFT JOIN groupe ON belong.id_group = groupe.id_group WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend = id_user) ORDER BY RAND() LIMIT 5';
+        $query = 'SELECT * FROM belong LEFT JOIN groupe ON belong.id_group = groupe.id_group WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend =: id_user) ORDER BY RAND() LIMIT 5';
         $stmt = $this->conn->prepare($query);
          $stmt->bindParam(":id_user", $id_user);
         // execute query

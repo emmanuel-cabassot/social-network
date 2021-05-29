@@ -77,4 +77,12 @@ a .quiet{
 
 .display-5{
     font-size: 30px;
-}	
+}
+
+.green{
+    color:green;
+}
+
+.grey{
+    color:grey;
+}
