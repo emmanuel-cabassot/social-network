@@ -89,18 +89,21 @@
                     <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
                     <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
                     <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-
+                    <div class="list-group-item list-group-item-action">
+                        <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-info btn-sm float-right mt-2">Voir ...</button>
-
                 </section>
                 <section class="alert alert-primary mb-5">
                 <div class="list-group">
                     <div class="list-group-item list-group-item-action active">Suggestion de groupes</div>
                     <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
                     <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                    <div class="list-group-item list-group-item-action">
+                        <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-primary btn-sm float-right mt-2">Voir ...</button>
+               
                 </section>
             </div>
         </div>
