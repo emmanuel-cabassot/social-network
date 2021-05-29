@@ -34,10 +34,10 @@ class Group{
 
         }
 
-    function suggestGroup(){
-        $query = 'SELECT * FROM belong LEFT JOIN groupe ON belong.id_group = groupe.id_group WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user = 1 UNION SELECT id_user FROM friend WHERE id_user_friend = 1)';
+    function suggestGroup($id_user){
+        $query = 'SELECT * FROM belong LEFT JOIN groupe ON belong.id_group = groupe.id_group WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend = id_user)';
         $stmt = $this->conn->prepare($query);
-
+         $stmt->bindParam(":id_user", $id_user);
         // execute query
         $stmt->execute();
 

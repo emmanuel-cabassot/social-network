@@ -78,12 +78,10 @@ function noBelong(id_group){
         var response = JSON.parse(xhr.responseText);
         var records = response.records;
         var output = '';
-        var appartenir='';        
+       
        
         for(var i =0; i<records.length; i++){				
-            if(records[i].belong==true){
-                output="";   
-            }else{
+            if(records[i].belong==false){
             output +=  
             '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/groups/'+records[i].img_group+
             '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+records[i].name_group+
@@ -97,7 +95,9 @@ function noBelong(id_group){
             }, 1000);  	    
 
         };
-    }
+    }else if(this.readyState === 4 && this.status === 404){
+            suggestGroupe.innerHTML = '<p>Pas de suggestion</p>';
+        }
     });
     xhr.open("POST", 'api/controllers/suggestGroup');
 
