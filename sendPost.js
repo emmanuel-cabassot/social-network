@@ -337,8 +337,6 @@ publier.addEventListener("click", function (e) {
                 iconeVideo.classList.remove('hidden')
             }
             modale.classList.remove("show");
-
-
         }
 
         let exist = !!document.querySelector(".button-story-media-sendPost .validation-story");
@@ -350,14 +348,3 @@ publier.addEventListener("click", function (e) {
     }
 })
 
-
-// Ceci sera pour afficher les posts d'un user
-data = {
-    user: user,
-}
-data = JSON.stringify(data);
-
-var xhr = new XMLHttpRequest();
-xhr.open("POST", "api/controllers/affichePostUser.php");
-xhr.setRequestHeader("Content-Type", "text/plain");
-xhr.send(data);

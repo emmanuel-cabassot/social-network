@@ -40,7 +40,6 @@ if (isset($_POST["supprime"])) {
       
 }
 
-
 $result = array();
 
 $files = scandir('assets/images/upload/temporaire/'.$_SESSION['user']['id']);
