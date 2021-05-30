@@ -19,6 +19,8 @@ class Event{
     public $signalized;
     public $blocked;
     public $now;
+    public $text_comment;
+    public $date_comment;
 
 
     // constructor with $db as database connection
@@ -203,6 +205,51 @@ class Event{
         }else{
              return false;}
     }
+
+    function addEventComment(){
+        // query to insert record
+        $query = "INSERT INTO comment_event SET id_event=:id_event, id_user=:id_user, text_comment=:text_comment, date_comment=:date_comment";
+
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        // sanitize
+
+        $this->id_group=htmlspecialchars($this->id_event);
+        $this->text_comment=htmlspecialchars($this->text_comment);
+        $this->date_comment=htmlspecialchars($this->date_comment);
+
+        // bind values
+
+        $stmt->bindParam(":id_event", $this->id_event);
+        $stmt->bindParam(":text_comment", $this->text_comment);
+        $stmt->bindParam(":date_comment", $this->date_comment);
+        $stmt->bindParam(":id_user", $this->id_user);
+
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    function listEventComment($id_event){
+
+        // select all query
+        $query = 'SELECT text_comment, date_comment, avatar, name, lastname FROM comment_event  LEFT JOIN users ON comment_event.id_user=users.id_user WHERE id_event=:id_event';
+
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id_event", $id_event);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+
+        }
 
 }
 

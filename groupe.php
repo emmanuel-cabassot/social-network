@@ -26,6 +26,10 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentGroupModal">
                 Ajouter commentaire
                 </button>
+                <section>
+                    <div id="listCommentGroup"></div>    
+                </section>
+                <br>   
 
                 <!-- Modal -->
                 <div class="modal fade" id="commentGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,9 +45,9 @@
                                 <form id="comment-form"  enctype="multipart/form-data" method="POST">
                                     <fieldset>
                                         <div class="form-group">             
-                                            <textarea class="form-control w-75" id="comment" placeholder="Commentaire" rows="" name="comment_group_text" required></textarea>                    
+                                            <textarea class="form-control w-75" id="comment" placeholder="Commentaire" rows="" name="text_comment" required></textarea>                    
                                         </div>
-                                                                                         
+                                                                                   
                                         <div class="form-group">
                                             <input type="submit" name="submit" value="Commenter" id="submit-comment" class="btn btn-primary w-75" />
                                         </div>

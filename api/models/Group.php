@@ -13,6 +13,8 @@ class Group{
     public $id_user;
     public $id_belong;
     public $count_group;
+    public $text_comment;
+    public $date_comment;
 
     // constructor with $db as database connection
     public function __construct($db){
@@ -183,6 +185,51 @@ class Group{
         }
         return false;
     }
+
+    function addGroupComment(){
+        // query to insert record
+        $query = "INSERT INTO comment_group SET id_group=:id_group, id_user=:id_user, text_comment=:text_comment, date_comment=:date_comment";
+
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        // sanitize
+
+        $this->id_group=htmlspecialchars($this->id_group);
+        $this->text_comment=htmlspecialchars($this->text_comment);
+        $this->date_comment=htmlspecialchars($this->date_comment);
+
+        // bind values
+
+        $stmt->bindParam(":id_group", $this->id_group);
+        $stmt->bindParam(":text_comment", $this->text_comment);
+        $stmt->bindParam(":date_comment", $this->date_comment);
+        $stmt->bindParam(":id_user", $this->id_user);
+
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    function listGroupComment($id_group){
+
+        // select all query
+        $query = 'SELECT id_comment_group, text_comment, date_comment, avatar, name, lastname FROM comment_group  LEFT JOIN users ON comment_group.id_user=users.id_user WHERE id_group =:id_group';
+
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id_group", $id_group);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+
+        }
 
 
 }
