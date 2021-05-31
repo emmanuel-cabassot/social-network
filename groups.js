@@ -26,8 +26,8 @@
             '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/groups/'+records[i].img_group+
             '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+records[i].name_group+
             '</h5><p class="card-text">participants : <b>'+records[i].count+
-            '</b></p><button type="button" onclick="view_group('+records[i].id_group+
-            ')" class="btn btn-primary">Voir</button></div></div></div></div><br>';
+            '</b></p><a  href="groupe.php?id_group='+records[i].id_group+
+            '"><button type="button" class="btn btn-primary">Voir</button></a></div></div></div></div><br>';
         }        
            
         listGroups.innerHTML = outputG;
@@ -59,8 +59,8 @@
             '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/groups/'+records[i].img_group+
             '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+records[i].name_group+
             '</h5><p class="card-text">participants : <b>'+records[i].count+
-            '</b></p><button type="button" onclick="view_group('+records[i].id_group+
-            ')" class="btn btn-primary">Voir</button></div></div></div></div><br>';
+            '</b></p><a  href="groupe.php?id_group='+records[i].id_group+
+            '"><button type="button" class="btn btn-primary">Voir</button></a></div></div></div></div><br>';
             }        
      
             setTimeout(function(){ 
