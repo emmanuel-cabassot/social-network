@@ -18,6 +18,12 @@
         <div class="row d-flex align-items-center">
             <div class="col-xl-2"></div>
             <div class="col-xl-7 col-sm-12">
+
+
+                <section>
+                    <div id="suggestGroup"></div>    
+                </section>
+                <br>      
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#groupModal">
                 Add group
@@ -58,11 +64,9 @@
                     </div>
                 </div>
                 <section>
-                    <div id="viewGroupe"></div>    
+                    <div id="listGroups"></div>    
                 </section>    
-                <section>
-                    <div id="suggestGroupe"></div>    
-                </section>             
+                      
             </div>            
           
             <div class="col-xl-3 col-sm-12 mt-5">                

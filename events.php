@@ -18,6 +18,10 @@
         <div class="row d-flex align-items-center">
             <div class="col-xl-2"></div>
             <div class="col-xl-7 col-sm-12">
+
+              <section>
+                  <div id="suggestEvent"></div>
+              </section>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventModal">
                 Add event
@@ -36,58 +40,56 @@
                             <div class="modal-body">
                                 <form id="dropzone-form"  enctype="multipart/form-data" method="POST">
                                     <fieldset>
-                                        <div class="form-group">               
-                                            <input type="text" id="title_event" class="form-control w-75" placeholder="Titre" name="title_event" required />                
+                                        <div class="form-group">
+                                            <input type="text" id="title_event" class="form-control w-75" placeholder="Titre" name="title_event" required />
                                         </div>
-                                        <div class="form-group">             
-                                            <textarea class="form-control w-75" id="text_event" placeholder="Description" rows="" name="text_event" required></textarea>                    
+                                        <div class="form-group">
+                                            <textarea class="form-control w-75" id="text_event" placeholder="Description" rows="" name="text_event" required></textarea>
                                         </div>
-                                        <div class="form-group">             
-                                            <input type="datetime-local" class="form-control w-75" id="date_event" placeholder="Date"  name="date_event" required />                
+                                        <div class="form-group">
+                                            <input type="datetime-local" class="form-control w-75" id="date_event" placeholder="Date"  name="date_event" required />
                                         </div>
-                                        <div class="form-group">             
-                                            <input type="text" class="form-control w-75" id="city_event" placeholder="Ville"  name="city_event" required />                
+                                        <div class="form-group">
+                                            <input type="text" class="form-control w-75" id="city_event" placeholder="Ville"  name="city_event" required />
                                         </div>
-                                        <div class="form-group">             
-                                            <input type="text" class="form-control w-75" id="public_event" placeholder="public: oui ou non"  name="public_event" required />                
+                                        <div class="form-group">
+                                            <input type="text" class="form-control w-75" id="public_event" placeholder="public: oui ou non"  name="public_event" required />
                                         </div>
-                                        <div class="form-group" id="validForm"><div>    
+                                        <div class="form-group" id="validForm"><div>
                                         <input type="hidden" name="signalized" id="signalized" value="non"/>
                                         <input type="hidden" name="blocked" id="blocked" value="non"/>
                                         <div class="form-group">
                                             <div class="dropzone" id="dropzone"></div>     
-                                        </div> 
-                                                                                     
+                                        </div>
+
                                         <div class="form-group">
                                             <input type="submit" name="submitDropzone" value="Ajouter" id="submit-dropzone" class="btn btn-primary w-75" />
                                         </div>
-                                          
+
                                     </fieldset>
                                 </form>
                             </div>
-                            <div class="modal-footer" id="modal_footer"> 
-                                
+                            <div class="modal-footer" id="modal_footer">
+
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <section>
-                    <div id="oneEvent"></div>    
+                    <div id="listeEvents"></div>
                 </section>
-                <section>
-                    <div id="listeEvents"></div>    
-                </section>             
-            </div>            
-          
-            <div class="col-xl-3 col-sm-12 mt-5">                
-            </div>            
-        </div>   
+            </div>
+
+            <div class="col-xl-3 col-sm-12 mt-5">
+            </div>
+        </div>
     </main>
     <footer id="footer">
-          <div class="col-lg-12"> 
+          <div class="col-lg-12">
           </div>
       </footer>
-    <script src="events.js"></script>   
-    <script src="assets/js/bootstrap.bundle.min.js"></script> 
+    <script src="events.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

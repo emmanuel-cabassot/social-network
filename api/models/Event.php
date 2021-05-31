@@ -3,7 +3,7 @@ class Event{
 
     // database connection and table name
     private $conn;
-    
+
 
     // object properties
     public $id_event;
@@ -29,13 +29,13 @@ class Event{
     }
 
     function listEvents(){
-       
+
     // select all query
     $query =  'SELECT id_event, id_user_creator, title_event, text_event, date_event, city_event, img_event, users.name, users.lastname, avatar FROM events JOIN users ON id_user_creator= users.id_user WHERE date_event >= CURDATE() AND public_event = "oui" ' ;
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
-  
+
     // execute query
     $stmt->execute();
 
@@ -44,7 +44,7 @@ class Event{
     }
 
     function suggestEvent($id_user){
-        $query = 'SELECT * FROM part_event LEFT JOIN events ON part_event.id_event = events.id_event WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend = id_user) ORDER BY RAND() LIMIT 5';
+        $query = 'SELECT * FROM part_event LEFT JOIN events ON part_event.id_event = events.id_event WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend = id_user) AND id_event not IN (SELECT id_event FROM part_event where id_user=:id_user) ORDER BY RAND() LIMIT 5';
         $stmt = $this->conn->prepare($query);
          $stmt->bindParam(":id_user", $id_user);
         // execute query
@@ -56,12 +56,12 @@ class Event{
     function addEvent(){
          // query to insert record
         $query = "INSERT INTO events SET id_user_creator=:id_user_creator, title_event=:title_event, text_event=:text_event, date_event=:date_event, city_event=:city_event, img_event=:img_event, public_event=:public_event, signalized=:signalized, blocked=:blocked";
-    
+
         // prepare query
         $stmt = $this->conn->prepare($query);
-    
+
         // sanitize
-       
+
         $this->id_user_creator=htmlspecialchars($this->id_user_creator);
         $this->title_event=htmlspecialchars($this->title_event);
         $this->text_event=htmlspecialchars(strip_tags($this->text_event));
@@ -69,10 +69,10 @@ class Event{
         $this->city_event=htmlspecialchars(strip_tags($this->city_event));
         $this->img_event=htmlspecialchars(strip_tags($this->img_event));
         $this->public_event=htmlspecialchars(strip_tags($this->public_event));
-        
+
         // bind values
-      
-       
+
+
         $stmt->bindParam(":id_user_creator", $this->id_user_creator);
         $stmt->bindParam(":title_event", $this->title_event);
         $stmt->bindParam(":text_event", $this->text_event);
@@ -83,12 +83,12 @@ class Event{
         $stmt->bindParam(":signalized", $this->signalized);
         $stmt->bindParam(":blocked", $this->blocked);
 
-    
+
         // execute query
         if($stmt->execute()){
             return $this->conn->lastInsertId();
         }
-    
+
         return false;
     }
 
@@ -96,14 +96,14 @@ class Event{
         // Inserer le post
 
         $insert = "INSERT INTO part_event SET id_event=:id_event, id_user=:id_user ";
-     
+
         // prepare the query
         $stmt = $this->conn->prepare( $insert );
-     
+
         // bind user, title, texte
         $stmt->bindParam(':id_event', $id_event);
         $stmt->bindParam(':id_user', $id_user);
-      
+
 
         // execute the query
          // execute query
@@ -117,14 +117,14 @@ class Event{
         // Inserer le post
 
         $noPartEvent="DELETE FROM part_event WHERE id_event=:id_event && id_user=:id_user";
-     
+
         // prepare the query
         $stmt = $this->conn->prepare( $noPartEvent );
-     
+
         // bind user, title, texte
         $stmt->bindParam(':id_event', $id_event);
         $stmt->bindParam(':id_user', $id_user);
-      
+
 
         // execute the query
          // execute query
@@ -138,7 +138,7 @@ class Event{
         $view = "SELECT * FROM events WHERE id_event=:id_event";
         // prepare the query
         $stmt = $this->conn->prepare( $view );
-     
+
         // bind user, title, texte
         $stmt->bindParam(':id_event', $id_event);
 
@@ -160,12 +160,12 @@ class Event{
             $this->blocked = $row['blocked'];
 
             }
-    
+
     function delete_event($id_event){
-        
+
         $del="DELETE FROM events WHERE id_event = :id_event";
         $stmt = $this->conn->prepare( $del );
-     
+
         // bind user, title, texte
         $stmt->bindParam(':id_event', $id_event);
 
@@ -188,7 +188,7 @@ class Event{
         $count->bindParam(':id_event', $id_event);
         $count->execute();
         $row= $count->fetch(PDO::FETCH_ASSOC);
-        $this->count_part =$row['count_part'];     
+        $this->count_part =$row['count_part'];
     }
 
     function particip_event($id_user, $id_event){
@@ -198,7 +198,7 @@ class Event{
         $part->bindParam(':id_event', $id_event);
         $part->execute();
         $num = $part->rowCount();
-     
+
         // if id_user exists, return true
         if($num > 0){
             return true;
@@ -252,5 +252,3 @@ class Event{
         }
 
 }
-
-
