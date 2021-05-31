@@ -49,10 +49,10 @@ if ($data->photo == 'oui') {
     // On instancie la classe PhotoPost
     $photoPost = new PhotoPost($db);
     $photoPost->id_post = $id_post;
-    $photoPost->id_user = $_SESSION['user']['id'];
+    $photoPost->id_user = $_SESSION['id_user'];
 
     // Liste des photos dans le fichier temporaire
-    $photos = scandir('../../assets/images/upload/temporaire/' . $_SESSION['user']['id']);
+    $photos = scandir('../../assets/images/upload/temporaire/' . $_SESSION['id_user']);
 
     foreach ($photos as $photo) {
         if ('.' !=  $photo && '..' != $photo) {
@@ -60,7 +60,7 @@ if ($data->photo == 'oui') {
             $photoPost->name_image_post = $photo;
             $photoPost->chemin = 'assets/images/upload/post/' . $id_post;
             $photoPost->insertPhotoPost();
-            $dossierSource = '../../assets/images/upload/temporaire/' . $_SESSION['user']['id'] . '/' . $photo;
+            $dossierSource = '../../assets/images/upload/temporaire/' . $_SESSION['id_user'] . '/' . $photo;
             $dossierDestination = '../../assets/images/upload/post/' . $id_post . '/' . $photo;
             rename($dossierSource, $dossierDestination);
         }
@@ -77,17 +77,17 @@ if ($data->video == 'oui') {
     // On instancie la classe VideoPost
     $videoPost = new VideoPost($db);
     $videoPost->id_post = $id_post;
-    $videoPost->id_user = $_SESSION['user']['id'];
+    $videoPost->id_user = $_SESSION['id_user'];
 
     // Liste des photos dans le fichier temporaire
-    $videos = scandir('../../assets/videos/upload/temporaire/' . $_SESSION['user']['id']);
+    $videos = scandir('../../assets/videos/upload/temporaire/' . $_SESSION['id_user']);
     
     foreach ($videos as $video) {
         if ('.' !=  $video && '..' != $video) {
             $videoPost->name_video_post = $video;
             $videoPost->chemin = 'assets/videos/upload/post/' . $id_post;
             $videoPost->insertVideoPost();
-            $dossierSource = '../../assets/videos/upload/temporaire/' . $_SESSION['user']['id'] . '/' . $video;
+            $dossierSource = '../../assets/videos/upload/temporaire/' . $_SESSION['id_user'] . '/' . $video;
             $dossierDestination = '../../assets/videos/upload/post/' . $id_post . '/' . $video;
             rename($dossierSource, $dossierDestination);
         }

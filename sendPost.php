@@ -1,6 +1,6 @@
 <?php
 session_start() .
-    $_SESSION['user']['id'] = 4;
+    $_SESSION['id_user'] = 4;
 $prenom = 'emmanuel';
 ?>
 <!DOCTYPE html>
@@ -23,26 +23,26 @@ $prenom = 'emmanuel';
     
     <main>
         <section class="sendPost">
-            <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['user']['id'] ?>>
+            <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['id_user'] ?>>
                 <p class="ml-3"> Quoi de neuf <?= $prenom ?>?</p>
             </section>
             <div class="separation-sendPost"></div>
             <section class="media-sendPost">
-                <section class="story-media-sendPost" data-modale=<?= $_SESSION['user']['id'] ?>>
+                <section class="story-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
                     <section class="bg-story-media-sendPost">
                     </section>
                     <section class="text-media-sendPost">
                         Story
                     </section>
                 </section>
-                <section class="img-media-sendPost" data-modale=<?= $_SESSION['user']['id'] ?>>
+                <section class="img-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
                     <section class="bg-img-media-sendPost">
                     </section>
                     <section class="text-media-sendPost">
                         Photo/Vidéo
                     </section>
                 </section>
-                <section class="humeur-media-sendPost" data-modale=<?= $_SESSION['user']['id'] ?>>
+                <section class="humeur-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
                     <section class="bg-humeur-media-sendPost">
                     </section>
                     <section class="text-media-sendPost">

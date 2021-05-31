@@ -39,7 +39,7 @@ if (isset($data->id_post)) {
     $classPost = new Post($db);
     $post = $classPost->showPostById($id_post);
 
-    if ($post['id_user'] == $_SESSION['user']['id']) {
+    if ($post['id_user'] == $_SESSION['id_user']) {
         $post['myPost'] = 'oui';
     } else {
         $post['myPost'] = 'non';
@@ -68,13 +68,13 @@ if (isset($data->id_post)) {
     $classLike = new Like($db);
     $countLike = $classLike->countLike($id_post);
     $post['countLike'] = $countLike;
-    $possibleLike = $classLike->possibleLike($id_post, $_SESSION['user']['id']);
+    $possibleLike = $classLike->possibleLike($id_post, $_SESSION['id_user']);
     $post['possibleLike'] = $possibleLike;
 
     $classDislike = new Dislike($db);
     $countDislike = $classDislike->countDislike($id_post);
     $post['countDislike'] = $countDislike;
-    $possibleDislike = $classDislike->possibleDislike($id_post, $_SESSION['user']['id']);
+    $possibleDislike = $classDislike->possibleDislike($id_post, $_SESSION['id_user']);
     $post['possibleDislike'] = $possibleDislike;
 
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['user']['id'] = 1;
+$_SESSION['id_user'] = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,7 +61,7 @@ $_SESSION['user']['id'] = 1;
         </section>
 
     </main>
-    <input type="hidden" id="idUser" value=<?= $_SESSION['user']['id'] ?>>
+    <input type="hidden" id="idUser" value=<?= $_SESSION['id_user'] ?>>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="murPost.js"></script>
 

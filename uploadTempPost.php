@@ -1,17 +1,17 @@
 <?php
 session_start();
-$folder_name = 'assets/images/upload/temporaire/'.$_SESSION['user']['id'].'/';
+$folder_name = 'assets/images/upload/temporaire/'.$_SESSION['id_user'].'/';
 // Si des images sont envoyées
 if(!empty($_FILES))
 {
 // Chemin pour enregistrer les images dans dossier temporaire
-$folder_name = 'assets/images/upload/temporaire/'.$_SESSION['user']['id'];
+$folder_name = 'assets/images/upload/temporaire/'.$_SESSION['id_user'];
 
 if (!is_dir($folder_name)) 
 {
 mkdir($folder_name);
 }
-$folder_name = 'assets/images/upload/temporaire/'.$_SESSION['user']['id'].'/';
+$folder_name = 'assets/images/upload/temporaire/'.$_SESSION['id_user'].'/';
 
 // tmp_name est le nom temporaire de la photo
  $temp_file = $_FILES['file']['tmp_name'];
@@ -29,11 +29,11 @@ if(isset($_POST["name"]))
 
 /* Supression de toutes les images */
 if (isset($_POST["supprime"])) {
-    $dir = 'assets/images/upload/temporaire/' .$_SESSION['user']['id'];
+    $dir = 'assets/images/upload/temporaire/' .$_SESSION['id_user'];
     $listePhotos = scandir($dir);
     foreach ($listePhotos as $photo) {
         if ($photo != "." OR $photo != "..") {
-            $chemin = 'assets/images/upload/temporaire/' . $_SESSION['user']['id'] . '/' . $photo;
+            $chemin = 'assets/images/upload/temporaire/' . $_SESSION['id_user'] . '/' . $photo;
             unlink($chemin);
         }
     }
@@ -42,7 +42,7 @@ if (isset($_POST["supprime"])) {
 
 $result = array();
 
-$files = scandir('assets/images/upload/temporaire/'.$_SESSION['user']['id']);
+$files = scandir('assets/images/upload/temporaire/'.$_SESSION['id_user']);
 
 $output = '<div class="container-preview">';
 

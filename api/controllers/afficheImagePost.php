@@ -25,7 +25,7 @@ $afficheImages = new PhotoPost($db);
 $afficheImages->id_post = $data->post;
 
 // Affiche les images d'un post
-$images = $afficheImages->affichePhotoPost();
+$images = $afficheImages->affichePhotoPost($data->post);
 echo json_encode($images);
 
 

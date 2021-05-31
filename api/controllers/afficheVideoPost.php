@@ -25,5 +25,5 @@ $afficheVideo = new VideoPost($db);
 $afficheVideo->id_post = $data->post;
 
 // Affiche les images d'un post
-$video = $afficheVideo->afficheVideoPost();
+$video = $afficheVideo->afficheVideoPost($data->post);
 echo json_encode($video);

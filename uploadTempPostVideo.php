@@ -1,17 +1,17 @@
 <?php
 session_start();
-$folder_name = 'assets/videos/upload/temporaire/'.$_SESSION['user']['id'].'/';
+$folder_name = 'assets/videos/upload/temporaire/'.$_SESSION['id_user'].'/';
 // Si une video est envoyé
 if(!empty($_FILES))
 {
 // Chemin pour enregistrer la video dans dossier temporaire
-$folder_name = 'assets/videos/upload/temporaire/'.$_SESSION['user']['id'];
+$folder_name = 'assets/videos/upload/temporaire/'.$_SESSION['id_user'];
 
 if (!is_dir($folder_name)) 
 {
 mkdir($folder_name);
 }
-$folder_name = 'assets/videos/upload/temporaire/'.$_SESSION['user']['id'].'/';
+$folder_name = 'assets/videos/upload/temporaire/'.$_SESSION['id_user'].'/';
 
 // tmp_name est le nom temporaire de la video
  $temp_file = $_FILES['file']['tmp_name'];
@@ -28,11 +28,11 @@ if(isset($_POST["name"]))
 
 /* Supression de la video */
 if (isset($_POST["supprime"])) {
-    $dir = 'assets/videos/upload/temporaire/' .$_SESSION['user']['id'];
+    $dir = 'assets/videos/upload/temporaire/' .$_SESSION['id_user'];
     $listeVideo = scandir($dir);
     foreach ($listeVideo as $video) {
         if ($video != "." OR $video != "..") {
-            $chemin = 'assets/videos/upload/temporaire/' . $_SESSION['user']['id'] . '/' . $video;
+            $chemin = 'assets/videos/upload/temporaire/' . $_SESSION['id_user'] . '/' . $video;
             unlink($chemin);
         }
     }
@@ -41,7 +41,7 @@ if (isset($_POST["supprime"])) {
 
 $result = array();
 
-$files = scandir('assets/videos/upload/temporaire/'.$_SESSION['user']['id']);
+$files = scandir('assets/videos/upload/temporaire/'.$_SESSION['id_user']);
 
 $output = '<div class="container-preview">';
 
