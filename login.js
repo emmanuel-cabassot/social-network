@@ -30,7 +30,7 @@ function login(){
         }
     });
 
-    xhr.open("POST", "http://localhost/social-network/api/controllers/login");
+    xhr.open("POST", "api/controllers/login");
     xhr.setRequestHeader("Content-Type", "text/plain");
 
     xhr.send(form_data);
