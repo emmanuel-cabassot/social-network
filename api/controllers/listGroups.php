@@ -19,8 +19,8 @@ $db = $database->getConnection();
 
 // instantiate user object
 $group = new Group($db);
-
-$stmt = $group->listGroups();
+$id_user= $_SESSION['id_user'];
+$stmt = $group->listGroups($id_user);
 $num = $stmt->rowCount();
 
 if ($num>0){
@@ -33,7 +33,7 @@ if ($num>0){
         // extract row
         // this will make $row['name'] to
         // just $name only
-        $id_user= $_SESSION['id_user'];
+       
         $count = $group->count_belong($id_group);
         $belong= $group->belong_group($id_user, $id_group);
         $group_item = array(

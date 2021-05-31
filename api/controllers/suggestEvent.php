@@ -29,7 +29,7 @@ $stmt = $event->suggestEvent($id_user);
 $num = $stmt->rowCount();
 
 if ($num>0){
-  
+
     $event_arr=array();
     $event_arr['records']=array();
 
@@ -37,30 +37,29 @@ if ($num>0){
         extract($row);
         // extract row
         // this will make $row['name'] to
-        // just $name only        
-               
-                $partEvent= $event->particip_event($id_user, $id_event);
+        // just $name only
+
+                $partEvent= $event->count_part($id_event);
                 $event_item = array(
                     "id_event" => $id_event,
-                    "title_event" => $title_event,                   
+                    "title_event" => $title_event,
                     "img_event" => $img_event,
                     "date_event" =>$date_event,
-                    "city_event" => $city_event,                                     
+                    "city_event" => $city_event,
                     "partEvent" => $partEvent
                 );
         
-                array_push($event_arr["records"], $event_item);        
+                array_push($event_arr["records"], $event_item);
             }
-        
+
               // set response code - 200 OK
             http_response_code(200);
-        
+
             // show products data
             echo json_encode($event_arr);
         }
-        
+
         else{
             // set response code - 404 Not found
-            http_response_code(404);        
+            http_response_code(404);
         }
-        

@@ -56,8 +56,27 @@ session_start();
     </header>
     <main class="container-fluid mt-5">
         <div class="row d-flex">
-            <div class="col-xl-2"></div>
-            <div class="col-xl-7 col-sm-12">
+            <div class="col-xl-3">
+                <section class="alert alert-primary">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="groups.php">Groupes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="events.php">Evènements</a>
+                        </li>
+                    </ul>
+                </section>
+                <section class="alert alert-info">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action active">Suggestion Évènements</div>
+                        <div id="suggestedEvent"></div>
+                        <div class="list-group-item list-group-item-action"><button type="button" class="btn btn-info btn-sm float-right">Voir ...</button></div>
+                    </div>
+
+                </section>
+            </div>
+            <div class="col-xl-6 col-sm-12">
 
 
                 <section>
@@ -104,12 +123,31 @@ session_start();
                     </div>
                 </div>
                 <section>
-                    <div id="listGroups"></div>    
+                    <div id="listGroups">
+                    </div>    
                 </section>    
                       
             </div>            
           
-            <div class="col-xl-3 col-sm-12 mt-5">                
+            <div class="col-xl-3 col-sm-12 mt-5">
+            <section class=" alert-primary mb-5">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action active">Suggestion d'amis</div>
+                        <div id="suggestedFriend"></div>
+                        <div class="list-group-item list-group-item-action">
+                            <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
+                        </div>
+                    </div>
+                </section>
+                <section class="alert alert-info mb-5">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action active">Amis</div>
+                        <div id="listFriends"></div>
+                        <div class="list-group-item list-group-item-action">
+                            <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
+                        </div>
+                    </div>
+                </section>           
             </div>            
         </div>   
     </main>

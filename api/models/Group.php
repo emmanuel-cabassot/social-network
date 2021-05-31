@@ -21,14 +21,14 @@ class Group{
         $this->conn = $db;
     }
 
-    function listGroups(){
+    function listGroups($id_user){
 
         // select all query
-        $query = 'SELECT * FROM groupe';
+        $query = 'SELECT * FROM belong LEFT JOIN groupe ON belong.id_group = groupe.id_group WHERE id_user= :id_user' ;
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
-
+        $stmt->bindParam(":id_user", $id_user);
         // execute query
         $stmt->execute();
 
