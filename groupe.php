@@ -149,6 +149,7 @@ session_start();
           <div class="col-lg-12"> 
           </div>
       </footer>
+    <script src="search.js"></script>  
     <script src="groupe.js"></script>   
     <script src="assets/js/bootstrap.bundle.min.js"></script> 
 </body>
