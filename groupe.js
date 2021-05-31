@@ -145,12 +145,12 @@ function listerFriends(){
                         '<img src="assets/images/upload/users/'+records[i].avatar+'" class="card-img-thumb" alt="...">'+records[i].name+' '+records[i].lastname+
                         ' '+records[i].city+ ' - '+records[i].country+'</a>';
                     }else{
-                        listFriends.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore d\'amis?</p>';
+                        listFriends.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore d\'amis? </p>';
                     }
             }
             listFriends.innerHTML = outputLF;
         }else  if(this.readyState === 4 && this.status === 404){
-            listFriends.innerHTML = '<pclass="list-group-item list-group-item-action">Pas encore d\'amis?/p>';
+            listFriends.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore d\'amis?</p>';
             }
     });
     xhr.open("POST", 'api/controllers/listFriends');
