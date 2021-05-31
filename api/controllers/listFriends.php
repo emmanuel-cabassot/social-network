@@ -19,7 +19,7 @@ $db = $database->getConnection();
 // instantiate user object
 $friend = new Friend($db);
 
-$id_user = 1; // $_SESSION['id_user'];
+$id_user = $_SESSION['id_user'];
 
 
 $list = $friend->listFriends($id_user);
