@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +18,7 @@
     <link rel="stylesheet" href="assets/css/sendPost.css">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -72,39 +76,40 @@
 
                 </section>
             </div>
-            <div class="col-xl-6 col-sm-12 sendPost">
+            <div class="col-xl-6 col-sm-12">
+                <section class="sendPost">
 
-                <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['id_user'] ?>>
-                    <p class="ml-3"> Quoi de neuf <?= $prenom ?>?</p>
+                    <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['id_user'] ?>>
+                        <p class="ml-3"> Quoi de neuf emmanuel ?</p>
+                    </section>
+                    <div class="separation-sendPost"></div>
+                    <section class="media-sendPost">
+                        <section class="story-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
+                            <section class="bg-story-media-sendPost">
+                            </section>
+                            <section class="text-media-sendPost">
+                                Story
+                            </section>
+                        </section>
+                        <section class="img-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
+                            <section class="bg-img-media-sendPost">
+                            </section>
+                            <section class="text-media-sendPost">
+                                Photo/Vidéo
+                            </section>
+                        </section>
+                        <section class="humeur-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
+                            <section class="bg-humeur-media-sendPost">
+                            </section>
+                            <section class="text-media-sendPost">
+                                Humeur
+                            </section>
+                        </section>
+                    </section>
+
+
+
                 </section>
-                <div class="separation-sendPost"></div>
-                <section class="media-sendPost">
-                    <section class="story-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
-                        <section class="bg-story-media-sendPost">
-                        </section>
-                        <section class="text-media-sendPost">
-                            Story
-                        </section>
-                    </section>
-                    <section class="img-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
-                        <section class="bg-img-media-sendPost">
-                        </section>
-                        <section class="text-media-sendPost">
-                            Photo/Vidéo
-                        </section>
-                    </section>
-                    <section class="humeur-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
-                        <section class="bg-humeur-media-sendPost">
-                        </section>
-                        <section class="text-media-sendPost">
-                            Humeur
-                        </section>
-                    </section>
-                </section>
-
-
-
-
             </div>
 
 
@@ -191,6 +196,10 @@
                             <section class="publier-sendPost w-100">
                                 <button type="button" class="btn btn-primary w-100">Publier</button>
                             </section>
+                        </main>
+
+                    </section>
+                </section>
             </div>
         </div>
     </main>

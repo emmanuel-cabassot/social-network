@@ -23,7 +23,7 @@ session_start()
     <main>
         <section class="sendPost">
             <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['id_user'] ?>>
-                <p class="ml-3"> Quoi de neuf <?= $prenom ?>?</p>
+                <p class="ml-3"> Quoi de neuf emmanuel?</p>
             </section>
             <div class="separation-sendPost"></div>
             <section class="media-sendPost">
