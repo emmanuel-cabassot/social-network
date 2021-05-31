@@ -8,7 +8,6 @@ class Post{
     // object properties
     public $id;
     public $user;
-    public $title;
     public $texte;
     public $date;
     public $public;
@@ -33,14 +32,13 @@ class Post{
         $non = 'non';
 
         // Requête
-        $insert = "INSERT INTO post (id_user, title_post, text_post, date_post, public, signalized, blocked, video_post, image_post, story_post) VALUES (:user, :title, :texte, :date_post, :public, :signalized, :blocked, :video_post, :image_post, :story_post)";
+        $insert = "INSERT INTO post (id_user, text_post, date_post, public, signalized, blocked, video_post, image_post, story_post) VALUES (:user, :texte, :date_post, :public, :signalized, :blocked, :video_post, :image_post, :story_post)";
      
         // prepare the query
         $stmt = $this->conn->prepare( $insert );
      
         // bind user, title, texte.....
         $stmt->bindParam(':user', $this->user);
-        $stmt->bindParam(':title', $this->title);
         $stmt->bindParam(':texte', $this->texte);
         $stmt->bindParam(':date_post', $date_now);
         $stmt->bindParam(':public', $non);

@@ -33,9 +33,7 @@ xhr.onreadystatechange = function () {
                 }
             }
         });
-
     }
-
 }
 
 
