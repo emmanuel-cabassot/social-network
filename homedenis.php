@@ -53,10 +53,10 @@
                 <section class="alert alert-primary">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="groups.php">Home</a>
+                            <a class="nav-link active" href="groups.php">Groupes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="events.php">Evènements</a>
                         </li>
                     </ul>
                 </section>

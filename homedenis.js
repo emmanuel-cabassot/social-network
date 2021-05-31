@@ -82,7 +82,7 @@ function suggestGroupList(){
             for(var i =0; i<records.length; i++){				
                 
                     outputG +=  
-                    '<a href="#" class="list-group-item list-group-item-action"><img src="assets/images/upload/groups/'+records[i].img_group+'" class="card-img-thumb" alt="...">'+records[i].name_group+
+                    '<a href="" class="list-group-item list-group-item-action"><img src="assets/images/upload/groups/'+records[i].img_group+'" class="card-img-thumb" alt="...">'+records[i].name_group+
                     '</a>';
             }
   
