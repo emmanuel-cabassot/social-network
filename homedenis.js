@@ -114,7 +114,7 @@ function listerFriends(){
         
             for(var i =0; i<records.length; i++){
                     var connect='';				
-                    if(records[i].id_connected != ""){connect='<i class="bi bi-person-circle mr-1" style="font-size: 2rem; color: green;"></i>'}else{connect='<i class="bi bi-person-circle mr-3"></i>'}
+                    if(records[i].id_connected != null){connect='<i class="bi bi-person-circle mr-1" style="font-size: 2rem; color: green;"></i>'}else{connect='<i class="bi bi-person-circle mr-3"></i>'}
                     if(records[i].confirmed=="oui"){
                         outputLF += 
                         '<a href="#" class="list-group-item list-group-item-action">'+connect+

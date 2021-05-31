@@ -26,7 +26,7 @@ class Friend{
     function listFriends($id_user){
 
     // select all query
-    $query = 'SELECT * FROM friend LEFT JOIN users ON friend.id_user_friend=users.id_user LEFT JOIN connected ON connected.id_user=users.id_user WHERE friend.id_user= :id_user UNION SELECT * FROM friend LEFT JOIN users ON friend.id_user=users.id_user LEFT JOIN connected ON connected.id_user=users.id_user WHERE friend.id_user_friend= :id_user LIMIT 20';
+    $query = 'SELECT * FROM friend LEFT JOIN users ON friend.id_user_friend=users.id_user LEFT JOIN connected ON connected.id_user=friend.id_user_friend WHERE friend.id_user= :id_user UNION SELECT * FROM friend LEFT JOIN users ON friend.id_user=users.id_user LEFT JOIN connected ON connected.id_user=friend.id_user WHERE friend.id_user_friend= :id_user LIMIT 20';
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
