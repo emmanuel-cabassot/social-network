@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 var id_group = $_GET('id_group');
     // trim to remove the whitespaces
-var id_group = group.trim();
+var id_group = id_group.trim();
 suggestEventList();
 suggestFriendList();
 listerFriends();
