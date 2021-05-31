@@ -24,7 +24,7 @@ function signUp(){
     
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status == 200) {
-            window.location="index.php";
+            window.location="login.php";
         }else if(this.readyState === 4 && this.status == 406){
            setTimeout(function(){$("#resultat").html("<p>Cet email existe déja.</p>")}, 1000); 
         }else{setTimeout(function(){$("#resultat").html("<p>Erreur système, veuillez recommencer</p>")}, 1000);}
