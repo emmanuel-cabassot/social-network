@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : sam. 01 mai 2021 à 08:10
--- Version du serveur :  8.0.21
--- Version de PHP : 7.3.21
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 31, 2021 at 12:56 PM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,289 +18,262 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `network`
+-- Database: `network`
 --
+CREATE DATABASE IF NOT EXISTS `network` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `network`;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `belong`
+-- Table structure for table `belong`
 --
 
 DROP TABLE IF EXISTS `belong`;
 CREATE TABLE IF NOT EXISTS `belong` (
-  `id_belong` int NOT NULL AUTO_INCREMENT,
-  `id_group` int NOT NULL,
-  `id_user` int NOT NULL,
+  `id_belong` int(11) NOT NULL AUTO_INCREMENT,
+  `id_group` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_belong`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `comment_post`
+-- Table structure for table `comment_event`
+--
+
+DROP TABLE IF EXISTS `comment_event`;
+CREATE TABLE IF NOT EXISTS `comment_event` (
+  `id_comment_event` int(11) NOT NULL,
+  `text_comment_event` text NOT NULL,
+  `date_comment_event` datetime NOT NULL,
+  `id_event` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment_group`
+--
+
+DROP TABLE IF EXISTS `comment_group`;
+CREATE TABLE IF NOT EXISTS `comment_group` (
+  `id_comment_group` int(11) NOT NULL AUTO_INCREMENT,
+  `comment_group_text` text NOT NULL,
+  `comment_group_date` datetime NOT NULL,
+  `id_group` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  PRIMARY KEY (`id_comment_group`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment_post`
 --
 
 DROP TABLE IF EXISTS `comment_post`;
 CREATE TABLE IF NOT EXISTS `comment_post` (
-  `id_comment_post` int NOT NULL AUTO_INCREMENT,
-  `id_post` int NOT NULL,
-  `id_user` int NOT NULL,
-  `title_comment_post` varchar(100) NOT NULL,
+  `id_comment_post` int(11) NOT NULL AUTO_INCREMENT,
+  `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   `text_comment_post` longtext NOT NULL,
   `date_comment_post` datetime NOT NULL,
   `signalized` tinyint(1) NOT NULL,
   `blocked` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_comment_post`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id_comment_post`),
+  KEY `fk_post` (`id_post`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `comment_story`
---
-
-DROP TABLE IF EXISTS `comment_story`;
-CREATE TABLE IF NOT EXISTS `comment_story` (
-  `id_comment_story` int NOT NULL AUTO_INCREMENT,
-  `id_user` int NOT NULL,
-  `id_story` int NOT NULL,
-  `tittle_comment_story` varchar(250) NOT NULL,
-  `text_comment_story` longtext NOT NULL,
-  `date_comment_story` datetime NOT NULL,
-  `signalized` tinyint(1) NOT NULL,
-  `blocked` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_comment_story`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `connected`
+-- Table structure for table `connected`
 --
 
 DROP TABLE IF EXISTS `connected`;
 CREATE TABLE IF NOT EXISTS `connected` (
-  `id_connected` int NOT NULL AUTO_INCREMENT,
-  `str_connect` int NOT NULL,
-  `id_user` int NOT NULL,
+  `id_connected` int(11) NOT NULL AUTO_INCREMENT,
+  `str_connect` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_connected`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `event`
+-- Table structure for table `dislike_post`
 --
 
-DROP TABLE IF EXISTS `event`;
-CREATE TABLE IF NOT EXISTS `event` (
-  `id_event` int NOT NULL AUTO_INCREMENT,
-  `id_user` int NOT NULL,
-  `title_event` varchar(200) NOT NULL,
-  `text_event` mediumtext NOT NULL,
-  `date_event` datetime NOT NULL,
-  `public_event` tinyint(1) NOT NULL,
-  `signalized` tinyint(1) NOT NULL,
-  `blocked` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_event`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `dislike_post`;
+CREATE TABLE IF NOT EXISTS `dislike_post` (
+  `id_dislike_post` int(11) NOT NULL AUTO_INCREMENT,
+  `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  PRIMARY KEY (`id_dislike_post`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `friend`
+-- Table structure for table `events`
+--
+
+DROP TABLE IF EXISTS `events`;
+CREATE TABLE IF NOT EXISTS `events` (
+  `id_event` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user_creator` int(11) NOT NULL,
+  `title_event` varchar(200) NOT NULL,
+  `text_event` mediumtext NOT NULL,
+  `date_event` datetime NOT NULL,
+  `city_event` varchar(250) NOT NULL,
+  `img_event` varchar(250) NOT NULL,
+  `public_event` varchar(3) NOT NULL,
+  `signalized` varchar(3) NOT NULL,
+  `blocked` varchar(3) NOT NULL,
+  PRIMARY KEY (`id_event`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id_event`, `id_user_creator`, `title_event`, `text_event`, `date_event`, `city_event`, `img_event`, `public_event`, `signalized`, `blocked`) VALUES
+(2, 32, 'diner campagne', 'à la campagne', '2021-05-28 12:21:00', 'aix', 'Black with Orange Globe Icon Education Logo.png', 'oui', 'non', 'non');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `friend`
 --
 
 DROP TABLE IF EXISTS `friend`;
 CREATE TABLE IF NOT EXISTS `friend` (
-  `id_friend` int NOT NULL AUTO_INCREMENT,
-  `id_user` int NOT NULL,
-  `id_user_friend` int NOT NULL,
+  `id_friend` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `id_user_friend` int(11) NOT NULL,
+  `confirmed` varchar(10) NOT NULL,
   PRIMARY KEY (`id_friend`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `friend`
+--
+
+INSERT INTO `friend` (`id_friend`, `id_user`, `id_user_friend`, `confirmed`) VALUES
+(1, 1, 2, 'oui'),
+(5, 4, 5, 'oui'),
+(26, 2, 5, 'non');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `groupe`
+-- Table structure for table `groupe`
 --
 
 DROP TABLE IF EXISTS `groupe`;
 CREATE TABLE IF NOT EXISTS `groupe` (
-  `id_group` int NOT NULL AUTO_INCREMENT,
+  `id_group` int(11) NOT NULL AUTO_INCREMENT,
   `name_group` varchar(250) NOT NULL,
   `description` mediumtext NOT NULL,
   `img_group` varchar(250) NOT NULL,
+  `id_user_create` int(10) NOT NULL,
   PRIMARY KEY (`id_group`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `groupe`
+--
+
+INSERT INTO `groupe` (`id_group`, `name_group`, `description`, `img_group`, `id_user_create`) VALUES
+(1, 'www', 'wwwww', 'MONTECRISTI.png', 1),
+(2, 'xxx', 'xxxxx', 'MONTECRISTI (2).png', 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `images_posts`
+-- Table structure for table `image_post`
 --
 
-DROP TABLE IF EXISTS `images_posts`;
-CREATE TABLE IF NOT EXISTS `images_posts` (
-  `id_images_posts` int NOT NULL AUTO_INCREMENT,
-  `id_img_post` int NOT NULL,
-  `id_post` int NOT NULL,
-  PRIMARY KEY (`id_images_posts`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `image_post`;
+CREATE TABLE IF NOT EXISTS `image_post` (
+  `id_image_post` int(11) NOT NULL AUTO_INCREMENT,
+  `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `name_image_post` varchar(200) NOT NULL,
+  `chemin` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_image_post`),
+  KEY `fk_image_post_post` (`id_post`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `images_stories`
---
-
-DROP TABLE IF EXISTS `images_stories`;
-CREATE TABLE IF NOT EXISTS `images_stories` (
-  `id_images_stories` int NOT NULL AUTO_INCREMENT,
-  `id_img_story` int NOT NULL,
-  `id_story` int NOT NULL,
-  PRIMARY KEY (`id_images_stories`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `img_post`
---
-
-DROP TABLE IF EXISTS `img_post`;
-CREATE TABLE IF NOT EXISTS `img_post` (
-  `id_img_post` int NOT NULL AUTO_INCREMENT,
-  `image_post` varchar(250) NOT NULL,
-  `descript_post` varchar(250) NOT NULL,
-  PRIMARY KEY (`id_img_post`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `img_story`
---
-
-DROP TABLE IF EXISTS `img_story`;
-CREATE TABLE IF NOT EXISTS `img_story` (
-  `id_img_story` int NOT NULL AUTO_INCREMENT,
-  `image_story` varchar(250) NOT NULL,
-  `descript_story` varchar(250) NOT NULL,
-  PRIMARY KEY (`id_img_story`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `like_event`
---
-
-DROP TABLE IF EXISTS `like_event`;
-CREATE TABLE IF NOT EXISTS `like_event` (
-  `id_like_event` int NOT NULL AUTO_INCREMENT,
-  `id_event` int NOT NULL,
-  `like_event` int NOT NULL,
-  `dislike_event` int NOT NULL,
-  PRIMARY KEY (`id_like_event`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `like_post`
+-- Table structure for table `like_post`
 --
 
 DROP TABLE IF EXISTS `like_post`;
 CREATE TABLE IF NOT EXISTS `like_post` (
-  `id_like_post` int NOT NULL AUTO_INCREMENT,
-  `id_post` int NOT NULL,
-  `id_user` int NOT NULL,
-  `liked` int NOT NULL,
-  `disliked` int NOT NULL,
-  PRIMARY KEY (`id_like_post`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `id_like_post` int(11) NOT NULL AUTO_INCREMENT,
+  `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  PRIMARY KEY (`id_like_post`),
+  KEY `fk_like_post_post` (`id_post`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `like_post`
+--
+
+INSERT INTO `like_post` (`id_like_post`, `id_post`, `id_user`) VALUES
+(1, 163, 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `like_story`
---
-
-DROP TABLE IF EXISTS `like_story`;
-CREATE TABLE IF NOT EXISTS `like_story` (
-  `id_like_story` int NOT NULL AUTO_INCREMENT,
-  `id_story` int NOT NULL,
-  `id_user` int NOT NULL,
-  `liked` int NOT NULL,
-  `disliked` int NOT NULL,
-  PRIMARY KEY (`id_like_story`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `part_event`
+-- Table structure for table `part_event`
 --
 
 DROP TABLE IF EXISTS `part_event`;
 CREATE TABLE IF NOT EXISTS `part_event` (
-  `id_part_event` int NOT NULL AUTO_INCREMENT,
-  `id_event` int NOT NULL,
-  `id_user` int NOT NULL,
+  `id_part_event` int(11) NOT NULL AUTO_INCREMENT,
+  `id_event` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_part_event`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `post`
+-- Table structure for table `post`
 --
 
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE IF NOT EXISTS `post` (
-  `id_post` int NOT NULL AUTO_INCREMENT,
-  `id_user` int NOT NULL,
-  `title_post` varchar(250) NOT NULL,
-  `text_post` longtext NOT NULL,
+  `id_post` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `text_post` longtext CHARACTER SET utf8mb4 NOT NULL,
   `date_post` datetime NOT NULL,
-  `public` tinyint(1) NOT NULL,
-  `signalized` tinyint(1) NOT NULL,
-  `blocked` tinyint(1) NOT NULL,
-  `video` varchar(250) NOT NULL,
+  `public` varchar(10) CHARACTER SET utf8 NOT NULL DEFAULT 'non',
+  `signalized` varchar(10) CHARACTER SET utf8 NOT NULL DEFAULT 'non',
+  `blocked` varchar(10) CHARACTER SET utf8 NOT NULL DEFAULT 'non',
+  `image_post` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'non',
+  `video_post` varchar(250) CHARACTER SET utf8 NOT NULL DEFAULT 'non',
+  `story_post` varchar(3) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id_post`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `story`
---
-
-DROP TABLE IF EXISTS `story`;
-CREATE TABLE IF NOT EXISTS `story` (
-  `id_story` int NOT NULL AUTO_INCREMENT,
-  `id_user` int NOT NULL,
-  `title_story` varchar(250) NOT NULL,
-  `text_story` longtext NOT NULL,
-  `date_story` datetime NOT NULL,
-  `public` tinyint(1) NOT NULL,
-  `signalized` tinyint(1) NOT NULL,
-  `blocked` tinyint(1) NOT NULL,
-  `video` varchar(250) NOT NULL,
-  PRIMARY KEY (`id_story`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id_user` int NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   `password` varchar(250) NOT NULL,
   `name` varchar(200) NOT NULL,
@@ -320,30 +293,47 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `video_post`
+-- Table structure for table `video_post`
 --
 
 DROP TABLE IF EXISTS `video_post`;
 CREATE TABLE IF NOT EXISTS `video_post` (
-  `id_video_post` int NOT NULL AUTO_INCREMENT,
+  `id_video_post` int(11) NOT NULL AUTO_INCREMENT,
   `name_video_post` varchar(200) NOT NULL,
-  `id_post` int NOT NULL,
-  PRIMARY KEY (`id_video_post`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `chemin` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_video_post`),
+  KEY `fk_video_post_post` (`id_post`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Structure de la table `video_story`
+-- Constraints for dumped tables
 --
 
-DROP TABLE IF EXISTS `video_story`;
-CREATE TABLE IF NOT EXISTS `video_story` (
-  `id_video_story` int NOT NULL AUTO_INCREMENT,
-  `name_video_story` varchar(200) NOT NULL,
-  `id_story` int NOT NULL,
-  PRIMARY KEY (`id_video_story`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+--
+-- Constraints for table `comment_post`
+--
+ALTER TABLE `comment_post`
+  ADD CONSTRAINT `fk_post` FOREIGN KEY (`id_post`) REFERENCES `post` (`id_post`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `image_post`
+--
+ALTER TABLE `image_post`
+  ADD CONSTRAINT `fk_image_post_post` FOREIGN KEY (`id_post`) REFERENCES `post` (`id_post`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `like_post`
+--
+ALTER TABLE `like_post`
+  ADD CONSTRAINT `fk_like_post_post` FOREIGN KEY (`id_post`) REFERENCES `post` (`id_post`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `video_post`
+--
+ALTER TABLE `video_post`
+  ADD CONSTRAINT `fk_video_post_post` FOREIGN KEY (`id_post`) REFERENCES `post` (`id_post`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
