@@ -262,7 +262,6 @@ publier.addEventListener("click", function (e) {
         let photo = document.querySelector('#preview').hasChildNodes()
         let video = document.querySelector('#preview-video').hasChildNodes()
 
-        console.log(video)
         if (photo == false) {
             photo = 'non'
         }
@@ -298,36 +297,17 @@ publier.addEventListener("click", function (e) {
                 $("#TextareaPostSend").data("emojioneArea").setText("")
             }
 
-            if (photoPreview === true) {
-                data = 'oui'
-                $.ajax({
-                    // Adresse du traitement pour supprimer l'image du dossier temporaire
-                    url: "uploadTempPost.php",
-                    method: "POST",
-                    data: { supprime: data },
-                    success: function (data) {
-
-                    }
-                })
+            if (photoPreview === true) {       
                 // Suppression des images visibles dans preview
                 document.querySelector('#preview').innerHTML = "";
             }
 
             if (videoPreview === true) {
-                data = 'oui'
-                $.ajax({
-                    // Adresse du traitement pour supprimer la video du dossier temporaire
-                    url: "uploadTempPostVideo.php",
-                    method: "POST",
-                    data: { supprime: data },
-                    success: function (data) {
-
-                    }
-                })
-                // Suppression de la video visible dans preview
-                document.querySelector('#preview-video').innerHTML = "";
+                 // Suppression de la video visible dans preview
+                 document.querySelector('#preview-video').innerHTML = "";
             }
-
+            
+                
             iconeImage = document.querySelector('#ajouterPhoto-sendPost')
             if (iconeImage.classList.contains("hidden") == true) {
                 iconeImage.classList.remove("hidden")

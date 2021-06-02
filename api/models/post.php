@@ -81,7 +81,7 @@ class Post{
      *
      * @return array
      */
-    function listPostUser($user)
+    function idPostUser($user)
     {
         $select = "SELECT id_post FROM post WHERE id_user = :id_user ORDER BY id_post DESC";
 
@@ -111,5 +111,21 @@ class Post{
         $stmt->execute();
 
         return $stmt->fetch(PDO:: FETCH_ASSOC);
+    }
+
+    function userById($id_user)
+    {
+        $select = "SELECT * FROM users WHERE id_user = :id_user";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($select);
+
+        // Bind
+        $stmt->bindParam('id_user', $id_user);
+
+        // Execute
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

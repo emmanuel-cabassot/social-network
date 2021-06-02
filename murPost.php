@@ -17,47 +17,48 @@ session_start();
 
 <body>
     <main>
-        <section class="showPost">
-            <section class="header-showPost">
-                <section class="user-showPost">
-                
-                </section>
-                <section class="modify-showPost">
-                </section>
-            </section>
-            <section class="text-showPost">
-            
-            </section>
-            <section class="media-showPost">
-            
-            </section>
-            <section class="stat-showPost">
-                <section class="like-stat-showPost">
-                </section>
-                <section class="comment-stat-showPost">
-                </section>
-            </section>
-            <section class="action-showPost">
-                <section class="like-action-showPost">
-                </section>
-                <section class="comment-action-showPost">
-                </section>
-            </section>
-            <section class="comment-showPost">
-                <section class="add-comment-showPost">
-                </section>
-                <section class="view-comment-showPost">
-                    <section class="user-photo-comment-showPost">
-                    </section>
-                    <section class="user-name-text-showPost">
-                        <section class="user-name-showPost">
-                        </section>
-                        <section class="text-comment-showPost">
-                        </section>
-                    </section>
-                </section>
-            </section>
+        <section class="murPost">
+            <section class="showPost">
+                <section class="header-showPost">
+                    <section class="user-showPost">
 
+                    </section>
+                    <section class="modify-showPost">
+                    </section>
+                </section>
+                <section class="text-showPost">
+
+                </section>
+                <section class="media-showPost">
+                    <img src="" alt="">
+                </section>
+                <section class="stat-showPost">
+                    <section class="like-stat-showPost">
+                    </section>
+                    <section class="comment-stat-showPost">
+                    </section>
+                </section>
+                <section class="action-showPost">
+                    <section class="like-action-showPost">
+                    </section>
+                    <section class="comment-action-showPost">
+                    </section>
+                </section>
+                <section class="comment-showPost">
+                    <section class="add-comment-showPost">
+                    </section>
+                    <section class="view-comment-showPost">
+                        <section class="user-photo-comment-showPost">
+                        </section>
+                        <section class="user-name-text-showPost">
+                            <section class="user-name-showPost">
+                            </section>
+                            <section class="text-comment-showPost">
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
         </section>
 
     </main>

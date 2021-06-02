@@ -11,7 +11,7 @@ class PhotoPost
     public $id_user;
     public $name_image_post;
     public $chemin;
-    public $created_at;
+
 
     // constructor with $db as database connection
     public function __construct($db)

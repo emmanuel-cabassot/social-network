@@ -24,20 +24,21 @@ $db = $database->getConnection();
 
 $data = json_decode(file_get_contents("php://input"));
 
-if (isset($data->user)) {
-    $user = $data->user;
 
-    $postUser = new Post($db);
-    $posts = $postUser->listPostUser($user);
+$user = $data->user;
 
-    echo json_encode($posts);
-}
-
-if (isset($data->id_post)) {
-    $id_post = $data->id_post;
+$postUser = new Post($db);
+$posts = $postUser->idPostUser($user);
+$i = 0;
+foreach ($posts as $post) {
+    
+    $id_post = $post['id_post'];  
 
     $classPost = new Post($db);
     $post = $classPost->showPostById($id_post);
+    $user = $classPost->userById($post['id_user']);
+    $post['userLastname'] = $user['lastname'];
+    $post['userName'] = $user['name'];
 
     if ($post['id_user'] == $_SESSION['id_user']) {
         $post['myPost'] = 'oui';
@@ -45,16 +46,20 @@ if (isset($data->id_post)) {
         $post['myPost'] = 'non';
     }
 
-    if (isset($post['image_post']) and $post['image_post'] == "oui") {
+    if ($post['image_post'] == "oui") {
         $classImages = new PhotoPost($db);
         $images = $classImages->affichePhotoPost($id_post);
         $post['images'] = $images;
+    }else{
+        $post['image_post'] = 'non';
     }
 
     if (isset($post['video_post']) and $post['video_post'] == "oui") {
         $classVideo = new VideoPost($db);
         $video = $classVideo->afficheVideoPost($id_post);
-        $post['video'] = $video;
+        $post['cheminVideo'] = $video['chemin'];
+        $post['nomVideo'] = $video['name_video_post'];
+
     }
 
     $classComment = new comment($db);
@@ -62,6 +67,11 @@ if (isset($data->id_post)) {
     $post['countComment'] = $countComments;
     if ($countComments > 0) {
         $comments = $classComment->showCommentById($id_post);
+        foreach ($comments as $comment) {
+             $idComment = $comment['id_comment_post'];
+             
+
+        }
         $post['comments'] = $comments;
     }
 
@@ -77,6 +87,8 @@ if (isset($data->id_post)) {
     $possibleDislike = $classDislike->possibleDislike($id_post, $_SESSION['id_user']);
     $post['possibleDislike'] = $possibleDislike;
 
-
-    echo json_encode($post);
+    $arrayPost[$i] = $post;
+    $i++;
 }
+
+echo json_encode($arrayPost);

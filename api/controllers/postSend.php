@@ -56,12 +56,12 @@ if ($data->photo == 'oui') {
 
     foreach ($photos as $photo) {
         if ('.' !=  $photo && '..' != $photo) {
-
-            $photoPost->name_image_post = $photo;
+            $photoRename = str_replace(' ', '', $photo);
+            $photoPost->name_image_post = $photoRename;
             $photoPost->chemin = 'assets/images/upload/post/' . $id_post;
             $photoPost->insertPhotoPost();
             $dossierSource = '../../assets/images/upload/temporaire/' . $_SESSION['id_user'] . '/' . $photo;
-            $dossierDestination = '../../assets/images/upload/post/' . $id_post . '/' . $photo;
+            $dossierDestination = '../../assets/images/upload/post/' . $id_post . '/' . $photoRename;
             rename($dossierSource, $dossierDestination);
         }
     }
@@ -82,13 +82,15 @@ if ($data->video == 'oui') {
     // Liste des photos dans le fichier temporaire
     $videos = scandir('../../assets/videos/upload/temporaire/' . $_SESSION['id_user']);
     
+    
     foreach ($videos as $video) {
         if ('.' !=  $video && '..' != $video) {
-            $videoPost->name_video_post = $video;
+            
+            $videoPost->name_video_post = str_replace(" ", "", $video);
             $videoPost->chemin = 'assets/videos/upload/post/' . $id_post;
             $videoPost->insertVideoPost();
             $dossierSource = '../../assets/videos/upload/temporaire/' . $_SESSION['id_user'] . '/' . $video;
-            $dossierDestination = '../../assets/videos/upload/post/' . $id_post . '/' . $video;
+            $dossierDestination = '../../assets/videos/upload/post/' . $id_post . '/' . str_replace(" ", "", $video);
             rename($dossierSource, $dossierDestination);
         }
     }
