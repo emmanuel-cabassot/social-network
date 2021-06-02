@@ -1,9 +1,11 @@
+var vueEvent = document.getElementById('oneEvent');
+
 document.addEventListener("DOMContentLoaded", function() {
 
 	var id_event = $_GET('id_event');
     // trim to remove the whitespaces
     var id_event = id_event.trim();
-
+    viewEvent(id_event);
 	
 });
 
@@ -28,7 +30,7 @@ function $_GET(param) {
             if(this.readyState === 4 && this.status === 200){
     
                 var record = JSON.parse(xhr.responseText);
-                var output = '';
+                var outputVE = '';
                 var participer='';
                           
                     if(record.part==false){
@@ -37,7 +39,7 @@ function $_GET(param) {
                     }else{participer='<p>Vous participez à cet événement.</p><button type="button" onclick="no_particip('+record.id_event+
                     ')" class="btn btn-primary">Se désinscrire</button>'}
     
-                    output +=  
+                    outputVE =  
                     '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/events/'+record.img_event+
                     '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+record.title_event+
                     '</h5><p class="card-text">Description : '+record.text_event+
@@ -46,16 +48,16 @@ function $_GET(param) {
                     '</p><p class="card-text">participants : <b>'+record.count+'</b></p>'+participer+'</div></div></div></div><br>';
                              
                     }else{
-                    output =  
+                    outputVE =  
                         '<li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">Erreur système, veuillez essayer de nouveau.</li>';
                 }
             setTimeout(function(){ 
-                oneEvent.innerHTML = output;
+                vueEvent.innerHTML = outputVE;
             }, 1000);  	
                     
             });
            
-            xhr.open("POST", 'api/controllers/viewEvent?id_event='+id_event);
+            xhr.open("GET", 'api/controllers/viewEvent?id_event='+id_event);
         
             xhr.send();
     }
@@ -68,7 +70,7 @@ function $_GET(param) {
                 setTimeout(function(){ 
                     oneEvent.innerHTML = refresh;
                 }, 500); 
-                listEvent();
+               viewEvent(id_event);
     
             }
         });
@@ -85,7 +87,7 @@ function $_GET(param) {
                 setTimeout(function(){ 
                     oneEvent.innerHTML = refresh;
                 }, 500); 
-                listEvent(); 
+                viewEvent(id_event);
             }
         });
         xhr.open("POST", "api/controllers/noPartEvent?id_event="+id_event);

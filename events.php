@@ -9,6 +9,7 @@
 	<meta name="author" content="Denis Farkas Emmanuel Cabassot Thuc-nhi Wiedenhofer" />
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.css">
     <link href="assets/css/dropzone.min.css" rel="stylesheet" type="text/css">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/dropzone.min.js" ></script>
@@ -31,16 +32,16 @@
 
                 <ul class="navbar-nav ml-auto display-5">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="bi bi-house mr-3"></i></a>
+                        <a class="nav-link" href="#"><i class="bi bi-house mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-three-dots mr-3"></i></a>
+                        <a class="nav-link" href="#"><i class="bi bi-three-dots mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-camera-video mr-3"></i></a>
+                        <a class="nav-link" href="#"><i class="bi bi-camera-video mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-person-circle mr-3"></i></a>
+                        <a class="nav-link" href="#"><i class="bi bi-person-circle mr-3 blue"></i></a>
                     </li>
                 </ul>
             </div>
@@ -70,7 +71,7 @@
                 </section>
             </div>
             <div class="col-xl-6 col-sm-12 mt-3">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventModal">
+                <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target="#eventModal">
                 Publiez un évènement
                 </button>
               <section>
