@@ -22,7 +22,7 @@ $event = new Event($db);
 
 // setcomment property values
 
-    $event -> id_event = $_POST['id_group'];
+    $event -> id_event = $_POST['id_event'];
     $event -> id_user = $_POST['id_user'];
     $event -> text_comment= $_POST['text_comment'];
     $event -> date_comment =$_POST['date_comment'];

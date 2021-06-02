@@ -29,7 +29,12 @@ $groupe->viewGroup($id_group);
   
 if($groupe->name_group!=null){
     // create array
-    $id_user= $_SESSION['id_user'];
+    $id_user_create= $groupe->id_user_create;
+    $create =$groupe->viewCreate($id_user_create);
+    $creator = $create->fetch(PDO::FETCH_ASSOC);
+
+    //$id_user= $_SESSION['id_user'];
+    $id_user=1;
     $groupe->count_belong($id_group);
     $belong= $groupe->belong_group($id_user, $id_group);
 
@@ -39,56 +44,23 @@ if($groupe->name_group!=null){
         "description" => $groupe->description,
         "img_group" => $groupe->img_group,
         "id_user_create" => $groupe->id_user_create,
+        "name_create" =>$creator['name_create'],
+        "lastname_create" =>$creator['lastname_create'],
+        "avatar_create" =>$creator['avatar_create'],
         "count" => $groupe->count_belong,
         "belong" => $belong      
     );
 
-    if($belong==true){
-       
-        $stmt = $groupe->listGroupComment($id_group);
-        $num = $stmt->rowCount();
 
-        if ($num>0){
-        
-            $group_arr['comments']=array();
+    // set response code - 200 OK
+    http_response_code(200);
 
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                extract($row);
-                // extract row
-                // this will make $row['name'] to
-                // just $name only
-            
-                $comment_item = array(
-                    "id_comment_group" => $id_comment_group,
-                    "text_comment" => $text_comment,
-                    "date_comment" => $date_comment,
-                    "avatar" => $avatar,
-                    "name" => $name,
-                    "lastname" => $lastname
-                    
-                );
-
-                array_push($group_arr["comments"], $comment_item);
-
-            }
-        }else{
-            // set response code - 404 Not found
-            $group_arr["comments"]= "Pas de commentaire.";
-
-        }
-    }else{ $group_arr["comments"]="Vous devez participer à ce groupe, pour voir les commentaires.";}
-    
-        // set response code - 200 OK
-        http_response_code(200);
-    
-        // make it json format
-        echo json_encode($group_arr);
-    }else{
-        // set response code - 401 Not found
-        http_response_code(401);
-    
-        $group_arr["records"]= "Pas de résultat.";
-        echo json_encode($group_arr);
-
+    // show products data
+    echo json_encode($group_arr);
     }
-    ?>
+
+else{
+// set response code - 404 Not found
+http_response_code(404);
+
+}

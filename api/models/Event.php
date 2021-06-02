@@ -160,6 +160,17 @@ class Event{
             $this->blocked = $row['blocked'];
 
             }
+    
+    function viewCreate($id_user_creator){
+        $query= 'SELECT name, lastname, avatar FROM users WHERE id_user= :id_user_creator';
+        // prepare query statement
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(":id_user_creator", $id_user_creator);
+    // execute query
+    $stmt->execute();
+
+    return $stmt;
+    }
 
     function delete_event($id_event){
 

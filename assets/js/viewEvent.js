@@ -45,7 +45,10 @@ function $_GET(param) {
                     '</h5><p class="card-text">Description : '+record.text_event+
                     '<p class="card-text">Date: '+record.date_event+
                     '<p class="card-text">Ville: '+record.city_event+
-                    '</p><p class="card-text">participants : <b>'+record.count+'</b></p>'+participer+'</div></div></div></div><br>';
+                    '</p><p class="card-text">participants : <b>'+record.count+
+                    '</b></p><p class="card-text">Créé par : <b><img src="assets/images/upload/users/'+record.avatar+
+                    '" class="card-img-thumb" alt="...">'+record.name+' '+record.lastname+
+                    '</b></p>'+participer+'</div></div></div></div><br>';
                              
                     }else{
                     outputVE =  
