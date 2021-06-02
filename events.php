@@ -58,6 +58,9 @@
                         <li class="nav-item">
                             <a class="nav-link alert alert-dismissible alert-primary" href="events.php">Evènements</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="friends.php">Amis</a>
+                        </li>
                     </ul>
                 </section>
                 <section class="alert alert-primary mb-5">

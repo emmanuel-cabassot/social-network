@@ -20,13 +20,13 @@ $database = new Database();
 $db = $database->getConnection();
 
 // instantiate suggest object
-$Friend = new Friend($db);
+$friend = new Friend($db);
 
-$id_user = $_SESSION['id_user'];
+//$id_user = $_SESSION['id_user'];
 
-//$id_user=1;
+$id_user=1;
 
-$suggest = $Friend->suggestFriends($id_user);
+$suggest = $friend->suggestFriends($id_user);
 
 $num = $suggest->rowCount();
 
@@ -39,15 +39,15 @@ if ($num>0){
         // extract row
         // this will make $row['name'] to
         // just $name only
+       
         $suggest_item = array(
             "id_friend" => $id_friend,
-            "id_user" => $id_user,
             "id_user_friend" => $id_user_friend,
             "name" =>$name,
             "lastname" =>$lastname,
             "avatar" =>$avatar,
             "city"=>$city,
-            "country"=>$country            
+            "country"=>$country,          
         );
 
         array_push($suggest_arr["records"], $suggest_item);

@@ -65,6 +65,9 @@ session_start();
                         <li class="nav-item">
                             <a class="nav-link" href="events.php">Evènements</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="friends.php">Amis</a>
+                        </li>
                     </ul>
                 </section>
                 <section class="alert alert-info">

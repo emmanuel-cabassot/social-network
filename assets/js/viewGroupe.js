@@ -1,4 +1,5 @@
 var viewGroupe = document.getElementById('viewGroupe');
+var listCommentGroup = document.getElementById('listCommentGroup');
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -44,7 +45,8 @@ function view_group(id_group){
             '</p><p class="card-text">participants : <b>'+record.count+
             '</b></p><p class="card-text">Créé par : <b><img src="assets/images/upload/users/'+record.avatar_create+
             '" class="card-img-thumb" alt="...">'+record.name_create+' '+record.lastname_create+
-            '</b></p>'+appartenir+'</div></div></div></div><br>';
+            '</b></p>'+appartenir+'</div></div></div></div><br><button type="button" onclick="viewCommentGroup('+record.id_group+
+            ')" class="btn btn-primary">Voir commentaires</button>';
         }else{
             outputGE =
             '<li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">Erreur système, veuillez essayer de nouveau.</li>';

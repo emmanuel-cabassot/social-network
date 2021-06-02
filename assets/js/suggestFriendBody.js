@@ -1,4 +1,4 @@
-var suggestFriend = document.getElementById('suggestFriend');
+var suggestFriend = document.getElementById('suggestFriends');
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -17,8 +17,7 @@ function suggestFriendListB(){
             '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/users/'+records[i].avatar+
             '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+records[i].name+' '+records[i].lastname+
             '</h5><p>'+records[i].city+' - '+records[i].country+
-            '</p><p class="card-text">amis : <b>'+records[i].count+
-            '</b></p><a  href="friend.php?id_user='+records[i].id_user+
+            '</p><a  href="friend.php?id_user='+records[i].id_user+
             '"><button type="button" class="btn btn-primary">Voir</button></a></div></div></div></div><br>';
             }        
      
