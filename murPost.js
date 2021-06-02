@@ -12,15 +12,14 @@ xhr.responseType = "json";
 xhr.send(JSON.stringify(data));
 xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 || xhr.status == 201) {
-        let listPost = JSON.stringify(xhr.response)
+        listPost = JSON.stringify(xhr.response)
         listPost = JSON.parse(listPost)
 
         listPost.forEach(post => {
             console.log(post)
             let murPost = document.querySelector(".murPost")
             output = '';
-            output += `
-            <section class="showPost">
+            output += `      
                 <section class="header-showPost">
                     <section class="user-showPost">
                         <div class="name-showPost">${post.userName} ${post.userLastname}</div>
@@ -89,18 +88,33 @@ xhr.onreadystatechange = function () {
                     output+=`
                     <section class="view-comment-showPost">
                         <section class="user-photo-comment-showPost">
-                        avatar
+                        photo: ${comment.userAvatar}
+                        </section>
+                        <section class="date-comment">
+                            ${comment.date_comment_post}
                         </section>
                         <section class="user-name-text-showPost">
-                            <section class="user-name-showPost">`
+                            <section class="user-name-showPost">
+                            ${comment.userlastName} ${comment.userName}
+                            </section>
+                            <section class="text-comment-showPost">
+                            ${comment.text_comment_post}
+                            </section>
+                        </section>
+                        </section>
+                        `
                 });
-                
+
+               
             }
 
 
 
+            let postShowNode = document.createElement('section')
+            postShowNode.classList.add('showPost')
+            postShowNode.innerHTML = output
 
-            murPost.innerHTML = output
+            murPost.append(postShowNode)
 
 
 

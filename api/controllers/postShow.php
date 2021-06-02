@@ -17,6 +17,7 @@ include_once '../models/VideoPost.php';
 include_once '../models/Comment.php';
 include_once '../models/Like.php';
 include_once '../models/Dislike.php';
+include_once '../models/User.php';
 
 // Instancie database and product object
 $database = new Database();
@@ -28,8 +29,9 @@ $data = json_decode(file_get_contents("php://input"));
 $user = $data->user;
 
 $postUser = new Post($db);
+
 $posts = $postUser->idPostUser($user);
-$i = 0;
+$increment = 0;
 foreach ($posts as $post) {
     
     $id_post = $post['id_post'];  
@@ -66,13 +68,20 @@ foreach ($posts as $post) {
     $countComments = $classComment->CountCommentById($id_post);
     $post['countComment'] = $countComments;
     if ($countComments > 0) {
+        $classUser = new User($db);
         $comments = $classComment->showCommentById($id_post);
+        $i = 0;
         foreach ($comments as $comment) {
-             $idComment = $comment['id_comment_post'];
-             
+             $idUserComment = $comment['id_user'];
+             $userComment = $classUser->userById($idUserComment);
 
+             $post['comments'][$i] = $comment;
+             $post['comments'][$i]['userName'] = $userComment['name'];
+             $post['comments'][$i]['userlastName'] = $userComment['lastname'];
+             $post['comments'][$i]['userAvatar'] = $userComment['avatar'];
+             $i++;
         }
-        $post['comments'] = $comments;
+        
     }
 
     $classLike = new Like($db);
@@ -87,8 +96,8 @@ foreach ($posts as $post) {
     $possibleDislike = $classDislike->possibleDislike($id_post, $_SESSION['id_user']);
     $post['possibleDislike'] = $possibleDislike;
 
-    $arrayPost[$i] = $post;
-    $i++;
+    $arrayPost[$increment] = $post;
+    $increment++;
 }
 
 echo json_encode($arrayPost);
