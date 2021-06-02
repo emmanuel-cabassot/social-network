@@ -1,9 +1,9 @@
 var suggestGroupe = document.getElementById('suggestGroupe');
 document.addEventListener("DOMContentLoaded", function() {
-    suggestGroup()
+    suggestGroupB()
 });
 
-function suggestGroup(){
+function suggestGroupB(){
 		
     var xhr = new XMLHttpRequest();
     
