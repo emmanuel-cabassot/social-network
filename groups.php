@@ -120,7 +120,7 @@ session_start();
                                     </fieldset>
                                 </form>
                             </div>
-                            <div class="modal-footer" id="footer"> 
+                            <div class="modal-footer" id="modal_footer"> 
                                 
                             </div>
                         </div>

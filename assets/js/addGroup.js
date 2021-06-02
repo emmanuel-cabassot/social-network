@@ -69,7 +69,7 @@ myDropzone.on("success", function(file, response) {
  
 // button trigger for processingQueue
 var submitDropzone = document.getElementById("submit-dropzone");
-var footer= document.getElementById("footer");
+var footer= document.getElementById("modal_footer");
 
 submitDropzone.addEventListener("click", function(e) {
     // Make sure that the form isn't actually being sent.

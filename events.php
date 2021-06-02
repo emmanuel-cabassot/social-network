@@ -59,16 +59,28 @@
                         </li>
                     </ul>
                 </section>
+                <section class="alert alert-primary mb-5">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action active">Suggestion de groupes</div>
+                        <div id="suggestedGroup"></div>
+                        <div class="list-group-item list-group-item-action">
+                            <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <div class="col-xl-6 col-sm-12">
-
+            <div class="col-xl-6 col-sm-12 mt-3">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventModal">
+                Publiez un évènement
+                </button>
               <section>
+              <h5>Suggestion - Vos amis se sont inscrits à ces évènements:</h5>
+                    <hr>
                   <div id="suggestEvent"></div>
               </section>
+              <br>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventModal">
-                Add event
-                </button>
+                
 
                 <!-- Modal -->
                 <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,10 +107,9 @@
                                         <div class="form-group">
                                             <input type="text" class="form-control w-75" id="city_event" placeholder="Ville"  name="city_event" required />
                                         </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control w-75" id="public_event" placeholder="public: oui ou non"  name="public_event" required />
-                                        </div>
+                                        
                                         <div class="form-group" id="validForm"><div>
+                                        <input type="hidden" name="public_event" id="public_event" value="oui" />
                                         <input type="hidden" name="signalized" id="signalized" value="non"/>
                                         <input type="hidden" name="blocked" id="blocked" value="non"/>
                                         <div class="form-group">
@@ -120,12 +131,14 @@
                 </div>
 
                 <section>
-                    <div id="listeEvents"></div>
+                <h5>Vous vous êtes inscrit à:</h5>
+                    <hr>
+                    <div id="listEvents"></div>
                 </section>
             </div>
 
             <div class="col-xl-3 col-sm-12 mt-5">
-            <section class=" alert-primary mb-5">
+                <section class=" alert-primary mb-5">
                     <div class="list-group">
                         <div class="list-group-item list-group-item-action active">Suggestion d'amis</div>
                         <div id="suggestedFriend"></div>
@@ -143,14 +156,7 @@
                         </div>
                     </div>
                 </section>
-                <section class="alert alert-primary mb-5">
-                    <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion de groupes</div>
-                        <div id="suggestedGroup"></div>
-                        <div class="list-group-item list-group-item-action">
-                            <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
-                        </div>
-                    </div>
+                
             </div>
         </div>
     </main>
@@ -158,6 +164,8 @@
           <div class="col-lg-12">
           </div>
       </footer>
+    <script src="assets/js/search.js"></script>  
+    <script src="assets/js/addEvent.js"></script>  
     <script src="assets/js/suggestGroupAside.js"></script>
     <script src="assets/js/suggestFriendAside.js"></script>
     <script src="assets/js/listerFriendsAside.js"></script>

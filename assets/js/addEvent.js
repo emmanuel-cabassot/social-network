@@ -4,8 +4,8 @@ function validerFormul(){
     var b= document.getElementById("text_event").value;
     var c= document.getElementById("date_event").value;
     var d= document.getElementById("city_event").value;
-    var z= document.getElementById("public_event").value;
-    if(a=="" || b=="" || c=="" || d=="" || z==""){
+    
+    if(a=="" || b=="" || c=="" || d=="" ){
         return false;
     }else{
        return true;
