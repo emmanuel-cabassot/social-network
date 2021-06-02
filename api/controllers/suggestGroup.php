@@ -22,9 +22,9 @@ $db = $database->getConnection();
 // instantiate suggest object
 $group = new Group($db);
 
-//$id_user = $_SESSION['id_user'];
+$id_user = $_SESSION['id_user'];
 
-$id_user=1;
+//$id_user=1;
 $stmt = $group->suggestGroup($id_user);
 $num = $stmt->rowCount();
 

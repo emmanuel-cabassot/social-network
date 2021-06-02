@@ -22,9 +22,9 @@ $db = $database->getConnection();
 // instantiate suggest object
 $event = new Event($db);
 
-//$id_user = $_SESSION['id_user'];
+$id_user = $_SESSION['id_user'];
 
-$id_user=1;
+//$id_user=1;
 $stmt = $event->suggestEvent($id_user);
 $num = $stmt->rowCount();
 
