@@ -18,6 +18,7 @@ session_start();
     <link rel="stylesheet" href="assets/css/sendPost.css">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/dropzone.min.js"></script>
+    <script src="assets/js/search.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
@@ -76,17 +77,20 @@ session_start();
 
                 </section>
             </div>
-            <div class="col-xl-6 col-sm-12">
+            <div class="col-xl-6 col-sm-12 mt-3">
 
-
+                <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target="#groupModal">
+                Créez un groupe
+                </button>
+                <br>
                 <section>
+                    <h5>Suggestion - Vos amis participent à ces groupes:</h5>
+                    <hr>
                     <div id="suggestGroupe"></div>    
                 </section>
                 <br>      
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#groupModal">
-                Add group
-                </button>
+               
 
                 <!-- Modal -->
                 <div class="modal fade" id="groupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -123,6 +127,8 @@ session_start();
                     </div>
                 </div>
                 <section>
+                    <h5>Vous participez à:</h5>
+                    <hr>
                     <div id="listGroups">
                     </div>    
                 </section>    
@@ -154,9 +160,13 @@ session_start();
     <footer id="footer">
           <div class="col-lg-12"> 
           </div>
-      </footer>
-    <script src="search.js"></script>
-    <script src="groups.js"></script>   
+    </footer>
+    <script src="assets/js/suggestGroupBody.js"></script>
+    <script src="assets/js/listerGroups.js"></script>
+    <script src="assets/js/suggestEventAside.js"></script>
+    <script src="assets/js/suggestFriendAside.js"></script>
+    <script src="assets/js/listerFriendsAside.js"></script>
+    <script src="assets/js/addGroup.js"></script>   
     <script src="assets/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>

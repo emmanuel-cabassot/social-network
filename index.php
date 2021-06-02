@@ -42,7 +42,7 @@
           <div class="col-lg-12"> 
           </div>
       </footer>
-    <script src="login.js"></script>   
+    <script src="assets/js/login.js"></script>   
     <script src="assets/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>

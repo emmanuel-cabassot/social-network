@@ -78,18 +78,18 @@ session_start();
             </div>
             <div class="col-xl-6 col-sm-12">
                 <section>
-                    <div id="viewGroupe"></div>
+                    <div id="viewGroupe"></div>    
                 </section>
-                <br>
+                <br>     
 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentGroupModal">
                 Ajouter commentaire
                 </button>
                 <section>
-                    <div id="listCommentGroup"></div>
+                    <div id="listCommentGroup"></div>    
                 </section>
-                <br>
+                <br>   
 
                 <!-- Modal -->
                 <div class="modal fade" id="commentGroupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -104,25 +104,25 @@ session_start();
                             <div class="modal-body">
                                 <form id="comment-form"  enctype="multipart/form-data" method="POST">
                                     <fieldset>
-                                        <div class="form-group">
-                                            <textarea class="form-control w-75" id="comment" placeholder="Commentaire" rows="" name="text_comment" required></textarea>
+                                        <div class="form-group">             
+                                            <textarea class="form-control w-75" id="comment" placeholder="Commentaire" rows="" name="text_comment" required></textarea>                    
                                         </div>
-
+                                                                                   
                                         <div class="form-group">
-                                            <input type="submit" name="submit" value="Commenter" id="submitComment" class="btn btn-primary w-75" />
+                                            <input type="submit" name="submit" value="Commenter" id="submit-comment" class="btn btn-primary w-75" />
                                         </div>
                                     </fieldset>
                                 </form>
                             </div>
-                            <div class="modal-footer" id="footer">
-
+                            <div class="modal-footer" id="footer"> 
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-
+                        
+            </div>            
+          
             <div class="col-xl-3 col-sm-12">
             <section class=" alert-primary mb-5">
                     <div class="list-group">
@@ -141,16 +141,19 @@ session_start();
                             <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
                         </div>
                     </div>
-                </section>
-            </div>
-        </div>
+                </section>                          
+            </div>            
+        </div>   
     </main>
     <footer id="footer">
-          <div class="col-lg-12">
+          <div class="col-lg-12"> 
           </div>
       </footer>
-    <script src="search.js"></script>
-    <script src="groupe.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/search.js"></script>  
+    <script src="assets/js/viewGroupe.js"></script>
+    <script src="assets/js/suggestEventAside.js"></script>
+    <script src="assets/js/suggestFriendAside.js"></script>
+    <script src="assets/js/listerFriendsAside.js"></script>   
+    <script src="assets/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>

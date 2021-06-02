@@ -69,7 +69,7 @@
           <div class="col-lg-12"> 
           </div>
       </footer>
-    <script src="signup.js"></script>   
+    <script src="assets/js/signup.js"></script>   
     <script src="assets/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>
