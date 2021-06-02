@@ -1,3 +1,5 @@
+var viewGroupe = document.getElementById('viewGroupe');
+
 document.addEventListener("DOMContentLoaded", function() {
 
 var id_group = $_GET('id_group');
@@ -7,7 +9,7 @@ view_group(id_group);
 
 });
 
-var viewGroupe = document.getElementById('viewGroupe');
+
 
 function $_GET(param) {
 		var vars = {};

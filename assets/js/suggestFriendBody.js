@@ -1,5 +1,6 @@
 var suggestFriend = document.getElementById('suggestFriend');
 
+
 document.addEventListener("DOMContentLoaded", function() {
     suggestFriendListB();
     });
