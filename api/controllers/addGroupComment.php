@@ -20,12 +20,14 @@ $db = $database->getConnection();
 // instantiate user object
 $group = new Group($db);
 
+$data = json_decode(file_get_contents("php://input"));
+
 // setcomment property values
 
-    $group -> id_group = $_POST['id_group'];
-    $group -> id_user = $_POST['id_user'];
-    $group -> text_comment= $_POST['text_comment'];
-    $group -> date_comment =$_POST['date_comment'];
+    $group -> id_group = $data->id_group;
+    $group -> id_user = $_SESSION['id_user'];
+    $group -> text_comment= $data->text_comment;
+    $group -> date_comment =date('Y-m-d H:i:s');
     
 //check if session open 
 if(isset($_SESSION['id_user'])){    

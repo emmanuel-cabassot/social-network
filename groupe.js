@@ -1,3 +1,20 @@
+var viewGroupe = document.getElementById('viewGroupe');
+var listCommentGroup = document.getElementById('listCommentGroup');
+var submitComment= document.getElementById('submitComment');
+var footerModal= document.getElementById('footerModal');
+var commentForm= document.getElementById('comment-form');
+
+
+var serializeForm = function (form) {
+            var obj = {};
+            var formData = new FormData(form);
+            for (var key of formData.keys()) {
+                obj[key] = formData.get(key);
+            }
+            return obj;
+        };
+
+
 document.addEventListener("DOMContentLoaded", function() {
 
 var id_group = $_GET('id_group');
@@ -7,12 +24,57 @@ suggestEventList();
 suggestFriendList();
 listerFriends();
 view_group(id_group);
+var belong= belong_group(id_group);
+if(belong==true){
+    listCommentGroup(id_group);
+}
 
 });
 
-var viewGroupe = document.getElementById('viewGroupe');
 
-function $_GET(param) {
+    submitComment.addEventListener("click", function(e) {
+        // Make sure that the form isn't actually being sent.
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (validerForm()==true) {
+           
+            var form_data=JSON.stringify(serializeForm(commentForm));
+            
+            var xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+            
+            xhr.addEventListener("readystatechange", function() {
+                if(this.readyState === 4 && this.status == 200) {
+                    window.location="groupe.php";
+                }else if(this.readyState === 4 && this.status == 406){
+                setTimeout(function(){$("#resultat").html("<p>Cet email existe déja.</p>")}, 1000); 
+                }else{setTimeout(function(){$("#resultat").html("<p>Erreur système, veuillez recommencer</p>")}, 1000);}
+            });
+
+            xhr.open("POST", "api/controllers/addGroupComment/id_group");
+            xhr.setRequestHeader("Content-Type", "text/plain");
+
+            xhr.send(form_data);   
+        
+        } else {
+        // if no file submit the form    
+        footerModal.innerHTML= '<h4>Tous les champs doivent être remplis</h4>';
+        }
+    });
+
+    function validerForm(){
+        
+        var a= document.getElementById("comment").value;
+        
+        if(a==""){
+            return false;
+        }else{
+        return true;
+        }
+    };
+
+    function $_GET(param) {
 		var vars = {};
 		window.location.href.replace( location.hash, '' ).replace(
 			/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
@@ -156,3 +218,32 @@ function listerFriends(){
     xhr.open("POST", 'api/controllers/listFriends');
     xhr.send();
 }
+
+    function listComments(){
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4 && this.status === 200) {
+
+            var response = JSON.parse(xhr.responseText);
+            var records = response.records;
+            var outputLC = '';
+
+            for(var i =0; i<records.length; i++){
+                    
+                    if(records[i].belong == true){
+                        outputLC += 
+                        '<img src="assets/images/upload/users/'+records[i].avatar+'" class="card-img-thumb" alt="...">'+records[i].name+' '+records[i].lastname+
+                        '<p class="card-text">'+records[i].text_comment+
+                        '</p><p>date : '+records[i].date_comment+'</p>';
+                    }else{
+                        listCommentGroup.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore de commentaires? </p>';
+                    }
+            }
+            listCommentGroup.innerHTML = outputLC;
+        }else  if(this.readyState === 4 && this.status === 404){
+            listCommentGroup.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore de commentaires</p>';
+            }
+    });
+    xhr.open("POST", 'api/controllers/listGroupComments?id_group='+id_group);
+    xhr.send();
+    }

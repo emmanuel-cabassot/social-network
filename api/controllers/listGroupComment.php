@@ -19,44 +19,50 @@ $db = $database->getConnection();
 
 // instantiate user object
 $group = new Group($db);
+//$id_user=$_SESSION['id_user'];
+$id_user=1;
 
-$stmt = $group->listGroupComment($id_group);
-$num = $stmt->rowCount();
+$id_group = isset($_GET['id_group']) ? $_GET['id_group'] : die();
+$belong= $group->belong_group($id_user, $id_group);
 
-if ($num>0){
+if($belong==true){
+   $stmt = $group->listGroupComment($id_group);
+    $num = $stmt->rowCount();
+
+    if ($num>0){
   
-    $comment_arr=array();
-    $comment_arr['records']=array();
+        $comment_arr=array();
+        $comment_arr['records']=array();
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
-        // extract row
-        // this will make $row['name'] to
-        // just $name only
-       
-        $comment_item = array(
-            "id_comment_group" => $id_comment_group,
-            "text_comment" => $text_comment,
-            "date_comment" => $date_comment,
-            "avatar" => $avatar,
-            "name" => $name,
-            "lastname" => $lastname
-            
-        );
-
-        array_push($comment_arr["records"], $comment_item);
-
-    }
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
+            // extract row
+            // this will make $row['name'] to
+            // just $name only
+        
+            $comment_item = array(
+                "id_comment_group" => $id_comment_group,
+                "text_comment" => $text_comment,
+                "date_comment" => $date_comment,
+                "avatar" => $avatar,
+                "name" => $name,
+                "lastname" => $lastname               
+            );
+            array_push($comment_arr["records"], $comment_item);
+        }
 
       // set response code - 200 OK
-    http_response_code(200);
+        http_response_code(200);
 
-    // show products data
-    echo json_encode($comment_arr);
+        // show products data
+        echo json_encode($comment_arr);
+    }
+    else{
+        // set response code - 404 Not found
+        http_response_code(404);
+    }
+}else{
+    http_response_code(501);
 }
 
-else{
-    // set response code - 404 Not found
-    http_response_code(404);
 
-}

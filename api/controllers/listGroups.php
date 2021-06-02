@@ -19,6 +19,7 @@ $db = $database->getConnection();
 
 // instantiate user object
 $group = new Group($db);
+
 $id_user= $_SESSION['id_user'];
 $stmt = $group->listGroups($id_user);
 $num = $stmt->rowCount();
