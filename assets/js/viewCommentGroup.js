@@ -1,23 +1,5 @@
 var listCommentGroup = document.getElementById('listCommentGroup');
 
-var id_group = $_GET('id_group');
-    // trim to remove the whitespaces
-var id_group = id_group.trim();
-
-function $_GET(param) {
-		var vars = {};
-		window.location.href.replace( location.hash, '' ).replace(
-			/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-			function( m, key, value ) { // callback
-				vars[key] = value !== undefined ? value : '';
-			}
-		);
-		if ( param ) {
-			return vars[param] ? vars[param] : null;
-		}
-		return vars;
-	}
-
 
 document.addEventListener("DOMContentLoaded", function() {
    

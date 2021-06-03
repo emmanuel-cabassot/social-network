@@ -20,12 +20,16 @@ $db = $database->getConnection();
 // instantiate user object
 $group = new Group($db);
 
+$id_group = isset($_GET['id_group']) ? $_GET['id_group'] : die();
+//$id_user = $_SESSION['id_user'];
+$id_user=1;
+
 $data = json_decode(file_get_contents("php://input"));
 
 // setcomment property values
 
-    $group -> id_group = $data->id_group;
-    $group -> id_user = $_SESSION['id_user'];
+    $group -> id_group = $id_group;
+    $group -> id_user = $id_user;
     $group -> text_comment= $data->text_comment;
     $group -> date_comment =date('Y-m-d H:i:s');
     
