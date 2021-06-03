@@ -99,7 +99,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="comment-form"  enctype="multipart/form-data" method="POST">
+                                <form id="comment-form" method="POST">
                                     <fieldset>
                                         <div class="form-group">             
                                             <textarea class="form-control w-75" id="comment" placeholder="Commentaire" rows="" name="text_comment" required></textarea>                    
@@ -111,7 +111,7 @@
                                     </fieldset>
                                 </form>
                             </div>
-                            <div class="modal-footer" id="footer"> 
+                            <div class="modal-footer" id="footerModal"> 
                                 
                             </div>
                         </div>

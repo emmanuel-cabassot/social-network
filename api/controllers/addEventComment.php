@@ -20,12 +20,17 @@ $db = $database->getConnection();
 // instantiate user object
 $event = new Event($db);
 
+$id_event = isset($_GET['id_event']) ? $_GET['id_event'] : die();
+//$id_user = $_SESSION['id_user'];
+$id_user=1;
+$data = json_decode(file_get_contents("php://input"));
+
 // setcomment property values
 
-    $event -> id_event = $_POST['id_event'];
-    $event -> id_user = $_POST['id_user'];
-    $event -> text_comment= $_POST['text_comment'];
-    $event -> date_comment =$_POST['date_comment'];
+$event -> id_event = $data->id_event;
+$event -> id_user = $_SESSION['id_user'];
+$event -> text_comment= $data->text_comment;
+$event -> date_comment =date('Y-m-d H:i:s');
     
 //check if session open 
 if(isset($_SESSION['id_user'])){    

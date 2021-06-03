@@ -79,7 +79,7 @@ session_start();
                 </section>
                 <div class="container">
                     <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="profile-card-4 text-center">
                             <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
                             <div class="profile-content">
@@ -102,7 +102,7 @@ session_start();
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="profile-card-4 text-center">
                             <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
                             <div class="profile-content">
@@ -125,7 +125,7 @@ session_start();
                             </div>
                         </div>
                     </div>  
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="profile-card-4 text-center">
                             <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
                             <div class="profile-content">
