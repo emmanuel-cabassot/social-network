@@ -19,7 +19,6 @@ var serializeForm = function (form) {
 document.addEventListener("DOMContentLoaded", function() {
     viewEvent(id_event);
     listerCommentE(id_event);           
-
 });
 commentForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -37,7 +36,8 @@ function sendComment(id_event){
         xhr.addEventListener("readystatechange", function() {
             if(this.readyState === 4 && this.status == 200) {
                 window.location="event.php?id_event="+id_event;
-            }});
+            }
+        });
 
         xhr.open("POST", "api/controllers/addEventComment?id_event="+id_event);
         xhr.setRequestHeader("Content-Type", "text/plain");
@@ -86,7 +86,7 @@ function $_GET(param) {
                 var participer='';
                           
                     if(record.part==false){
-                        participer='<button type="button" onclick="part_event('+record.id_event+
+                        participer='<button type="button" onclick="particip_event('+record.id_event+
                         ')" class="btn btn-primary">Participer</button>'; 
                     }else{participer='<p>Vous participez à cet événement.</p><button type="button" onclick="no_particip('+record.id_event+
                     ')" class="btn btn-primary">Se désinscrire</button>'}
@@ -117,16 +117,11 @@ function $_GET(param) {
             xhr.send();
     }
 
-    function part_event(id_event){
+    function particip_event(id_event){
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function() {
             if(this.readyState === 4 && this.status === 200){
-                refresh=' ';
-                setTimeout(function(){ 
-                    oneEvent.innerHTML = refresh;
-                }, 500); 
                viewEvent(id_event);
-    
             }
         });
         xhr.open("POST", "api/controllers/partEvent?id_event="+id_event);
@@ -138,16 +133,26 @@ function $_GET(param) {
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("readystatechange", function() {
             if(this.readyState === 4 && this.status === 200){
-                refresh=' ';
-                setTimeout(function(){ 
-                    oneEvent.innerHTML = refresh;
-                }, 500); 
                 viewEvent(id_event);
             }
         });
         xhr.open("POST", "api/controllers/noPartEvent?id_event="+id_event);    
         xhr.send();
     }
+
+    function part_event(id_event){
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4 && this.status === 200){
+         return true;
+        }else{
+           return false;
+        }
+        
+    });
+    xhr.open("POST", "api/controllers/part_event?id_event="+id_event);
+    xhr.send();
+}
 
     function listerCommentE(id_event){       
         var xhr = new XMLHttpRequest();
@@ -166,13 +171,16 @@ function $_GET(param) {
                             '<p class="card-text">'+records[i].text_comment+
                             '</p><p>date : '+records[i].date_comment+'</p>';
                         }else{
-                            ouputLC = '<p class="list-group-item list-group-item-action">Pas encore de commentaires </p>';
+                           ouputLC = '<p class="list-group-item list-group-item-action">Pas encore de commentaires</p>';  
                         }
+                
                 }
                 listCommentEvent.innerHTML = outputLC;
-            }else  if(this.readyState === 4 && this.status === 404){
-                listCommentEvent.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore de commentaires</p>';
-                }
+                }else  if(this.readyState === 4 && this.status === 404){
+            listCommentEvent.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore de commentaires</p>';
+            }
+            
+            
         });
         xhr.open("POST", 'api/controllers/listEventComment?id_event='+id_event);
         xhr.send();

@@ -20,12 +20,12 @@ $database = new Database();
 $db = $database->getConnection();
 
 // instantiate user object
-$partGroup = new Group($db);
+$partEvent = new Event($db);
 
 $id_user = $_SESSION['id_user'];
-$id_group = isset($_GET['id_group']) ? $_GET['id_group'] : die();
+$id_event = isset($_GET['id_event']) ? $_GET['id_event'] : die();
 
-$part = $partGroup->part_group($id_user, $id_group);
+$part = $partEvent->particip_event($id_user, $id_event);
 
 if($part){
 // set response code - 200 OK

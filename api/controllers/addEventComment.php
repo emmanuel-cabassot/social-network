@@ -28,7 +28,7 @@ $data = json_decode(file_get_contents("php://input"));
 // setcomment property values
 
 $event -> id_event = $id_event;
-$event -> id_user = $_SESSION['id_user'];
+$event -> id_user = $id_user;
 $event -> text_comment= $data->text_comment;
 $event -> date_comment =date('Y-m-d H:i:s');
     

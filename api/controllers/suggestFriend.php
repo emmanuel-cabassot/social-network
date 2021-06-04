@@ -22,9 +22,9 @@ $db = $database->getConnection();
 // instantiate suggest object
 $friend = new Friend($db);
 
-//$id_user = $_SESSION['id_user'];
+$id_user = $_SESSION['id_user'];
 
-$id_user=1;
+//$id_user=1;
 
 $suggest = $friend->suggestFriends($id_user);
 

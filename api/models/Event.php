@@ -44,7 +44,7 @@ class Event{
     }
 
     function suggestEvent($id_user){
-        $query = 'SELECT * FROM part_event LEFT JOIN events ON part_event.id_event = events.id_event WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend = id_user) AND id_event not IN (SELECT id_event FROM part_event where id_user=:id_user) ORDER BY RAND() LIMIT 5';
+        $query = 'SELECT * FROM part_event LEFT JOIN events ON part_event.id_event = events.id_event WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend = id_user) AND id_event not IN (SELECT id_event FROM part_event where id_user=:id_user) ORDER BY RAND() LIMIT 3';
         $stmt = $this->conn->prepare($query);
          $stmt->bindParam(":id_user", $id_user);
         // execute query
@@ -160,7 +160,7 @@ class Event{
             $this->blocked = $row['blocked'];
 
             }
-    
+
     function viewCreate($id_user_creator){
         $query= 'SELECT name, lastname, avatar FROM users WHERE id_user= :id_user_creator';
         // prepare query statement
@@ -249,7 +249,7 @@ class Event{
     function listEventComment($id_event){
 
         // select all query
-        $query = 'SELECT text_comment, date_comment, avatar, name, lastname FROM comment_event  LEFT JOIN users ON comment_event.id_user=users.id_user WHERE id_event=:id_event ORDER BY date_comment DESC';
+        $query = 'SELECT id_comment_event, text_comment, date_comment, avatar, name, lastname FROM comment_event  LEFT JOIN users ON comment_event.id_user=users.id_user WHERE id_event=:id_event ORDER BY date_comment DESC';
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);

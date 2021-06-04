@@ -33,8 +33,8 @@ if($groupe->name_group!=null){
     $create =$groupe->viewCreate($id_user_create);
     $creator = $create->fetch(PDO::FETCH_ASSOC);
 
-    //$id_user= $_SESSION['id_user'];
-    $id_user=1;
+    $id_user= $_SESSION['id_user'];
+    //$id_user=1;
     $groupe->count_belong($id_group);
     $belong= $groupe->belong_group($id_user, $id_group);
 
