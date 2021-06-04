@@ -27,4 +27,34 @@ class Dislike
         $countDislike = $this->conn->query($count);
         return $countDislike->fetchColumn();
     }
+
+    public function addDislike($id_post, $id_user)
+    {
+        $insert = "INSERT INTO dislike_post (id_post, id_user) VALUES (:id_post, :id_user)";
+
+        // prepare the query
+        $stmt = $this->conn->prepare($insert);
+     
+        // bind post, user
+        $stmt->bindParam(':id_post', $id_post);
+        $stmt->bindParam(':id_user', $id_user);
+
+        // execute the query
+        $stmt->execute();
+    }
+
+    public function deleteDislike($id_post, $id_user)
+    {
+        $delete = "DELETE FROM dislike_post WHERE id_post = :id_post AND id_user = :id_user";
+
+        // prepare the query
+        $stmt = $this->conn->prepare($delete);
+     
+        // bind post, user
+        $stmt->bindParam(':id_post', $id_post);
+        $stmt->bindParam(':id_user', $id_user);
+
+        // execute the query
+        $stmt->execute();
+    }
 }

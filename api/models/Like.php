@@ -30,10 +30,25 @@ class Like
 
     public function addLike($id_post, $id_user)
     {
-        $insert = "INSERT INTO like_post (id_post, id_user) VALUES (:id_post, id_user)";
+        $insert = "INSERT INTO like_post (id_post, id_user) VALUES (:id_post, :id_user)";
 
         // prepare the query
         $stmt = $this->conn->prepare($insert);
+     
+        // bind post, user
+        $stmt->bindParam(':id_post', $id_post);
+        $stmt->bindParam(':id_user', $id_user);
+
+        // execute the query
+        $stmt->execute();
+    }
+
+    public function deleteLike($id_post, $id_user)
+    {
+        $delete = "DELETE FROM like_post WHERE id_post = :id_post AND id_user = :id_user";
+
+        // prepare the query
+        $stmt = $this->conn->prepare($delete);
      
         // bind post, user
         $stmt->bindParam(':id_post', $id_post);

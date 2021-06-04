@@ -131,7 +131,7 @@
     cursor: pointer;
 }
 
-.like-action-showPost .validate, .dislike-action-showPost .validate {
+.like-action-showPost.validate, .dislike-action-showPost.validate {
     background-color: rgb(236, 236, 236);
     cursor: pointer;
 }

@@ -38,7 +38,7 @@ xhr.onreadystatechange = function () {
                 </section>`;
             }
 
-            /* Texte du commentaire */
+            /* Texte du post */
             output += `
             </section>
             <section class="text-showPost">
@@ -67,11 +67,11 @@ xhr.onreadystatechange = function () {
             output += `
             <section class="stat-showPost">
                 <section class="like-stat-showPost">
-                    <div class="likeCount-showPost">
-                        <img src="assets/images/like.png" alt=""></img>${post.countLike} 
+                    <div class="likeCount-showPost" id="likeCount${post.id_post}">
+                        <img src="assets/images/like.png" alt="like"></img><span>${post.countLike}</span>
                     </div>
-                    <div class="dislikeCount-showPost">
-                        <img src="assets/images/dislike.png" alt=""></img>${post.countDislike}
+                    <div class="dislikeCount-showPost" id="dislikeCount${post.id_post}">
+                        <img src="assets/images/dislike.png" alt="dislike"></img><span>${post.countDislike}</span>
                     </div>
                 </section>`;
 
@@ -104,15 +104,15 @@ xhr.onreadystatechange = function () {
                     <section class="action-showPost">`
             }
 
-            /* Liker commenter */
+            /* Liker/commenter */
             if (post.possibleLike == 0) {
                 output += `        
-                    <section class="like-action-showPost" onclick="likeShowPost(${post.possibleLike}, ${post.possibleDislike}, ${post.id_post})">
+                    <section class="like-action-showPost" id="like${post.id_post}" onclick="likeShowPost(${post.possibleLike}, ${post.possibleDislike}, ${post.id_post})">
                         <img src="assets/images/likeNoColor.png" alt="like"></img> J'aime
                     </section>`
             } else {
                 output += `
-                    <section class="like-action-showPost validate" onclick="likeShowPost(${post.possibleLike}, ${post.possibleDislike}, ${post.id_post})">
+                    <section class="like-action-showPost validate" id="like${post.id_post}" onclick="likeShowPost(${post.possibleLike}, ${post.possibleDislike}, ${post.id_post})">
                         <img src="assets/images/likeNoColor.png" alt="like"></img> J'aime
                     </section>`
             }
@@ -123,14 +123,14 @@ xhr.onreadystatechange = function () {
 
             if (post.possibleDislike == 0) {
                 output += `
-                        <section class="dislike-action-showPost" onclick="dislikeShowPost(${post.possibleLike}, ${post.possibleDislike}, ${post.id_post})">
+                        <section class="dislike-action-showPost" id="dislike${post.id_post}" onclick="dislikeShowPost(${post.possibleLike}, ${post.possibleDislike}, ${post.id_post})">
                             <img src="assets/images/dislikeNoColor.png" alt="dislike"></img> J'aime pô
                         </section>
                     </section>
                     </section>`
             } else {
                 output += `
-                        <section class="dislike-action-showPost validate" onclick="dislikeShowPost(${post.possibleLike}, ${post.possibleDislike}, ${post.id_post})">
+                        <section class="dislike-action-showPost validate" id="dislike${post.id_post}" onclick="dislikeShowPost(${post.possibleLike}, ${post.possibleDislike}, ${post.id_post})">
                             <img src="assets/images/dislikeNoColor.png" alt="dislike"></img> J'aime pô
                         </section>
                     </section>
@@ -204,30 +204,180 @@ function check(id_post) {
 }
 
 function likeShowPost(like, dislike, post_id) {
+
     if (like === 0) {
         if (dislike === 0) {
-            console.log("ca marche")
 
-            let data = {
-                post: post_id
-            }
+            Like = 1
+            Dislike = 0
 
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "api/controllers/postShow.php");
-            xhr.setRequestHeader("Content-Type", "text/plain");
-            xhr.responseType = "json";
-            xhr.send(JSON.stringify(data));
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 || xhr.status == 201) {
-                    console.log("reponse arrive")
-                }
-            }
+            // Recherche de la section like et modification du onclick et ajout de la class validate
+            sectionLike = document.querySelector("#like" + post_id)
+            sectionLike.removeAttribute("onclick")
+            sectionLike.setAttribute("onclick", "likeShowPost(1, 0, " + post_id + ")")
+
+            sectionDislike = document.querySelector("#dislike" + post_id)
+            sectionDislike.removeAttribute("onclick")
+            sectionDislike.setAttribute("onclick", "dislikeShowPost(1, 0, " + post_id + ")")
+
+            sectionLike.classList.add("validate")
+            countLike = document.querySelector("#likeCount" + post_id + " span")
+            valueLike = countLike.textContent
+            valueLike++
+            countLike.textContent = valueLike
+        }
+
+        if (dislike === 1) {
+            Like = 1
+            Dislike = -1
+
+            sectionLike = document.querySelector("#like" + post_id)
+            sectionLike.removeAttribute("onclick")
+            sectionLike.setAttribute("onclick", "likeShowPost(1, 0, " + post_id + ")")
+
+            sectionDislike = document.querySelector("#dislike" + post_id)
+            sectionDislike.removeAttribute("onclick")
+            sectionDislike.setAttribute("onclick", "dislikeShowPost(1, 0, " + post_id + ")")
+
+            sectionLike.classList.add("validate")
+            sectionDislike.classList.remove("validate")
+
+            countLike = document.querySelector("#likeCount" + post_id + " span")
+            valueLike = countLike.textContent
+            valueLike++
+            countLike.textContent = valueLike
+
+            countDislike = document.querySelector("#dislikeCount" + post_id + " span")
+            valueDislike = countDislike.textContent
+            valueDislike = valueDislike - 1
+            countDislike.textContent = valueDislike
+        }
+    }
+    if (like === 1) {
+        Like = -1
+        Dislike = 0
+
+        // Recherche de la section like et modification du onclick et supprime la class validate
+        sectionLike = document.querySelector("#like" + post_id)
+        sectionLike.removeAttribute("onclick")
+        sectionLike.setAttribute("onclick", "likeShowPost(0, 0, " + post_id + ")")
+
+        sectionDislike = document.querySelector("#dislike" + post_id)
+        sectionDislike.removeAttribute("onclick")
+        sectionDislike.setAttribute("onclick", "dislikeShowPost(0, 0, " + post_id + ")")
+
+        sectionLike.classList.remove("validate")
+        countLike = document.querySelector("#likeCount" + post_id + " span")
+        valueLike = countLike.textContent
+        valueLike = valueLike - 1
+        countLike.textContent = valueLike
+
+    }
+    let data = {
+        bdLike: Like,
+        bdDislike: Dislike,
+        post: post_id
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "api/controllers/likePost.php");
+    xhr.setRequestHeader("Content-Type", "text/plain");
+    xhr.responseType = "json";
+    xhr.send(JSON.stringify(data));
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 || xhr.status == 201) {
+            console.log(xhr.response)
+        }
+    }
+
+
+}
+function dislikeShowPost(like, dislike, post_id) {
+    if (dislike === 0) {
+        if (like === 0) {
+
+            Like = 0
+            Dislike = 1
+
+            // Recherche de la section like et modification du onclick et ajout de la class validate
+            sectionDislike = document.querySelector("#dislike" + post_id)
+            sectionDislike.removeAttribute("onclick")
+            sectionDislike.setAttribute("onclick", "dislikeShowPost(0, 1, " + post_id + ")")
+
+            sectionLike = document.querySelector("#like" + post_id)
+            sectionLike.removeAttribute("onclick")
+            sectionLike.setAttribute("onclick", "likeShowPost(0, 1, " + post_id + ")")
+
+            sectionDislike.classList.add("validate")
+            countDislike = document.querySelector("#dislikeCount" + post_id + " span")
+            valueDislike = countDislike.textContent
+            valueDislike++
+            countDislike.textContent = valueDislike
+        }
+
+        if (like === 1) {
+            Like = -1
+            Dislike = 1
+
+            sectionLike = document.querySelector("#like" + post_id)
+            sectionLike.removeAttribute("onclick")
+            sectionLike.setAttribute("onclick", "likeShowPost(0, 1, " + post_id + ")")
+
+            sectionDislike = document.querySelector("#dislike" + post_id)
+            sectionDislike.removeAttribute("onclick")
+            sectionDislike.setAttribute("onclick", "dislikeShowPost(0, 1, " + post_id + ")")
+
+            sectionLike.classList.remove("validate")
+            sectionDislike.classList.add("validate")
+
+            countLike = document.querySelector("#likeCount" + post_id + " span")
+            valueLike = countLike.textContent
+            valueLike = valueLike - 1
+            countLike.textContent = valueLike
+
+            countDislike = document.querySelector("#dislikeCount" + post_id + " span")
+            valueDislike = countDislike.textContent
+            valueDislike++
+            countDislike.textContent = valueDislike
+        }
+    }
+
+    if (dislike === 1) {
+        Like = 0
+        Dislike = -1
+
+        // Recherche de la section like et modification du onclick et supprime la class validate
+        sectionDislike = document.querySelector("#dislike" + post_id)
+        sectionDislike.removeAttribute("onclick")
+        sectionDislike.setAttribute("onclick", "dislikeShowPost(0, 0, " + post_id + ")")
+
+        sectionLike = document.querySelector("#like" + post_id)
+        sectionLike.removeAttribute("onclick")
+        sectionLike.setAttribute("onclick", "likeShowPost(0, 0, " + post_id + ")")
+
+        sectionDislike.classList.remove("validate")
+        countDislike = document.querySelector("#dislikeCount" + post_id + " span")
+        valueDislike = countDislike.textContent
+        valueDislike = valueDislike - 1
+        countDislike.textContent = valueDislike
+    }
+
+    let data = {
+        bdLike: Like,
+        bdDislike: Dislike,
+        post: post_id
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "api/controllers/likePost.php");
+    xhr.setRequestHeader("Content-Type", "text/plain");
+    xhr.responseType = "json";
+    xhr.send(JSON.stringify(data));
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 || xhr.status == 201) {
+            console.log(xhr.response)
         }
     }
 }
-        function dislikeShowPost(like, dislike, post_id) {
-
-        }
 
 
 
