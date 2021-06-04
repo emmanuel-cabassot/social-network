@@ -249,7 +249,7 @@ class Event{
     function listEventComment($id_event){
 
         // select all query
-        $query = 'SELECT text_comment, date_comment, avatar, name, lastname FROM comment_event  LEFT JOIN users ON comment_event.id_user=users.id_user WHERE id_event=:id_event';
+        $query = 'SELECT text_comment, date_comment, avatar, name, lastname FROM comment_event  LEFT JOIN users ON comment_event.id_user=users.id_user WHERE id_event=:id_event ORDER BY date_comment DESC';
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);

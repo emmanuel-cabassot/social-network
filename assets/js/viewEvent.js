@@ -2,7 +2,6 @@ var vueEvent = document.getElementById('oneEvent');
 var listCommentEvent = document.getElementById('listCommentEvent');
 var id_event = $_GET('id_event');   
 var id_event = id_event.trim();
-var participe = part_event(id_event);
 var submitComment= document.getElementById('submit-comment');
 var footerModal= document.getElementById('footerModal');
 var commentForm= document.getElementById('comment-form');
@@ -19,9 +18,8 @@ var serializeForm = function (form) {
 
 document.addEventListener("DOMContentLoaded", function() {
     viewEvent(id_event);
-    if(participe==true)	{
-        listerCommentE();           
-    }
+    listerCommentE(id_event);           
+
 });
 commentForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -38,14 +36,13 @@ function sendComment(id_event){
         
         xhr.addEventListener("readystatechange", function() {
             if(this.readyState === 4 && this.status == 200) {
-                listerCommentE(id_event);
-            }else{setTimeout(function(){$("#footerModal").html("<p>Erreur système, veuillez recommencer</p>")}, 1000);}
-        });
+                window.location="event.php?id_event="+id_event;
+            }});
 
         xhr.open("POST", "api/controllers/addEventComment?id_event="+id_event);
         xhr.setRequestHeader("Content-Type", "text/plain");
 
-        xhr.send(formData);   
+        xhr.send(form_data);   
     
     } else {
     // if no file submit the form    
@@ -169,7 +166,7 @@ function $_GET(param) {
                             '<p class="card-text">'+records[i].text_comment+
                             '</p><p>date : '+records[i].date_comment+'</p>';
                         }else{
-                            listCommentEvent.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore de commentaires </p>';
+                            ouputLC = '<p class="list-group-item list-group-item-action">Pas encore de commentaires </p>';
                         }
                 }
                 listCommentEvent.innerHTML = outputLC;

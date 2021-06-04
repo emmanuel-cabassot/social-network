@@ -30,9 +30,10 @@ $part = $partGroup->part_group($id_user, $id_event);
 if($part){
 // set response code - 200 OK
     http_response_code(200);
+    return true;
 }  
 else{
     // set response code - 503 
     http_response_code(503);
-
+    return false;
 }

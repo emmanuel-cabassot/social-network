@@ -21,13 +21,13 @@ $db = $database->getConnection();
 $event = new Event($db);
 
 $id_event = isset($_GET['id_event']) ? $_GET['id_event'] : die();
-//$id_user = $_SESSION['id_user'];
-$id_user=1;
+$id_user = $_SESSION['id_user'];
+
 $data = json_decode(file_get_contents("php://input"));
 
 // setcomment property values
 
-$event -> id_event = $data->id_event;
+$event -> id_event = $id_event;
 $event -> id_user = $_SESSION['id_user'];
 $event -> text_comment= $data->text_comment;
 $event -> date_comment =date('Y-m-d H:i:s');

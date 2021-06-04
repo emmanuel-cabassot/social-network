@@ -19,8 +19,8 @@ $db = $database->getConnection();
 
 // instantiate user object
 $event = new Event($db);
-//$id_user= $_SESSION['id_user'];
-$id_user=1;
+$id_user= $_SESSION['id_user'];
+
 
 $id_event=isset($_GET['id_event']) ? $_GET['id_event']: die();
 $participe = $event->particip_event($id_user, $id_event);
@@ -46,7 +46,8 @@ if($participe==true){
             "date_comment" => $date_comment,
             "avatar" => $avatar,
             "name" => $name,
-            "lastname" => $lastname
+            "lastname" => $lastname,
+            "participe" => $participe
             
         );
 
@@ -65,4 +66,6 @@ if($participe==true){
     // set response code - 404 Not found
     http_response_code(404);
     }
+}else{
+    http_response_code(501);
 }

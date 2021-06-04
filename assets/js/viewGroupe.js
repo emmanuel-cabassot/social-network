@@ -2,7 +2,6 @@ var viewGroupe = document.getElementById('viewGroupe');
 var listCommentGroup = document.getElementById('listCommentGroup');
 var id_group = $_GET('id_group');
 var id_group = id_group.trim();
-var belong = part_group(id_group);
 var submitComment= document.getElementById('submitComment');
 var footerModal= document.getElementById('footerModal');
 var commentForm= document.getElementById('comment-form');
@@ -20,9 +19,7 @@ var serializeForm = function (form) {
 
 document.addEventListener("DOMContentLoaded", function() {
     view_group(id_group);
-    if(belong==true){
-        listerCommentG();   
-    }
+    listerCommentG(id_group);     
 });
 
  commentForm.addEventListener('submit', e => {
@@ -40,8 +37,8 @@ function sendComment(id_group){
         
         xhr.addEventListener("readystatechange", function() {
             if(this.readyState === 4 && this.status == 200) {
-                listerCommentG(id_group);
-            }else{setTimeout(function(){$("#footerModal").html("<p>Erreur système, veuillez recommencer</p>")}, 1000);}
+               window.location="groupe.php?id_group="+id_group;
+            }
         });
 
         xhr.open("POST", "api/controllers/addGroupComment?id_group="+id_group);
@@ -140,8 +137,11 @@ function part_group(id_group){
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status === 200){
-            view_group(id_group);  
+         return true;
+        }else{
+           return false;
         }
+        
     });
     xhr.open("POST", "api/controllers/part_group?id_group="+id_group);
     xhr.send();
@@ -163,11 +163,13 @@ function  listerCommentG(id_group){
                         '<img src="assets/images/upload/users/'+records[i].avatar+'" class="card-img-thumb" alt="...">'+records[i].name+' '+records[i].lastname+
                         '<p class="card-text">'+records[i].text_comment+
                         '</p><p>date : '+records[i].date_comment+'</p>';
+
                     }else{
-                        listCommentGroup.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore de commentaires? </p>';
+                        outputLC = '<p class="list-group-item list-group-item-action">Pas encore de commentaires? </p>';
                     }
             }
-            listCommentGroup.innerHTML = outputLC;
+             listCommentGroup.innerHTML = outputLC;
+           
         }else  if(this.readyState === 4 && this.status === 404){
             listCommentGroup.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore de commentaires</p>';
             }

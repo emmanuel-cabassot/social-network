@@ -46,7 +46,8 @@ if($belong==true){
                 "date_comment" => $date_comment,
                 "avatar" => $avatar,
                 "name" => $name,
-                "lastname" => $lastname               
+                "lastname" => $lastname,
+                "belong" => $belong               
             );
             array_push($comment_arr["records"], $comment_item);
         }

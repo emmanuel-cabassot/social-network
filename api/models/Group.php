@@ -232,7 +232,7 @@ class Group{
     function listGroupComment($id_group){
 
         // select all query
-        $query = 'SELECT id_comment_group, text_comment, date_comment, avatar, name, lastname FROM comment_group  LEFT JOIN users ON comment_group.id_user=users.id_user WHERE id_group =:id_group';
+        $query = 'SELECT id_comment_group, text_comment, date_comment, avatar, name, lastname FROM comment_group  LEFT JOIN users ON comment_group.id_user=users.id_user WHERE id_group =:id_group ORDER BY date_comment DESC';
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
