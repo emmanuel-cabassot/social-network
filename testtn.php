@@ -69,27 +69,27 @@ session_start();
                 </section>
                 <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion Évènements<button type="button" class="btn btn-secondary btn-sm float-right">Voir ...</button></div>
+                        <div class="list-group-item list-group-item-action active">Suggestion Évènements
+                            <button type="button" class="btn btn-secondary btn-sm float-right">Voir ...</button>
+                        </div>
                         <div id="suggestedEvent"></div>
                     </div>
                 </section>
             </div>
-            <div class="col-xl-6 col-sm-12">
-                                  
-                </section>
+        
+            <div class="col-xl-6 col-sm-12">                                
                 <div class="container">
                     <div class="row">
-                    <div class="col-md-3">
-                        <div class="profile-card-4 text-center">
-                            <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
-                            <div class="profile-content">
-                                
-                                <div class="profile-description">group_name</div>
-                                    <div class="row">
-                                        <div class="col-xs-4">
+                         <div class="col-md-4">
+                            <div class="profile-card text-center">
+                                <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
+                                <div class="profile-content">                                
+                                    <h6>group_name</h6>
+                                    <div class="row d-flex justify-content-around pt-2">
+                                        <div class="col-xs-4"> 
                                             <div class="profile-overview">
                                                 <p>participants</p>
-                                                <h4>1300</h4>
+                                                <h6>1300</h6>
                                             </div>
                                         </div>
                                         <div class="col-xs-4">
@@ -97,102 +97,134 @@ session_start();
                                                 <a href="#" class="btn btn-primary float-right">Voir</a><br>   
                                             </div>
                                         </div>
-                                    </div>
-                                </div>  
+                                    </div> 
+                                </div>
                             </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="profile-card text-center">
+                                <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
+                                <div class="profile-content">                                    
+                                    <h6>group_name</h6>
+                                    <div class="row d-flex justify-content-around pt-2">
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <p>participants</p>
+                                                <h6>1300</h65>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <a href="#" class="btn btn-primary float-right">Voir</a><br>   
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-4">
+                            <div class="profile-card text-center">
+                                <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
+                                <div class="profile-content">                                    
+                                    <h6>group_name</h6>
+                                    <div class="row d-flex justify-content-around pt-2">
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <p>participants</p>
+                                                <h6>1300</h6>
+                                            </div>
+                                        </div>                                            
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <a href="#" class="btn btn-primary float-right">Voir</a><br>   
+                                            </div>
+                                        </div>
+                                    </div>                                      
+                                </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="profile-card-4 text-center">
-                            <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
-                            <div class="profile-content">
-                                
-                                <div class="profile-description">group_name</div>
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <div class="profile-overview">
-                                                <p>participants</p>
-                                                <h4>1300</h4>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <div class="profile-overview">
-                                                <a href="#" class="btn btn-primary float-right">Voir</a><br>   
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>  
-                            </div>
+                </div>                   
+                                                  
+                <div class="card">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-sm-4">
+                            <img class="d-block img-min" src="assets/images/upload/groups/1.jpg" alt="">
                         </div>
-                    </div>  
-                    <div class="col-md-3">
-                        <div class="profile-card-4 text-center">
-                            <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
-                            <div class="profile-content">
-                                
-                                <div class="profile-description">group_name</div>
-                                    <div class="row">
-                                        <div class="col-xs-4">
-                                            <div class="profile-overview">
-                                                <p>participants</p>
-                                                <h4>1300</h4>
-                                            </div>
-                                        </div>
+                        <div class="col-sm-4 mt-3">                            
+                                <h4 class="card-title">name_group</h4>
+                                <p class="card-text">participants : <b>2</b></p>
+                        </div>    
+                        <div class="col-sm-4 mt-4">
+                            <a href="#" class="btn btn-primary">Voir</a>                                                                      
+                        </div>                                      
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-5">
+                            <img  class="img-mid" src="assets/images/upload/groups/1.jpg" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <h5 class="card-title">name_group</h5>
+                                <p class="card-text">description</p>
+                                <div class="profile-content">                                 
                                         
-                                        <div class="col-xs-4">
-                                            <div class="profile-overview">
-                                                <a href="#" class="btn btn-primary float-right">Voir</a><br>   
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>  
+                                            <div class="row d-flex justify-content-around pt-2">
+                                                <div class="col-xs-4 mt-4">
+                                                    <div class="profile-overview">
+                                                        <p>participants</p>
+                                                        <h6>1300</h6>
+                                                    </div>
+                                                </div>                                            
+                                                <div class="col-xs-4">
+                                                    <div class="profile-overview">
+                                                        <p class="card-text ">Créé par : 
+                                                            <img src="assets/images/upload/users/default.png" class="card-img-thumb" alt="...">
+                                                            <h6>name lastname</h6>
+                                                        </p>   
+                                                    </div>
+                                                </div>
+                                            </div>                                      
+                                        </div>                       
+                                
+                                <p>Vous êtes membre de ce groupe</p>
+                                <button type="button" class="btn btn-primary">Se désinscrire</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-                                                  
-                                <div class="card">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <img class="d-block w-50" src="assets/images/upload/groups/1.jpg" alt="">
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="card-block">
-                                                <h4 class="card-title">name_group</h4>
-                                                <p class="card-text">participants : <b>2</b></p>
-                                                <br>
-                                                <a href="#" class="btn btn-primary float-right">Voir</a><br>
-                                            </div>
-                                        </div>                                
-                                    </div>                                      
-                                </div>
-                            </div><br>
-                            
+            </div> 
+                       
             <div class="col-xl-3 col-sm-12">
                 <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion d'amis<button type="button" class="btn btn-secondary
-                         btn-sm float-right">Voir ...</button></div>
+                        <div class="list-group-item list-group-item-action active">Suggestion d'amis
+                            <button type="button" class="btn btn-secondary btn-sm float-right">Voir ...</button>
+                        </div>
                         <div id="suggestedFriend"></div>                        
                     </div>                    
                 </section>
                 <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Amis<button type="button" class="btn btn-secondary btn-sm float-right">Voir ...</button></div>
+                        <div class="list-group-item list-group-item-action active">Amis
+                            <button type="button" class="btn btn-secondary btn-sm float-right">Voir ...</button>
+                        </div>
                         <div id="listFriends"></div>                        
                     </div>
                 </section>
                 <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion de groupes<button type="button" class="btn btn-secondary btn-sm float-right">Voir ...</button></div>
+                        <div class="list-group-item list-group-item-action active">Suggestion de groupes
+                            <button type="button" class="btn btn-secondary btn-sm float-right">Voir ...</button>
+                        </div>
                         <div id="suggestedGroup"></div>                        
                     </div>
                 </section>
             </div>
-                
-                           
+        </div>       
+    </main>                       
     <footer id="footer">
         <div class="col-lg-12">
         </div>

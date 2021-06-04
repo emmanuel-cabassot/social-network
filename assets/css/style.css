@@ -91,23 +91,16 @@ a .quiet{
     color: #2fa4e7
 }
  
-.card-block {
-    font-size: 1em;
-    position: relative;
-    margin: 0;
-    padding: 1.5em;
-    border: none;    
-    box-shadow: none;     
-}
 .card {
     font-size: 1em;
     overflow: hidden;
     padding: 5;
     border: none;
-    border-radius: .28571429rem;    
+    border-radius: 5px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1); 
     margin:20px;
 }
-.profile-card-4 {
+.profile-card {
     max-width: 300px;
     background-color: #FFF;
     border-radius: 5px;
@@ -118,38 +111,27 @@ a .quiet{
     cursor: pointer;
 }
  
-.profile-card-4 img {
+.profile-card img {
     transition: all 0.25s linear;
 }
  
-.profile-card-4 .profile-content {
+.profile-card .profile-content {
     position: relative;
     padding: 15px;
     background-color: #FFF;
 }
  
-.profile-card-4 .profile-description {
-    color: #777;
-    font-size: 15px;
-    padding: 10px;
+.profile-card .profile-overview h6{
+    padding: 0px;
 }
  
-.profile-card-4 .profile-overview {
-    padding: 15px 0px;
-}
- 
-.profile-card-4 .profile-overview p {
+.profile-card .profile-overview p {
     font-size: 15px;
     font-weight: 600;
     color: #777;
 }
  
-.profile-card-4 .profile-overview h4 {
-    color: #273751;
-    font-weight: bold;
-}
- 
-.profile-card-4 .profile-content::before {
+.profile-card .profile-content::before {
     content: "";
     position: absolute;
     height: 20px;
@@ -161,7 +143,17 @@ a .quiet{
     transform: skewY(3deg);
 }
  
-.profile-card-4:hover img {
+.profile-card:hover img {
     transform: rotate(5deg) scale(1.1, 1.1);
     filter: brightness(110%);
+}
+
+.img-mid{
+    width:250px;
+    height: auto
+}
+
+.img-min{
+    width:100px;
+    height: auto;
 }
