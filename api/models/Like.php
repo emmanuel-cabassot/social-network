@@ -28,5 +28,20 @@ class Like
         return $countLike->fetchColumn();
     }
 
+    public function addLike($id_post, $id_user)
+    {
+        $insert = "INSERT INTO like_post (id_post, id_user) VALUES (:id_post, id_user)";
+
+        // prepare the query
+        $stmt = $this->conn->prepare($insert);
+     
+        // bind post, user
+        $stmt->bindParam(':id_post', $id_post);
+        $stmt->bindParam(':id_user', $id_user);
+
+        // execute the query
+        $stmt->execute();
+    }
+
 
 }

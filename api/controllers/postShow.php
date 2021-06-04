@@ -38,15 +38,21 @@ foreach ($posts as $post) {
 
     $classPost = new Post($db);
     $post = $classPost->showPostById($id_post);
+    $post['text_post'] = nl2br($post['text_post']);
     $user = $classPost->userById($post['id_user']);
-    $post['userLastname'] = $user['lastname'];
-    $post['userName'] = $user['name'];
+    $post['userLastname'] = ucfirst($user['lastname']);
+    $post['userName'] = ucfirst($user['name']);
+    $post['userAvatar'] = $user['avatar'];
 
     if ($post['id_user'] == $_SESSION['id_user']) {
         $post['myPost'] = 'oui';
     } else {
         $post['myPost'] = 'non';
     }
+
+    $classUserSession = new User($db);
+    $userSession = $classUserSession->userById($_SESSION['id_user']);
+    $post['avatarUserSession'] = $userSession['avatar'];
 
     if ($post['image_post'] == "oui") {
         $classImages = new PhotoPost($db);
@@ -76,8 +82,9 @@ foreach ($posts as $post) {
              $userComment = $classUser->userById($idUserComment);
 
              $post['comments'][$i] = $comment;
-             $post['comments'][$i]['userName'] = $userComment['name'];
-             $post['comments'][$i]['userlastName'] = $userComment['lastname'];
+             $post['comments'][$i]['text_comment_post'] = nl2br($post['comments'][$i]['text_comment_post']);
+             $post['comments'][$i]['userName'] = ucfirst($userComment['name']);
+             $post['comments'][$i]['userlastName'] = ucfirst($userComment['lastname']);
              $post['comments'][$i]['userAvatar'] = $userComment['avatar'];
              $i++;
         }

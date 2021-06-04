@@ -10,14 +10,14 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/css/showPost.css">
+    <link rel="stylesheet" href="assets/css/showPostsMur.css">
     <script src="assets/js/jquery.min.js"></script>
     <title>Document</title>
 </head>
 
 <body>
     <main>
-        <section class="murPost">
+        <section class="showPostsMur">
            
         </section>
 
