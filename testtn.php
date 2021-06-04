@@ -3,7 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,23 +20,23 @@ session_start();
     <script src="assets/js/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-
+ 
 <body class="bg-light">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-light">
             <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" class="logo-img-thumb"></a>
-
-
+ 
+ 
             <div class="collapse navbar-collapse" id="navbarColor03">
-
+ 
                 <input class="form-control mr-sm-2 w-25" type="text" name="main-search" id="main-search" placeholder="Nom du contact">
-
+ 
                 <div id="search-show">
                     <div class="nav nav-pills navbar-light flex-column">
                         <div class="search-result"></div>
                     </div>
                 </div>
-
+ 
                 <ul class="navbar-nav ml-auto display-5">
                     <li class="nav-item active">
                         <a class="nav-link" href="#"><i class="bi bi-house mr-3"></i></a>
@@ -75,44 +75,106 @@ session_start();
                 </section>
             </div>
             <div class="col-xl-6 col-sm-12">
-                <section class="sendPost">
-
-                    <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['id_user'] ?>>
-                        <p class="ml-3"> Quoi de neuf emmanuel ?</p>
-                    </section>
-                    <div class="separation-sendPost"></div>
-                    <section class="media-sendPost">
-                        <section class="story-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
-                            <section class="bg-story-media-sendPost">
-                            </section>
-                            <section class="text-media-sendPost">
-                                Story
-                            </section>
-                        </section>
-                        <section class="img-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
-                            <section class="bg-img-media-sendPost">
-                            </section>
-                            <section class="text-media-sendPost">
-                                Photo/Vidéo
-                            </section>
-                        </section>
-                        <section class="humeur-media-sendPost" data-modale=<?= $_SESSION['id_user'] ?>>
-                            <section class="bg-humeur-media-sendPost">
-                            </section>
-                            <section class="text-media-sendPost">
-                                Humeur
-                            </section>
-                        </section>
-                    </section>
-
+                                  
                 </section>
+                <div class="container">
+                    <div class="row">
+                    <div class="col-md-3">
+                        <div class="profile-card-4 text-center">
+                            <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
+                            <div class="profile-content">
+                                
+                                <div class="profile-description">group_name</div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <p>participants</p>
+                                                <h4>1300</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <a href="#" class="btn btn-primary float-right">Voir</a><br>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="profile-card-4 text-center">
+                            <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
+                            <div class="profile-content">
+                                
+                                <div class="profile-description">group_name</div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <p>participants</p>
+                                                <h4>1300</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <a href="#" class="btn btn-primary float-right">Voir</a><br>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="col-md-3">
+                        <div class="profile-card-4 text-center">
+                            <img src="assets/images/upload/groups/1.jpg" class="img img-responsive">
+                            <div class="profile-content">
+                                
+                                <div class="profile-description">group_name</div>
+                                    <div class="row">
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <p>participants</p>
+                                                <h4>1300</h4>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <a href="#" class="btn btn-primary float-right">Voir</a><br>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
+        </div>
+                                                  
+                                <div class="card">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <img class="d-block w-50" src="assets/images/upload/groups/1.jpg" alt="">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="card-block">
+                                                <h4 class="card-title">name_group</h4>
+                                                <p class="card-text">participants : <b>2</b></p>
+                                                <br>
+                                                <a href="#" class="btn btn-primary float-right">Voir</a><br>
+                                            </div>
+                                        </div>                                
+                                    </div>                                      
+                                </div>
+                            </div><br>
+                            
             <div class="col-xl-3 col-sm-12">
                 <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion d'amis<button type="button" class="btn btn-secondary btn-sm float-right">Voir ...</button></div>
+                        <div class="list-group-item list-group-item-action active">Suggestion d'amis<button type="button" class="btn btn-secondary
+                         btn-sm float-right">Voir ...</button></div>
                         <div id="suggestedFriend"></div>                        
                     </div>                    
                 </section>
@@ -128,67 +190,9 @@ session_start();
                         <div id="suggestedGroup"></div>                        
                     </div>
                 </section>
-
-
-                <section class="container-modale-sendPost">
-                    <section class="modale-sendPost">
-                        <header class="header-modale-sendPost">
-                            <h1> Créer une publication</h2>
-                                <div class="fermeture-modal-close" data-dismiss="dialog">&#10006</div>
-                        </header>
-                        <main class="main-modale-sendPost">
-                            <section class="textarea">
-                                <div class="form-group">
-                                    <textarea name="textarea" id="TextareaPostSend" placeholder="Ecrivez votre post..."></textarea>
-                                </div>
-                                <section class="preview-sendPost">
-                                    <div id="preview"></div>
-                                    <div id="preview-video"></div>
-                                </section>
-                                <section class="upload-images w-100">
-                                    <form action="uploadTempPost.php" class="dropzone" id="dropzoneFromImages"></form>
-                                    <button type="button" class="btn btn-primary w-100" id="submit-photo">Importer vos images</button>
-                                </section>
-                                <section class="upload-video w-100">
-                                    <form action="uploadTempPostVideo.php" class="dropzone" id="dropzoneFromVideo"></form>
-                                    <button type="button" class="btn btn-primary w-100" id="submit-video">Importer votre vidéo</button>
-                                </section>
-                            </section>
-                            <section class="media-module-sendPost row d-flex justify-content-around align-items-center mb-2 mt-2">
-                                <section class="video-media-senPost" id="ajouterVideo-sendPost">
-                                    <section class="bg-video-media-sendPost">
-                                    </section>
-                                    <section class="text-media-sendPost ml-2">
-                                        Vidéo
-                                    </section>
-                                </section>
-
-                                <section class="image-media-sendPost" id="ajouterPhoto-sendPost">
-                                    <section class="bg-image-media-sendPost">
-                                    </section>
-                                    <section class="text-media-sendPost">
-                                        Photo
-                                    </section>
-                                </section>
-
-                                <section class="button-story-media-sendPost" id="ajouterStory-sendPost">
-                                    <section class="bg-button-story-media-sendPost">
-                                    </section>
-                                    <section class="button-text-media-sendPost">
-                                        Story
-                                    </section>
-                                </section>
-                            </section>
-                            <section class="publier-sendPost w-100">
-                                <button type="button" class="btn btn-primary w-100">Publier</button>
-                            </section>
-                        </main>
-
-                    </section>
-                </section>
             </div>
-        
-    </main>
+                
+                           
     <footer id="footer">
         <div class="col-lg-12">
         </div>
@@ -204,9 +208,10 @@ session_start();
     <script src="search.js"></script>
     <script src="homedenis.js"></script>
     <script src="sendPost.js"></script>
-
-
-
+ 
+ 
+ 
 </body>
-
+ 
 </html>
+ 

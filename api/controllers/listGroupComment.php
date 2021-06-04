@@ -19,8 +19,8 @@ $db = $database->getConnection();
 
 // instantiate user object
 $group = new Group($db);
-//$id_user=$_SESSION['id_user'];
-$id_user=1;
+$id_user=$_SESSION['id_user'];
+
 
 $id_group = isset($_GET['id_group']) ? $_GET['id_group'] : die();
 $belong= $group->belong_group($id_user, $id_group);
@@ -46,7 +46,8 @@ if($belong==true){
                 "date_comment" => $date_comment,
                 "avatar" => $avatar,
                 "name" => $name,
-                "lastname" => $lastname               
+                "lastname" => $lastname,
+                "belong" => $belong               
             );
             array_push($comment_arr["records"], $comment_item);
         }

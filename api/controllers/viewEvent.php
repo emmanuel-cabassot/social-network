@@ -6,7 +6,7 @@ session_start();
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Methods: GET,POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
@@ -29,7 +29,9 @@ $oneEvent->id_event = isset($_GET['id_event']) ? $_GET['id_event'] : die();
 $oneEvent->view_event($oneEvent->id_event);
   
 if($oneEvent->id_event != null){
-
+    $id_user_create= $oneEvent->id_user_creator;
+    $create =$oneEvent->viewCreate($id_user_create);
+    $creator = $create->fetch(PDO::FETCH_ASSOC);
     $count= $oneEvent->count_part($oneEvent->id_event);
     $part= $oneEvent->particip_event($_SESSION['id_user'], $oneEvent->id_event);
 
@@ -45,6 +47,9 @@ if($oneEvent->id_event != null){
         "public_event" =>$oneEvent->public_event,
         "signalized" =>$oneEvent->signalized,
         "blocked"=>$oneEvent->blocked,
+        "name" =>$creator['name'],
+        "lastname" =>$creator['lastname'],
+        "avatar" =>$creator['avatar'],
         "count" =>$oneEvent->count_part,
         "part" =>$part 
     );

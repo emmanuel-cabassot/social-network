@@ -15,6 +15,10 @@ class Group{
     public $count_group;
     public $text_comment;
     public $date_comment;
+    public $id_user_create;
+    public $name_create;
+    public $lastname_create;
+    public $avatar_create;
 
     // constructor with $db as database connection
     public function __construct($db){
@@ -24,7 +28,7 @@ class Group{
     function listGroups($id_user){
 
         // select all query
-        $query = 'SELECT * FROM belong LEFT JOIN groupe ON belong.id_group = groupe.id_group WHERE id_user= :id_user' ;
+        $query = 'SELECT belong.id_group, name_group, description, img_group, id_user_create  FROM belong LEFT JOIN groupe ON belong.id_group = groupe.id_group WHERE id_user= :id_user' ;
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -35,9 +39,19 @@ class Group{
         return $stmt;
 
         }
+    function viewCreate($id_user_create){
+         $query= 'SELECT name AS name_create, lastname AS lastname_create, avatar AS avatar_create FROM users WHERE id_user= :id_user_create';
+          // prepare query statement
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id_user_create", $id_user_create);
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
 
     function suggestGroup($id_user){
-        $query = 'SELECT * FROM belong LEFT JOIN groupe ON belong.id_group = groupe.id_group WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend =: id_user) AND id_group not IN (SELECT id_group FROM belong where id_user=:id_user) ORDER BY RAND() LIMIT 5';
+        $query = 'SELECT * FROM belong LEFT JOIN groupe ON belong.id_group = groupe.id_group WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend =: id_user) AND id_group not IN (SELECT id_group FROM belong where id_user=:id_user) ORDER BY RAND() LIMIT 3';
         $stmt = $this->conn->prepare($query);
          $stmt->bindParam(":id_user", $id_user);
         // execute query
@@ -218,7 +232,7 @@ class Group{
     function listGroupComment($id_group){
 
         // select all query
-        $query = 'SELECT id_comment_group, text_comment, date_comment, avatar, name, lastname FROM comment_group  LEFT JOIN users ON comment_group.id_user=users.id_user WHERE id_group =:id_group';
+        $query = 'SELECT id_comment_group, text_comment, date_comment, avatar, name, lastname FROM comment_group  LEFT JOIN users ON comment_group.id_user=users.id_user WHERE id_group =:id_group ORDER BY date_comment DESC';
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -230,6 +244,8 @@ class Group{
         return $stmt;
 
         }
+
+
 
 
 }

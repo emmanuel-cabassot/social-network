@@ -19,28 +19,36 @@ $db = $database->getConnection();
 
 // instantiate user object
 $event = new Event($db);
+//$id_user= $_SESSION['id_user'];
+$id_user=1;
 
-$stmt = $event->listEventComment($id_event);
-$num = $stmt->rowCount();
 
-if ($num>0){
+$id_event=isset($_GET['id_event']) ? $_GET['id_event']: die();
+$participe = $event->particip_event($id_user, $id_event);
+
+if($participe==true){    
+    $stmt = $event->listEventComment($id_event);
+    $num = $stmt->rowCount();
+
+    if ($num>0){
   
-    $comment_arr=array();
-    $comment_arr['records']=array();
+        $comment_arr=array();
+        $comment_arr['records']=array();
 
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            extract($row);
         // extract row
         // this will make $row['name'] to
         // just $name only
        
-        $comment_item = array(
+         $comment_item = array(
             "id_comment_event" => $id_comment_event,
             "text_comment" => $text_comment,
             "date_comment" => $date_comment,
             "avatar" => $avatar,
             "name" => $name,
-            "lastname" => $lastname
+            "lastname" => $lastname,
+            "participe" => $participe
             
         );
 
@@ -53,10 +61,12 @@ if ($num>0){
 
     // show products data
     echo json_encode($comment_arr);
-}
+    }
 
-else{
+    else{
     // set response code - 404 Not found
     http_response_code(404);
-
+    }
+}else{
+    http_response_code(501);
 }

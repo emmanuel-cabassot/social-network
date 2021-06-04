@@ -19,7 +19,8 @@ $db = $database->getConnection();
 // instantiate user object
 $friend = new Friend($db);
 
-$id_user = $_SESSION['id_user'];
+//$id_user = $_SESSION['id_user'];
+$id_user =1;
 
 
 $list = $friend->listFriends($id_user);
@@ -34,6 +35,7 @@ if ($num>0){
         // extract row
         // this will make $row['name'] to
         // just $name only
+
         $friend_item = array(
             "id_friend" => $id_friend,
             "id_user_friend" => $id_user_friend,

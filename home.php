@@ -21,13 +21,13 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body class="bg-light">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light">
             <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" class="logo-img-thumb"></a>
 
 
-            <div class="collapse navbar-collapse" id="navbarColor01">
+            <div class="collapse navbar-collapse" id="navbarColor03">
 
                 <input class="form-control mr-sm-2 w-25" type="text" name="main-search" id="main-search" placeholder="Nom du contact">
 
@@ -39,16 +39,16 @@ session_start();
 
                 <ul class="navbar-nav ml-auto display-5">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="bi bi-house mr-3"></i></a>
+                        <a class="nav-link" href="#"><i class="bi bi-house mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-three-dots mr-3"></i></a>
+                        <a class="nav-link" href="#"><i class="bi bi-three-dots mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-camera-video mr-3"></i></a>
+                        <a class="nav-link" href="#"><i class="bi bi-camera-video mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-person-circle mr-3"></i></a>
+                        <a class="nav-link" href="#"><i class="bi bi-person-circle mr-3 blue"></i></a>
                     </li>
                 </ul>
             </div>
@@ -64,6 +64,9 @@ session_start();
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="events.php">Evènements</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="friends.php">Amis</a>
                         </li>
                     </ul>
                 </section>

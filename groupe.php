@@ -65,6 +65,9 @@ session_start();
                         <li class="nav-item">
                             <a class="nav-link" href="events.php">Evènements</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="friends.php">Amis</a>
+                        </li>
                     </ul>
                 </section>
                 <section class="alert alert-info">
@@ -102,7 +105,7 @@ session_start();
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="comment-form"  enctype="multipart/form-data" method="POST">
+                                <form id="comment-form" method="POST">
                                     <fieldset>
                                         <div class="form-group">             
                                             <textarea class="form-control w-75" id="comment" placeholder="Commentaire" rows="" name="text_comment" required></textarea>                    
@@ -114,7 +117,7 @@ session_start();
                                     </fieldset>
                                 </form>
                             </div>
-                            <div class="modal-footer" id="footer"> 
+                            <div class="modal-footer" id="footerModal"> 
                                 
                             </div>
                         </div>

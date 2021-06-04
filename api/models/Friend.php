@@ -7,8 +7,8 @@ class Friend{
 
     // object properties
     public $id_friend;    
-    public $id_user;
-    public $id_user_friend; 
+    public $id_from;
+    public $id_to; 
     public $confirmed;   
     public $name;
     public $lastname;
@@ -16,6 +16,7 @@ class Friend{
     public $avatar;
     public $city;
     public $country;
+    public $countFriend;
 
     // constructor with $db as database connection
     public function __construct($db){
@@ -25,21 +26,21 @@ class Friend{
 
     function listFriends($id_user){
 
-    // select all query
-    $query = 'SELECT * FROM friend LEFT JOIN users ON friend.id_user_friend=users.id_user LEFT JOIN connected ON connected.id_user=friend.id_user_friend WHERE friend.id_user= :id_user UNION SELECT * FROM friend LEFT JOIN users ON friend.id_user=users.id_user LEFT JOIN connected ON connected.id_user=friend.id_user WHERE friend.id_user_friend= :id_user LIMIT 20';
-
-    // prepare query statement
-    $stmt = $this->conn->prepare($query);
-
-    $id_user=htmlspecialchars($id_user);
-
-    $stmt->bindParam(":id_user", $id_user);    
-    // execute query
-    $stmt->execute();
-
-    return $stmt;
-
-    }
+        // select all query
+        $query = 'SELECT * FROM friend LEFT JOIN users ON friend.id_user_friend=users.id_user LEFT JOIN connected ON connected.id_user=friend.id_user_friend WHERE friend.id_user= :id_user UNION SELECT * FROM friend LEFT JOIN users ON friend.id_user=users.id_user LEFT JOIN connected ON connected.id_user=friend.id_user WHERE friend.id_user_friend= :id_user LIMIT 20';
+    
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+    
+        $id_user=htmlspecialchars($id_user);
+    
+        $stmt->bindParam(":id_user", $id_user);    
+        // execute query
+        $stmt->execute();
+    
+        return $stmt;
+    
+        }
 
     function viewFriend($id_user){
         $view= "SELECT * FROM users WHERE id_user=:id_user";
@@ -136,6 +137,16 @@ class Friend{
             return true;
         }               
             return false;            
+    }
+
+    function countFriend($id_user){
+        $counter= "SELECT COUNT(id_friend) AS countAmis FROM friend WHERE id_user=: id_user OR id_user_friend=: id_user";
+        $stmt = $this->conn->prepare($counter);
+        $stmt->bindParam('id_user', $id_user);
+        $stmt->execute();
+        $row= $stmt->fetch();
+        $this->countFriend = $row['countAmis'];
+
     }
 
 }
