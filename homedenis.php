@@ -16,6 +16,7 @@ session_start();
     <link rel="stylesheet" href="assets/css/bootstrap-icons.css">
     <link href="assets/css/dropzone.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="assets/css/sendPost.css">
+    <link rel="stylesheet" href="assets/css/showPostsMur.css">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -106,9 +107,9 @@ session_start();
                             </section>
                         </section>
                     </section>
-
-
-
+                </section>
+                <section class="showPostsMur">
+                
                 </section>
             </div>
 
@@ -206,8 +207,9 @@ session_start();
     <footer id="footer">
         <div class="col-lg-12">
         </div>
+        <input type="hidden" id="idUser" value="1">
     </footer>
-    <input type="hidden" id="idUser" value="1">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
         $('#TextareaPostSend').emojioneArea({
@@ -218,6 +220,7 @@ session_start();
     <script src="search.js"></script>
     <script src="homedenis.js"></script>
     <script src="sendPost.js"></script>
+    <script src="murPost.js"></script>
 
 
 
