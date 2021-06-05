@@ -143,7 +143,8 @@ session_start();
                                 </div>
                         </div>
                     </div>
-                </div>                   
+                </div>
+            </div>                   
                                                   
                 <div class="card">
                     <div class="row d-flex justify-content-between">
