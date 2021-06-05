@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -19,8 +21,8 @@ $db = $database->getConnection();
 // instantiate user object
 $friend = new Friend($db);
 
-//$id_user = $_SESSION['id_user'];
-$id_user =1;
+$id_user = $_SESSION['id_user'];
+//$id_user =1;
 
 
 $list = $friend->listFriends($id_user);
@@ -37,8 +39,8 @@ if ($num>0){
         // just $name only
 
         $friend_item = array(
+            "id_follow" => $id_follow,
             "id_friend" => $id_friend,
-            "id_user_friend" => $id_user_friend,
             "name" => $name,
             "lastname" => $lastname,
             "avatar" => $avatar,

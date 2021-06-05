@@ -42,7 +42,6 @@ if ($num>0){
        
         $suggest_item = array(
             "id_friend" => $id_friend,
-            "id_user_friend" => $id_user_friend,
             "name" =>$name,
             "lastname" =>$lastname,
             "avatar" =>$avatar,
