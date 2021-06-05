@@ -16,11 +16,13 @@ document.addEventListener("DOMContentLoaded", function() {
         for(var i =0; i<records.length; i++){
 
             outputG +=
-            '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/groups/'+records[i].img_group+
-            '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+records[i].name_group+
-            '</h5><p class="card-text">participants : <b>'+records[i].count+
-            '</b></p><a  href="groupe.php?id_group='+records[i].id_group+
-            '"><button type="button" class="btn btn-primary">Voir</button></a></div></div></div></div><br>';
+            
+            '<div class="card"><div class="row d-flex justify-content-between"><div class="col-sm-4"><img class="d-block img-min" src="assets/images/upload/groups/'+records[i].img_group+
+            '" alt="..."></div><div class="col-sm-4 mt-3"><h4 class="card-title">'+records[i].name_group+
+            '</h4><p class="card-text">participants : <b>'+records[i].count+
+            '</b></p></div><div class="col-sm-4 mt-4"><a href="groupe.php?id_group='+records[i].id_group+
+            '" class="btn btn-primary">Voir</a></div></div></div>';
+
         }
 
         listGroups.innerHTML = outputG;

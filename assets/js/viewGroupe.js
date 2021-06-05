@@ -91,13 +91,16 @@ function view_group(id_group){
             }else{appartenir='<p>Vous êtes membre de ce groupe</p><button type="button" onclick="noBelong('+record.id_group+
             ')" class="btn btn-primary">Se désinscrire</button>'}
             outputGE +=
-            '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/groups/'+record.img_group+
-            '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+record.name_group+
+            
+            '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-5"><img  class="img-mid" src="assets/images/upload/groups/'+record.img_group+
+            '" class="card-img" alt="..."></div><div class="col-md-7"><div class="card-body"><h5 class="card-title">'+record.name_group+
             '</h5><p class="card-text">'+record.description+
-            '</p><p class="card-text">participants : <b>'+record.count+
-            '</b></p><p class="card-text">Créé par : <b><img src="assets/images/upload/users/'+record.avatar_create+
-            '" class="card-img-thumb" alt="...">'+record.name_create+' '+record.lastname_create+
-            '</b></p>'+appartenir+'</div></div></div></div>';
+            '</p><div class="profile-content"><div class="row d-flex justify-content-around pt-2"><div class="col-xs-4 mt-4"><div class="profile-overview"><p>participants</p><h6>'+record.count+
+            '</h6></div></div><div class="col-xs-4"><div class="profile-overview"><p class="card-text ">Créé par :<img src="assets/images/upload/users/'+record.avatar_create+
+            '" class="card-img-thumb" alt="..."><h6>'+record.name_create+' '+record.lastname_create+
+            '</h6></p></div></div></div></div>'+appartenir+
+            '</div></div></div></div></div>';  
+                       
         }else{
             outputGE =
             '<li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">Erreur système, veuillez essayer de nouveau.</li>';

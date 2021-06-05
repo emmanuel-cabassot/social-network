@@ -18,12 +18,13 @@ function suggestGroupB(){
         for(var i =0; i<records.length; i++){				
             if(records[i].belong==false){
             outputSG +=  
-            '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/groups/'+records[i].img_group+
-            '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+records[i].name_group+
-            '</h5><p class="card-text">participants : <b>'+records[i].count+
-            '</b></p><a  href="groupe.php?id_group='+records[i].id_group+
-            '"><button type="button" class="btn btn-primary">Voir</button></a></div></div></div></div><br>';
-            }        
+            
+            '<div class="col-md-4"><div class="profile-card text-center"><img src="assets/images/upload/groups/'+records[i].img_group+
+            '" class="img img-responsive"><div class="profile-content"><h6>'+records[i].name_group+
+            '</h6><div class="row d-flex justify-content-around pt-2"><div class="col-xs-4"><div class="profile-overview"><p>participants</p><h6>'+records[i].count+
+            '</h6></div></div><div class="col-xs-4"><div class="profile-overview"><a href="groupe.php?id_group='+records[i].id_group+
+            '" class="btn btn-primary float-right">Voir</a><br></div></div></div></div></div></div>';
+           }        
      
             setTimeout(function(){ 
                 suggestGroupe.innerHTML = outputSG;

@@ -81,7 +81,8 @@ session_start();
                 </section>
             </div>
             <div class="col-xl-6 col-sm-12 mt-3">
-
+            <div class="container">
+                    
                 <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target="#groupModal">
                 Créez un groupe
                 </button>
@@ -89,7 +90,9 @@ session_start();
                 <section>
                     <h5>Suggestion - Vos amis participent à ces groupes:</h5>
                     <hr>
-                    <div id="suggestGroupe"></div>    
+                    <div class="row" id="suggestGroupe">
+                        
+                    </div>   
                 </section>
                 <br>      
                 <!-- Button trigger modal -->
