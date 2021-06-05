@@ -27,7 +27,7 @@ class Friend{
     function listFriends($id_user){
 
         // select all query
-        $query = 'SELECT * FROM friend LEFT JOIN users ON friend.id_user_friend=users.id_user LEFT JOIN connected ON connected.id_user=friend.id_user_friend WHERE friend.id_user= :id_user UNION SELECT * FROM friend LEFT JOIN users ON friend.id_user=users.id_user LEFT JOIN connected ON connected.id_user=friend.id_user WHERE friend.id_user_friend= :id_user LIMIT 20';
+        $query = 'SELECT id_user, name, lastname, avatar, city, country FROM friend LEFT JOIN users ON `id_followed`=users.id_user LEFT JOIN connected ON connected.id_user=`id_followed` WHERE `id_follower`= id_user UNION SELECT id_user, name, lastname, avatar, city, country FROM friend LEFT JOIN users ON `id_follower`=users.id_user LEFT JOIN connected ON connected.id_user=`id_follower` WHERE `id_followed`= :id_user LIMIT 20';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -71,7 +71,10 @@ class Friend{
     function suggestFriends($id_user){
 
     // select all query
-    $query = 'SELECT * FROM friend LEFT JOIN  users ON friend.id_user_friend= users.id_user WHERE  friend.id_user IN (SELECT id_user_friend  FROM friend WHERE friend.id_user= :id_user) AND friend.id_user_friend not in (select friend.id_user_friend from friend where friend.id_user= :id_user) ORDER BY RAND() LIMIT 5';
+    $query = 'SELECT id_user FROM friend LEFT JOIN users ON `id_followed`= users.id_user WHERE `id_follower` IN (SELECT `id_followed` FROM friend WHERE `id_follower`= 1) AND `id_followed` not in (select `id_follower` from friend where `id_followed`= 1)
+    UNION
+    SELECT id_user FROM friend LEFT JOIN users ON `id_follower`= users.id_user WHERE `id_followed` IN (SELECT `id_follower` FROM friend WHERE `id_followed`= 1) AND `id_follower` not in (select `id_followed` from friend where `id_follower`= 1)
+     ORDER BY RAND() LIMIT 5';
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
