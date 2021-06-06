@@ -224,16 +224,16 @@ session_start();
                                         </div>
                                     </div>
                                 </div>                                    
-                            </div>                
+                            </div>                                            
                                 <p>Vous êtes membre de ce groupe</p>
                                 <button type="button" class="btn btn-primary mb-3">Se désinscrire</button><br>
+                            </div>
                         </div>
-                    </div>
-                    
+                    </div> 
                 </div>
-            </div> 
+           
 
-            <div class="card mb-3">
+                <div class="card mb-3">
                     <div class="row no-gutters">
                         <div class="col-md-5">
                             <img  class="img-mid" src="assets/images/upload/groups/1.jpg" class="card-img" alt="...">
@@ -242,34 +242,33 @@ session_start();
                             <div class="card-body">
                                 <h5 class="card-title">name_group</h5>
                                 <p class="card-text">description</p>
-                                <div class="profile-content">                                 
-                                        
-                                            <div class="row d-flex justify-content-around text-center pt-2">
-                                                <div class="col-xs-4 mt-4">
-                                                    <div class="profile-overview">
-                                                        <p>participants</p>
-                                                        <span class="badge rounded-pill bg-primary">2</span>
-                                                    </div>
-                                                </div>                                            
-                                                <div class="col-xs-4">
-                                                    <div class="profile-overview">
-                                                        <p class="card-text ">Créé par : 
-                                                            <img src="assets/images/upload/users/default.png" class="card-img-thumb" alt="...">
-                                                            <h6>name lastname</h6>
-                                                        </p>   
-                                                    </div>
-                                                </div>
-                                            </div>                                      
-                                        </div>                       
-                                
+                                <div class="profile-content">                              
+                                    <div class="row d-flex justify-content-around text-center pt-2">
+                                        <div class="col-xs-4 mt-4">
+                                            <div class="profile-overview">
+                                                <p>participants</p>
+                                                <span class="badge rounded-pill bg-primary">2</span>
+                                            </div>
+                                        </div>                                            
+                                        <div class="col-xs-4">
+                                            <div class="profile-overview">
+                                                <p class="card-text ">Créé par : 
+                                                    <img src="assets/images/upload/users/default.png" class="card-img-thumb" alt="...">
+                                                    <h6>name lastname</h6>
+                                                </p>   
+                                            </div>
+                                        </div>
+                                    </div>                                      
+                                </div>                            
+                                           
                                 <p>Vous êtes membre de ce groupe</p>
                                 <button type="button" class="btn btn-primary">Se désinscrire</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-                                  
+            </div>       
+                                              
             <div class="col-xl-3 col-sm-12">
                 <section class="alert alert-light">
                     <div class="list-group">
@@ -296,7 +295,8 @@ session_start();
                     </div>
                 </section>
             </div>
-        </div>       
+        </div>        
+      
     </main>                       
     <footer id="footer">
         <div class="col-lg-12">

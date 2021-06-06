@@ -101,7 +101,7 @@ function $_GET(param) {
                     '</p><div class="row d-flex justify-content-around text-center pt-2"><div class="col-xs-4 mt-4"><div class="profile-overview"><p>participants</p><span class="badge rounded-pill bg-primary">'+record.count+
                     '</span></div></div><div class="col-xs-4"><div class="profile-overview"><p class="card-text ">Créé par :<img src="assets/images/upload/users/'+record.avatar+
                     '" class="card-img-thumb" alt="..."><h6>'+record.name+' '+record.lastname+
-                    '</h6></p></div></div></div></div></div>'+participer+'</div></div></div></div>';
+                    '</h6></p></div></div></div></div>'+participer+'</div></div></div></div>';
                              
                     }else{
                     outputVE =  
