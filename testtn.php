@@ -88,16 +88,22 @@ session_start();
                                     <div class="row d-flex justify-content-around pt-2">
                                         <div class="col-xs-4"> 
                                             <div class="profile-overview">
-                                                <p>participants</p>
-                                                <h6>1300</h6>
+                                                
+                                                <span class="badge bg-warning mt-1">23.05.2021</span>
+                                                <p class="card-text mt-2"><b>paris</b></p>
                                             </div>
                                         </div>
-                                        <div class="col-xs-4">
+                                        
+                                        <div class="col-xs-4"> 
                                             <div class="profile-overview">
-                                                <a href="#" class="btn btn-primary float-right">Voir</a><br>   
+                                                <p class="m-2">participants</p>
+                                                <span class="badge rounded-pill bg-primary">2</span>
                                             </div>
-                                        </div>
+                                        </div>                                        
                                     </div> 
+                                    <a href="#" class="btn btn-primary mt-3">Voir</a><br>   
+                                    
+                                       
                                 </div>
                             </div>
                         </div>
@@ -153,9 +159,29 @@ session_start();
                         </div>
                         <div class="col-sm-4 mt-3">                            
                                 <h4 class="card-title">name_group</h4>
-                                <p class="card-text">participants : <b>2</b></p>
+                                <p class="card-text">participants : <span class="badge rounded-pill bg-primary">2</span></p>
                         </div>    
                         <div class="col-sm-4 mt-4">
+                            <a href="#" class="btn btn-primary">Voir</a>                                                                      
+                        </div>                                      
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-sm-3">
+                            <img class="d-block img-min" src="assets/images/upload/groups/1.jpg" alt="">
+                        </div>
+                        <div class="col-sm-3 mt-3">                            
+                                
+                            <span class="badge bg-warning mt-1">23.05.2021</span>
+                            <p class="card-text mt-3"><b>paris</b></p>
+                        </div>    
+                        <div class="col-sm-3 mt-3">                            
+                                <h4 class="card-title">name_group</h4>
+                                <p class="card-text">participants : <span class="badge rounded-pill bg-primary">2</span></p>
+                        </div>    
+                        <div class="col-sm-3 mt-4">
                             <a href="#" class="btn btn-primary">Voir</a>                                                                      
                         </div>                                      
                     </div>

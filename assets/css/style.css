@@ -157,3 +157,11 @@ a .quiet{
     width:100px;
     height: auto;
 }
+
+.card .badge,
+.profile-card .badge{
+    padding: 5px;
+    border-radius: 5%;
+    color:white;
+    font-size: 1em;
+}
