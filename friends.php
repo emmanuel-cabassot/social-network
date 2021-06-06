@@ -83,7 +83,7 @@ session_start();
                 <section>
                     <h5>Suggestion - Peut être, connaissez-vous:</h5>
                     <hr>
-                    <div id="suggestFriends"></div>
+                    <div class="row" id="suggestFriends"></div>
                 </section>
                 <hr>
                 <section>
