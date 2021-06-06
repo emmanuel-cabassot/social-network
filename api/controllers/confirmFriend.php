@@ -20,9 +20,9 @@ $db = $database->getConnection();
 // instantiate user object
 $confirm = new Friend($db);
 
-$id_friend = isset($_GET['id_friend']) ? $_GET['id_friend'] : die();
+$id_follow = isset($_GET['id_follow']) ? $_GET['id_follow'] : die();
  
-$confirmed = $confirm->confirmFriend($id_friend);
+$confirmed = $confirm->confirmFriend($id_follow);
 
 if($confirmed){
 // set response code - 200 OK

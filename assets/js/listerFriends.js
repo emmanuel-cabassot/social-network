@@ -18,7 +18,7 @@ function listerFriends(){
 
             for(var i =0; i<records.length; i++){				
                     
-                    if(records[i].confirmed=='non' && records[i].id_follower != records[i].id_user){relation = '<button type="button" onclick="confirmFriend('+records[i].id_follow+
+                    if(records[i].confirmed=='non' && records[i].id_follower == records[i].id_user){relation = '<button type="button" onclick="confirmFriend('+records[i].id_follow+
                     ')" class="btn btn-primary">Confirmer</button>';}else{relation='<button type="button" onclick="forgetFriend('+records[i].id_follow+
                     ')" class="btn btn-primary">Oublier</button>';}
 

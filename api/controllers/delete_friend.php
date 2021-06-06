@@ -21,9 +21,9 @@ $friend = new Friend($db);
 
 // set ID property of record to read
 
-$friend->id_friend = isset($_GET['id_friend']) ? $_GET['id_friend'] : die();
+$friend->id_follow = isset($_GET['id_follow']) ? $_GET['id_follow'] : die();
   
-if($friend->delete_friend($friend->id_friend)){
+if($friend->forgetFriend($friend->id_follow)){
 
     http_response_code(200);  
 }
