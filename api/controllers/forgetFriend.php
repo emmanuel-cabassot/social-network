@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -20,9 +20,9 @@ $db = $database->getConnection();
 // instantiate user object
 $forget = new Friend($db);
 
-$id_friend = isset($_GET['id_friend']) ? $_GET['id_friend'] : die();
+$id_follow = isset($_GET['id_follow']) ? $_GET['id_follow'] : die();
  
-$forgeted = $forget->forgetFriend($id_friend);
+$forgeted = $forget->forgetFriend($id_follow);
 
 if($forgeted){
 // set response code - 200 OK

@@ -43,7 +43,7 @@ class Friend{
         }
 
     function viewFriend($id_user){
-        $view= "SELECT * FROM users WHERE id_user=:id_user";
+        $view= "SELECT users.id_user, name, lastname, avatar, city, country FROM users WHERE id_user=:id_user";
 
         // prepare query statement
         $stmt = $this->conn->prepare($view);
@@ -71,8 +71,7 @@ class Friend{
     function suggestFriends($id_user){
 
     // select all query
-    $query = 'SELECT users.id_user as id_friend, name, lastname, city, country, avatar FROM friend LEFT JOIN users ON `id_followed`= users.id_user WHERE `id_follower` IN (SELECT `id_followed` FROM friend WHERE `id_follower`= :id_user) AND `id_followed` not in (select `id_follower` from friend where `id_followed`= :id_user) UNION SELECT users.id_user as id_friend, name, lastname, city, country, avatar FROM friend LEFT JOIN users ON `id_follower`= users.id_user WHERE `id_followed` IN (SELECT `id_follower` FROM friend WHERE `id_followed`= :id_user) AND `id_follower` not in (select `id_follower` from friend where `id_followed`= :id_user) ORDER BY RAND() LIMIT 5';
-
+    $query = 'Select id_user as id_friend, name, lastname, avatar, city, country from users LEFT JOIN friend ON id_user= id_follower where id_followed IN(SELECT users.id_user from users INNER JOIN (select id_follower as ami from friend where id_followed=:id_user union all SELECT id_followed as ami from friend where id_follower=:id_user) as f on users.id_user= f.ami) and id_follower<>:id_user union Select id_user, name, lastname, avatar, city, country from users LEFT JOIN friend ON id_user= id_followed where id_follower in (SELECT users.id_user from users INNER JOIN (select id_follower as ami from friend where id_followed=:id_user union all SELECT id_followed as ami from friend where id_follower=:id_user) as f on users.id_user= f.ami) and id_followed<>:id_user';
     // prepare query statement
     $stmt = $this->conn->prepare($query);
 
@@ -86,17 +85,17 @@ class Friend{
 
     }
 
-    function invitFriend($id_user, $id_user_friend){
+    function invitFriend($id_follower, $id_followed){
         // query to insert record
-        $query = "INSERT INTO friend SET id_user=:id_user, id_user_friend=:id_user_friend, confirmed= 'non'";
+        $query = "INSERT INTO friend SET id_follower=:id_follower, id_followed=:id_followed, confirmed= 'non'";
     
         // prepare query
         $stmt = $this->conn->prepare($query);
                         
         // bind values
       
-        $stmt->bindParam(":id_user", $id_user);
-        $stmt->bindParam(":id_user_friend", $id_user_friend);
+        $stmt->bindParam(":id_follower", $id_follower);
+        $stmt->bindParam(":id_followed", $id_followed);
         
                 
         // execute query
@@ -106,17 +105,17 @@ class Friend{
             return false;    
     }
 
-    function confirmFriend($id_friend){
+    function confirmFriend($id_follow){
         // query to update record
-        $query = "UPDATE friend SET confirmed='oui' WHERE id_friend=:id_friend";
+        $query = "UPDATE friend SET confirmed='oui' WHERE id_follow=:id_follow";
             
         // prepare query
         $stmt = $this->conn->prepare($query);
-        $id_friend=htmlspecialchars($id_friend);
+        $id_follow=htmlspecialchars($id_follow);
                         
         // bind values
       
-        $stmt->bindParam(":id_friend", $id_friend);
+        $stmt->bindParam(":id_follow", $id_follow);
 
         if($stmt->execute()){
             return true;
@@ -127,11 +126,11 @@ class Friend{
 
   
         
-    function forgetFriend($id_friend){        
-        $del= " DELETE FROM friend WHERE id_friend = :id_friend";
+    function forgetFriend($id_follow){        
+        $del= " DELETE FROM friend WHERE id_follow = :id_follow";
         $stmt = $this->conn->prepare($del);
 
-        $stmt->bindParam(':id_friend', $id_friend);            
+        $stmt->bindParam(':id_follow', $id_follow);            
        
         if($stmt->execute()){
             return true;
@@ -140,7 +139,7 @@ class Friend{
     }
 
     function countFriend($id_user){
-        $counter= "SELECT COUNT(id_friend) AS countAmis FROM friend WHERE id_user=: id_user OR id_user_friend=: id_user";
+        $counter= "SELECT COUNT(id_follow) AS countAmis FROM friend WHERE id_follower=: id_user OR id_followed=: id_user";
         $stmt = $this->conn->prepare($counter);
         $stmt->bindParam('id_user', $id_user);
         $stmt->execute();

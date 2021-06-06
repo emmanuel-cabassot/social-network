@@ -17,8 +17,8 @@ function suggestFriendListB(){
             '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/users/'+records[i].avatar+
             '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+records[i].name+' '+records[i].lastname+
             '</h5><p>'+records[i].city+' - '+records[i].country+
-            '</p><a  href="friend.php?id_user='+records[i].id_user+
-            '"><button type="button" class="btn btn-primary">Voir</button></a></div></div></div></div><br>';
+            '</p><button type="button" onclick="invitFriend('+records[i].id_friend+
+            ')" class="btn btn-primary">Inviter</button></div></div></div></div><br>';
             }        
      
             setTimeout(function(){ 
@@ -30,5 +30,22 @@ function suggestFriendListB(){
             }
     });
     xhr.open("POST", 'api/controllers/suggestFriend');
+    xhr.send();
+}
+
+function invitFriend(id_friend){
+		
+    var xhr = new XMLHttpRequest();
+    
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4 && this.status === 200) {           
+            
+            window.location="friends.php";          
+
+        }
+    });
+   
+    xhr.open("GET", 'api/controllers/invitFriend?id_friend='+id_friend);
+
     xhr.send();
 }

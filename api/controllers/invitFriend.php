@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -21,10 +21,10 @@ $db = $database->getConnection();
 $friend = new Friend($db);
 
 // set ID property of record to 
-$id_user = $_SESSION[id_user]; 
-$id_user_friend = isset($_GET['id_user_friend']) ? $_GET['id_user_friend'] : die();
+$id_follower = $_SESSION['id_user']; 
+$id_followed = isset($_GET['id_friend']) ? $_GET['id_friend'] : die();
 
-$invit = $friend->invitFriend($id_user, $id_user_friend);
+$invit = $friend->invitFriend($id_follower, $id_followed);
 
 if($invit){
     http_response_code(200);

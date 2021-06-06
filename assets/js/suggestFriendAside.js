@@ -13,7 +13,7 @@ function suggestFriendList(){
             var outputF = '';
             for(var i =0; i<records.length; i++){
                     outputF +=
-                    '<a href="#" class="list-group-item list-group-item-action"><img src="assets/images/upload/users/'+records[i].avatar+'" class="card-img-thumb" alt="...">'+records[i].name+' '+records[i].lastname+
+                    '<a href="viewFriend.php?id_friend='+records[i].id_friend+'" class="list-group-item list-group-item-action"><img src="assets/images/upload/users/'+records[i].avatar+'" class="card-img-thumb" alt="...">'+records[i].name+' '+records[i].lastname+
                     ' '+records[i].city+' - '+records[i].country+'</a>';
             }
             suggestedFriend.innerHTML = outputF;
