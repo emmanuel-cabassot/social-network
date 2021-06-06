@@ -19,8 +19,8 @@ $db = $database->getConnection();
 
 // instantiate user object
 $event = new Event($db);
-//$id_user= $_SESSION['id_user'];
-$id_user=1;
+$id_user= $_SESSION['id_user'];
+//$id_user=1;
 
 
 $id_event=isset($_GET['id_event']) ? $_GET['id_event']: die();

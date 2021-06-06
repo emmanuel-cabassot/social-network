@@ -39,7 +39,10 @@ if ($num>0){
         // just $name only
 
         $friend_item = array(
+            "id_user"=>$id_user,
             "id_follow" => $id_follow,
+            "id_follower" =>$id_follower,
+            "id_followed" =>$id_followed,
             "id_friend" => $id_friend,
             "name" => $name,
             "lastname" => $lastname,

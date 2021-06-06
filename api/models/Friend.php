@@ -27,7 +27,7 @@ class Friend{
     function listFriends($id_user){
 
         // select all query
-        $query = 'SELECT id_follow, users.id_user as id_friend, name, lastname, avatar, city, country, confirmed, id_connected FROM friend LEFT JOIN users ON `id_followed`=users.id_user LEFT JOIN connected ON connected.id_user=`id_followed` WHERE `id_follower`= :id_user UNION SELECT id_follow, users.id_user as id_friend, name, lastname, avatar, city, country, confirmed, id_connected FROM friend LEFT JOIN users ON `id_follower`=users.id_user LEFT JOIN connected ON connected.id_user=`id_follower` WHERE `id_followed`=:id_user';
+        $query = 'SELECT id_follow,id_follower, id_followed, users.id_user as id_friend, name, lastname, avatar, city, country, confirmed, id_connected FROM friend LEFT JOIN users ON `id_followed`=users.id_user LEFT JOIN connected ON connected.id_user=`id_followed` WHERE `id_follower`= :id_user UNION SELECT id_follow,id_follower, id_followed, users.id_user as id_friend, name, lastname, avatar, city, country, confirmed, id_connected FROM friend LEFT JOIN users ON `id_follower`=users.id_user LEFT JOIN connected ON connected.id_user=`id_follower` WHERE `id_followed`=:id_user';
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
