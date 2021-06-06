@@ -17,7 +17,7 @@
 <body class="bg-light">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-            <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" class="logo-img-thumb"></a>
+            <a class="navbar-brand" href="home.php"><img src="assets/images/logo.png" alt="logo" class="logo-img-thumb"></a>
 
 
             <div class="collapse navbar-collapse" id="navbarColor03">
@@ -32,7 +32,7 @@
 
                 <ul class="navbar-nav ml-auto display-5">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="bi bi-house mr-3 blue"></i></a>
+                        <a class="nav-link" href="home.php"><i class="bi bi-house mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-three-dots mr-3 blue"></i></a>
@@ -63,13 +63,12 @@
                         </li>
                     </ul>
                 </section>
-                <section class="alert alert-primary mb-5">
+                <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion de groupes</div>
-                        <div id="suggestedGroup"></div>
-                        <div class="list-group-item list-group-item-action">
-                            <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
+                        <div class="list-group-item list-group-item-action active">Suggestion de groupes
+                            <a href="groups.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
+                        <div id="suggestedGroup"></div>                        
                     </div>
                 </section>
             </div>
@@ -121,22 +120,20 @@
             </div>            
           
             <div class="col-xl-3 col-sm-12 mt-5">
-            <section class=" alert-primary mb-5">
+            <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion d'amis</div>
-                        <div id="suggestedFriend"></div>
-                        <div class="list-group-item list-group-item-action">
-                            <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
+                        <div class="list-group-item list-group-item-action active">Suggestion d'amis
+                            <a href="friends.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
-                    </div>
+                        <div id="suggestedFriend"></div>                        
+                    </div>                    
                 </section>
-                <section class="alert alert-info mb-5">
+                <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Amis</div>
-                        <div id="listFriends"></div>
-                        <div class="list-group-item list-group-item-action">
-                            <button type="button" class="btn btn-primary btn-sm float-right">Voir ...</button>
+                        <div class="list-group-item list-group-item-action active">Amis
+                            <a href="friends.php"type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
+                        <div id="listFriends"></div>                        
                     </div>
                 </section>
                                 
