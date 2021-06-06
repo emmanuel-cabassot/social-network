@@ -73,14 +73,14 @@
                     </div>
                 </section>
             </div>
-            <div class="col-xl-6 col-sm-12 mt-3">
+            <div class="col-xl-6 col-sm-12 mt-3">                
                 <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target="#eventModal">
                 Publiez un évènement
                 </button>
               <section>
               <h5>Suggestion - Vos amis se sont inscrits à ces évènements:</h5>
                     <hr>
-                  <div id="suggestEvent"></div>
+                  <div  class="row" id="suggestEvent"></div>
               </section>
               <br>
                 <!-- Button trigger modal -->

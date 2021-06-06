@@ -95,7 +95,7 @@ function view_group(id_group){
             '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-5"><img  class="img-mid" src="assets/images/upload/groups/'+record.img_group+
             '" class="card-img" alt="..."></div><div class="col-md-7"><div class="card-body"><h5 class="card-title">'+record.name_group+
             '</h5><p class="card-text">'+record.description+
-            '</p><div class="profile-content"><div class="row d-flex justify-content-around pt-2"><div class="col-xs-4 mt-4"><div class="profile-overview"><p>participants</p><h6>'+record.count+
+            '</p><div class="profile-content"><div class="row d-flex justify-content-around text-center pt-2"><div class="col-xs-4 mt-4"><div class="profile-overview"><p>participants</p><h6>'+record.count+
             '</h6></div></div><div class="col-xs-4"><div class="profile-overview"><p class="card-text ">Créé par :<img src="assets/images/upload/users/'+record.avatar_create+
             '" class="card-img-thumb" alt="..."><h6>'+record.name_create+' '+record.lastname_create+
             '</h6></p></div></div></div></div>'+appartenir+

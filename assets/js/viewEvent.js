@@ -92,15 +92,16 @@ function $_GET(param) {
                     ')" class="btn btn-primary">Se désinscrire</button>'}
     
                     outputVE =  
-                    '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-4"><img src="assets/images/upload/events/'+record.img_event+
-                    '" class="card-img" alt="..."></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+record.title_event+
-                    '</h5><p class="card-text">Description : '+record.text_event+
-                    '<p class="card-text">Date: '+record.date_event+
-                    '<p class="card-text">Ville: '+record.city_event+
-                    '</p><p class="card-text">participants : <b>'+record.count+
-                    '</b></p><p class="card-text">Créé par : <b><img src="assets/images/upload/users/'+record.avatar+
-                    '" class="card-img-thumb" alt="...">'+record.name+' '+record.lastname+
-                    '</b></p>'+participer+'</div></div></div></div>';
+                 
+                    '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-5"><img  class="img-mid" src="assets/images/upload/events/'+record.img_event+
+                    '"class="card-img" alt="..."></div><div class="col-md-7"><div class="card-body"><h5 class="card-title">'+record.title_event+
+                    '</h5></div></div><div class="col-xs-4 mt-4"><div class="profile-overview"><span class="badge bg-warning mt-1">'+record.date_event+
+                    '</span><p class="card-text"><b>'+record.city_event+
+                    '</b></p></div></div></div><p class="card-text">Description : '+record.text_event+
+                    '</p><div class="row d-flex justify-content-around text-center pt-2"><div class="col-xs-4 mt-4"><div class="profile-overview"><p>participants</p><span class="badge rounded-pill bg-primary">'+record.count+
+                    '</span></div></div><div class="col-xs-4"><div class="profile-overview"><p class="card-text ">Créé par :<img src="assets/images/upload/users/'+record.avatar+
+                    '" class="card-img-thumb" alt="..."><h6>'+record.name+' '+record.lastname+
+                    '</h6></p></div></div></div></div></div>'+participer+'</div></div></div></div>';
                              
                     }else{
                     outputVE =  
