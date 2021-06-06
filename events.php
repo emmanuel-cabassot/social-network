@@ -53,7 +53,7 @@
                 <section class="alert alert-light">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a class="nav-link alert alert-dismissible alert-primary" href="groups.php">Groupes</a>
+                            <a class="nav-link" href="groups.php">Groupes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link alert alert-dismissible alert-primary" href="events.php">Evènements</a>
