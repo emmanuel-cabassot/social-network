@@ -19,7 +19,7 @@ function searchName(searchText){
 
             for(var i=0; i<records.length; i++)
             output +=  
-            '<li class="nav-item bg-light"><a class="nav-link" href="friend.php?id='+records[i].id_user+'">'+records[i].name +" - "+records[i].lastname+
+            '<li class="nav-item bg-light"><a class="nav-link" href="viewFriend.php?id_friend='+records[i].id_user+'">'+records[i].name +" - "+records[i].lastname+
             '</a></li>';  
          }else{
         output =  

@@ -6,7 +6,8 @@ class Friend{
     
 
     // object properties
-    public $id_friend;    
+    public $id_friend;
+    public $id_follow;    
     public $id_follower;
     public $id_followed; 
     public $confirmed;   
@@ -42,13 +43,13 @@ class Friend{
     
         }
 
-    function viewFriend($id_user){
-        $view= "SELECT users.id_user, name, lastname, avatar, city, country FROM users WHERE id_user=:id_user";
+    function viewFriend($id_friend){
+        $view= "SELECT users.id_user as id_friend, name, lastname, avatar, city, country FROM users WHERE id_user=:id_user";
 
         // prepare query statement
         $stmt = $this->conn->prepare($view);
 
-        $stmt->bindParam(':id_user', $id_user);
+        $stmt->bindParam(':id_user', $id_friend);
 
        // execute query
         $stmt->execute();
@@ -57,7 +58,7 @@ class Friend{
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // set values to object properties
-        $this->id_user = $row['id_user'];
+        $this->id_friend = $row['id_friend'];
         $this->name = $row['name'];
         $this->lastname = $row['lastname'];
         $this->avatar = $row['avatar'];
@@ -103,6 +104,30 @@ class Friend{
         }
             return false;    
     }
+
+    function verifyFriend($id_user,$id_friend){
+        $query="SELECT * from friend where id_follower=:id_user AND id_followed= :id_friend UNION SELECT * from friend where id_follower=:id_friend AND id_followed= :id_user";
+        $stmt = $this->conn->prepare($query);
+
+        $id_user=htmlspecialchars($id_user);
+        $id_friend=htmlspecialchars($id_friend);
+    
+        $stmt->bindParam(":id_user", $id_user);
+        $stmt->bindParam(":id_friend", $id_friend);    
+        // execute query
+        $stmt->execute();
+
+        // get retrieved row
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // set values to object properties
+        $this->id_follow = $row['id_follow'];
+        $this->id_follower = $row['id_follower'];
+        $this->id_followed = $row['id_followed'];
+        $this->confirmed = $row['confirmed'];
+   
+    }
+    
 
     function confirmFriend($id_follow){
         // query to update record

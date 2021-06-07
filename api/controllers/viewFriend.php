@@ -23,16 +23,24 @@ $db = $database->getConnection();
 $viewFriend = new Friend($db);
   
 // set ID property of record to read
-$id_user = isset($_GET['id_user']) ? $_GET['id_user'] : die();
+$id_friend = isset($_GET['id_friend']) ? $_GET['id_friend'] : die();
+$id_user=$_SESSION['id_user'];
+//$id_user=1;
   
-// read the details of product to be edited
-$viewFriend->viewFriend($id_user);
-  
-if($viewFriend->id_user != null){
 
+    $viewFriend->viewFriend($id_friend);
+
+
+  
+if($viewFriend->id_friend != null){
+    $viewFriend->verifyFriend($id_user, $id_friend);
         // create array
     $viewFriend_arr = array(
-        "id_user" =>  $viewFriend->id_user,
+        "id_follow" => $viewFriend->id_follow,
+        "id_follower" => $viewFriend->id_follower,
+        'id_followed' => $viewFriend->id_followed,
+        'confirmed' => $viewFriend->confirmed,
+        "id_friend" =>  $viewFriend->id_friend,
         "name"=> $viewFriend->name,
         "lastname"=> $viewFriend->lastname,
         "avatar" => $viewFriend->avatar,
