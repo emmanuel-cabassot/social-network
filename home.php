@@ -64,7 +64,7 @@ session_start();
                             <a class="nav-link" href="groups.php">Groupes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link alert alert-dismissible alert-primary" href="events.php">Evènements</a>
+                            <a class="nav-link" href="events.php">Evènements</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="friends.php">Amis</a>
