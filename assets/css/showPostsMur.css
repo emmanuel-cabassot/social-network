@@ -117,7 +117,16 @@
     font-size: 1.1em;
     border-top: 2px solid lightgrey;
     border-bottom: 2px solid lightgrey;
+    margin-bottom: 15px;
     
+}
+
+.container-comment-showPost {
+   display: none;
+}
+
+.container-comment-showPost.show {
+    display: initial;
 }
 
 .like-action-showPost, .dislike-action-showPost, .comment-action-showPost {
@@ -150,10 +159,14 @@
 }
 
 .add-comment-showPost {
-    display: flex;
     justify-content: center;
     width: calc(100% -53px);
-    margin: 15px 0;
+    margin: 0 0 15px 0;
+    display: none;
+}
+
+.add-comment-showPost.show {
+    display: flex;
 }
 
 .avatar-add-comment-showPost img, .user-photo-comment-showPost img{

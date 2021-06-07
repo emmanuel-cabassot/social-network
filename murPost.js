@@ -1,4 +1,5 @@
-user = 1;
+user = document.querySelector("#idUser")
+user = user.value
 
 data = {
     user: user
@@ -14,6 +15,7 @@ xhr.onreadystatechange = function () {
         listPost = JSON.stringify(xhr.response)
         listPost = JSON.parse(listPost)
 
+        /* Boucles des posts */
         listPost.forEach(post => {
             console.log(post)
             let showPostsMur = document.querySelector(".showPostsMur")
@@ -77,7 +79,7 @@ xhr.onreadystatechange = function () {
 
             if (post.countComment == 0) {
                 output += `
-                        <section class="comment-stat-showPost">
+                        <section class="comment-stat-showPost" id="commentCount${post.id_post}">
                             
                         </section>
                     </section>
@@ -86,7 +88,7 @@ xhr.onreadystatechange = function () {
             }
             if (post.countComment == 1) {
                 output += `
-                    <section class="comment-stat-showPost">
+                    <section class="comment-stat-showPost" id="commentCount${post.id_post}">
                         1 commentaire
                     </section>
                 </section>
@@ -96,8 +98,8 @@ xhr.onreadystatechange = function () {
 
             if (post.countComment > 1) {
                 output += `
-                    <section class="comment-stat-showPost">
-                        ${post.countComment} commentaires
+                    <section class="comment-stat-showPost" id="commentCount${post.id_post}">
+                        <span>${post.countComment}</span> commentaires
                     </section>
                 </section>
                 <section class="container-action-showPost">
@@ -117,7 +119,7 @@ xhr.onreadystatechange = function () {
                     </section>`
             }
             output += `
-                    <section class="comment-action-showPost">
+                    <section class="comment-action-showPost" id="comment-action${post.id_post}">
                     <img src="assets/images/comment.png" alt="comment">commenter
                     </section>`
 
@@ -140,16 +142,18 @@ xhr.onreadystatechange = function () {
 
             /*  Ajouter un commentaire */
             output += `         
-                <section class="add-comment-showPost">
+                <section class="add-comment-showPost" id="add-comment${post.id_post}">
                     <section class="avatar-add-comment-showPost">
                         <img src="assets/images/upload/users/${post.avatarUserSession}" alt="avatar">
                     </section>
-                    <section class="textarea-add-comment-showPost">
-                        <textarea name="" id="add-comment${post.id_post}" oninput="check(${post.id_post});" placeholder="Ecrivez un commentaire ..."></textarea>
+                    <section class="textarea-add-comment-showPost" >
+                        <textarea name="" id="add-comment-textarea${post.id_post}" oninput="check(${post.id_post});" placeholder="Ecrivez un commentaire ..."></textarea>
                     </section>
                 </section>`
 
             /* Visualisation des commentaires */
+            output += `
+                <section class="container-comment-showPost" id="container-comment${post.id_post}">`
             if (post.countComment > 0) {
                 comments = post.comments
                 comments.forEach(comment => {
@@ -170,39 +174,135 @@ xhr.onreadystatechange = function () {
                             </section>
                         </section>
                     </section>
-                    </section>`
+                    `
                 });
-
-
-
-
+                output +=`
+                </section>`
             }
 
-
-
+            /* Intégration de la section post*/
             let postShowNode = document.createElement('section')
             postShowNode.classList.add('showOnePost')
             postShowNode.innerHTML = output
-
             showPostsMur.append(postShowNode)
 
+            /* Ecrire un commentaire et le poster */
+            textareaComment = document.querySelector(`#add-comment-textarea${post.id_post}`)
+            textareaComment.addEventListener("keydown", function (e) {
+                if (e.keyCode == 13 && !e.shiftKey) {
+                    e.preventDefault()
+                    textValue = this.value
+
+                    if (textValue.length > 0) {
+                        let data = {
+                            id_post: post.id_post,
+                            text_comment: textValue
+                        }
+                        let xhr = new XMLHttpRequest();
+                        xhr.open("POST", "api/controllers/addPostComment.php");
+                        xhr.setRequestHeader("Content-Type", "text/plain");
+                        xhr.responseType = "json";
+                        xhr.send(JSON.stringify(data));
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === 4 || xhr.status == 201) {
+                                user = xhr.response
+                                /* Affichage du commentaire */
+                                newComment = document.createElement('section')
+                                newComment.classList.add('view-comment-showPost')
+                                newComment.innerHTML = `
+                                
+                                    <section class="user-photo-comment-showPost">
+                                        <img src="assets/images/upload/users/${user.avatar}" alt="avatar">
+                                    </section>
+                                    <section class="name-date-text-comment-showPost">
+                                        <section class="user-name-showPost">
+                                            ${user.lastname} ${user.name}
+                                        </section>
+                                        <section class="date-comment-showPost">
+                                            ${user.date_comment}
+                                        </section>                    
+                                        <section class="text-comment-showPost">
+                                            ${user.text}
+                                        </section>
+                                    </section>
+                                
+                                `  
+                                elementParent = document.querySelector("#container-comment" + post.id_post)
+                                elementParent.prepend(newComment)
+
+                            }
+                        }
+
+                        /* Vidage du textarea */
+                        this.value = ''
+                        
+                        let showHiddenComment = document.querySelector("#container-comment" + post.id_post)
+                        if (!showHiddenComment.classList.contains("show")) {
+                            showHiddenComment.classList.add("show")
+                        }
 
 
 
+                       /*  Modification du nombre de commentaires */
+                       let countComment = document.querySelector("#commentCount" + post.id_post)
+                       if (post.countComment == 0) {
+                           
+                            countComment.innerHTML = "1 commentaire"
+                       }
+                       else {
+                            post.countComment++
+                            countComment.innerHTML = "<span>" + post.countComment + "</span> commentaires"
+                       }                      
+                    }
+                }
+            })
+
+            /* Bouton commenter */
+            boutonCommenter = document.querySelector("#comment-action" + post.id_post)
+            boutonCommenter.addEventListener("click", function(e) {
+                ShowHiddenTextarea = document.querySelector("#add-comment" + post.id_post)
+    
+                if (ShowHiddenTextarea.classList.contains("show")) {
+                    ShowHiddenTextarea.classList.remove("show")
+                }
+                else {
+                    ShowHiddenTextarea.classList.add("show")
+                    ShowHiddenTextareaFocus = document.querySelector(`#add-comment${post.id_post} textarea`)
+                    ShowHiddenTextareaFocus.focus()
+                }
+            })
+
+            /* Bouton du nombre de commentaires */
+            BoutonNbCommentaires = document.querySelector(`#commentCount${post.id_post}`)
+            BoutonNbCommentaires.addEventListener("click", function(e) {
+            showHiddenComment = document.querySelector("#container-comment" + post.id_post)
+            ShowHiddenTextarea = document.querySelector("#add-comment" + post.id_post)
+
+                if (showHiddenComment.classList.contains("show")) {
+                    showHiddenComment.classList.remove("show")
+                    ShowHiddenTextarea.classList.remove("show")
+                }
+                else {
+                    showHiddenComment.classList.add("show")
+                    ShowHiddenTextarea.classList.add("show")
+                    
+                }
+            })
         });
     }
 }
 function check(id_post) {
-    let hauteur = document.querySelector("#add-comment" + id_post).scrollHeight
-    let val = document.querySelector("#add-comment" + id_post).value
+    let hauteur = document.querySelector("#add-comment-textarea" + id_post).scrollHeight
+    let val = document.querySelector("#add-comment-textarea" + id_post).value
 
     if (val === "") {
-        document.querySelector("#add-comment" + id_post).style.height = '38px';
+        document.querySelector("#add-comment-textarea" + id_post).style.height = '38px';
     } else {
-        document.querySelector("#add-comment" + id_post).style.height = hauteur + 'px';
+        document.querySelector("#add-comment-textarea" + id_post).style.height = hauteur + 'px';
     }
 }
 
+/* Function Like */
 function likeShowPost(like, dislike, post_id) {
 
     if (like === 0) {
@@ -211,7 +311,6 @@ function likeShowPost(like, dislike, post_id) {
             Like = 1
             Dislike = 0
 
-            // Recherche de la section like et modification du onclick et ajout de la class validate
             sectionLike = document.querySelector("#like" + post_id)
             sectionLike.removeAttribute("onclick")
             sectionLike.setAttribute("onclick", "likeShowPost(1, 0, " + post_id + ")")
@@ -257,7 +356,6 @@ function likeShowPost(like, dislike, post_id) {
         Like = -1
         Dislike = 0
 
-        // Recherche de la section like et modification du onclick et supprime la class validate
         sectionLike = document.querySelector("#like" + post_id)
         sectionLike.removeAttribute("onclick")
         sectionLike.setAttribute("onclick", "likeShowPost(0, 0, " + post_id + ")")
@@ -292,6 +390,8 @@ function likeShowPost(like, dislike, post_id) {
 
 
 }
+
+/* Function dislike */
 function dislikeShowPost(like, dislike, post_id) {
     if (dislike === 0) {
         if (like === 0) {
@@ -299,7 +399,6 @@ function dislikeShowPost(like, dislike, post_id) {
             Like = 0
             Dislike = 1
 
-            // Recherche de la section like et modification du onclick et ajout de la class validate
             sectionDislike = document.querySelector("#dislike" + post_id)
             sectionDislike.removeAttribute("onclick")
             sectionDislike.setAttribute("onclick", "dislikeShowPost(0, 1, " + post_id + ")")
@@ -346,7 +445,6 @@ function dislikeShowPost(like, dislike, post_id) {
         Like = 0
         Dislike = -1
 
-        // Recherche de la section like et modification du onclick et supprime la class validate
         sectionDislike = document.querySelector("#dislike" + post_id)
         sectionDislike.removeAttribute("onclick")
         sectionDislike.setAttribute("onclick", "dislikeShowPost(0, 0, " + post_id + ")")
@@ -378,8 +476,3 @@ function dislikeShowPost(like, dislike, post_id) {
         }
     }
 }
-
-
-
-
-

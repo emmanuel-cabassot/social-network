@@ -210,7 +210,7 @@ session_start();
     <footer id="footer">
         <div class="col-lg-12">
         </div>
-        <input type="hidden" id="idUser" value="1">
+        <input type="hidden" id="idUser" value=<?= $_SESSION['id_user'] ?>>
     </footer>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -224,8 +224,6 @@ session_start();
     <script src="homedenis.js"></script>
     <script src="sendPost.js"></script>
     <script src="murPost.js"></script>
-
-
 
 </body>
 

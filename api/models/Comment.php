@@ -10,8 +10,6 @@ class Comment
     public $id_post;
     public $id_user;
     public $text_comment_post;
-    public $blocked;
-    public $signalized;
     public $date_comment_post;
 
     // constructor with $db as database connection
@@ -35,6 +33,25 @@ class Comment
         // Bind values
         $stmt->bindParam(':id_post', $id_post);
 
+        // Execute the query
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addComment()
+    {
+        $select = "INSERT INTO comment_post (id_post, id_user, text_comment_post, date_comment_post) VALUES (:id_post, :id_user, :text_comment_post, :date_comment_post)";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($select);
+
+        // Bind values
+        $stmt->bindParam(':id_post', $this->id_post);
+        $stmt->bindParam(':id_user', $this->id_user);
+        $stmt->bindParam(':text_comment_post', $this->text_comment_post);
+        $stmt->bindParam(':date_comment_post', $this->date_comment_post);
+        
         // Execute the query
         $stmt->execute();
 
