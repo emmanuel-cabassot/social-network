@@ -16,6 +16,7 @@ session_start();
     <link rel="stylesheet" href="assets/css/bootstrap-icons.css">
     <link href="assets/css/dropzone.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="assets/css/sendPost.css">
+    <link rel="stylesheet" href="assets/css/showPostsMur.css">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -81,7 +82,6 @@ session_start();
             </div>
             <div class="col-xl-6 col-sm-12">
                 <section class="sendPost">
-
                     <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['id_user'] ?>>
                         <p class="ml-3"> Quoi de neuf emmanuel ?</p>
                     </section>
@@ -109,28 +109,28 @@ session_start();
                             </section>
                         </section>
                     </section>
-
-
-
+                </section>
+                <section class="showPostsMur">
+                
                 </section>
             </div>
 
 
             <div class="col-xl-3 col-sm-12">
-            <section class="alert alert-light">
+                <section class="alert alert-light">
                     <div class="list-group">
                         <div class="list-group-item list-group-item-action active">Suggestion d'amis
                             <a href="friends.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
-                        <div id="suggestedFriend"></div>                        
-                    </div>                    
+                        <div id="suggestedFriend"></div>
+                    </div>
                 </section>
                 <section class="alert alert-light">
                     <div class="list-group">
                         <div class="list-group-item list-group-item-action active">Amis
-                            <a href="friends.php"type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
+                            <a href="friends.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
-                        <div id="listFriends"></div>                        
+                        <div id="listFriends"></div>
                     </div>
                 </section>
                 <section class="alert alert-light">
@@ -138,7 +138,7 @@ session_start();
                         <div class="list-group-item list-group-item-action active">Suggestion de groupes
                             <a href="groups.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
-                        <div id="suggestedGroup"></div>                        
+                        <div id="suggestedGroup"></div>
                     </div>
                 </section>
 
@@ -218,7 +218,8 @@ session_start();
     <script src="assets/js/suggestGroupAside.js"></script>
     <script src="assets/js/suggestEventAside.js"></script>
     <script src="assets/js/suggestFriendAside.js"></script>
-    <script src="assets/js/listerFriendsAside.js"></script> 
+    <script src="assets/js/listerFriendsAside.js"></script>
+    <script src="murPost.js"></script>
     <script src="sendPost.js"></script>
 
 
