@@ -11,6 +11,7 @@
     border: 1px solid grey;
     border-radius: 8px; 
     margin: 20px 0; 
+    background-color: white;
 }
 
 .header-showPost {
@@ -118,6 +119,7 @@
     border-top: 2px solid lightgrey;
     border-bottom: 2px solid lightgrey;
     margin-bottom: 15px;
+    background-color: white;
     
 }
 
