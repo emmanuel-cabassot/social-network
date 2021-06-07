@@ -22,25 +22,25 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body class="bg-light">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="home.php"><img src="assets/images/logo.png" alt="logo" class="logo-img-thumb"></a>
-
-
-            <div class="collapse navbar-collapse" id="navbarColor01">
-
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+            <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" class="logo-img-thumb"></a>
+ 
+ 
+            <div class="collapse navbar-collapse" id="navbarColor03">
+ 
                 <input class="form-control mr-sm-2 w-25" type="text" name="main-search" id="main-search" placeholder="Nom du contact">
-
+ 
                 <div id="search-show">
                     <div class="nav nav-pills navbar-light flex-column">
                         <div class="search-result"></div>
                     </div>
                 </div>
-
+ 
                 <ul class="navbar-nav ml-auto display-5">
                     <li class="nav-item active">
-                        <a class="nav-link" href="home.php"><i class="bi bi-house mr-3"></i></a>
+                        <a class="nav-link" href="#"><i class="bi bi-house mr-3"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-three-dots mr-3"></i></a>
@@ -58,10 +58,10 @@ session_start();
     <main class="container-fluid mt-5">
         <div class="row d-flex">
             <div class="col-xl-3">
-                <section class="alert alert-primary">
+                <section class="alert alert-light">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="groups.php">Groupes</a>
+                            <a class="nav-link alert alert-dismissible alert-primary" href="groups.php">Groupes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="events.php">Evènements</a>
@@ -73,10 +73,10 @@ session_start();
                 </section>
                 <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion Évènements
-                            <a href="events.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
+                        <div class="list-group-item list-group-item-action active">Suggestion de groupes
+                            <a href="groups.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
-                        <div id="suggestedEvent"></div>
+                        <div id="suggestedGroup"></div>                        
                     </div>
                 </section>
             </div>

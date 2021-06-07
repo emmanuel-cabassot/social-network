@@ -50,7 +50,7 @@
     <main class="container-fluid mt-5">
         <div class="row d-flex">
             <div class="col-xl-3">
-                <section class="alert alert-primary">
+                <section class="alert alert-light">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="groups.php">Groupes</a>
@@ -59,16 +59,16 @@
                             <a class="nav-link" href="events.php">Evènements</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="friends.php">Amis</a>
+                            <a class="nav-link alert alert-dismissible alert-primary" href="friends.php">Amis</a>
                         </li>
                     </ul>
                 </section>
                 <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion Évènements
-                            <a href="events.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
+                        <div class="list-group-item list-group-item-action active">Suggestion de groupes
+                            <a href="groups.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
-                        <div id="suggestedEvent"></div>
+                        <div id="suggestedGroup"></div>                        
                     </div>
                 </section>
             </div>
