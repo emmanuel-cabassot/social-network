@@ -65,10 +65,11 @@
                 </section>
                 <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion de groupes
-                            <a href="groups.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
+                        <div class="list-group-item list-group-item-action active">Suggestion Evènements
+
+                            <a href="events.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
-                        <div id="suggestedGroup"></div>                        
+                        <div id="suggestedEvent"></div>                        
                     </div>
                 </section>
             </div>
