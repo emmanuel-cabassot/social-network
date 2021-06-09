@@ -24,7 +24,7 @@ function login(){
     
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status == 200) {
-        window.location="homedenis.php";
+        window.location="home.php";
         }else{
             setTimeout(function(){$("#resultat").html("<p>Erreur d'email ou de password.</p>")}, 1000); 
         }
