@@ -6,7 +6,7 @@ class Login{
     
 
     // object properties
-    public $id;
+    public $id_user;
     public $email;
     public $password;
     public $name;

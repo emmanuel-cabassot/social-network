@@ -16,12 +16,12 @@ function listerUsers(){
         for(var i =0; i<records.length; i++){
             var formId='form'+id_user;
             outputUs +=  
-            '<td>'+id_user+
+            '<tr><td>'+id_user+
             '</td><td>'+name+
             '</td><td>'+lastname+
-            '</td><td>'+signalized+
-            '</td><td><form id="'+formId+'"><input type="text" value="'+blocked+'" name="blocked"></td><td><input type="localdatetime" value="'+date_blocked+
-            '</td><td><input type="submit" value="Submit"></td></form>';                   echo "<td>".$user->email."</td>";
+            '</td><td>'+email+
+            '</td><td><form id="'+formId+'"><input type="text" value="'+blocked+'" name="blocked"></td><td><input type="date" value="'+period_blocked+
+            '"></td><td><input type="submit" value="Submit"></td></form></tr>';              
                                 
         }
 
@@ -37,8 +37,8 @@ function listerUsers(){
 
 
 function modifUser(id_user){
-    if(validerForm()==true){
-    var form_data=JSON.stringify(serializeForm(commentForm));
+   
+    var form_data=JSON.stringify(serializeForm(formId));
         
         var xhr = new XMLHttpRequest();
         xhr.withCredentials = true;
@@ -54,20 +54,15 @@ function modifUser(id_user){
 
         xhr.send(form_data);   
     
-    } else {
-        // if no file submit the form    
-    footerModal.innerHTML= '<h4>Tous les champs doivent être remplis</h4>';
-    }
 };
 
-function validerForm(){
-        
-    var a= document.getElementById("comment").value;
-    
-    if(a==""){
-        return false;
-    }else{
-    return true;
+
+var serializeForm = function (form) {
+    var obj = {};
+    var formData = new FormData(form);
+    for (var key of formData.keys()) {
+        obj[key] = formData.get(key);
     }
+    return obj;
 };
 

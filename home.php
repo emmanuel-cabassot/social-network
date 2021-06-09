@@ -39,6 +39,9 @@ session_start();
                 </div>
 
                 <ul class="navbar-nav ml-auto display-5">
+                <li class="nav-item active">
+                        <a class="nav-link" href="api/controllers/sessionOut.php"><i class="bi bi-box-arrow-right"></i></a>
+                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="home.php"><i class="bi bi-house mr-3 blue"></i></a>
                     </li>

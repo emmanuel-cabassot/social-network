@@ -36,7 +36,7 @@ if($email_exists){
  
     if(password_verify($data->password, $login->password)){
            // set response code
-          if(empty($_SESSION['id_user'])){
+         
             $strt=strtotime("now")-7200;
             $destroyConnected= $login->cleanConnected($strt);
             $_SESSION['id_user']= $login->id_user;
@@ -46,8 +46,7 @@ if($email_exists){
             $connected= $login->connected($login->id_user);
             
               http_response_code(200);  
-            }else{
-              http_response_code(200);  }      
+                 
     }else{
         http_response_code(404);  
     }
