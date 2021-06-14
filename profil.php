@@ -58,16 +58,16 @@ session_start();
     <main class="container-fluid mt-5">
         <div class="row d-flex">
             <div class="col-xl-3">
-                <section class="alert alert-primary">
+                <section class="alert alert-light">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="groups.php">Groupes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="events.php">Evènements</a>
+                            <a class="nav-link " href="events.php">Evènements</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="friends.php">Amis</a>
+                            <a class="nav-link" href="friends.php">Amis</a>
                         </li>
                     </ul>
                 </section>
@@ -84,6 +84,9 @@ session_start();
                 <section>
                     <h5>Votre Profil:</h5>
                     <hr>
+                    <h6>L'image par défaut de votre avatar est:</h6>
+                    <div id="img-avatar" class="justify-content-center"></div>
+                    <p><i>Vous pouvez dés à présent la modifier</i></p>
                     <div class="jumbotron">
                         <form id="dropzone-form"  enctype="multipart/form-data" method="POST">
                             <fieldset>

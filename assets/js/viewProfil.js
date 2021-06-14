@@ -1,7 +1,9 @@
 var viewProfil = document.getElementById('viewProfil');
+var avatarProfil= document.getElementById('img-avatar');
 
 document.addEventListener("DOMContentLoaded", function() {
     view_profil();
+   
 });
 
 function view_profil(){
@@ -10,6 +12,7 @@ function view_profil(){
         if(this.readyState === 4 && this.status === 200){
             var record = JSON.parse(xhr.responseText);
             var outputPR = '';
+            var outputAvatar='';
 
             outputPR +=
             '<div class="form-group"><input type="email" class="form-control w-75" id="email" name="email" value="'+record.email+
@@ -20,8 +23,11 @@ function view_profil(){
             '" required></div><div class="form-group"><label for="birth" >Date de Naissance</label><input type="date" class="form-control w-75"  id="birth" name="birth" value="'+record.birth+
             '" required></div><br>';
 
+            outputAvatar='<img class="d-block img-min" src="assets/images/upload/users/'+record.avatar+'" alt="avatar">';
+
 
             viewProfil.innerHTML = outputPR;
+            avatarProfil.innerHTML = outputAvatar;
         }else  if(this.readyState === 4 && this.status === 404){
             viewProfil.innerHTML = '<p>Erreur système</p>';
             }
