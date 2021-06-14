@@ -21,6 +21,6 @@ function suggestFriendList(){
             suggestedFriend.innerHTML = '<p class="list-group-item list-group-item-action">Pas de suggestion d\'amis</p>';
             }
     });
-    xhr.open("POST", 'api/controllers/suggestFriend');
+    xhr.open("POST", 'api/controllers/suggestFriend.php');
     xhr.send();
 }

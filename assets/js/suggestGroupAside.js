@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function suggestGroupList(){
 		
     var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status === 200) {
             
@@ -16,7 +18,7 @@ function suggestGroupList(){
             for(var i =0; i<records.length; i++){				
                 
                     outputG +=  
-                    '<a href="" class="list-group-item list-group-item-action"><img src="assets/images/upload/groups/'+records[i].img_group+'" class="card-img-thumb" alt="...">'+records[i].name_group+
+                    '<a href="groupe.php?id_group='+records[i].id_group+'" class="list-group-item list-group-item-action"><img src="assets/images/upload/groups/'+records[i].img_group+'" class="card-img-thumb" alt="...">   '+records[i].name_group+
                     '</a>';
             }
   
@@ -28,6 +30,6 @@ function suggestGroupList(){
             }  
     });
    
-    xhr.open("POST", 'api/controllers/suggestGroup');
+    xhr.open("POST", 'api/controllers/suggestGroup.php');
     xhr.send();
 }

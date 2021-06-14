@@ -30,7 +30,7 @@ if(isset($_SESSION['id_user']) && !empty($_SESSION['id_user'])){
     <script src="assets/js/dropzone.min.js" ></script>
 </head>
 
-<body>
+<body class="bg-light min-vh-100">
     <main class="container mt-5">
         <div class="row d-flex align-items-center">
             <div class="col-xl-3"></div>

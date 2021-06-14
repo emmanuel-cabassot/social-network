@@ -25,7 +25,7 @@ function suggestEventList(){
             suggestedEvent.innerHTML = '<p class="list-group-item list-group-item-action">Pas de suggestion d\'évènements</p>';
             }
     });
-    xhr.open("POST", 'api/controllers/suggestEvent');
+    xhr.open("POST", 'api/controllers/suggestEvent.php');
     xhr.send();
 }
 

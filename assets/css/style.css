@@ -62,9 +62,8 @@ a .quiet{
 }
 
 .card-img-thumb{
-    height: 75px;
-    width:auto;
-    border-radius: 50%;
+    height: auto;
+    width:50px;
     vertical-align: middle;
 }
 

@@ -38,12 +38,13 @@ if ($num>0){
         // extract row
         // this will make $row['name'] to
         // just $name only        
-               
+                $count = $group->count_belong($id_group);
                 $belong= $group->belong_group($id_user, $id_group);
                 $group_item = array(
                     "id_group" => $id_group,
                     "name_group" => $name_group,                   
-                    "img_group" => $img_group,                                     
+                    "img_group" => $img_group,
+                    "count" => $group->count_belong,
                     "belong" => $belong
                 );
         

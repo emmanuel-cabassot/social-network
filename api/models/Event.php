@@ -28,13 +28,15 @@ class Event{
         $this->conn = $db;
     }
 
-    function listEvents(){
+    function listEvents($id_user){
 
     // select all query
-    $query =  'SELECT id_event, id_user_creator, title_event, text_event, date_event, city_event, img_event, users.name, users.lastname, avatar FROM events JOIN users ON id_user_creator= users.id_user WHERE date_event >= CURDATE() AND public_event = "oui" ' ;
+    
+    $query =  'SELECT part_event.id_event, id_user_creator, title_event, text_event, date_event, city_event, img_event FROM part_event LEFT JOIN events ON part_event.id_event = events.id_event WHERE part_event.id_user= :id_user AND date_event >= CURDATE() AND public_event = "oui" ';
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);
+     $stmt->bindParam(":id_user", $id_user);
 
     // execute query
     $stmt->execute();
@@ -44,7 +46,7 @@ class Event{
     }
 
     function suggestEvent($id_user){
-        $query = 'SELECT * FROM part_event LEFT JOIN events ON part_event.id_event = events.id_event WHERE id_user IN (SELECT id_user_friend FROM `friend` WHERE id_user =:id_user UNION SELECT id_user FROM friend WHERE id_user_friend = id_user) AND id_event not IN (SELECT id_event FROM part_event where id_user=:id_user) ORDER BY RAND() LIMIT 3';
+        $query = 'SELECT * FROM part_event LEFT JOIN events ON part_event.id_event = events.id_event WHERE id_user IN (SELECT id_followed FROM `friend` WHERE id_follower = :id_user UNION SELECT id_follower FROM friend WHERE id_followed = :id_user) AND events.id_event not IN (SELECT id_event FROM part_event where id_user=:id_user) ORDER BY RAND() LIMIT 3';
         $stmt = $this->conn->prepare($query);
          $stmt->bindParam(":id_user", $id_user);
         // execute query
@@ -226,7 +228,7 @@ class Event{
 
         // sanitize
 
-        $this->id_group=htmlspecialchars($this->id_event);
+        $this->id_event=htmlspecialchars($this->id_event);
         $this->text_comment=htmlspecialchars($this->text_comment);
         $this->date_comment=htmlspecialchars($this->date_comment);
 

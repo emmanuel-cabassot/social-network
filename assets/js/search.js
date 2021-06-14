@@ -10,6 +10,7 @@ $(document).on('keyup', 'input#main-search', function(){
 
 function searchName(searchText){
     var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status === 200){
 
@@ -30,7 +31,7 @@ function searchName(searchText){
             }, 1000);  
     });
    
-    xhr.open("GET", "api/controllers/search?searchText="+searchText);
+    xhr.open("GET", "api/controllers/search.php?searchText="+searchText);
 
     xhr.send();
     }

@@ -26,42 +26,51 @@ $id_user = $_SESSION['id_user'];
 
 //$id_user=1;
 
-$suggest = $friend->suggestFriends($id_user);
 
-$num = $suggest->rowCount();
+$listFriend = $friend->listFriends($id_user);
 
+$num = $listFriend->rowCount();
+$suggest_arr=array();
+$suggest_arr['records']=array();
 if ($num>0){
-    $suggest_arr=array();
-    $suggest_arr['records']=array();
-
-    while ($row = $suggest->fetch(PDO::FETCH_ASSOC)){
+   
+    while($row = $listFriend->fetch(PDO::FETCH_ASSOC)){
         extract($row);
-        // extract row
-        // this will make $row['name'] to
-        // just $name only
-       
-        $suggest_item = array(
-            "id_friend" => $id_friend,
-            "name" =>$name,
-            "lastname" =>$lastname,
-            "avatar" =>$avatar,
-            "city"=>$city,
-            "country"=>$country,          
-        );
+       $FoF= $friend->listFof($id_user, $id_friend);
+       $count=$FoF->rowCount();
+        if($count>0){
+            while($fow = $FoF->fetch(PDO::FETCH_ASSOC)){
+                
+                extract($fow);
+                // extract row
+                // this will make $row['name'] to
+                // just $name only
+            
+                $suggest_item = array(
+                    "id_friend" => $id_fof,
+                    "name" =>$name,
+                    "lastname" =>$lastname,
+                    "avatar" =>$avatar,
+                    "city"=>$city,
+                    "country"=>$country,          
+                );
 
-        array_push($suggest_arr["records"], $suggest_item);
+                array_push($suggest_arr["records"], $suggest_item);
 
+            }
+
+            // set response code - 200 OK
+            http_response_code(200);
+        
+            // show products data
+            echo json_encode($suggest_arr);
+        }else{
+        // set response code - 204 
+        http_response_code(404);  
+        }
+    
     }
 
-      // set response code - 200 OK
-    http_response_code(200);
-  
-    // show products data
-    echo json_encode($suggest_arr);
-}
-  
-else{
-    // set response code - 204 
-    http_response_code(404);  
-    
-}
+}else{
+        http_response_code(404);   
+    }

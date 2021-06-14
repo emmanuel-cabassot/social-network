@@ -22,7 +22,7 @@ $event = new Event($db);
 
 $id_user= $_SESSION['id_user'];
 
-$stmt = $event->listEvents();
+$stmt = $event->listEvents($id_user);
 $num = $stmt->rowCount();
 
 if ($num>0){
@@ -35,7 +35,7 @@ if ($num>0){
         // this will make $row['name'] to
         // just $name only
         $count= $event->count_part($id_event);
-        $part= $event->particip_event($_SESSION['id_user'], $id_event);
+        $part= $event->particip_event($id_user, $id_event);
         $event_item = array(
            
             "id_event" =>$id_event,

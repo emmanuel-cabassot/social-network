@@ -39,7 +39,7 @@ function sendComment(id_event){
             }
         });
 
-        xhr.open("POST", "api/controllers/addEventComment?id_event="+id_event);
+        xhr.open("POST", "api/controllers/addEventComment.php?id_event="+id_event);
         xhr.setRequestHeader("Content-Type", "text/plain");
 
         xhr.send(form_data);   
@@ -92,16 +92,14 @@ function $_GET(param) {
                     ')" class="btn btn-primary">Se désinscrire</button>'}
     
                     outputVE =  
-                 
-                    '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-5"><img  class="img-mid" src="assets/images/upload/events/'+record.img_event+
-                    '"class="card-img" alt="..."></div><div class="col-md-7"><div class="card-body"><h5 class="card-title">'+record.title_event+
-                    '</h5></div></div><div class="col-xs-4 mt-4"><div class="profile-overview"><span class="badge bg-warning mt-1">'+record.date_event+
-                    '</span><p class="card-text"><b>'+record.city_event+
-                    '</b></p></div></div></div><p class="card-text">Description : '+record.text_event+
-                    '</p><div class="row d-flex justify-content-around text-center pt-2"><div class="col-xs-4 mt-4"><div class="profile-overview"><p>participants</p><span class="badge rounded-pill bg-primary">'+record.count+
-                    '</span></div></div><div class="col-xs-4"><div class="profile-overview"><p class="card-text ">Créé par :<img src="assets/images/upload/users/'+record.avatar+
+                    '<div class="card w-75 mb-3"><div class="row no-gutters"><div class="col-lg-4 col-md-4 align-item-center"><img src="assets/images/upload/events/'+record.img_event+
+                    '" class="img-min" alt="..."></a></div><div class="col-lg-8 col-md-8"><div class="card-body"><h5 class="card-title">'+record.title_event+
+                    '</h5></a><span class="badge bg-warning mt-1">'+record.date_event+'</span><p class="card-text">'+record.city_event+'<p class="card-text">Description : '+record.text_event+
+                    '</p><div class="row d-flex justify-content-around text-center pt-2"><div class="col-lg-4 col-md-4 align-item-center"><p>participants</p><span class="badge rounded-pill bg-primary">'+record.count+
+                    '</span></div><div class="col-lg-8 col-md-8 align-item-center"><p class="card-text ">Créé par :<img src="assets/images/upload/users/'+record.avatar+
                     '" class="card-img-thumb" alt="..."><h6>'+record.name+' '+record.lastname+
-                    '</h6></p></div></div></div></div>'+participer+'</div></div></div></div>';
+                    '</h6></p></div></div></div>'+participer+'</div><br>';
+
                              
                     }else{
                     outputVE =  
@@ -113,7 +111,7 @@ function $_GET(param) {
                     
             });
            
-            xhr.open("GET", 'api/controllers/viewEvent?id_event='+id_event);
+            xhr.open("GET", 'api/controllers/viewEvent.php?id_event='+id_event);
         
             xhr.send();
     }
@@ -125,7 +123,7 @@ function $_GET(param) {
                viewEvent(id_event);
             }
         });
-        xhr.open("POST", "api/controllers/partEvent?id_event="+id_event);
+        xhr.open("POST", "api/controllers/partEvent.php?id_event="+id_event);
     
         xhr.send();
     }
@@ -137,7 +135,7 @@ function $_GET(param) {
                 viewEvent(id_event);
             }
         });
-        xhr.open("POST", "api/controllers/noPartEvent?id_event="+id_event);    
+        xhr.open("POST", "api/controllers/noPartEvent.php?id_event="+id_event);    
         xhr.send();
     }
 
@@ -151,7 +149,7 @@ function $_GET(param) {
         }
         
     });
-    xhr.open("POST", "api/controllers/part_event?id_event="+id_event);
+    xhr.open("POST", "api/controllers/part_event.php?id_event="+id_event);
     xhr.send();
 }
 
@@ -168,11 +166,11 @@ function $_GET(param) {
                         
                         if(records[i].participe == true){
                             outputLC += 
-                            '<img src="assets/images/upload/users/'+records[i].avatar+'" class="card-img-thumb" alt="...">'+records[i].name+' '+records[i].lastname+
-                            '<p class="card-text">'+records[i].text_comment+
-                            '</p><p>date : '+records[i].date_comment+'</p>';
+                            '<p class="mt-3"><img src="assets/images/upload/users/'+records[i].avatar+'" class="card-img-thumb" alt="...">  '+records[i].name+' '+records[i].lastname+
+                            '  a écrit le '+records[i].date_comment+'</p><p class="list-group-item list-group-item-action"><i>'+records[i].text_comment+
+                            '</i></p><br>';
                         }else{
-                           ouputLC = '<p class="list-group-item list-group-item-action">Pas encore de commentaires</p>';  
+                           ouputLC = '<p class="list-group-item list-group-item-action mt-5">Pas encore de commentaires</p>';  
                         }
                 
                 }
@@ -183,7 +181,7 @@ function $_GET(param) {
             
             
         });
-        xhr.open("POST", 'api/controllers/listEventComment?id_event='+id_event);
+        xhr.open("GET", 'api/controllers/listEventComment.php?id_event='+id_event);
         xhr.send();
         }
         

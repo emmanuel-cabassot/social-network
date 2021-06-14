@@ -22,10 +22,10 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css" integrity="sha512-vEia6TQGr3FqC6h55/NdU3QSM5XR6HSl5fW71QTKrgeER98LIMGwymBVM867C1XHIkYD9nMTfWK2A0xcodKHNA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="bg-light">
+<body class="bg-light min-vh-100">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-light">
-            <a class="navbar-brand" href="#"><img src="assets/images/logo.png" alt="logo" class="logo-img-thumb"></a>
+            <a class="navbar-brand" href="home.php"><img src="assets/images/logo.png" alt="logo" class="logo-img-thumb"></a>
 
 
             <div class="collapse navbar-collapse" id="navbarColor03">
@@ -39,9 +39,6 @@ session_start();
                 </div>
 
                 <ul class="navbar-nav ml-auto display-5">
-                <li class="nav-item active">
-                        <a class="nav-link" href="api/controllers/sessionOut.php"><i class="bi bi-box-arrow-right"></i></a>
-                    </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="home.php"><i class="bi bi-house mr-3 blue"></i></a>
                     </li>
@@ -52,7 +49,7 @@ session_start();
                         <a class="nav-link" href="#"><i class="bi bi-camera-video mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-person-circle mr-3 blue"></i></a>
+                        <a class="nav-link" href="profil.php"><i class="bi bi-person-circle mr-3 blue"></i></a>
                     </li>
                 </ul>
             </div>

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <script src="assets/js/jquery.min.js"></script>
 </head>
-<body>
+<body class="bg-light min-vh-100">
     <main class="container mt-5">
         <div class="row d-flex align-items-center">
             <div class="col-xl-2"></div>

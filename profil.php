@@ -58,7 +58,7 @@ session_start();
     <main class="container-fluid mt-5">
         <div class="row d-flex">
             <div class="col-xl-3">
-                <section class="alert alert-light">
+                <section class="alert alert-primary">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
                             <a class="nav-link" href="groups.php">Groupes</a>
@@ -67,34 +67,60 @@ session_start();
                             <a class="nav-link" href="events.php">Evènements</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link alert alert-dismissible alert-primary" href="friends.php">Amis</a>
+                            <a class="nav-link active" href="friends.php">Amis</a>
                         </li>
                     </ul>
                 </section>
                 <section class="alert alert-light">
                     <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion Evènements
-
+                        <div class="list-group-item list-group-item-action active">Suggestion Évènements
                             <a href="events.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
-                        <div id="suggestedEvent"></div>                        
+                        <div id="suggestedEvent"></div>
                     </div>
                 </section>
             </div>
             <div class="col-xl-6 col-sm-12">
                 <section>
-                    <h5>Suggestion - Peut être, connaissez-vous:</h5>
+                    <h5>Votre Profil:</h5>
                     <hr>
-                    <div class="row" id="suggestFriends"></div>
+                    <div class="jumbotron">
+                        <form id="dropzone-form"  enctype="multipart/form-data" method="POST">
+                            <fieldset>
+                                <div id="viewProfil">
+                                </div>
+                            
+                                <div class="form-group">
+                                    <div class="dropzone" id="dropzone"></div>
+                                </div>
+                                <div id="resultat"></div>
+                                <div class="form-group">
+                                    <input type="submit" name="submitDropzone" value="Modifier" id="submit-dropzone" class="btn btn-primary w-75" />
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
                 </section>
                 <hr>
-                <section>
-                    <h5>Vous êtes ami avec:</h5>
-                    <hr>
-                    <div id="listFriends"></div>
-                </section>
+                
             </div>    
             <div class="col-xl-3 col-sm-12 mt-5">
+                <section class="alert alert-light">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action active">Suggestion d'amis
+                            <a href="friends.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
+                        </div>
+                        <div id="suggestedFriend"></div>                        
+                    </div>                    
+                </section>
+                <section class="alert alert-light">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action active">Amis
+                            <a href="friends.php"type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
+                        </div>
+                        <div id="listFriends"></div>                        
+                    </div>
+                </section>  
                 <section class="alert alert-light">
                     <div class="list-group">
                         <div class="list-group-item list-group-item-action active">Suggestion de groupes
@@ -112,8 +138,9 @@ session_start();
       </footer>
     <script src="assets/js/suggestGroupAside.js"></script>
     <script src="assets/js/suggestEventAside.js"></script>
-    <script src="assets/js/suggestFriendBody.js"></script>
-    <script src="assets/js/listerFriends.js"></script>
+    <script src="assets/js/suggestFriendAside.js"></script>
+    <script src="assets/js/listerFriendsAside.js"></script>
+    <script src="assets/js/viewProfil.js"></script>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -13,7 +13,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
   
 // include database and object files
 include_once '../config/database.php';
-include_once '../models/event.php';
+include_once '../models/Event.php';
   
 // get database connection
 $database = new Database();

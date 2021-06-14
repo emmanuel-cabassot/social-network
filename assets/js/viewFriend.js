@@ -42,10 +42,8 @@ function view_friend(id_friend){
                     ')" class="btn btn-primary">Oublier</button>';}
 
                         outputFR +=
-                    '<div class="card w-50 mb-3"><div class="row no-gutters"><div class="col-md-4"><a  href="viewFriend.php?id_friend='+record.id_friend+
-                    '"><img src="assets/images/upload/users/'+record.avatar+
-                    '" class="card-img-thumb" alt="..."></a></div><div class="col-md-8"><div class="card-body"><a  href="viewFriend.php?id_friend='+record.id_friend+
-                    '"><h5 class="card-title">'+record.name+
+                    '<div class="card w-75 mb-3"><div class="row no-gutters"><div class="col-md-4 align-item-center"><img src="assets/images/upload/users/'+record.avatar+
+                    '" class="img-min" alt="..."></a></div><div class="col-md-8"><div class="card-body"><h5 class="card-title">'+record.name+
                     ' '+record.lastname+'</h5></a><p class="card-text">'+record.city+ ' - '+record.country+
                     '</p>'+relation+'</div></div></div></div><br>';
 
@@ -54,7 +52,7 @@ function view_friend(id_friend){
             outputFR.innerHTML = '<p>Pas  d\'ami</p>';
             }       
     });
-    xhr.open("POST", 'api/controllers/viewFriend?id_friend='+id_friend);
+    xhr.open("POST", 'api/controllers/viewFriend.php?id_friend='+id_friend);
     xhr.send();
 }
 
@@ -70,7 +68,7 @@ function invitFriend(id_friend){
         }
     });
    
-    xhr.open("GET", 'api/controllers/invitFriend?id_friend='+id_friend);
+    xhr.open("GET", 'api/controllers/invitFriend.php?id_friend='+id_friend);
 
     xhr.send();
 }
@@ -88,7 +86,7 @@ function confirmFriend(id_follow){
         }
     });
    
-    xhr.open("GET", 'api/controllers/confirmFriend?id_follow='+id_follow);
+    xhr.open("GET", 'api/controllers/confirmFriend.php?id_follow='+id_follow);
 
     xhr.send();
 }
@@ -102,7 +100,7 @@ function forgetFriend(id_follow){
             window.location="friends.php";         
         }
     });
-    xhr.open("POST", 'api/controllers/forgetFriend?id_follow='+id_follow);
+    xhr.open("POST", 'api/controllers/forgetFriend.php?id_follow='+id_follow);
     xhr.send();
 }
            

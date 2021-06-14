@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
  function listerGroups(){
     var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
     xhr.addEventListener("readystatechange", function() {
     if(this.readyState === 4 && this.status === 200) {
 
@@ -32,6 +33,6 @@ document.addEventListener("DOMContentLoaded", function() {
             listGroups.innerHTML = '<p>Pas de participation à un groupe</p>';
         }
     });
-    xhr.open("POST", 'api/controllers/listGroups');
+    xhr.open("POST", 'api/controllers/listGroups.php');
     xhr.send();
 };

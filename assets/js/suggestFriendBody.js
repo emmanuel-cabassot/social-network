@@ -31,7 +31,7 @@ function suggestFriendListB(){
             suggestFriend.innerHTML = '<p class="list-group-item list-group-item-action">Pas de suggestion d\'amis</p>';
             }
     });
-    xhr.open("POST", 'api/controllers/suggestFriend');
+    xhr.open("POST", 'api/controllers/suggestFriend.php');
     xhr.send();
 }
 
@@ -47,7 +47,7 @@ function invitFriend(id_friend){
         }
     });
    
-    xhr.open("GET", 'api/controllers/invitFriend?id_friend='+id_friend);
+    xhr.open("GET", 'api/controllers/invitFriend.php?id_friend='+id_friend);
 
     xhr.send();
 }

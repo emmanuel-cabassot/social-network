@@ -46,7 +46,7 @@ if ($num>0){
                     "img_event" => $img_event,
                     "date_event" =>$date_event,
                     "city_event" => $city_event,
-                    "partEvent" => $partEvent
+                    "count" => $event->count_part
                 );
         
                 array_push($event_arr["records"], $event_item);

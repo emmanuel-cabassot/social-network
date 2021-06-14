@@ -18,8 +18,7 @@ var serializeForm = function (form) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    view_group(id_group);
-    listerCommentG(id_group);     
+    view_group(id_group);     
 });
 
  commentForm.addEventListener('submit', e => {
@@ -41,7 +40,7 @@ function sendComment(id_group){
             }
         });
 
-        xhr.open("POST", "api/controllers/addGroupComment?id_group="+id_group);
+        xhr.open("POST", "api/controllers/addGroupComment.php?id_group="+id_group);
         xhr.setRequestHeader("Content-Type", "text/plain");
 
         xhr.send(form_data);   
@@ -85,11 +84,15 @@ function view_group(id_group){
             var record = JSON.parse(xhr.responseText);
             var outputGE = '';
             var appartenir='';
+            var commenter='';
             if(record.belong==false){
                 appartenir='<button type="button" onclick="belong_group('+record.id_group+
                 ')" class="btn btn-primary">S\'inscrire</button>';
+              
             }else{appartenir='<p>Vous êtes membre de ce groupe</p><button type="button" onclick="noBelong('+record.id_group+
-            ')" class="btn btn-primary">Se désinscrire</button>'}
+            ')" class="btn btn-primary">Se désinscrire</button>';
+            commenter='<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentGroupModal">Ajouter commentaire</button>';
+            }
             outputGE +=
             
             '<div class="card mb-3"><div class="row no-gutters"><div class="col-md-5"><img  class="img-mid" src="assets/images/upload/groups/'+record.img_group+
@@ -99,17 +102,21 @@ function view_group(id_group){
             '</h6></div></div><div class="col-xs-4"><div class="profile-overview"><p class="card-text ">Créé par :<img src="assets/images/upload/users/'+record.avatar_create+
             '" class="card-img-thumb" alt="..."><h6>'+record.name_create+' '+record.lastname_create+
             '</h6></p></div></div></div></div>'+appartenir+
-            '</div></div></div></div></div>';  
+            '</div></div></div></div></div><br>'+commenter;
+                  
                        
         }else{
             outputGE =
             '<li class="list-group-item d-flex justify-content-between btn-outline-warning mt-2">Erreur système, veuillez essayer de nouveau.</li>';
         }
-        setTimeout(function(){
+       
             viewGroupe.innerHTML = outputGE;
-        }, 1000);
+       
+        if(commenter !==' '){
+            listerCommentG(id_group);  
+        }
     });
-    xhr.open("POST", "api/controllers/viewGroup?id_group="+id_group);
+    xhr.open("POST", "api/controllers/viewGroup.php?id_group="+id_group);
     xhr.send();
 }
 
@@ -117,11 +124,11 @@ function noBelong(id_group){
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status === 200){
-            view_group(id_group);
+            window.location="groupe.php?id_group="+id_group;
            
         }
     });
-    xhr.open("POST", "api/controllers/noBelong?id_group="+id_group);
+    xhr.open("POST", "api/controllers/noBelong.php?id_group="+id_group);
     xhr.send();
 }
 
@@ -129,26 +136,13 @@ function belong_group(id_group){
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status === 200){
-            view_group(id_group);  
+            window.location="groupe.php?id_group="+id_group;
         }
     });
-    xhr.open("POST", "api/controllers/belong?id_group="+id_group);
+    xhr.open("POST", "api/controllers/belong.php?id_group="+id_group);
     xhr.send();
 }
 
-function part_group(id_group){
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener("readystatechange", function() {
-        if(this.readyState === 4 && this.status === 200){
-         return true;
-        }else{
-           return false;
-        }
-        
-    });
-    xhr.open("POST", "api/controllers/part_group?id_group="+id_group);
-    xhr.send();
-}
 
 function  listerCommentG(id_group){
     var xhr = new XMLHttpRequest();
@@ -163,10 +157,10 @@ function  listerCommentG(id_group){
                     
                     if(records[i].belong == true){
                         outputLC += 
-                        '<img src="assets/images/upload/users/'+records[i].avatar+'" class="card-img-thumb" alt="...">'+records[i].name+' '+records[i].lastname+
-                        '<p class="card-text">'+records[i].text_comment+
-                        '</p><p>date : '+records[i].date_comment+'</p>';
-
+                        '<p><img src="assets/images/upload/users/'+records[i].avatar+'" class="card-img-thumb" alt="...">  '+records[i].name+' '+records[i].lastname+
+                        '  a écrit le '+records[i].date_comment+'</p><p class="list-group-item list-group-item-action"><i>'+records[i].text_comment+
+                        '</i></p><br>';
+                       
                     }else{
                         outputLC = '<p class="list-group-item list-group-item-action">Pas encore de commentaires? </p>';
                     }
@@ -177,7 +171,7 @@ function  listerCommentG(id_group){
             listCommentGroup.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore de commentaires</p>';
             }
     });
-    xhr.open("POST", 'api/controllers/listGroupComment?id_group='+id_group);
+    xhr.open("POST", 'api/controllers/listGroupComment.php?id_group='+id_group);
     xhr.send();
     }
 

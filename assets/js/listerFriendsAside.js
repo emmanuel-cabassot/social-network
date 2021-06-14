@@ -30,7 +30,7 @@ function listerFriends(){
             listFriends.innerHTML = '<p class="list-group-item list-group-item-action">Pas encore d\'amis?</p>';
             }
     });
-    xhr.open("POST", 'api/controllers/listFriends');
+    xhr.open("POST", 'api/controllers/listFriends.php');
     xhr.send();
 }
 

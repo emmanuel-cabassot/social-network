@@ -30,7 +30,7 @@ function signUp(){
         }else{setTimeout(function(){$("#resultat").html("<p>Erreur système, veuillez recommencer</p>")}, 1000);}
     });
 
-    xhr.open("POST", "api/controllers/signUp");
+    xhr.open("POST", "api/controllers/signUp.php");
     xhr.setRequestHeader("Content-Type", "text/plain");
 
     xhr.send(form_data);

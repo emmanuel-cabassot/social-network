@@ -30,7 +30,7 @@ function login(){
         }
     });
 
-    xhr.open("POST", "api/controllers/login");
+    xhr.open("POST", "api/controllers/login.php");
     xhr.setRequestHeader("Content-Type", "text/plain");
 
     xhr.send(form_data);

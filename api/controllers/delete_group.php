@@ -10,7 +10,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
   
 // include database and object files
 include_once '../config/database.php';
-include_once '../models/group.php';
+include_once '../models/Group.php';
   
 // get database connection
 $database = new Database();
