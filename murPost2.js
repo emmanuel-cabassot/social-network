@@ -31,20 +31,12 @@ xhr.onreadystatechange = function () {
                             <div class="name-showPost">${post.userLastname} ${post.userName}</div>
                             <div class="datePost-showPost">${post.date_post}</div>
                         </section>
-                    </section>
-                    <section class="modify-showPost">
-                        <span>...</span>
                     </section>`;
 
             if (post.myPost == 'oui') {
                 output += `
-                <section class="modify-showPost-option">
-                    <span>Supprimer</span>
-                </section>`;
-            }else {
-                output += `
-                <section class="modify-showPost-option">
-                    <span>Signaler</span>
+                <section class="modify-showPost">
+                    <span>...</span>
                 </section>`;
             }
 
@@ -155,7 +147,7 @@ xhr.onreadystatechange = function () {
                         <img src="assets/images/upload/users/${post.avatarUserSession}" alt="avatar">
                     </section>
                     <section class="textarea-add-comment-showPost" >
-                        <textarea name="" id="add-comment-textarea${post.id_post}" oninput="check(${post.id_post});" placeholder="Ecrivez un commentaire ..."></textarea>
+                        <textarea name="" id="add-comment${post.id_post}" oninput="check(${post.id_post});" placeholder="Ecrivez un commentaire ..."></textarea>
                     </section>
                 </section>`
 
@@ -194,32 +186,12 @@ xhr.onreadystatechange = function () {
             postShowNode.innerHTML = output
             showPostsMur.append(postShowNode)
 
-            /* Options du post 'supprimer ou signaler' */
-            optionPost = document.querySelector(".modify-showPost")
-            optionPost.addEventListener("click", function (e) {
-                let optionClick = document.querySelector(".modify-showPost-option")
-                optionClick.classList.add("show")
-                optionClick.addEventListener("click", function (e) {
-                    if (post.myPost == 'oui') {
-                        data = {
-                            supprimer : 'oui'
-                        }           
-                        let xhr = new XMLHttpRequest();
-                        xhr.open("POST", "api/controllers/postShow.php");
-                        xhr.setRequestHeader("Content-Type", "text/plain");
-                        xhr.responseType = "json";
-                        xhr.send(JSON.stringify(data));
-                    }
-                })
-                
-            })
-           
             /* Ecrire un commentaire et le poster */
-            textareaComment = document.querySelector(`#add-comment-textarea${post.id_post}`)
+            textareaComment = document.querySelector("#add-comment" + post.id_post)
             textareaComment.addEventListener("keydown", function (e) {
                 if (e.keyCode == 13 && !e.shiftKey) {
                     e.preventDefault()
-                    textValue = this.value
+                    textValue = textareaComment.value
 
                     if (textValue.length > 0) {
                         let data = {
@@ -247,7 +219,7 @@ xhr.onreadystatechange = function () {
                                             ${user.lastname} ${user.name}
                                         </section>
                                         <section class="date-comment-showPost">
-                                            A l'instant
+                                            ${user.date_comment}
                                         </section>                    
                                         <section class="text-comment-showPost">
                                             ${user.text}
@@ -263,13 +235,6 @@ xhr.onreadystatechange = function () {
 
                         /* Vidage du textarea */
                         this.value = ''
-                        
-                        let showHiddenComment = document.querySelector("#container-comment" + post.id_post)
-                        if (!showHiddenComment.classList.contains("show")) {
-                            showHiddenComment.classList.add("show")
-                        }
-
-
 
                        /*  Modification du nombre de commentaires */
                        let countComment = document.querySelector("#commentCount" + post.id_post)
@@ -319,16 +284,14 @@ xhr.onreadystatechange = function () {
         });
     }
 }
-
-/* Hauteur du textarea 'ecrire un comment' */
 function check(id_post) {
-    let hauteur = document.querySelector("#add-comment-textarea" + id_post).scrollHeight
-    let val = document.querySelector("#add-comment-textarea" + id_post).value
+    let hauteur = document.querySelector("#add-comment" + id_post).scrollHeight
+    let val = document.querySelector("#add-comment" + id_post).value
 
     if (val === "") {
-        document.querySelector("#add-comment-textarea" + id_post).style.height = '38px';
+        document.querySelector("#add-comment" + id_post).style.height = '38px';
     } else {
-        document.querySelector("#add-comment-textarea" + id_post).style.height = hauteur + 'px';
+        document.querySelector("#add-comment" + id_post).style.height = hauteur + 'px';
     }
 }
 

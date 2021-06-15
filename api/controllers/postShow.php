@@ -18,6 +18,7 @@ include_once '../models/Comment.php';
 include_once '../models/Like.php';
 include_once '../models/Dislike.php';
 include_once '../models/User.php';
+include_once '../../functions/depuis.php';
 
 // Instancie database and product object
 $database = new Database();
@@ -34,10 +35,11 @@ $posts = $postUser->idPostUser($user);
 $increment = 0;
 foreach ($posts as $post) {
     
-    $id_post = $post['id_post'];  
+    $id_post = $post['id_post']; 
 
     $classPost = new Post($db);
     $post = $classPost->showPostById($id_post);
+    $post['date_post'] = depuis($post['date_post']);
     $post['text_post'] = nl2br($post['text_post']);
     $user = $classPost->userById($post['id_user']);
     $post['userLastname'] = ucfirst($user['lastname']);
@@ -82,6 +84,7 @@ foreach ($posts as $post) {
              $userComment = $classUser->userById($idUserComment);
 
              $post['comments'][$i] = $comment;
+             $post['comments'][$i]['date_comment_post'] = depuis($post['comments'][$i]['date_comment_post']);
              $post['comments'][$i]['text_comment_post'] = nl2br($post['comments'][$i]['text_comment_post']);
              $post['comments'][$i]['userName'] = ucfirst($userComment['name']);
              $post['comments'][$i]['userlastName'] = ucfirst($userComment['lastname']);

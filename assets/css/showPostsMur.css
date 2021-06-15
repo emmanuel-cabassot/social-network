@@ -12,6 +12,7 @@
     border-radius: 8px; 
     margin: 20px 0; 
     background-color: white;
+    position: relative;
 }
 
 .header-showPost {
@@ -40,15 +41,31 @@
     color: black;
 }
 
-.modify-showPost {
+.modify-showPost span {
     margin: 0 12px;
     font-size: 2.5em;
     line-height: 0.4;  
 }
 
-.modify-showPost:hover {
+.modify-showPost span:hover {
     color: blue;
     cursor: pointer;
+}
+
+.modify-showPost-option.show {
+    display: initial;
+    position: absolute;
+    top: 28px;
+    right: 10px;
+    padding: 2px 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: white;
+    color: blue;
+}
+
+.modify-showPost-option {
+    display: none;
 }
 
 .text-showPost {

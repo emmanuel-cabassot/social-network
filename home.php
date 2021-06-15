@@ -207,7 +207,7 @@ session_start();
         <div class="col-lg-12">
         </div>
     </footer>
-    <input type="hidden" id="idUser" value="1">
+    <input type="hidden" id="idUser" value="<?= $_SESSION['id_user'] ?>">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
         $('#TextareaPostSend').emojioneArea({

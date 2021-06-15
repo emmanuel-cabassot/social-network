@@ -1,5 +1,6 @@
 let user = document.querySelector('#idUser')
-user = 1
+user = user.value
+
 /* APPARATION ET DISPARITION DE LA MODALE */
 lienModale = document.querySelectorAll('.sendPost [data-modale]')
 
