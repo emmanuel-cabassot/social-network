@@ -14,23 +14,27 @@ function listerUsers(){
         var outputUs = '';
 
         for(var i =0; i<records.length; i++){
-            var formId='form'+id_user;
+            var formId='form'+records[i].id_user;
+
             outputUs +=  
-            '<tr><td>'+id_user+
-            '</td><td>'+name+
-            '</td><td>'+lastname+
-            '</td><td>'+email+
-            '</td><td><form id="'+formId+'"><input type="text" value="'+blocked+'" name="blocked"></td><td><input type="date" value="'+period_blocked+
+            '<tr><td>'+records[i].id_user+
+            '</td><td>'+records[i].name+
+            '</td><td>'+records[i].lastname+
+            '</td><td>'+records[i].email+
+            '</td><td><form id="'+formId+'"><input type="text" value="'+records[i].blocked+'" name="blocked"></td><td><input type="date" value="'+records[i].period_block+
             '"></td><td><input type="submit" value="Submit"></td></form></tr>';              
                                 
         }
 
         listUsers.innerHTML = outputUs;
+
+       
+
        }else if(this.readyState === 4 && this.status === 404){
             listUsers.innerHTML = '<p>Pas d\'inscrits</p>';
         }
     });
-    xhr.open("POST", 'api/controllers/adm/admUsers.php');
+    xhr.open("POST", 'api/controllers/admUsers.php');
     xhr.send();
 };
 

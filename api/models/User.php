@@ -41,4 +41,17 @@ class User{
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    function listUsers()
+    {
+        $select = "SELECT * FROM users";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($select);
+
+        // Execute
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
