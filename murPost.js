@@ -421,7 +421,8 @@ xhr.onreadystatechange = function () {
 
                             if (confirm(textConfirm)) {
                                 if (textConfirm == "Voulez-vous supprimer votre commentaire?") {
-                                    survolComment.classList.add("hidden")
+                                    hiddenCommentaire = document.querySelector("#view-comment-showPost" +  post.id_post + "-" + comment.id_comment_post)
+                                    hiddenCommentaire.classList.add("hidden")
                                 }
                                 let xhr = new XMLHttpRequest();
                                 xhr.open("POST", "api/controllers/deleteSignalerComment.php");

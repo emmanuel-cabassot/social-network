@@ -327,7 +327,7 @@ publier.addEventListener("click", function (e) {
             buttonStory.classList.remove("validate")
         }
 
-        document.location.href = "#";
+        window.location.reload();
     }
 })
 
