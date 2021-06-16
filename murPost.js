@@ -23,27 +23,34 @@ xhr.onreadystatechange = function () {
             /* Information du user */
             output += `      
                 <section class="header-showPost">
-                    <section class="user-showPost">
+                    <section class="user-showPost" id="user_showPost${post.id_post}">               
                         <section class="avatar-user-showPost">
                             <img src="assets/images/upload/users/${post.userAvatar}" alt="avatar">
                         </section>
                         <section class="nameDate-showPost">
                             <div class="name-showPost">${post.userLastname} ${post.userName}</div>
                             <div class="datePost-showPost">${post.date_post}</div>
-                        </section>
+                        </section>        
                     </section>
-                    <section class="modify-showPost">
+                    <section class="modify-showPost" id="modify-showPost${post.id_post}">
                         <span>...</span>
                     </section>`;
 
+            if (post.story_post == 'oui') {
+                output += `
+                    <section class="story-showPost">
+                        <span>Story</span>
+                    </section>`
+            }
+
             if (post.myPost == 'oui') {
                 output += `
-                <section class="modify-showPost-option">
+                <section class="modify-showPost-option" id="modify-showPost-option${post.id_post}">
                     <span>Supprimer</span>
                 </section>`;
-            }else {
+            } else {
                 output += `
-                <section class="modify-showPost-option">
+                <section class="modify-showPost-option" id="modify-showPost-option${post.id_post}">
                     <span>Signaler</span>
                 </section>`;
             }
@@ -166,11 +173,11 @@ xhr.onreadystatechange = function () {
                 comments = post.comments
                 comments.forEach(comment => {
                     output += `
-                    <section class="view-comment-showPost">
-                        <section class="user-photo-comment-showPost">
+                    <section class="view-comment-showPost" id="view-comment-showPost${post.id_post}-${comment.id_comment_post}">
+                        <section class="user-photo-comment-showPost" id="user-photo-comment-showPost${post.id_post}-${comment.id_comment_post}">
                             <img src="assets/images/upload/users/${comment.userAvatar}" alt="avatar">
                         </section>
-                        <section class="name-date-text-comment-showPost">
+                        <section class="name-date-text-comment-showPost" id="name-date-text-comment-showPost${post.id_post}-${comment.id_comment_post}">
                             <section class="user-name-showPost">
                                 ${comment.userlastName} ${comment.userName}
                             </section>
@@ -181,39 +188,86 @@ xhr.onreadystatechange = function () {
                                 ${comment.text_comment_post}
                             </section>
                         </section>
-                    </section>
-                    `
+                        <section class="option-comment-showPost" id="option-comment${post.id_post}-${comment.id_comment_post}">
+                            <img src="assets/images/3pts.png" alt="3 points">
+                        </section>`;
+
+                    if (user == comment.id_user) {
+                        output += `
+                            <section class="option-comment-click" id="option-comment-click${post.id_post}-${comment.id_comment_post}">
+                                Supprimer
+                            </section>
+                            </section>`;
+                    } else {
+                        output += `
+                            <section class="option-comment-click" id="option-comment-click${post.id_post}-${comment.id_comment_post}">
+                                Signaler
+                            </section>
+                            </section>`;
+                    }
+
                 });
-                output +=`
+                output += `
                 </section>`
             }
 
-            /* Intégration de la section post*/
+            /* INTEGRATION DE LA SECTION VOIR UN POST*/
             let postShowNode = document.createElement('section')
             postShowNode.classList.add('showOnePost')
+            postShowNode.id = "showOnePost" + post.id_post
             postShowNode.innerHTML = output
             showPostsMur.append(postShowNode)
 
+            /* Creer un lien vers ajouter un ami en cliquant sur l'image du poster */
+            userSection = document.querySelector("#user_showPost" + post.id_post)
+            userSection.addEventListener("click", function (e) {
+                document.location.href = "viewFriend.php?id_friend=" + post.id_user;
+            })
+
             /* Options du post 'supprimer ou signaler' */
-            optionPost = document.querySelector(".modify-showPost")
+            optionPost = document.querySelector("#modify-showPost" + post.id_post)
             optionPost.addEventListener("click", function (e) {
-                let optionClick = document.querySelector(".modify-showPost-option")
-                optionClick.classList.add("show")
+                optionClick = document.querySelector("#modify-showPost-option" + post.id_post)
+                optionClick.classList.toggle("show");
+
+                function hiddenOptionClick() {
+                    optionClick.classList.remove("show")
+                }
+                setTimeout(hiddenOptionClick, 4000);
+
                 optionClick.addEventListener("click", function (e) {
+
                     if (post.myPost == 'oui') {
+                        textConfirm = "Voulez-vous supprimer votre post?"
                         data = {
-                            supprimer : 'oui'
-                        }           
+                            supprimer: 'oui',
+                            id_post: post.id_post
+                        }
+                    } else {
+                        textConfirm = "Voulez-vous signaler ce post?"
+                        data = {
+                            signaler: 'oui',
+                            id_post: post.id_post
+                        }
+                    }
+
+                    if (confirm(textConfirm)) {
+                        if (textConfirm == "Voulez-vous supprimer votre post?") {
+                            addClassHidden = document.querySelector("#showOnePost" + post.id_post)
+                            addClassHidden.classList.add("hidden")
+                        }
                         let xhr = new XMLHttpRequest();
-                        xhr.open("POST", "api/controllers/postShow.php");
+                        xhr.open("POST", "api/controllers/deleteSignalerPost.php");
                         xhr.setRequestHeader("Content-Type", "text/plain");
                         xhr.responseType = "json";
                         xhr.send(JSON.stringify(data));
                     }
+
+
                 })
-                
+
             })
-           
+
             /* Ecrire un commentaire et le poster */
             textareaComment = document.querySelector(`#add-comment-textarea${post.id_post}`)
             textareaComment.addEventListener("keydown", function (e) {
@@ -254,16 +308,16 @@ xhr.onreadystatechange = function () {
                                         </section>
                                     </section>
                                 
-                                `  
+                                `
                                 elementParent = document.querySelector("#container-comment" + post.id_post)
                                 elementParent.prepend(newComment)
 
                             }
                         }
 
-                        /* Vidage du textarea */
+                        /* Vidage du textarea après envoie du commentaire */
                         this.value = ''
-                        
+
                         let showHiddenComment = document.querySelector("#container-comment" + post.id_post)
                         if (!showHiddenComment.classList.contains("show")) {
                             showHiddenComment.classList.add("show")
@@ -271,25 +325,26 @@ xhr.onreadystatechange = function () {
 
 
 
-                       /*  Modification du nombre de commentaires */
-                       let countComment = document.querySelector("#commentCount" + post.id_post)
-                       if (post.countComment == 0) {
-                           
+                        /*  Modification du nombre de commentaires */
+                        let countComment = document.querySelector("#commentCount" + post.id_post)
+                        if (post.countComment == 0) {
+
                             countComment.innerHTML = "1 commentaire"
-                       }
-                       else {
+                        }
+                        else {
                             post.countComment++
                             countComment.innerHTML = "<span>" + post.countComment + "</span> commentaires"
-                       }                      
+                        }
                     }
                 }
+
             })
 
             /* Bouton commenter */
             boutonCommenter = document.querySelector("#comment-action" + post.id_post)
-            boutonCommenter.addEventListener("click", function(e) {
+            boutonCommenter.addEventListener("click", function (e) {
                 ShowHiddenTextarea = document.querySelector("#add-comment" + post.id_post)
-    
+
                 if (ShowHiddenTextarea.classList.contains("show")) {
                     ShowHiddenTextarea.classList.remove("show")
                 }
@@ -302,9 +357,9 @@ xhr.onreadystatechange = function () {
 
             /* Bouton du nombre de commentaires */
             BoutonNbCommentaires = document.querySelector(`#commentCount${post.id_post}`)
-            BoutonNbCommentaires.addEventListener("click", function(e) {
-            showHiddenComment = document.querySelector("#container-comment" + post.id_post)
-            ShowHiddenTextarea = document.querySelector("#add-comment" + post.id_post)
+            BoutonNbCommentaires.addEventListener("click", function (e) {
+                showHiddenComment = document.querySelector("#container-comment" + post.id_post)
+                ShowHiddenTextarea = document.querySelector("#add-comment" + post.id_post)
 
                 if (showHiddenComment.classList.contains("show")) {
                     showHiddenComment.classList.remove("show")
@@ -313,9 +368,74 @@ xhr.onreadystatechange = function () {
                 else {
                     showHiddenComment.classList.add("show")
                     ShowHiddenTextarea.classList.add("show")
-                    
+
                 }
             })
+            if (post.countComment > 0) {
+
+                postComments = post.comments
+                postComments.forEach(comment => {
+                    /* Créer les liens des avatars des comments qui vont a ajouter amis */
+                    avatarUserComment = document.querySelector("#user-photo-comment-showPost" + post.id_post + "-" + comment.id_comment_post)
+                    avatarUserComment.addEventListener("click", function (e) {
+                        document.location.href = "viewFriend.php?id_friend=" + post.id_user;
+                    })
+
+                    /* Apparition des 3 petits points au survol du commentaire */
+                    survolComment = document.querySelector("#view-comment-showPost" + post.id_post + "-" + comment.id_comment_post)
+                    survolComment.addEventListener("mouseover", function (e) {
+                        points = document.querySelector("#option-comment" + post.id_post + "-" + comment.id_comment_post)
+                        points.classList.add("show")
+                    })
+                    survolComment.addEventListener("mouseout", function (e) {
+                        points = document.querySelector("#option-comment" + post.id_post + "-" + comment.id_comment_post)
+                        points.classList.remove("show")
+                    })
+
+                    /* Au click sur les 3 petits points apparition du signaler */
+                    points = document.querySelector("#option-comment" + post.id_post + "-" + comment.id_comment_post)
+                    points.addEventListener("click", function (e) {
+                        apparition = document.querySelector("#option-comment-click" + post.id_post + "-" + comment.id_comment_post)
+                        apparition.classList.toggle("show")
+
+                        function hiddenOptionClick() {
+                            apparition.classList.remove("show")
+                        }
+                        setTimeout(hiddenOptionClick, 2500);
+
+                        apparition.addEventListener("click", function (e) {
+
+                            if (user == comment.id_user) {
+                                textConfirm = "Voulez-vous supprimer votre commentaire?"
+                                data = {
+                                    supprimer: 'oui',
+                                    id_comment: comment.id_comment_post
+                                }
+                            } else {
+                                textConfirm = "Voulez-vous signaler ce commentaire?"
+                                data = {
+                                    signaler: 'oui',
+                                    id_comment: comment.id_comment_post
+                                }
+                            }
+
+                            if (confirm(textConfirm)) {
+                                if (textConfirm == "Voulez-vous supprimer votre commentaire?") {
+                                    survolComment.classList.add("hidden")
+                                }
+                                let xhr = new XMLHttpRequest();
+                                xhr.open("POST", "api/controllers/deleteSignalerComment.php");
+                                xhr.setRequestHeader("Content-Type", "text/plain");
+                                xhr.responseType = "json";
+                                xhr.send(JSON.stringify(data));
+                            }
+
+
+                        })
+                    })
+
+                });
+            }
         });
     }
 }

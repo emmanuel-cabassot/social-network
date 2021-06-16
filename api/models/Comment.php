@@ -57,4 +57,48 @@ class Comment
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    
+    /**
+     * Supprime un comment par rapport à son id
+     *
+     * @param int $id_comment
+     * @return void
+     */
+    function deleteCommentById($id_comment)
+    {
+        $delete = "DELETE FROM comment_post WHERE id_comment_post = :id_comment_post";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($delete);
+
+        // Bind
+        $stmt->bindParam('id_comment_post', $id_comment);
+
+        // Execute
+        $stmt->execute();
+    }
+
+    /**
+     * Modifie le comment et le met en signalized: 'oui'
+     *
+     * @param int $id_comment
+     * @return void
+     */
+    function signalizedCommentById($id_comment)
+    {
+        $signalized = 'oui';
+        $update = "UPDATE comment_post SET signalized = :signalized WHERE id_comment_post = :id_comment_post";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($update);
+
+        // Bind
+        $stmt->bindParam('signalized', $signalized);
+        $stmt->bindParam('id_comment_post', $id_comment);
+
+        // Execute
+        $stmt->execute();
+    }
+
 }

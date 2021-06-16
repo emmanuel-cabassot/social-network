@@ -4,7 +4,6 @@ class Post{
     // database connection and table name
     private $conn;
     
-
     // object properties
     public $id;
     public $user;
@@ -52,7 +51,6 @@ class Post{
         $stmt->execute();
     }
 
-
     /**
      * Recherche un post par rapport à son texte
      *
@@ -96,7 +94,13 @@ class Post{
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }  
-
+    
+    /**
+     * Cherche un post par rapport a l'id
+     *
+     * @param [int] $id_post
+     * @return array
+     */
     function showPostById($id_post)    
     {
         $select = "SELECT * FROM post WHERE id_post = :id_post";
@@ -111,6 +115,48 @@ class Post{
         $stmt->execute();
 
         return $stmt->fetch(PDO:: FETCH_ASSOC);
+    }
+
+    /**
+     * Supprime un post par rapport à son id
+     *
+     * @param int $id_post
+     * @return void
+     */
+    function deletePostById($id_post)
+    {
+        $delete = "DELETE FROM post WHERE id_post = :id_post";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($delete);
+
+        // Bind
+        $stmt->bindParam('id_post', $id_post);
+
+        // Execute
+        $stmt->execute();
+    }
+
+    /**
+     * Modifie le post et le met en signalized: 'oui'
+     *
+     * @param int $id_post
+     * @return void
+     */
+    function signalizedPostById($id_post)
+    {
+        $signalized = 'oui';
+        $update = "UPDATE post SET signalized = :signalized WHERE id_post = :id_post";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($update);
+
+        // Bind
+        $stmt->bindParam('signalized', $signalized);
+        $stmt->bindParam('id_post', $id_post);
+
+        // Execute
+        $stmt->execute();
     }
 
     function userById($id_user)
