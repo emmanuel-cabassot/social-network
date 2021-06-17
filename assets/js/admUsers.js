@@ -15,14 +15,32 @@ function listerUsers(){
 
 
         records.forEach(user => {
-            outputUs +=  
-            '<tr><td>'+user.id_user+
-            '</td><td>'+user.name+
-            '</td><td>'+user.lastname+
-            '</td><td>'+user.email+
-            '</td><td><form id="form'+user.id_user+'"><input id="blocked'+user.id_user+'" type="text" value="'+user.blocked+'" name="blocked"></td><td><input id="date'+user.id_user+'" type="date" value="'+user.period_block+
-            '"></td><td><input id="submit'+user.id_user+'" type="submit" value="Submit"></td></form></tr>';                     
+            outputUs += `
+        <tr>
+            <td>${user.id_user}</td>
+            <td>${user.name}</td>
+            <td>${user.lastname}</td>
+            <td>${user.email}</td>
+            <td>${user.role}</td>
+            <td><form id="form${user.id_user}">
+                <select name="role" id="role${user.id_user}">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </td>
+            <td>
+                <input id="blocked${user.id_user}" type="text" value="${user.blocked}" name="blocked">
+            </td>
+            <td>
+                <input id="date${user.id_user}" type="date" value="${user.period_block}">
+            </td>
+            <td>
+                <input id="submit${user.id_user}" type="submit" value="Submit">
+            </td></form>
+        </tr>`
+        
         });
+
         
        
         listUsers.innerHTML = outputUs;
@@ -31,27 +49,31 @@ function listerUsers(){
         records.forEach(user => {
             submit = document.querySelector("#submit" + user.id_user) 
             submit.addEventListener("click", function (e) {
+                role = document.querySelector("#role" + user.id_user)
+                role = role.value
                 blocked = document.querySelector("#blocked" + user.id_user)
                 blocked = blocked.value
                 date = document.querySelector("#date" + user.id_user)
                 date = date.value
 
                 data = {
+                    role: role,
                     blocked: blocked,
                     date: date,
                     user: user.id_user
                 }
 
-                let xhr = new XMLHttpRequest();
-                xhr.open("POST", "api/controllers/modifUser.php");
-                xhr.setRequestHeader("Content-Type", "text/plain");
-                xhr.responseType = "json";
-                xhr.send(JSON.stringify(data));
+                let xhrr = new XMLHttpRequest();
+                xhrr.open("POST", "api/controllers/modifUser.php");
+                xhrr.setRequestHeader("Content-Type", "text/plain");
+                xhrr.responseType = "json";
+                xhrr.send(JSON.stringify(data));
 
-                if (xhr.readyState === 4 || xhr.status == 200) {
-                    window.location="crudAdm.php";
+                xhrr.addEventListener("readystatechange", function() {
+                if (xhrr.readyState === 4 && xhrr.status == 200) {
+                    window.location.reload()
                 }
-
+            })
             }) 
         }); 
 

@@ -57,7 +57,7 @@ session_start();
     </header>
     <main class="container-fluid mt-5">
         <div class="row d-flex">
-            <div class="col-xl-3">
+            <div class="col-xl-12">
                 <section class="alert alert-light">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
@@ -76,7 +76,7 @@ session_start();
                 </section>
 
             </div>
-            <div class="col-xl-9 col-sm-12">
+            <div class="col-xl-12 col-sm-12">
                 <section id="user">
                     <table class="table table-hover">
                         <thead>
@@ -85,6 +85,8 @@ session_start();
                                 <th scope="col">Lastname</th>
                                 <th scope="col">Firstname</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Change</th>
                                 <th scope="col">Blocked</th>
                                 <th scope="col">Until Date</th>
                                 <th scope="col">Action</th>

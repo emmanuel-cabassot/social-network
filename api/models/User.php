@@ -57,12 +57,13 @@ class User{
 
     function updateUserBlocked($id_user)
     {
-        $update = "UPDATE users SET blocked = :blocked, period_block = :period_block WHERE id_user = :id_user";
+        $update = "UPDATE users SET role = :role, blocked = :blocked, period_block = :period_block WHERE id_user = :id_user";
 
         // Prepare the query
         $stmt = $this->conn->prepare($update);
 
         // Bind
+        $stmt->bindParam('role', $this->role);
         $stmt->bindParam('blocked', $this->blocked);
         $stmt->bindParam('period_block', $this->period_block);
         $stmt->bindParam('id_user', $id_user);

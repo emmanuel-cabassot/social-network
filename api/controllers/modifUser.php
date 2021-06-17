@@ -23,5 +23,6 @@ $user = new User($db);
 
 $user->blocked = $data->blocked;
 $user->period_block = $data->date;
+$user->role = $data->role;
 
 $user->updateUserBlocked($data->user);

@@ -40,6 +40,7 @@ if ($num>0){
             "lastname" => $lastname,
             "email" => $email,
             "blocked" => $blocked,
+            "role" => $role,
             "period_block" => $period_block
             
         );
