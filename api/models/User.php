@@ -54,4 +54,20 @@ class User{
 
         return $stmt;
     }
+
+    function updateUserBlocked($id_user)
+    {
+        $update = "UPDATE users SET blocked = :blocked, period_block = :period_block WHERE id_user = :id_user";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($update);
+
+        // Bind
+        $stmt->bindParam('blocked', $this->blocked);
+        $stmt->bindParam('period_block', $this->period_block);
+        $stmt->bindParam('id_user', $id_user);
+
+        // Execute
+        $stmt->execute();
+    }
 }

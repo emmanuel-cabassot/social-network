@@ -13,22 +13,47 @@ function listerUsers(){
         var records = response.records;
         var outputUs = '';
 
-        for(var i =0; i<records.length; i++){
-            var formId='form'+records[i].id_user;
 
+        records.forEach(user => {
             outputUs +=  
-            '<tr><td>'+records[i].id_user+
-            '</td><td>'+records[i].name+
-            '</td><td>'+records[i].lastname+
-            '</td><td>'+records[i].email+
-            '</td><td><form id="'+formId+'"><input type="text" value="'+records[i].blocked+'" name="blocked"></td><td><input type="date" value="'+records[i].period_block+
-            '"></td><td><input type="submit" value="Submit"></td></form></tr>';              
-                                
-        }
-
+            '<tr><td>'+user.id_user+
+            '</td><td>'+user.name+
+            '</td><td>'+user.lastname+
+            '</td><td>'+user.email+
+            '</td><td><form id="form'+user.id_user+'"><input id="blocked'+user.id_user+'" type="text" value="'+user.blocked+'" name="blocked"></td><td><input id="date'+user.id_user+'" type="date" value="'+user.period_block+
+            '"></td><td><input id="submit'+user.id_user+'" type="submit" value="Submit"></td></form></tr>';                     
+        });
+        
+       
         listUsers.innerHTML = outputUs;
 
-       
+        /* Au click sur le submit on envoie les valeurs des inputs */
+        records.forEach(user => {
+            submit = document.querySelector("#submit" + user.id_user) 
+            submit.addEventListener("click", function (e) {
+                blocked = document.querySelector("#blocked" + user.id_user)
+                blocked = blocked.value
+                date = document.querySelector("#date" + user.id_user)
+                date = date.value
+
+                data = {
+                    blocked: blocked,
+                    date: date,
+                    user: user.id_user
+                }
+
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "api/controllers/modifUser.php");
+                xhr.setRequestHeader("Content-Type", "text/plain");
+                xhr.responseType = "json";
+                xhr.send(JSON.stringify(data));
+
+                if (xhr.readyState === 4 || xhr.status == 200) {
+                    window.location="crudAdm.php";
+                }
+
+            }) 
+        }); 
 
        }else if(this.readyState === 4 && this.status === 404){
             listUsers.innerHTML = '<p>Pas d\'inscrits</p>';
@@ -37,36 +62,3 @@ function listerUsers(){
     xhr.open("POST", 'api/controllers/admUsers.php');
     xhr.send();
 };
-
-
-
-function modifUser(id_user){
-   
-    var form_data=JSON.stringify(serializeForm(formId));
-        
-        var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
-        
-        xhr.addEventListener("readystatechange", function() {
-            if(this.readyState === 4 && this.status == 200) {
-                window.location="crudAdm.php";
-            }
-        });
-
-        xhr.open("POST", "api/controllers/modifUser.php?id_user="+id_user);
-        xhr.setRequestHeader("Content-Type", "text/plain");
-
-        xhr.send(form_data);   
-    
-};
-
-
-var serializeForm = function (form) {
-    var obj = {};
-    var formData = new FormData(form);
-    for (var key of formData.keys()) {
-        obj[key] = formData.get(key);
-    }
-    return obj;
-};
-

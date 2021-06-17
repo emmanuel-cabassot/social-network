@@ -24,11 +24,6 @@ class Search{
         // execute query
         $stmt->execute();
 
-        return $stmt;
-            
+        return $stmt;           
     }
-
-
-
 }
-

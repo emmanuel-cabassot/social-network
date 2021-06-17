@@ -61,53 +61,66 @@ session_start();
                 <section class="alert alert-light">
                     <ul class="nav nav-pills flex-column">
                         <li class="nav-item">
+                            <a class="nav-link" href="groupsAdm.php">Membres</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="groupsAdm.php">Groupes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="comGroupsAdm.php">commentaires Groupes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="eventsAdm.php">Evènements</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="comEventsAdm.php">commentaires Evènements</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="postsAdm.php">Posts</a>
                         </li>
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="comPostsAdm.php">commentaires Posts</a>
                         </li>
                     </ul>
                 </section>
-                
+
             </div>
             <div class="col-xl-9 col-sm-12">
-            <section>
-            <table class="table table-hover">
-                <thead>
-                    <tr class="table-active">
-                    <th scope="col">ID</th>
-                    <th scope="col">Lastname</th>
-                    <th scope="col">Firstname</th>
-                    <th scope="col">Signaled</th>
-                    <th scope="col">Blocked</th>
-                    <th scope="col">Until Date</th>
-                    <th scope="col">Action</th>
-                    
-                    </tr>
-                </thead>
-                <tbody id="listUsers">
-                </tbody>
-            </table>
-            </section>
-            <div>
+                <section id="user">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-active">
+                                <th scope="col">ID</th>
+                                <th scope="col">Lastname</th>
+                                <th scope="col">Firstname</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Blocked</th>
+                                <th scope="col">Until Date</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listUsers">
+                        </tbody>
+                    </table>
+                </section>
+                <section id="post">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-active">
+                                <th scope="col">ID</th>
+                                <th scope="col">Texte</th>
+                                <th scope="col">Photos</th>
+                                <th scope="col">Vidéo</th>
+                                <th scope="col">Blocked</th>
+                                <th scope="col">Until Date</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listUsers">
+                        </tbody>
+                    </table>
+                </section>
+                <section id="post-comment">
+                </section>
+            </div>
+        </div>
     </main>
     <footer id="footer">
         <div class="col-lg-12">
         </div>
     </footer>
-    
+
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/admUsers.js"></script>

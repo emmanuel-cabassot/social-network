@@ -34,7 +34,6 @@ if ($num>0){
         // this will make $row['name'] to
         // just $name only
       
-       
         $user_item = array(
             "id_user" => $id_user,
             "name" => $name,
