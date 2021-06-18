@@ -7,7 +7,7 @@
    flex-direction: column;  
 }
 
-.showOnePost {
+.showOnePost, .comment-admComment {
     border: 1px solid grey;
     border-radius: 8px; 
     margin: 20px 0; 
@@ -15,11 +15,11 @@
     position: relative;
 }
 
-.showOnePost.hidden {
+.showOnePost.hidden, .comment-admComment.hidden {
     display: none;
 }
 
-.header-showPost {
+.header-showPost, .header-admComment {
     background-color: rgb(243, 243, 243);
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
@@ -27,13 +27,13 @@
     justify-content: space-between;
 }
 
-.user-showPost {
+.user-showPost, .user-admComment {
     display: flex;
     margin: 10px 0 5px 15px;
     cursor: pointer;
 }
 
-.avatar-user-showPost img{
+.avatar-user-showPost img, .avatar-user-admComment img{
     margin-right: 3px;
     margin-bottom: 4px;
     border-radius: 50%;
@@ -42,7 +42,7 @@
     border: 1px solid grey;
 }
 
-.name-showPost {
+.name-showPost, .name-admComment {
     color: black;
 }
 
@@ -333,7 +333,7 @@
     align-items: flex-start;
     flex-wrap: wrap;
 }
-.adminOptionPost {
+.adminOptionPost, .adminOptionComment {
     display: flex;
     justify-content: space-around;
     margin: 7px 0;
@@ -404,9 +404,10 @@
     color: white;
 }
 
-.legend-adminOptionUser {
+.legend-adminOptionUser, .legend-adminOptionComment {
     text-align: center;
     border-bottom: 1px solid grey;
+    margin-top: 18px;
 }
 
 .titre-adminOptionUser, .submit-adminOption, .input-adminOptionUser {
@@ -452,6 +453,13 @@
     cursor: pointer;
     transition: all .3s;
 }
+
+#listComments {
+    width: 100%;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
 
 
 

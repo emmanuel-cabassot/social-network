@@ -29,9 +29,9 @@ function listerPosts() {
                             
                         </section>
                     </section>
-                        <section class="text-showPost">
-                            ${post.text_post}
-                        </section>
+                    <section class="text-showPost">
+                        ${post.text_post}
+                    </section>
                     `;
 
                 if (post.image_post == "oui") {

@@ -99,7 +99,8 @@ session_start();
             <section id="listPosts" class="col-xl-12 col-sm-12 d-flex">
             </section>
 
-            <section id="post-comment">
+            <section id="listComments" class="col-xl-12 col-sm-12 d-flex">
+            
             </section>
 
         </div>
@@ -113,6 +114,7 @@ session_start();
     <script src="assets/js/search.js"></script>
     <script src="assets/js/admUsers.js"></script>
     <script src="assets/js/admPosts.js"></script>
+    <script src="assets/js/admCommentsPosts.js"></script>
 
 
 
