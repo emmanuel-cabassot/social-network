@@ -41,6 +41,7 @@ foreach ($posts as $post) {
     $post = $classPost->showPostById($id_post);
     $post['date_post'] = depuis($post['date_post']);
     $post['text_post'] = nl2br($post['text_post']);
+    
     $user = $classPost->userById($post['id_user']);
     $post['userLastname'] = ucfirst($user['lastname']);
     $post['userName'] = ucfirst($user['name']);

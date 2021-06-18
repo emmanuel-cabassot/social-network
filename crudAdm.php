@@ -74,7 +74,6 @@ session_start();
                         </li>
                     </ul>
                 </section>
-
             </div>
             <div class="col-xl-12 col-sm-12">
                 <section id="user">
@@ -96,26 +95,13 @@ session_start();
                         </tbody>
                     </table>
                 </section>
-                <section id="post">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr class="table-active">
-                                <th scope="col">ID</th>
-                                <th scope="col">Texte</th>
-                                <th scope="col">Photos</th>
-                                <th scope="col">Vidéo</th>
-                                <th scope="col">Blocked</th>
-                                <th scope="col">Until Date</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="listUsers">
-                        </tbody>
-                    </table>
-                </section>
-                <section id="post-comment">
-                </section>
             </div>
+            <section id="listPosts" class="col-xl-12 col-sm-12 d-flex">
+            </section>
+
+            <section id="post-comment">
+            </section>
+
         </div>
     </main>
     <footer id="footer">
@@ -126,6 +112,7 @@ session_start();
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/search.js"></script>
     <script src="assets/js/admUsers.js"></script>
+    <script src="assets/js/admPosts.js"></script>
 
 
 

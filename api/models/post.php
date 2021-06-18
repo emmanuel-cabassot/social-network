@@ -174,4 +174,21 @@ class Post{
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    function listPostsSignalized()
+    {
+        $signalized = 'oui';
+        $select = "SELECT * FROM post WHERE signalized = :signalized";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($select);
+
+        // Bind
+        $stmt->bindParam('signalized', $signalized);
+
+        // Execute
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
