@@ -55,28 +55,23 @@ session_start();
             </div>
         </nav>
     </header>
-    <main class="container-fluid mt-5">
+    <main class="container-fluid mt-1">
         <div class="row d-flex">
-            <div class="col-xl-12">
-                <section class="alert alert-light">
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="groupsAdm.php">Membres</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="groupsAdm.php">Groupes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="postsAdm.php">Posts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="comPostsAdm.php">commentaires Posts</a>
-                        </li>
-                    </ul>
-                </section>
-            </div>
+            <section class="tabs-admin">
+                <ul class="list">
+                    <li class="tab active" data-target="#user">
+                        Membres
+                    </li>
+                    <li class="tab" data-target="#listPosts">
+                        Posts
+                    </li>
+                    <li class="tab" data-target="#listComments">
+                        Commentaires Posts
+                    </li>
+                </ul>
+            </section>
             <div class="col-xl-12 col-sm-12">
-                <section id="user">
+                <section class="user content" id="user">
                     <table class="table table-hover">
                         <thead>
                             <tr class="table-active">
@@ -96,11 +91,11 @@ session_start();
                     </table>
                 </section>
             </div>
-            <section id="listPosts" class="col-xl-12 col-sm-12 d-flex">
+            <section id="listPosts" class="listPosts content hidden col-xl-12 col-sm-12 ">
             </section>
 
-            <section id="listComments" class="col-xl-12 col-sm-12 d-flex">
-            
+            <section id="listComments" class="listComments content hidden col-xl-12 col-sm-12 ">
+
             </section>
 
         </div>
@@ -115,6 +110,7 @@ session_start();
     <script src="assets/js/admUsers.js"></script>
     <script src="assets/js/admPosts.js"></script>
     <script src="assets/js/admCommentsPosts.js"></script>
+    <script src="assets/js/adm.js"></script>
 
 
 

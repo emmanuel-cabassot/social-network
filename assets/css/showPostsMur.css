@@ -328,11 +328,25 @@
 }
 
 /* Post Admin */
+.user{
+    display: initial;
+}
 
-#listPosts {
+.user.hidden {
+    display: none;
+}
+
+.listPosts {
     align-items: flex-start;
     flex-wrap: wrap;
+    display: flex;
+
 }
+
+.listPosts.hidden {
+    display: none;
+}
+
 .adminOptionPost, .adminOptionComment {
     display: flex;
     justify-content: space-around;
@@ -454,10 +468,48 @@
     transition: all .3s;
 }
 
-#listComments {
+.listComments {
     width: 100%;
     align-items: flex-start;
     flex-wrap: wrap;
+    display: flex;
+}
+
+.listComments.hidden {
+    display: none;
+}
+
+/* ADMIN */
+.tabs-admin {
+    width: 100%;
+   
+}
+
+.tabs-admin .list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 0;
+}
+
+.tabs-admin .tab {
+    cursor: pointer;
+    width: 100%;
+    padding: 5px;
+}
+
+.tabs-admin .tab:hover {
+    background-color: rgb(241, 241, 241);
+}
+
+.tabs-admin .tab.active {
+    cursor: default;
+    background-color: blue;
 }
 
 

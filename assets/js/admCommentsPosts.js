@@ -12,7 +12,6 @@ function listerComments() {
             var response = JSON.parse(xhr.responseText);
             var output = '';
 
-
             response.forEach(comment => {
                 output += `
                 <section class="comment-admComment col-xl-3 col-sm-6 col-xs-1" id="comment-admComment${comment.id_comment_post}">
