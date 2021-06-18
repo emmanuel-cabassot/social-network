@@ -328,6 +328,11 @@
 }
 
 /* Post Admin */
+
+#listPosts {
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
 .adminOptionPost {
     display: flex;
     justify-content: space-around;

@@ -14,7 +14,7 @@ function listerPosts() {
             
             response.forEach(post => {
                 outputPost += `
-                <section class="showOnePost col-xl-3 col-sm-6 col-xs-1">
+                <section class="showOnePost col-xl-3 col-sm-6 col-xs-1" id="showOnePost${post.id_post}">
                     <section class="header-showPost">
                         <section class="user-showPost" id="user_showPost${post.id_post}">               
                             <section class="avatar-user-showPost">
@@ -115,19 +115,40 @@ function listerPosts() {
                 })
 
         
-/* 
-                 submit = document.querySelector("#submit" + post.id_user) 
+
+                 submit = listPosts.querySelector("#submit" + post.id_post) 
                  submit.addEventListener("click", function (e) {
-                     blocked = document.querySelector("#blocked" + post.id_user)
+                    supprimePost = listPosts.querySelector("#supprime-adminOption" + post.id_post)
+                     if (supprimePost.classList.contains("valide")) {
+                         supprime = 'oui'
+                     }else {
+                         supprime = 'non'
+                     }
+
+                     deleteSignalPost = listPosts.querySelector("#deleteSignal-adminOption" + post.id_post)
+                     if (deleteSignalPost.classList.contains("valide")) {
+                         deleteSignal = 'oui'
+                     }else {
+                         deleteSignal = 'non'
+                     }
+
+                     blocked = listPosts.querySelector("#blocked" + post.id_post)
                      blocked = blocked.value
-                     date = document.querySelector("#date" + post.id_user)
+                     
+                     date = listPosts.querySelector("#date" + post.id_post)
                      date = date.value
-     
+                     
                      data = {
-                         role: role,
+                         supprime: supprime,
+                         deleteSignal: deleteSignal,
                          blocked: blocked,
                          date: date,
-                         user: user.id_user
+                         post: post.id_post,
+                         user: post.id_user
+                     }
+                     if (supprime == 'oui' || deleteSignal == 'oui') {
+                         postHidden = listPosts.querySelector("#showOnePost" + post.id_post)
+                         postHidden.classList.add("hidden")
                      }
      
                      let xhrr = new XMLHttpRequest();
@@ -138,10 +159,10 @@ function listerPosts() {
      
                      xhrr.addEventListener("readystatechange", function() {
                      if (xhrr.readyState === 4 && xhrr.status == 200) {
-                         window.location.reload()
+                         console.log("ca marche")
                      }
                  })
-                 })   */
+                 })   
             }); 
 
         } else if (this.readyState === 4 && this.status === 404) {

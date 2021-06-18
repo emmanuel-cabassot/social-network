@@ -159,6 +159,28 @@ class Post{
         $stmt->execute();
     }
 
+    /**
+     * Modifie le post et le met en signalized: 'non'
+     *
+     * @param int $id_post
+     * @return void
+     */
+    function deleteSignalPostById($id_post)
+    {
+        $signalized = 'non';
+        $update = "UPDATE post SET signalized = :signalized WHERE id_post = :id_post";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($update);
+
+        // Bind
+        $stmt->bindParam('signalized', $signalized);
+        $stmt->bindParam('id_post', $id_post);
+
+        // Execute
+        $stmt->execute();
+    }
+
     function userById($id_user)
     {
         $select = "SELECT * FROM users WHERE id_user = :id_user";
