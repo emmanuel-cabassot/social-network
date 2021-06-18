@@ -326,3 +326,127 @@
     border: 1px solid rgb(255, 64, 64);
     color: white;
 }
+
+/* Post Admin */
+.adminOptionPost {
+    display: flex;
+    justify-content: space-around;
+    margin: 7px 0;
+    width: 100%;
+}
+
+.supprime-adminOption {
+    background-color: white;
+    color: rgb(255, 64, 64);
+    border: 1px solid rgb(255, 64, 64);
+    padding: 2px 8px;
+    margin-right: 1px;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.supprime-adminOption.valide {
+    background-color: rgb(255, 64, 64);
+    color: white;
+}
+
+.supprime-adminOption span {
+    margin-right: 4px;
+    margin-bottom: -1px;
+    display: none;
+}
+
+.supprime-adminOption.valide span {
+    display: initial;
+}
+
+.supprime-adminOption:hover {
+    background-color: rgb(255, 64, 64);
+    color: white;
+}
+
+.deleteSignal-adminOption {
+    background-color: white;
+    color: rgb(64, 255, 121);
+    border: 1px solid rgb(64, 255, 121);
+    padding: 2px 8px;
+    margin-left: 1px;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.deleteSignal-adminOption.valide {
+    background-color: rgb(64, 255, 121);
+    color: white;
+}
+
+.deleteSignal-adminOption span {
+    margin-right: 4px;
+    margin-bottom: -1px;
+    display: none;
+}
+
+.deleteSignal-adminOption.valide span {
+    display: initial;
+}
+
+.deleteSignal-adminOption:hover {
+    background-color: rgb(64, 255, 121);
+    color: white;
+}
+
+.legend-adminOptionUser {
+    text-align: center;
+    border-bottom: 1px solid grey;
+}
+
+.titre-adminOptionUser, .submit-adminOption, .input-adminOptionUser {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.titre-blocked {
+    padding: 2px 8px;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.titre-period_block {
+    padding: 2px 8px;
+    width: 50%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.input-adminOptionUser input {
+    width: 100%;
+    text-align: center;
+}
+
+.blocked-adminOption, .period-adminOption {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-adminOption input {
+     width: 100%;
+    text-align: center;
+    background-color: rgb(0, 132, 255);
+    color: white;
+    border: 1px solid rgb(0, 132, 255);
+    margin: 7px 0;
+    padding: 2px 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+
+

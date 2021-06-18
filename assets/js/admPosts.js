@@ -54,14 +54,17 @@ function listerPosts() {
                 outputPost += `
                 <section class="adminOptionPost d-flex">
                     <section class="supprime-adminOption" id="supprime-adminOption${post.id_post}">
-                        Supprimer post
+                        <span>&#128504</span>Supprimer post
                     </section>
                     <section class="deleteSignal-adminOption" id="deleteSignal-adminOption${post.id_post}">
-                        Désignaler post
+                    <span>&#128504</span>Désignaler post
                     </section>
                 </section>
+                <section class="legend-adminOptionUser">
+                    Utilisateur
+                </section>
                 <section class="adminOptionUser">
-                    <section class="titre-adminOptionUser d-flex">
+                    <section class="titre-adminOptionUser">
                         <section class="titre-blocked">
                             Blocked
                         </section>
@@ -69,7 +72,7 @@ function listerPosts() {
                             Période
                         </section>
                     </section>
-                    <section class="input-adminOptionUser d-flex">
+                    <section class="input-adminOptionUser">
                         <section class="blocked-adminOption">
                             <input id="blocked${post.id_post}" type="text" value="${post.blocked}">
                         </section>
@@ -79,17 +82,40 @@ function listerPosts() {
                     </section>
                 </section>
                 <section class="submit-adminOption">
-                    <input id="submit${post.id_post}" type="submit" value="submit">
+                    <input id="submit${post.id_post}" type="submit" value="Valider">
                 </section>
                 </section>
-                </section>`
-
+                </section>`;
+                
             });
 
             listPosts.innerHTML = outputPost;
 
-            /* Au click sur le submit on envoie les valeurs des inputs */
-            records.forEach(post => {
+            response.forEach(post => {
+                supprimePost = listPosts.querySelector("#supprime-adminOption" + post.id_post)
+                deleteSignalPost = listPosts.querySelector("#deleteSignal-adminOption" + post.id_post)
+                
+                deleteSignalPost.addEventListener("click", function (e) {
+                
+                    this.classList.toggle("valide")
+                    
+                    supprime = listPosts.querySelector("#supprime-adminOption" + post.id_post)
+                    if (supprime.classList.contains("valide")) {
+                        supprime.classList.remove("valide")
+                    }
+                })
+
+                supprimePost.addEventListener("click", function (e) {
+                    this.classList.toggle("valide")
+
+                    signal = listPosts.querySelector("#deleteSignal-adminOption" + post.id_post)
+                    if (signal.classList.contains("valide")) {
+                        signal.classList.remove("valide")
+                    }
+                })
+
+        
+/* 
                  submit = document.querySelector("#submit" + post.id_user) 
                  submit.addEventListener("click", function (e) {
                      blocked = document.querySelector("#blocked" + post.id_user)
@@ -115,7 +141,7 @@ function listerPosts() {
                          window.location.reload()
                      }
                  })
-                 })  
+                 })   */
             }); 
 
         } else if (this.readyState === 4 && this.status === 404) {
