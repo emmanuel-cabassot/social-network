@@ -223,8 +223,6 @@ session_start();
     <script src="murPost.js"></script>
     <script src="sendPost.js"></script>
 
-
-
 </body>
 
 </html>

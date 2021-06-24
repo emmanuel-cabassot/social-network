@@ -510,6 +510,7 @@
 .tabs-admin .tab.active {
     cursor: default;
     background-color: blue;
+    color: white;
 }
 
 

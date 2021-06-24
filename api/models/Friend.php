@@ -41,7 +41,25 @@ class Friend{
     
         return $stmt;
     
-        }
+    }
+
+    function listIdFriends($id_user){
+
+        // select all query
+        $query = 'SELECT * FROM friend WHERE `id_follower`= :id_user AND WHERE `id_follower`= :id_user';
+    
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+    
+        $id_user=htmlspecialchars($id_user);
+    
+        $stmt->bindParam(":id_user", $id_user);    
+        // execute query
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    }
         
     function listFof($id_user, $id_friend){
         $query = 'SELECT  users.id_user as id_fof, name, lastname, avatar, city, country FROM friend INNER JOIN users ON `id_followed`=users.id_user WHERE `id_follower`= :id_friend AND id_followed<> :id_user UNION SELECT  users.id_user as id_fof, name, lastname, avatar, city, country FROM friend INNER JOIN users ON `id_follower`=users.id_user  WHERE `id_followed`=:id_friend AND id_follower<> :id_user';
