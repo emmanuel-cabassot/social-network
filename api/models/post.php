@@ -94,6 +94,27 @@ class Post{
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }  
+
+    /**
+     * Affiche les postes d'un utilisateur
+     *
+     * @return array
+     */
+    function idPostFil($user)
+    {
+        $select = "SELECT id_post FROM post WHERE id_user = :id_user ORDER BY id_post DESC";
+
+        // prepare the query
+        $stmt = $this->conn->prepare($select);
+
+        // bind 
+        $stmt->bindParam(':id_user', $user);
+
+        // execute
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }  
     
     /**
      * Cherche un post par rapport a l'id

@@ -1,9 +1,9 @@
 <?php
 session_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,7 +84,7 @@ session_start();
             <div class="col-xl-6 col-sm-12">
                 <section class="sendPost">
                     <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['id_user'] ?>>
-                        <p class="ml-3"> Quoi de neuf <?php echo $_SESSION['lastname'] ?> ?</p>
+                        <p class="ml-3"> Quoi de neuf emmanuel ?</p>
                     </section>
                     <div class="separation-sendPost"></div>
                     <section class="media-sendPost">
@@ -112,7 +112,7 @@ session_start();
                     </section>
                 </section>
                 <section class="showPostsMur">
-                
+
                 </section>
             </div>
 
@@ -208,7 +208,7 @@ session_start();
         </div>
     </footer>
     <input type="hidden" id="idUser" value="<?= $_SESSION['id_user'] ?>">
-    <input type="hidden" id="filActualite" value="non">
+    <input type="hidden" id="filActualite" value="oui">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
         $('#TextareaPostSend').emojioneArea({

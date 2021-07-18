@@ -3,12 +3,11 @@ function showPost() {
     user = document.querySelector("#idUser")
     user = user.value
 
-    mur = "oui"
-    fil = "oui"
+    fil = document.querySelector("#filActualite")
+    fil = fil.value
 
     data = {
         user: user,
-        mur: mur,
         fil: fil
     }
 

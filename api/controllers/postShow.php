@@ -18,6 +18,7 @@ include_once '../models/Comment.php';
 include_once '../models/Like.php';
 include_once '../models/Dislike.php';
 include_once '../models/User.php';
+include_once '../models/Friend.php';
 include_once '../../functions/depuis.php';
 
 // Instancie database and product object
@@ -28,20 +29,47 @@ $data = json_decode(file_get_contents("php://input"));
 
 
 $user = $data->user;
+$fil = $data->fil;
 
 $postUser = new Post($db);
+$listFriends = new Friend($db);
 
-$posts = $postUser->idPostUser($user);
+if ($fil == "non") {
+    $posts = $postUser->idPostUser($user);
+} else {
+    // On se trouve sur le fil d'actualité
+    // On va chercher les id des friends
+    $friends = $listFriends->listIdFriendsFil($user);
+    $posts[] = "";
+    $id_friends[]  = "";
+    $in = 0;
+    // On boucle dans les id des amis
+    foreach ($friends as $friend) {
+        
+        $id_friends[$in] = $friend['id_post']; 
+        $in++;
+    }
+    
+    
+    $incre = 0;
+    foreach ($id_friends as $id) {
+        $posts[$incre] = $postUser->showPostById($id);
+        $incre++;
+    }
+    
+}
+
 $increment = 0;
 foreach ($posts as $post) {
-    
-    $id_post = $post['id_post']; 
+
+    $id_post = $post['id_post'];
 
     $classPost = new Post($db);
     $post = $classPost->showPostById($id_post);
+    
     $post['date_post'] = depuis($post['date_post']);
     $post['text_post'] = nl2br($post['text_post']);
-    
+
     $user = $classPost->userById($post['id_user']);
     $post['userLastname'] = ucfirst($user['lastname']);
     $post['userName'] = ucfirst($user['name']);
@@ -61,7 +89,7 @@ foreach ($posts as $post) {
         $classImages = new PhotoPost($db);
         $images = $classImages->affichePhotoPost($id_post);
         $post['images'] = $images;
-    }else{
+    } else {
         $post['image_post'] = 'non';
     }
 
@@ -70,7 +98,6 @@ foreach ($posts as $post) {
         $video = $classVideo->afficheVideoPost($id_post);
         $post['cheminVideo'] = $video['chemin'];
         $post['nomVideo'] = $video['name_video_post'];
-
     }
 
     $classComment = new comment($db);
@@ -81,18 +108,17 @@ foreach ($posts as $post) {
         $comments = $classComment->showCommentById($id_post);
         $i = 0;
         foreach ($comments as $comment) {
-             $idUserComment = $comment['id_user'];
-             $userComment = $classUser->userById($idUserComment);
+            $idUserComment = $comment['id_user'];
+            $userComment = $classUser->userById($idUserComment);
 
-             $post['comments'][$i] = $comment;
-             $post['comments'][$i]['date_comment_post'] = depuis($post['comments'][$i]['date_comment_post']);
-             $post['comments'][$i]['text_comment_post'] = nl2br($post['comments'][$i]['text_comment_post']);
-             $post['comments'][$i]['userName'] = ucfirst($userComment['name']);
-             $post['comments'][$i]['userlastName'] = ucfirst($userComment['lastname']);
-             $post['comments'][$i]['userAvatar'] = $userComment['avatar'];
-             $i++;
+            $post['comments'][$i] = $comment;
+            $post['comments'][$i]['date_comment_post'] = depuis($post['comments'][$i]['date_comment_post']);
+            $post['comments'][$i]['text_comment_post'] = nl2br($post['comments'][$i]['text_comment_post']);
+            $post['comments'][$i]['userName'] = ucfirst($userComment['name']);
+            $post['comments'][$i]['userlastName'] = ucfirst($userComment['lastname']);
+            $post['comments'][$i]['userAvatar'] = $userComment['avatar'];
+            $i++;
         }
-        
     }
 
     $classLike = new Like($db);

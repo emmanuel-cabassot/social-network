@@ -1,7 +1,7 @@
 <?php
 function depuis($date)
 {
-    date_default_timezone_set('Europe/Paris');
+    
     $origin = new DateTime(date("Y-m-d H:i:s"));
     $target = new DateTime($date);
     $interval = $origin->diff($target);
