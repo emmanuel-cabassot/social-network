@@ -39,17 +39,29 @@ session_start();
                 </div>
 
                 <ul class="navbar-nav ml-auto display-5">
+                    <?php
+                        if ($_SESSION['role'] == "admin") {
+                            ?>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="crudAdm.php"><i class="bi bi-award-fill"></i></a>
+                            </li>
+                            <?php
+                        }
+                    ?>
                     <li class="nav-item active">
                         <a class="nav-link" href="home.php"><i class="bi bi-house mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="filActualite.php"><i class="bi bi-three-dots mr-3 blue"></i></a>
+                        <a class="nav-link" href="filActualite.php"><i class="bi bi-bricks"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-camera-video mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="profil.php"><i class="bi bi-person-circle mr-3 blue"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-right"></i></a>
                     </li>
                 </ul>
             </div>
@@ -84,7 +96,7 @@ session_start();
             <div class="col-xl-6 col-sm-12">
                 <section class="sendPost">
                     <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['id_user'] ?>>
-                        <p class="ml-3"> Quoi de neuf <?php echo $_SESSION['lastname'] ?> ?</p>
+                        <p class="ml-3"> Quoi de neuf <?php echo $_SESSION['name'] ?>?</p>
                     </section>
                     <div class="separation-sendPost"></div>
                     <section class="media-sendPost">

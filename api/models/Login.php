@@ -12,6 +12,7 @@ class Login{
     public $name;
     public $lastname;
     public $avatar;
+    public $role;
    
 
     // constructor with $db as database connection
@@ -22,7 +23,7 @@ class Login{
     function emailExists(){
  
         // query to check if email exists
-        $query = "SELECT id_user, email, password 
+        $query = "SELECT *
                 FROM users
                 WHERE email = ?
                 LIMIT 0,1";
@@ -52,6 +53,7 @@ class Login{
             
     
             $this->id_user = $row['id_user'];
+            $this->role = $row['role'];
             $this->email = $row['email'];
             $this->password = $row['password'];
             $this->name = $row['name'];

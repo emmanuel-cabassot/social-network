@@ -139,7 +139,7 @@ submitVideo.addEventListener("click", function (e) {
 // Dropzone options pour les images
 Dropzone.options.dropzoneFromImages = {
     autoProcessQueue: false,
-    dictDefaultMessage: 'Cliquez ou déposez vos images(max 5)',
+    dictDefaultMessage: 'Cliquez ou déposez votre photo',
     acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",
     init: function () {
         // Le bouton de téléchargement des images

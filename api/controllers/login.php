@@ -44,6 +44,7 @@ if($email_exists){
             $_SESSION['name']= $login->name;
             $_SESSION['lastname']= $login->lastname;
             $_SESSION['avatar']= $login->avatar;
+            $_SESSION['role'] = $login->role;
             $connected= $login->connected($login->id_user);
             
               http_response_code(200);  

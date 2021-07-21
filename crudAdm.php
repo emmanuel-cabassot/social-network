@@ -39,17 +39,29 @@ session_start();
                 </div>
 
                 <ul class="navbar-nav ml-auto display-5">
+                <?php
+                        if ($_SESSION['role'] == "admin") {
+                            ?>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="crudAdm.php"><i class="bi bi-award-fill"></i></a>
+                            </li>
+                            <?php
+                        }
+                    ?>
                     <li class="nav-item active">
                         <a class="nav-link" href="home.php"><i class="bi bi-house mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-three-dots mr-3 blue"></i></a>
+                        <a class="nav-link" href="filActualite.php"><i class="bi bi-bricks"></i></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-camera-video mr-3 blue"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-person-circle mr-3 blue"></i></a>
+                        <a class="nav-link" href="profil.php"><i class="bi bi-person-circle mr-3 blue"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-right"></i></a>
                     </li>
                 </ul>
             </div>
