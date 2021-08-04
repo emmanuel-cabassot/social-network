@@ -170,15 +170,20 @@ class Friend
         $stmt->bindParam(":id_friend", $id_friend);
         // execute query
         $stmt->execute();
+        $num = $stmt->rowCount();
 
         // get retrieved row
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($num > 0){
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // set values to object properties
         $this->id_follow = $row['id_follow'];
         $this->id_follower = $row['id_follower'];
         $this->id_followed = $row['id_followed'];
         $this->confirmed = $row['confirmed'];
+        }else{
+             return false;}
+
     }
 
 
