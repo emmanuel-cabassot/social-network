@@ -170,7 +170,8 @@ session_start();
     <script src="assets/js/suggestEventAside.js"></script>
     <script src="assets/js/suggestFriendAside.js"></script>
     <script src="assets/js/listerFriendsAside.js"></script>
-    <script src="assets/js/addGroup.js"></script>   
+    <script src="assets/js/addGroup.js"></script>
+    <script src="assets/js/search.js"></script>      
     <script src="assets/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>
