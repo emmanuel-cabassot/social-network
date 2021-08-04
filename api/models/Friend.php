@@ -98,7 +98,7 @@ class Friend
 
     function viewFriend($id_friend)
     {
-        $view = "SELECT users.id_user as id_friend, name, lastname, avatar, city, country FROM users WHERE id_user=:id_user";
+        $view = "SELECT users.id_user as id_friend, name, lastname, avatar, city, country FROM users WHERE id_user= :id_user";
 
         // prepare query statement
         $stmt = $this->conn->prepare($view);
