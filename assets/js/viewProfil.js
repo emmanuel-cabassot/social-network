@@ -106,9 +106,15 @@ submitDropzone.addEventListener("click", function(e) {
     if (myDropzone.files != "" && validerForm()==true) {
         // console.log(myDropzone.files);
         myDropzone.processQueue();
-    } else {
+    }else if(myDropzone.files == "" && validerForm()==true) {
 	// if no file submit the form
-    footer.innerHTML= '<h4>Tous les champs doivent être remplis</h4>';
+    $('#dropzone-form input[type="text"],#dropzone-form input[type="email"],#dropzone-form input[type="date"]').each(function(){
+        formData.append($(this).attr('name'),$(this).val());
+    });
+    myDropzone.processQueue();
+    
+    }else{
+        footer.innerHTML= '<h4>Tous les champs doivent être remplis</h4>'; 
     }
 
 });
