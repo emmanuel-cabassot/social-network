@@ -57,7 +57,7 @@ class Profil{
     function modifyProfil(){
 
         // query to update record
-        $query = "UPDATE users SET email=:email, password=:password, name=:name, lastname=:lastname, avatar=:avatar, city=:city, country=:country, birth=:birth WHERE id_user=:id_user";
+        $query = "UPDATE users SET email=:email, password=:password, name=:name, lastname=:lastname, city=:city, country=:country, birth=:birth WHERE id_user=:id_user";
     
         // prepare query
         $stmt = $this->conn->prepare($query);
