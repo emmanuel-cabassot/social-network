@@ -54,7 +54,7 @@ class Profil{
        
     }
 
-    function modifyProfil(){
+    function modifyProfil($id_user){
 
         // query to update record
         $query = "UPDATE users SET email=:email, password=:password, name=:name, lastname=:lastname, city=:city, country=:country, birth=:birth WHERE id_user=:id_user";
@@ -71,7 +71,7 @@ class Profil{
         $this->city=htmlspecialchars(strip_tags($this->city));
         $this->country=htmlspecialchars(strip_tags($this->country));
         $this->birth=htmlspecialchars(strip_tags($this->birth));
-        $id_user=$_SESSION['id_user'];
+       
         // bind values
       
         $stmt->bindParam(":email", $this->email);

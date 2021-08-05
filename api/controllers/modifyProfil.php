@@ -22,13 +22,17 @@ $modify = new Profil($db);
 
 // set user property values
 
-    $modify->email = $_POST['email'];
-    $modify->password = $_POST['password'];
-    $modify->name = $_POST['name'];
-    $modify->lastname = $_POST['lastname'];
-    $modify->city = $_POST['city'];
-    $modify->country = $_POST['country'];
-    $modify->birth = $_POST['birth'];
+$data = json_decode(file_get_contents("php://input"));
+ 
+// set user property values
+$modify->email = $data->email;
+$modify->password = $data->password;
+$modify->name = $data->name;
+$modify->lastname = $data->lastname;
+$modify->city = $data->city;
+$modify->country = $data->country;
+$modify->birth = $data->birth;
+
 
 
 
