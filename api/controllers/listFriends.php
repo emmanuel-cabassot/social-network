@@ -22,7 +22,7 @@ $db = $database->getConnection();
 $friend = new Friend($db);
 
 $id_user = $_SESSION['id_user'];
-//$id_user =1;
+//$id_user =38;
 
 
 $list = $friend->listFriends($id_user);
