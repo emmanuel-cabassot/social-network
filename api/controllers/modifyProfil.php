@@ -20,20 +20,6 @@ $db = $database->getConnection();
 // instantiate user object
 $modify = new Profil($db);
 
-
-// define absolute folder path
-$dest_folder = '../../assets/images/upload/users/';
-
-if (!empty($_FILES)) {
-
-	// if dest folder doesen't exists, create it
-	if(!file_exists($dest_folder) && !is_dir($dest_folder)) mkdir($dest_folder);
-
-    $tempFile = $_FILES['file']['tmp_name'];
-    $targetFile =  $dest_folder . $_FILES['file']['name'];
-    move_uploaded_file($tempFile,$targetFile);
-}
-
 // set user property values
 
     $modify->email = $_POST['email'];

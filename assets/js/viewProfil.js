@@ -41,7 +41,7 @@ var formP = document.getElementById("formProfil");
 document.addEventListener("DOMContentLoaded", function() {
     formP.addEventListener('submit', e => {
         e.preventDefault();
-       ModifyProfil();
+       modifyProfil();
         });
     });
 
@@ -54,7 +54,7 @@ var serializeForm = function (form) {
     return obj;
 };
 
-function ModifyProfil(){
+function modifyProfil(){
     var modify_form = formP;
     var form_data=JSON.stringify(serializeForm(modify_form));
     var xhr = new XMLHttpRequest();
@@ -62,7 +62,7 @@ function ModifyProfil(){
     
     xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4 && this.status == 200) {
-            window.location="viewProfil.php";
+            window.location="profil.php";
         }else if(this.readyState === 4 && this.status == 406){
            setTimeout(function(){$("#resultat").html("<p>Cet email existe déja.</p>")}, 1000); 
         }else{setTimeout(function(){$("#resultat").html("<p>Erreur système, veuillez recommencer</p>")}, 1000);}
