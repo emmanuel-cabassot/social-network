@@ -35,16 +35,8 @@ if (!empty($_FILES)) {
 }
 
 // set user property values
-
-    $modify->email = $_POST['email'];
-    $modify->password = $_POST['password'];
-    $modify->name = $_POST['name'];
-    $modify->lastname = $_POST['lastname'];
-    $modify->city = $_POST['city'];
-    $modify->country = $_POST['country'];
-    $modify->birth = $_POST['birth'];
-
-
+  
+    $modify->avatar = $_POST['avatar'];
 
 if(!empty($_SESSION['id_user'])){
 
@@ -52,16 +44,16 @@ if(!empty($_SESSION['id_user'])){
 
 //check if session open
 
-    $modifyProfil = $modify->modifyProfil($id_user);
+    $modifyAvatar = $modify->modifyAvatar($id_user);
 
-    if($modifyProfil){
+    if($modifyAvatar){
 
     // set response code
     http_response_code(200);
 
     echo json_encode(
             array(
-                "message" => "Profil Modifié.",
+                "message" => "Avatar Modifié.",
             )
         );
     }else{

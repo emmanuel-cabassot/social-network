@@ -21,7 +21,7 @@ function view_profil(){
             '" required></div><div class="form-group"><input type="text" class="form-control w-75" id="city" name="city" value="'+record.city+
             '" required></div><div class="form-group"><input type="text" class="form-control w-75" id="country" name="country" value="'+record.country+
             '" required></div><div class="form-group"><label for="birth" >Date de Naissance</label><input type="date" class="form-control w-75"  id="birth" name="birth" value="'+record.birth+
-            '" required></div><br>';
+            '" required></div><br><div class="form-group"> <button type="submit" class="btn btn-primary w-75">Modifier</button></div>';
 
             outputAvatar='<img class="d-block img-min" src="assets/images/upload/users/'+record.avatar+'" alt="avatar">';
 
@@ -36,13 +36,49 @@ function view_profil(){
     xhr.send();
 }
 
+var formP = document.getElementById("formProfil"); 
 
+document.addEventListener("DOMContentLoaded", function() {
+    formP.addEventListener('submit', e => {
+        e.preventDefault();
+       ModifyProfil();
+        });
+    });
+
+var serializeForm = function (form) {
+    var obj = {};
+    var formData = new FormData(form);
+    for (var key of formData.keys()) {
+        obj[key] = formData.get(key);
+    }
+    return obj;
+};
+
+function ModifyProfil(){
+    var modify_form = formP;
+    var form_data=JSON.stringify(serializeForm(modify_form));
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+    
+    xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4 && this.status == 200) {
+            window.location="viewProfil.php";
+        }else if(this.readyState === 4 && this.status == 406){
+           setTimeout(function(){$("#resultat").html("<p>Cet email existe déja.</p>")}, 1000); 
+        }else{setTimeout(function(){$("#resultat").html("<p>Erreur système, veuillez recommencer</p>")}, 1000);}
+    });
+
+    xhr.open("POST", "api/controllers/modifyProfil.php");
+    xhr.setRequestHeader("Content-Type", "text/plain");
+
+    xhr.send(form_data);
+   }
 
     // disable autodiscover
 Dropzone.autoDiscover = false;
 
 var myDropzone = new Dropzone("#dropzone", {
-    url: "api/controllers/modifyProfil.php",
+    url: "api/controllers/modifyAvatar.php",
     method: "POST",
     paramName: "file",
     autoProcessQueue : false,
@@ -78,9 +114,6 @@ myDropzone.on("removedfile", function(file) {
 myDropzone.on("sending", function(file, xhr, formData) {
     formData.append("dropzone", "1"); // $_POST["dropzone"]
     formData.append("avatar",myDropzone.files[0].name );
-    $('#dropzone-form input[type="text"],#dropzone-form input[type="email"],#dropzone-form input[type="date"]').each(function(){
-        formData.append($(this).attr('name'),$(this).val());
-    });
 });
 
 myDropzone.on("error", function(file, response) {
@@ -99,42 +132,17 @@ var footer= document.getElementById("resultat");
 
 submitDropzone.addEventListener("click", function(e) {
     // Make sure that the form isn't actually being sent.
-    validerForm();
+  
     e.preventDefault();
     e.stopPropagation();
 
-    if (myDropzone.files != "" && validerForm()==true) {
+    if (myDropzone.files != "") {
         // console.log(myDropzone.files);
         myDropzone.processQueue();
-    }else if(myDropzone.files == "" && validerForm()==true) {
-	// if no file submit the form
-    $('#dropzone-form input[type="text"],#dropzone-form input[type="email"],#dropzone-form input[type="date"]').each(function(){
-        formData.append($(this).attr('name'),$(this).val());
-    });
-    myDropzone.processQueue();
     
     }else{
-        footer.innerHTML= '<h4>Tous les champs doivent être remplis</h4>'; 
+        footer.innerHTML= '<h4>Ajoutez une image si vous voulez la modifier</h4>'; 
     }
 
 });
 
-
-
-
-
-function validerForm(){
-
-    var a= document.getElementById("email").value;
-    var b= document.getElementById("password").value;
-    var c= document.getElementById("name").value;
-    var d= document.getElementById("lastname").value;
-    var e= document.getElementById("city").value;
-    var f= document.getElementById("country").value;
-    var g= document.getElementById("birth").value;
-    if(a=="" || b=="" || c=="" || d=="" || e=="" || f=="" || g==""){
-        return false;
-    }else{
-       return true;
-    }
-};

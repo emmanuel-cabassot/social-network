@@ -68,7 +68,6 @@ class Profil{
         $this->password=htmlspecialchars($this->password);
         $this->name=htmlspecialchars(strip_tags($this->name));
         $this->lastname=htmlspecialchars(strip_tags($this->lastname));
-        $this->avatar=htmlspecialchars(strip_tags($this->avatar));
         $this->city=htmlspecialchars(strip_tags($this->city));
         $this->country=htmlspecialchars(strip_tags($this->country));
         $this->birth=htmlspecialchars(strip_tags($this->birth));
@@ -84,7 +83,6 @@ class Profil{
 
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":lastname", $this->lastname);
-        $stmt->bindParam(":avatar", $this->avatar);
         $stmt->bindParam(":city", $this->city);
         $stmt->bindParam(":country", $this->country);
         $stmt->bindParam(":birth", $this->birth);
@@ -93,6 +91,31 @@ class Profil{
         
         
     
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+    
+    }
+
+    function modifyAvatar($id_user){
+
+        // query to update record
+        $query = "UPDATE users SET  avatar= :avatar WHERE id_user=:id_user";
+    
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+    
+        // sanitize
+       
+        $this->avatar=htmlspecialchars($this->avatar); 
+        
+        // bind values
+        $stmt->bindParam(":avatar", $this->avatar);
+        $stmt->bindParam(":id_user", $id_user);
+
         // execute query
         if($stmt->execute()){
             return true;

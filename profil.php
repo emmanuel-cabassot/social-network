@@ -88,11 +88,14 @@ session_start();
                     <div id="img-avatar" class="justify-content-center"></div>
                     <p><i>Vous pouvez dés à présent la modifier</i></p>
                     <div class="jumbotron">
-                        <form id="dropzone-form"  enctype="multipart/form-data" method="POST">
+                        <form id="formProfil">
                             <fieldset>
                                 <div id="viewProfil">
                                 </div>
-                            
+                            </fieldset>
+                        </form>
+                        <form id="dropzone-form"  enctype="multipart/form-data" method="POST">
+                            <fieldset>     
                                 <div class="form-group">
                                     <div class="dropzone" id="dropzone"></div>
                                 </div>
