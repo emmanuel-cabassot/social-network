@@ -4,6 +4,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,8 +27,6 @@ session_start();
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-light">
             <a class="navbar-brand" href="home.php"><img src="assets/images/logo.png" alt="logo" class="logo-img-thumb"></a>
-
-
             <div class="collapse navbar-collapse" id="navbarColor03">
 
                 <input class="form-control mr-sm-2 w-25" type="text" name="main-search" id="main-search" placeholder="Nom du contact">
@@ -40,13 +39,13 @@ session_start();
 
                 <ul class="navbar-nav ml-auto display-5">
                     <?php
-                        if ($_SESSION['role'] == "admin") {
-                            ?>
-                            <li class="nav-item active">
-                                <a class="nav-link" href="crudAdm.php"><i class="bi bi-award-fill"></i></a>
-                            </li>
-                            <?php
-                        }
+                    if ($_SESSION['role'] == "admin") {
+                    ?>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="crudAdm.php"><i class="bi bi-award-fill"></i></a>
+                        </li>
+                    <?php
+                    }
                     ?>
                     <li class="nav-item active">
                         <a class="nav-link" href="home.php"><i class="bi bi-house mr-3 blue"></i></a>
@@ -69,6 +68,7 @@ session_start();
     </header>
     <main class="container-fluid mt-5">
         <div class="row d-flex">
+            <!-- aside left -->
             <div class="col-xl-3">
                 <section class="alert alert-light">
                     <ul class="nav nav-pills flex-column">
@@ -89,10 +89,12 @@ session_start();
 
                             <a href="events.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
                         </div>
-                        <div id="suggestedEvent"></div>                        
+                        <div id="suggestedEvent"></div>
                     </div>
                 </section>
             </div>
+            <!-- End aside left -->
+            <!-- send post -->
             <div class="col-xl-6 col-sm-12">
                 <section class="sendPost">
                     <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['id_user'] ?>>
@@ -123,39 +125,8 @@ session_start();
                         </section>
                     </section>
                 </section>
-                <section class="showPostsMur">
-                
-                </section>
-            </div>
-
-
-            <div class="col-xl-3 col-sm-12">
-                <section class="alert alert-light">
-                    <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion d'amis
-                            <a href="friends.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
-                        </div>
-                        <div id="suggestedFriend"></div>
-                    </div>
-                </section>
-                <section class="alert alert-light">
-                    <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Amis
-                            <a href="friends.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
-                        </div>
-                        <div id="listFriends"></div>
-                    </div>
-                </section>
-                <section class="alert alert-light">
-                    <div class="list-group">
-                        <div class="list-group-item list-group-item-action active">Suggestion de groupes
-                            <a href="groups.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
-                        </div>
-                        <div id="suggestedGroup"></div>
-                    </div>
-                </section>
-
-
+                <!-- End send post -->
+                <!-- modale send post -->
                 <section class="container-modale-sendPost">
                     <section class="modale-sendPost">
                         <header class="header-modale-sendPost">
@@ -209,9 +180,41 @@ session_start();
                                 <button type="button" class="btn btn-primary w-100">Publier</button>
                             </section>
                         </main>
-
                     </section>
                 </section>
+                <!-- end modale send post -->
+                <!-- show posts -->
+                <section class="showPostsMur">
+                </section>
+                <!-- End show posts -->
+            </div>
+            <div class="col-xl-3 col-sm-12">
+                <!-- aside right -->
+                <section class="alert alert-light">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action active">Suggestion d'amis
+                            <a href="friends.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
+                        </div>
+                        <div id="suggestedFriend"></div>
+                    </div>
+                </section>
+                <section class="alert alert-light">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action active">Amis
+                            <a href="friends.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
+                        </div>
+                        <div id="listFriends"></div>
+                    </div>
+                </section>
+                <section class="alert alert-light">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action active">Suggestion de groupes
+                            <a href="groups.php" type="button" class="btn btn-secondary btn-sm float-right">Voir ...</a>
+                        </div>
+                        <div id="suggestedGroup"></div>
+                    </div>
+                </section>
+                <!-- End aside right -->
             </div>
         </div>
     </main>

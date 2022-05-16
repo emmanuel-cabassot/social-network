@@ -12,7 +12,7 @@ function showPost() {
     }
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "api/controllers/postShow.php");
+    xhr.open("POST", "./api/controllers/postShow.php");
     xhr.setRequestHeader("Content-Type", "text/plain");
     xhr.responseType = "json";
     xhr.send(JSON.stringify(data));
@@ -329,8 +329,6 @@ function showPost() {
                                 showHiddenComment.classList.add("show")
                             }
 
-
-
                             /*  Modification du nombre de commentaires */
                             let countComment = document.querySelector("#commentCount" + post.id_post)
                             if (post.countComment == 0) {
@@ -447,9 +445,9 @@ function showPost() {
         }
     }
 
-    likeShowPost(like, dislike, post_id)
+    // likeShowPost(like, dislike, post_id)
 
-    dislikeShowPost(like, dislike, post_id)
+    // dislikeShowPost(like, dislike, post_id)
 
 }
 
