@@ -23,11 +23,11 @@ if(isset($_SESSION['id_user']) && !empty($_SESSION['id_user'])){
 	<meta name="description" content="Reseau Social pour La Plateforme_." />
 	<meta name="keywords" content="stories, posts, social network, followers, réseau social, La Plateforme_, plateformeurs" />
 	<meta name="author" content="Denis Farkas Emmanuel Cabassot Thuc-nhi Wiedenhofer" />
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link href="assets/css/dropzone.min.css" rel="stylesheet" type="text/css">
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/dropzone.min.js" ></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link href="../assets/css/dropzone.min.css" rel="stylesheet" type="text/css">
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/dropzone.min.js" ></script>
 </head>
 
 <body class="bg-light min-vh-100">
@@ -58,8 +58,8 @@ if(isset($_SESSION['id_user']) && !empty($_SESSION['id_user'])){
           <div class="col-lg-12"> 
           </div>
       </footer>
-    <script src="chat.js"></script>   
-    <script src="assets/js/bootstrap.bundle.min.js"></script> 
+    <script src="../assets/js/chat.js"></script>   
+    <script src="../assets/js/bootstrap.bundle.min.js"></script> 
 </body>
 </html>
 

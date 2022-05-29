@@ -41,8 +41,6 @@ function listerUsers(){
         
         });
 
-        
-       
         listUsers.innerHTML = outputUs;
 
         /* Au click sur le submit on envoie les valeurs des inputs */
@@ -64,7 +62,7 @@ function listerUsers(){
                 }
 
                 let xhrr = new XMLHttpRequest();
-                xhrr.open("POST", "api/controllers/modifUser.php");
+                xhrr.open("POST", "../api/controllers/modifUser.php");
                 xhrr.setRequestHeader("Content-Type", "text/plain");
                 xhrr.responseType = "json";
                 xhrr.send(JSON.stringify(data));
@@ -81,6 +79,6 @@ function listerUsers(){
             listUsers.innerHTML = '<p>Pas d\'inscrits</p>';
         }
     });
-    xhr.open("POST", 'api/controllers/admUsers.php');
+    xhr.open("POST", '../api/controllers/admUsers.php');
     xhr.send();
 };

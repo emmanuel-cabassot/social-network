@@ -19,6 +19,7 @@ lienModale.forEach(ouvertureModale => {
             let photo = document.querySelector('#preview').hasChildNodes()
             let video = document.querySelector('#preview-video').hasChildNodes()
             let myContent = $("#TextareaPostSend").data("emojioneArea").getText();
+            console.log(myContent)
 
             if (photo === true || video === true || myContent != "") {
                 if (confirm('Vous n’avez pas encore partagé votre publication. Voulez-vous vraiment quitter sans publier ?'))
@@ -30,7 +31,7 @@ lienModale.forEach(ouvertureModale => {
                     data = 'oui'
                     $.ajax({
                         // Adresse du traitement pour supprimer l'image du dossier temporaire
-                        url: "uploadTempPost.php",
+                        url: "../uploadTempPost.php",
                         method: "POST",
                         data: { supprime: data },
                         success: function (data) {
@@ -45,7 +46,7 @@ lienModale.forEach(ouvertureModale => {
                     data = 'oui'
                     $.ajax({
                         // Adresse du traitement pour supprimer la video du dossier temporaire
-                        url: "uploadTempPostVideo.php",
+                        url: "../uploadTempPostVideo.php",
                         method: "POST",
                         data: { supprime: data },
                         success: function (data) {
@@ -85,7 +86,6 @@ let ajouterPhoto = document.querySelector('#ajouterPhoto-sendPost')
 var uploadImages = document.querySelector('.upload-images')
 
 // Au click sur l'icone story 
-
 let buttonStory = document.querySelector(".button-story-media-sendPost")
 buttonStory.addEventListener("click", function (e) {
     let exists = !!document.querySelector(".button-story-media-sendPost .validation-story");
@@ -161,7 +161,7 @@ Dropzone.options.dropzoneFromImages = {
 // Fonction qui affiche les photos dans la div #preview
 function list_image() {
     $.ajax({
-        url: "uploadTempPost.php",
+        url: "../uploadTempPost.php",
         success: function (data) {
             $('#preview').html(data);
             document.querySelector(".video-media-senPost").classList.add("hidden")
@@ -179,7 +179,7 @@ $(document).on('click', '.remove_image', function () {
     var name = $(this).attr('id');
     $.ajax({
         // Adresse du traitement de l'image
-        url: "uploadTempPost.php",
+        url: "../uploadTempPost.php",
         method: "POST",
         data: { name: name },
         success: function (data) {
@@ -214,7 +214,7 @@ Dropzone.options.dropzoneFromVideo = {
 // Fonction qui affiche la video dans la div preview
 function list_video() {
     $.ajax({
-        url: "uploadTempPostVideo.php",
+        url: "../uploadTempPostVideo.php",
         success: function (data) {
             $('#preview-video').html(data);
             document.querySelector(".image-media-sendPost").classList.add("hidden")
@@ -232,7 +232,7 @@ $(document).on('click', '.remove_video', function () {
     var name = $(this).attr('id');
     $.ajax({
         // Adresse du traitement de l'image
-        url: "uploadTempPostVideo.php",
+        url: "../uploadTempPostVideo.php",
         method: "POST",
         data: { name: name },
         success: function (data) {
@@ -249,7 +249,7 @@ publier.addEventListener("click", function (e) {
     if (confirm('Voulez-vous publier?')) {
         // Valeur du textarea
         let myContent = $("#TextareaPostSend").data("emojioneArea").getText();
-
+        console.log()
         // Est ce une story?
         let exists = !!document.querySelector(".button-story-media-sendPost .validation-story");
         if (exists) {
@@ -284,7 +284,7 @@ publier.addEventListener("click", function (e) {
         }
         data = JSON.stringify(data);
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "api/controllers/postSend.php");
+        xhr.open("POST", "../api/controllers/postSend.php");
         xhr.setRequestHeader("Content-Type", "text/plain");
         xhr.send(data);
 

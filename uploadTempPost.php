@@ -54,7 +54,7 @@ if(false !== $files)
   {
    $output .= '
    <div class="affichage_preview">
-    <img src="'.$folder_name.$file.'" class="img-thumbnail" />
+    <img src="../'.$folder_name.$file.'" class="img-thumbnail" />
     <button type="button" class="btn btn-link remove_image" id="'.$file.'">&#10006</button>
    </div>
    ';

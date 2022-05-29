@@ -18,7 +18,7 @@ function listerComments() {
                     <section class="header-admComment w-100">
                         <section class="user-admComment" id="user_showPost${comment.id_comment_post}">               
                             <section class="avatar-user-admComment">
-                                <img src="assets/images/upload/users/${comment.userAvatar}" alt="avatar">
+                                <img src="../assets/images/upload/users/${comment.userAvatar}" alt="avatar">
                             </section>
                             <section class="nameDate-admComment">
                                 <div class="name-admComment">${comment.userLastname} ${comment.userName}</div>
@@ -129,7 +129,7 @@ function listerComments() {
                      }
                      
                      let xhrr = new XMLHttpRequest();
-                     xhrr.open("POST", "api/controllers/modifCommentPost.php");
+                     xhrr.open("POST", "../api/controllers/modifCommentPost.php");
                      xhrr.setRequestHeader("Content-Type", "text/plain");
                      xhrr.responseType = "json";
                      xhrr.send(JSON.stringify(data));
@@ -146,6 +146,6 @@ function listerComments() {
 
         }
     });
-    xhr.open("POST", 'api/controllers/admCommentsPosts.php');
+    xhr.open("POST", '../api/controllers/admCommentsPosts.php');
     xhr.send();
 };

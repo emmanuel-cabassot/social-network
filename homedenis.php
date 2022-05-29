@@ -84,7 +84,7 @@ session_start();
                 <section class="sendPost">
 
                     <section class="text-sendPost mt-3 mb-3 " data-modale=<?= $_SESSION['id_user'] ?>>
-                        <p class="ml-3"> Quoi de neuf emmanuel ?</p>
+                        <p class="ml-3"> Quoi de neuf <?php echo $_SESSION['name'] ?> ?</p>
                     </section>
                     <div class="separation-sendPost"></div>
                     <section class="media-sendPost">
@@ -211,6 +211,7 @@ session_start();
         <div class="col-lg-12">
         </div>
         <input type="hidden" id="idUser" value=<?= $_SESSION['id_user'] ?>>
+        <input type="hidden" id="filActualite" value="non">
     </footer>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js" integrity="sha512-hkvXFLlESjeYENO4CNi69z3A1puvONQV5Uh+G4TUDayZxSLyic5Kba9hhuiNLbHqdnKNMk2PxXKm0v7KDnWkYA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -220,8 +221,7 @@ session_start();
         })
     </script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="search.js"></script>
-    <script src="homedenis.js"></script>
+
     <script src="sendPost.js"></script>
     <script src="murPost.js"></script>
 
