@@ -1,37 +1,39 @@
-var formL = document.getElementById("formSignIn"); 
+var formL = document.getElementById("formSignIn");
 
-document.addEventListener("DOMContentLoaded", function() {
-    formL.addEventListener('submit', e => {
-        e.preventDefault();
-        login();
-        });
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  formL.addEventListener("submit", (e) => {
+    e.preventDefault();
+    login();
+  });
+});
 
 var serializeForm = function (form) {
-    var obj = {};
-    var formData = new FormData(form);
-    for (var key of formData.keys()) {
-        obj[key] = formData.get(key);
-    }
-    return obj;
+  var obj = {};
+  var formData = new FormData(form);
+  for (var key of formData.keys()) {
+    obj[key] = formData.get(key);
+  }
+  return obj;
 };
 
-function login(){
-    var login_form = formL;
-    var form_data=JSON.stringify(serializeForm(login_form));
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
-    
-    xhr.addEventListener("readystatechange", function() {
-        if(this.readyState === 4 && this.status == 200) {
-        window.location="home.php";
-        }else{
-            setTimeout(function(){$("#resultat").html("<p>Erreur d'email ou de password.</p>")}, 1000); 
-        }
-    });
+function login() {
+  var login_form = formL;
+  var form_data = JSON.stringify(serializeForm(login_form));
+  var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
 
-    xhr.open("POST", "api/controllers/login.php");
-    xhr.setRequestHeader("Content-Type", "text/plain");
+  xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === 4 && this.status == 200) {
+      window.location = "public/home.php";
+    } else {
+      setTimeout(function () {
+        $("#resultat").html("<p>Erreur d'email ou de password.</p>");
+      }, 1000);
+    }
+  });
 
-    xhr.send(form_data);
-   }
+  xhr.open("POST", "api/controllers/login.php");
+  xhr.setRequestHeader("Content-Type", "text/plain");
+
+  xhr.send(form_data);
+}

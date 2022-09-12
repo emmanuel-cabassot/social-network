@@ -1,9 +1,5 @@
 <?php
-
 class Database{
-
-
-
     private $host = "localhost";
     private $db_name = "network";
     private $username = "root";
@@ -25,4 +21,3 @@ class Database{
         return $this->conn;
     }
 }
-?>

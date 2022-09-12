@@ -480,9 +480,16 @@
 }
 
 /* ADMIN */
+#mainCrudAdmin {
+    background-color: white;
+}
+
 .tabs-admin {
     width: 100%;
-   
+    margin-bottom: 60px;
+    margin-top: 0;
+    padding-top: 0;
+    background-color: white;
 }
 
 .tabs-admin .list {
@@ -493,7 +500,7 @@
     width: 100%;
     text-align: center;
     list-style-type: none;
-    margin: 10px 0;
+    margin: 0 0;
     padding: 0;
 }
 
@@ -501,10 +508,12 @@
     cursor: pointer;
     width: 100%;
     padding: 5px;
+    background-color: rgb(241, 241, 241) ;
 }
 
 .tabs-admin .tab:hover {
-    background-color: rgb(241, 241, 241);
+    background-color: grey;
+    color: white;
 }
 
 .tabs-admin .tab.active {

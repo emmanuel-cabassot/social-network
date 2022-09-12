@@ -9,20 +9,22 @@ class Like
     public $id_like_post;
     public $id_post;
     public $id_user;
-    
+
     // constructor with $db as database connection
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
-    public function possibleLike($id_post, $id_user) {
+    public function possibleLike($id_post, $id_user)
+    {
         $count = "SELECT COUNT(*) FROM like_post WHERE  id_post = $id_post AND id_user = $id_user";
         $possibleLike = $this->conn->query($count);
         return $possibleLike->fetchColumn();
     }
 
-    public function countLike($id_post) {
+    public function countLike($id_post)
+    {
         $count = "SELECT COUNT(*) FROM like_post WHERE id_post = $id_post";
         $countLike = $this->conn->query($count);
         return $countLike->fetchColumn();
@@ -34,7 +36,7 @@ class Like
 
         // prepare the query
         $stmt = $this->conn->prepare($insert);
-     
+
         // bind post, user
         $stmt->bindParam(':id_post', $id_post);
         $stmt->bindParam(':id_user', $id_user);
@@ -49,7 +51,7 @@ class Like
 
         // prepare the query
         $stmt = $this->conn->prepare($delete);
-     
+
         // bind post, user
         $stmt->bindParam(':id_post', $id_post);
         $stmt->bindParam(':id_user', $id_user);
@@ -57,6 +59,4 @@ class Like
         // execute the query
         $stmt->execute();
     }
-
-
 }

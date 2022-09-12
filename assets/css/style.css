@@ -1,11 +1,35 @@
+#asideLeftTop {
+    position: sticky;
+    top: 128px;
+}
+
+#asideLeftBottom {
+    position: sticky;
+    top: 288px;
+}
+
+#asideRight {
+    position: fixed;
+    top: 120px;
+    right: 0;
+}
+
 #banner {
-    
     text-align: center;
     background-image:url("../images/banner.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 25em;
-    
+}
+
+.headerScreen {
+    position: sticky;
+    top: 0;
+    z-index: 7;
+}
+
+nav span {
+    display: none;
 }
 
 .page-header h1{
@@ -13,6 +37,7 @@
     font-size:5em;
     color: black;
     background-color: rgba(255, 255, 255, 0.52);
+    position: relative;
 }
 
 .h2 {
@@ -163,4 +188,27 @@ a .quiet{
     border-radius: 5%;
     color:white;
     font-size: 1em;
+}
+
+@media screen and (max-width: 1200px)
+{
+   #asideRight {
+    display: none;
+   }
+
+   #asideLeft {
+    display: none;
+   }
+
+   nav span {
+    display: inline;
+}
+
+}
+
+@media screen and (min-width: 900px) and (max-width: 1200px)
+{
+   .showPostsMur, .sendPost {
+    margin: 0 100px;
+   }
 }
